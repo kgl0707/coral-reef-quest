@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>珊瑚礁生存挑战 · 八关互动科普</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:
+      radial-gradient(1100px 520px at 50% -220px, #E9F4F7 0%, rgba(233,244,247,0) 72%),
+      #F8F7F2;
+    color:#1E2B2A;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.62;
+    font-size:15px;
+  }
+  .wrap{max-width:1020px;margin:0 auto;padding:32px 22px 72px}
+
+  /* ---------- 页头 ---------- */
+  header{padding:4px 2px 4px}
+  .brand{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.16em;color:#0F7C80;font-weight:700}
+  .brand::before{content:"";width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#8FD8D3,#0F7C80)}
+  h1{font-size:30px;line-height:1.3;margin:11px 0 9px;letter-spacing:-.01em;font-weight:650}
+  .lede{margin:0;color:#5F6E6A;font-size:14.5px;max-width:730px}
+  .lede b{color:#1E2B2A;font-weight:600}
+
+  /* ---------- 关卡导航 ---------- */
+  .levels{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:24px 0 16px}
+  .chip{position:relative;display:flex;align-items:center;gap:9px;padding:10px 11px;background:#fff;border:1px solid #E6E2D6;border-radius:11px;cursor:pointer;font:inherit;color:#3A4A46;text-align:left;transition:transform .16s,border-color .16s,background .16s}
+  .chip i{font-style:normal;width:21px;height:21px;flex:0 0 21px;border-radius:50%;background:#EDF1EE;color:#5E7069;display:grid;place-items:center;font-size:11px;font-weight:700}
+  .chip span{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .chip:hover{border-color:#BFD9D6;transform:translateY(-1px)}
+  .chip.on{background:#0F7C80;border-color:#0F7C80;color:#fff;box-shadow:0 8px 18px -10px rgba(15,124,128,.85)}
+  .chip.on i{background:rgba(255,255,255,.26);color:#fff}
+  .chip.done::after{content:"✓";position:absolute;top:4px;right:7px;font-size:10px;color:#3E8E5A;font-weight:700}
+  .chip.on.done::after{color:#CFF3E1}
+
+  /* ---------- 关卡面板 ---------- */
+  .panel{display:none;background:#fff;border:1px solid #E7E3D8;border-radius:16px;padding:20px 20px 18px;box-shadow:0 18px 40px -34px rgba(30,43,42,.5)}
+  .panel.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .lvhead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:13px}
+  .lvno{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;color:#0F7C80;background:#E9F3F3;border-radius:6px;padding:2px 8px}
+  .lvhead h2{font-size:21px;margin:6px 0 0;font-weight:650;letter-spacing:-.01em}
+  .point{flex:0 0 auto;max-width:330px;font-size:12px;line-height:1.55;color:#7A5A22;background:#FBF3E2;border:1px solid #F0E3C6;border-radius:9px;padding:8px 11px}
+  .point b{color:#6B4C15}
+
+  /* ---------- 场景 ---------- */
+  .stage{background:linear-gradient(#F0F8FA,#E7F2F6);border:1px solid #E1EBEE;border-radius:13px;overflow:hidden}
+  .stage svg{display:block;width:100%;height:auto;touch-action:none;user-select:none}
+
+  /* ---------- 控件 ---------- */
+  .controls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:14px;padding:13px 15px;background:#FBFBF7;border:1px solid #EDEADF;border-radius:12px}
+  .ctrl{display:flex;align-items:center;gap:9px;font-size:13px;color:#4E5F5A}
+  .ctrl>.k{white-space:nowrap;color:#63736F}
+  .ctrl b{font-variant-numeric:tabular-nums;color:#1E2B2A;min-width:56px;display:inline-block;font-weight:600}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:212px;height:6px;border-radius:99px;background:#E3E9E4;outline:none;cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:#fff;border:2px solid #0F7C80;box-shadow:0 2px 6px rgba(0,0,0,.16)}
+  input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:#fff;border:2px solid #0F7C80}
+  input[type=range]:focus-visible{outline:2px solid #0F7C80;outline-offset:4px}
+  input[type=range].kb{box-shadow:0 0 0 3px rgba(15,124,128,.22)}
+  /* 键盘操作提示 */
+  .kbhint{display:inline-flex;align-items:center;gap:4px;margin-left:auto;font-size:11.5px;color:#98A39E;white-space:nowrap}
+  .kbhint kbd{font:inherit;font-size:11px;font-weight:600;line-height:1.45;color:#4E5F5A;background:#fff;border:1px solid #DDD9CB;border-bottom-width:2px;border-radius:5px;padding:1px 6px}
+
+  .btn{font:inherit;font-size:12.5px;font-weight:600;color:#fff;background:#0F7C80;border:1px solid #0F7C80;padding:8px 15px;border-radius:9px;cursor:pointer;transition:.16s;white-space:nowrap}
+  .btn:hover{background:#0C6A6E;border-color:#0C6A6E}
+  .btn.ghost{background:#fff;color:#3C4E49;border-color:#DCD9CD}
+  .btn.ghost:hover{background:#F6F5EF;border-color:#C9C5B6}
+  .btn.ghost.on{background:#0F7C80;border-color:#0F7C80;color:#fff}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+
+  .bar{width:118px;height:8px;border-radius:99px;background:#E7E5DA;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:#3E8E5A;transition:width .35s,background .35s}
+  .meter{display:flex;align-items:center;gap:9px;font-size:13px;color:#4E5F5A}
+
+  @keyframes swimX{from{transform:translateX(-120px)}to{transform:translateX(1020px)}}
+  .fish{animation:swimX 12s linear infinite}
+  @keyframes bobY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .bob{animation:bobY 3.6s ease-in-out infinite}
+  @keyframes pulseRing{0%{transform:scale(.6);opacity:.8}100%{transform:scale(1.9);opacity:0}}
+  .ring{animation:pulseRing 2.2s ease-out infinite;transform-origin:center}
+  @keyframes flowDash{to{stroke-dashoffset:-48}}
+  .flow{animation:flowDash 2.4s linear infinite}
+
+  /* ---------- 反馈条 ---------- */
+  .fb{margin-top:12px;padding:11px 15px;border-radius:11px;background:#F3F8F6;border-left:3px solid #0F7C80;font-size:13.6px;color:#31443F;min-height:45px}
+  .fb.bad{background:#FDF3F1;border-color:#C2453E}
+  .fb.warn{background:#FDF8EC;border-color:#D98A2B}
+  .fb.good{background:#F1F8F2;border-color:#3E8E5A}
+  .fb b{color:#0F5F63;font-weight:600}
+  .fb .hint{color:#7C8A85;font-size:12.5px}
+
+  /* ---------- 提示与浮层 ---------- */
+  #tip{position:fixed;z-index:90;max-width:270px;background:#1F2E2C;color:#F4F7F3;padding:9px 12px;border-radius:10px;font-size:12.5px;line-height:1.55;opacity:0;transform:translateY(4px);transition:opacity .18s,transform .18s;pointer-events:none;box-shadow:0 10px 24px -12px rgba(0,0,0,.6)}
+  #tip.on{opacity:1;transform:none}
+  #toast{position:fixed;left:50%;bottom:30px;transform:translate(-50%,14px);background:#1F2E2C;color:#fff;padding:10px 18px;border-radius:99px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:95}
+  #toast.on{opacity:1;transform:translate(-50%,0)}
+
+  footer{margin-top:26px;color:#8A9691;font-size:12px;text-align:center;line-height:1.7}
+
+  .lvfoot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:11px;border-top:1px dashed #ECE8DC}
+  .lvfoot .pos{font-size:11.5px;color:#93A09B;letter-spacing:.04em}
+
+  .loclist{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .loclist button{font:inherit;font-size:11.5px;padding:5px 10px;border-radius:99px;border:1px solid #DDD9CB;background:#fff;color:#44544F;cursor:pointer;transition:.15s}
+  .loclist button:hover{border-color:#0F7C80;color:#0F7C80}
+  .loclist button.ok{background:#EAF5EC;border-color:#BFDCC6;color:#2F6B4F}
+  .loclist button.no{background:#FBEDEB;border-color:#EBC7C1;color:#A33A32}
+  .loclist button.mid{background:#FBF3E2;border-color:#EDDDB9;color:#7A5A22}
+
+  .dash{display:grid;grid-template-columns:1fr 1fr;gap:7px 22px;margin-top:12px}
+  .row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#4E5F5A}
+  .row .lab{width:58px;flex:0 0 58px;color:#5F6E6A}
+  .row input[type=range]{flex:1 1 90px;width:auto;min-width:80px;max-width:200px}
+  .row b{width:52px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:#1E2B2A;font-size:12px}
+  .row .dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px;background:#3E8E5A;transition:background .25s}
+  .row .dot.warn{background:#D98A2B}
+  .row .dot.bad{background:#C2453E}
+  .row button{font:inherit;font-size:11.5px;padding:2px 9px;border-radius:7px;border:1px solid #DCD9CD;background:#fff;color:#3C4E49;cursor:pointer;min-width:64px}
+  .row button:hover{border-color:#0F7C80;color:#0F7C80}
+  @media(max-width:760px){.dash{grid-template-columns:1fr}}
+
+  @media(max-width:760px){
+    .levels{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:24px}
+    .point{display:none}
+    input[type=range]{width:150px}
+    .wrap{padding:22px 14px 56px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">CORAL REEF · 互动科普</div>
+    <h1>珊瑚礁生存挑战</h1>
+    <p class="lede">珊瑚礁只占海洋面积不到 <b>0.1%</b>，却养育了约 <b>四分之一</b>的海洋物种。它要求的条件，几乎每一条都卡在很窄的区间里。八个关卡，一条一条试给你看。</p>
+  </header>
+
+  <nav class="levels" id="levels">
+    <button class="chip" data-lv="1"><i>1</i><span>温度危机</span></button>
+    <button class="chip" data-lv="2"><i>2</i><span>盐度逃生</span></button>
+    <button class="chip" data-lv="3"><i>3</i><span>阳光猜猜看</span></button>
+    <button class="chip" data-lv="4"><i>4</i><span>施肥陷阱</span></button>
+    <button class="chip" data-lv="5"><i>5</i><span>安家大作战</span></button>
+    <button class="chip" data-lv="6"><i>6</i><span>造骨头实验室</span></button>
+    <button class="chip" data-lv="7"><i>7</i><span>地球仪大冒险</span></button>
+    <button class="chip" data-lv="8"><i>8</i><span>终极生存挑战</span></button>
+  </nav>
+
+  <main>
+    <!-- ================= 第一关 ================= -->
+    <section class="panel" id="lv1">
+      <div class="lvhead">
+        <div><span class="lvno">第一关</span><h2>温度危机</h2></div>
+        <div class="point"><b>能活 ≠ 能成礁</b>；温度过高会让珊瑚排出共生藻而白化。</div>
+      </div>
+      <div class="stage"><svg id="s1" viewBox="0 0 900 440" role="img" aria-label="珊瑚礁温度模拟场景"></svg></div>
+      <div class="controls">
+        <label class="ctrl"><span class="k">水温</span><input id="t1" type="range" min="15" max="35" step="0.5" value="25" aria-label="水温"><b id="t1v">25.0 ℃</b></label>
+        <div class="meter"><span class="k">礁体厚度</span><div class="bar"><i id="g1"></i></div><b id="g1v" style="min-width:38px;font-variant-numeric:tabular-nums">40%</b></div>
+        <button class="btn ghost" id="r1">重置礁体</button>
+      </div>
+      <div class="fb" id="f1">拖动滑块，看看不同水温下这片礁会发生什么。</div>
+    </section>
+    <!-- ================= 第二关 ================= -->
+    <section class="panel" id="lv2">
+      <div class="lvhead">
+        <div><span class="lvno">第二关</span><h2>盐度逃生</h2></div>
+        <div class="point"><b>必须远离河口</b>；盐度过低会造成渗透压胁迫。</div>
+      </div>
+      <div class="stage"><svg id="s2" viewBox="0 0 900 440" role="img" aria-label="外海、近岸与河口三个区域"></svg></div>
+      <div class="controls">
+        <span class="ctrl"><span class="k">点击海里的三个区域，帮它选一个家</span></span>
+        <button class="btn ghost" id="r2">让它重来</button>
+      </div>
+      <div class="fb" id="f2">一只珊瑚宝宝（浮浪幼虫）正在漂流，它得找一块合适的水域定居。</div>
+    </section>
+    <!-- @L2 -->
+    <!-- ================= 第三关 ================= -->
+    <section class="panel" id="lv3">
+      <div class="lvhead">
+        <div><span class="lvno">第三关</span><h2>阳光猜猜看</h2></div>
+        <div class="point"><b>光照不足</b>，共生藻无法光合作用，珊瑚会被饿死。</div>
+      </div>
+      <div class="stage"><svg id="s3" viewBox="0 0 900 440" role="img" aria-label="从海面到海底的深度剖面"></svg></div>
+      <div class="controls">
+        <span class="ctrl"><span class="k">把珊瑚拖到不同深度试试（也可以直接点水里）</span></span>
+        <button class="btn ghost" id="w3">切换为「浑浊海水」</button>
+        <span class="meter"><span class="k">光照</span><div class="bar"><i id="l3" style="background:#E9B44C"></i></div><b id="l3v" style="min-width:44px">56%</b></span>
+      </div>
+      <div class="fb" id="f3">拖动珊瑚，或点击水层任意一处，让它上下移动。</div>
+    </section>
+    <!-- @L3 -->
+    <!-- ================= 第四关 ================= -->
+    <section class="panel" id="lv4">
+      <div class="lvhead">
+        <div><span class="lvno">第四关</span><h2>施肥陷阱</h2></div>
+        <div class="point"><b>营养盐越高，海藻越旺</b>；珊瑚被抢走阳光和地盘，反而死。</div>
+      </div>
+      <div class="stage"><svg id="s4" viewBox="0 0 900 440" role="img" aria-label="营养盐与海藻覆盖的珊瑚礁"></svg></div>
+      <div class="controls">
+        <label class="ctrl"><span class="k">营养盐浓度</span><input id="n4" type="range" min="0" max="100" step="1" value="5"><b id="n4v">5</b></label>
+        <button class="btn" id="fish4">投放草食性鱼类</button>
+        <span class="meter"><span class="k">珊瑚</span><div class="bar"><i id="c4" style="width:88%;background:#E2684B"></i></div></span>
+        <span class="meter"><span class="k">海藻</span><div class="bar"><i id="a4" style="width:2%;background:#7FA83F"></i></div></span>
+        <button class="btn ghost" id="r4" type="button" style="margin-left:auto">重新开始</button>
+      </div>
+      <div class="fb" id="f4">水很瘦，海藻只有零星几簇，珊瑚长得很好。试试把营养盐往上推？</div>
+    </section>
+    <!-- @L4 -->
+    <!-- ================= 第五关 ================= -->
+    <section class="panel" id="lv5">
+      <div class="lvhead">
+        <div><span class="lvno">第五关</span><h2>安家大作战</h2></div>
+        <div class="point"><b>必须有硬底附着</b>；水流太静会淤积，太强会折断。</div>
+      </div>
+      <div class="stage"><svg id="s5" viewBox="0 0 900 440" role="img" aria-label="不同类型的海底与水流"></svg></div>
+      <div class="controls">
+        <span class="ctrl"><span class="k">① 先选一块海底，让幼虫落下去</span></span>
+        <label class="ctrl"><span class="k">② 水流强度</span><input id="w5" type="range" min="0" max="100" step="1" value="50" disabled><b id="w5v">—</b></label>
+        <span class="meter"><span class="k">小珊瑚</span><div class="bar"><i id="h5" style="width:100%;background:#3E8E5A"></i></div></span>
+        <button class="btn ghost" id="r5" type="button">重新开始</button>
+      </div>
+      <div class="fb" id="f5">珊瑚幼虫正在水里漂。它得先找到一块能抓住的海底 —— 点一下岩石、泥沙、砾石或珊瑚灰岩。</div>
+    </section>
+    <!-- @L5 -->
+    <!-- ================= 第六关 ================= -->
+    <section class="panel" id="lv6">
+      <div class="lvhead">
+        <div><span class="lvno">第六关</span><h2>造骨头实验室</h2></div>
+        <div class="point"><b>pH 与碳酸钙饱和度</b>决定钙化难易；<b>溶解氧</b>决定它有没有力气造。</div>
+      </div>
+      <div class="stage"><svg id="s6" viewBox="0 0 900 440" role="img" aria-label="珊瑚钙化实验室"></svg></div>
+      <div class="controls">
+        <label class="ctrl"><span class="k">pH</span><input id="p6" type="range" min="7.6" max="8.4" step="0.05" value="8.15" style="background:linear-gradient(90deg,#E6C6BE 0%,#E6C6BE 50%,#BEDFC8 50%,#BEDFC8 75%,#E6C6BE 75%,#E6C6BE 100%)"><b id="p6v">8.15</b></label>
+        <label class="ctrl"><span class="k">溶解氧</span><input id="d6" type="range" min="2" max="10" step="0.2" value="7" style="background:linear-gradient(90deg,#E6C6BE 0%,#E6C6BE 50%,#BEDFC8 50%,#BEDFC8 100%)"><b id="d6v">7.0</b></label>
+        <span class="ctrl"><span class="k">文石饱和度 Ω</span><b id="om6">3.2</b></span>
+      </div>
+      <div class="fb" id="f6">这片海水的 pH 是 8.15，碳酸钙接近饱和 —— 珊瑚正在正常造骨。</div>
+    </section>
+    <!-- @L6 -->
+    <!-- ================= 第七关 ================= -->
+    <section class="panel" id="lv7">
+      <div class="lvhead">
+        <div><span class="lvno">第七关</span><h2>地球仪大冒险</h2></div>
+        <div class="point">只在<b>南北纬 30° 以内</b>；还必须<b>避开河口与泥质海岸</b>。</div>
+      </div>
+      <div class="stage"><svg id="s7" viewBox="0 0 900 440" role="img" aria-label="可旋转的地球仪与珊瑚分布"></svg></div>
+      <div class="controls">
+        <button class="btn ghost" id="l7l">← 左转</button>
+        <button class="btn ghost" id="l7r">右转 →</button>
+        <span class="ctrl"><span class="k">拖动地球也能转</span></span>
+      </div>
+      <div class="loclist" id="loc7"></div>
+      <div class="fb" id="f7">点地球上的编号，或点下面的地名，试着在各地种下一片珊瑚。</div>
+    </section>
+    <!-- @L7 -->
+    <!-- ================= 第八关 ================= -->
+    <section class="panel" id="lv8">
+      <div class="lvhead">
+        <div><span class="lvno">第八关</span><h2>终极生存挑战</h2></div>
+        <div class="point">八个条件必须<b>同时</b>满足，珊瑚才能成礁 —— 所以它才这么珍贵、这么脆弱。</div>
+      </div>
+      <div class="stage"><svg id="s8" viewBox="0 0 900 440" role="img" aria-label="八项指标仪表盘与珊瑚礁"></svg></div>
+      <div class="controls" style="display:block">
+        <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">
+          <button class="btn" id="start8">开始挑战</button>
+          <span class="ctrl"><span class="k">坚持</span><b id="tm8">0 s</b></span>
+          <span class="ctrl"><span class="k">得分</span><b id="sc8">0</b></span>
+          <span class="meter"><span class="k">礁体健康</span><div class="bar" style="width:150px"><i id="hp8" style="width:100%"></i></div></span>
+        </div>
+        <div class="dash" id="dash8"></div>
+      </div>
+      <div class="fb" id="f8">点「开始挑战」。随机灾难会不断来袭，你要把八项指标都调回绿色安全区 —— 缺一项，礁体就会垮。</div>
+    </section>
+    <!-- @L8 -->
+  </main>
+
+  <footer>画面为示意模型，用于表达生态关系，数值取自通行教材与文献区间。<br>建议用 Chrome / Edge / Safari 打开；拖不动的地方，试试直接点它。</footer>
+</div>
+
+<div id="tip"></div>
+<div id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  var NS="http://www.w3.org/2000/svg";
+  function el(tag,attrs,parent){
+    var e=document.createElementNS(NS,tag);
+    if(attrs){for(var k in attrs){ if(k==="text"){e.textContent=attrs[k];} else {e.setAttribute(k,attrs[k]);} }}
+    if(parent){parent.appendChild(e);}
+    return e;
+  }
+  function $(s,r){return (r||document).querySelector(s);}
+  function clamp(v,a,b){return v<a?a:(v>b?b:v);}
+  function lerp(a,b,t){return a+(b-a)*t;}
+  function hex(c){
+    if(c.charAt(0)==="#"){
+      return [parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)];
+    }
+    var m=c.match(/(\d+)/g)||[0,0,0];
+    return [+m[0],+m[1],+m[2]];
+  }
+  function mix(c1,c2,t){
+    t=clamp(t,0,1);
+    var a=hex(c1),b=hex(c2);
+    var r=Math.round(lerp(a[0],b[0],t)),g=Math.round(lerp(a[1],b[1],t)),bl=Math.round(lerp(a[2],b[2],t));
+    return "rgb("+r+","+g+","+bl+")";
+  }
+  function seeded(seed){
+    return function(){
+      seed=(seed+0x6D2B79F5)|0;
+      var t=Math.imul(seed^(seed>>>15),1|seed);
+      t=(t+Math.imul(t^(t>>>7),61|t))^t;
+      return ((t^(t>>>14))>>>0)/4294967296;
+    };
+  }
+  function tipAt(ev,msg){
+    var t=$("#tip");
+    t.textContent=msg;
+    t.classList.add("on");
+    var x=clamp(ev.clientX+14,10,window.innerWidth-290);
+    var y=clamp(ev.clientY-10,10,window.innerHeight-120);
+    t.style.left=x+"px";t.style.top=y+"px";
+    clearTimeout(t._h);
+    t._h=setTimeout(function(){t.classList.remove("on");},4200);
+  }
+  function toast(msg){
+    var t=$("#toast");
+    t.textContent=msg;t.classList.add("on");
+    clearTimeout(t._h);
+    t._h=setTimeout(function(){t.classList.remove("on");},1900);
+  }
+
+  var INIT={};
+  var done={};
+  var current=0;
+
+  function complete(n){
+    if(done[n])return;
+    done[n]=1;
+    var chip=document.querySelector('.chip[data-lv="'+n+'"]');
+    if(chip)chip.classList.add("done");
+    toast("第 "+n+" 关完成 ✓");
+  }
+  function showLevel(n){
+    current=n;
+    var panels=document.querySelectorAll(".panel");
+    for(var i=0;i<panels.length;i++){panels[i].classList.toggle("active",panels[i].id==="lv"+n);}
+    var chips=document.querySelectorAll(".chip");
+    for(var j=0;j<chips.length;j++){chips[j].classList.toggle("on",+chips[j].dataset.lv===n);}
+    if(INIT[n]&&!INIT[n]._inited){INIT[n]._inited=true;INIT[n]();}
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  document.getElementById("levels").addEventListener("click",function(e){
+    var b=e.target.closest(".chip");
+    if(b)showLevel(+b.dataset.lv);
+  });
+
+  /* 每关底部的上一关 / 下一关 */
+  (function(){
+    for(var n=1;n<=8;n++){
+      (function(k){
+        var panel=document.getElementById("lv"+k);
+        if(!panel)return;
+        var row=document.createElement("div");
+        row.className="lvfoot";
+        var prev=document.createElement("button");
+        prev.className="btn ghost";prev.textContent="← 上一关";
+        prev.disabled=(k===1);
+        prev.addEventListener("click",function(){if(k>1)showLevel(k-1);});
+        var pos=document.createElement("span");
+        pos.className="pos";pos.textContent=k+" / 8";
+        var next=document.createElement("button");
+        next.className="btn";next.textContent=(k===8?"回到第一关 ↺":"下一关 →");
+        next.addEventListener("click",function(){showLevel(k===8?1:k+1);});
+        row.appendChild(prev);row.appendChild(pos);row.appendChild(next);
+        panel.appendChild(row);
+      })(n);
+    }
+  })();
+
+  /* =========================================================
+     键盘调节：← → ↑ ↓ 与鼠标拖动等效
+     · 有滑块的关卡（1 / 4 / 5 / 6）直接调滑块
+     · 第三关（拖动珊瑚）与第七关（拖动地球）注册各自的方向键钩子
+     · 第八关参数太多，保持原样不接管
+     ========================================================= */
+  var KBHOOK = {};
+  (function(){
+    /* 每个关卡里「左右键」和「上下键」分别对应哪个滑块 */
+    var AXIS={
+      1:{x:"#t1", y:"#t1"},
+      4:{x:"#n4", y:"#n4"},
+      5:{x:"#w5", y:"#w5"},
+      6:{x:"#p6", y:"#d6"}     /* 左右调 pH，上下调溶解氧 */
+    };
+    var lastUsed={};           /* 关卡 → 最近用鼠标点过的滑块 */
+
+    function panelOf(n){return document.getElementById("lv"+n);}
+
+    function flash(input){
+      input.classList.add("kb");
+      clearTimeout(input._kbh);
+      input._kbh=setTimeout(function(){input.classList.remove("kb");},260);
+    }
+
+    /* 用原生的 stepUp/stepDown，天然遵守 min/max/step；再手动触发 input 事件驱动画面 */
+    function nudge(input,dir,big){
+      if(!input||input.disabled)return false;
+      var before=input.value;
+      if(dir>0)input.stepUp(big?4:1); else input.stepDown(big?4:1);
+      if(input.value===before)return false;
+      input.dispatchEvent(new Event("input",{bubbles:true}));
+      flash(input);
+      return true;
+    }
+
+    function pick(n,axis){
+      var panel=panelOf(n);
+      if(!panel)return null;
+      var map=AXIS[n];
+      if(map){
+        var input=panel.querySelector(axis==="x"?map.x:map.y);
+        if(input&&!input.disabled)return input;
+        if(lastUsed[n]&&!lastUsed[n].disabled)return lastUsed[n];
+        var all=panel.querySelectorAll("input[type=range]");
+        for(var i=0;i<all.length;i++){if(!all[i].disabled)return all[i];}
+        return input;
+      }
+      if(lastUsed[n])return lastUsed[n];
+      return panel.querySelector("input[type=range]");
+    }
+
+    window.addEventListener("keydown",function(ev){
+      if(ev.altKey||ev.ctrlKey||ev.metaKey||ev.isComposing)return;
+      var k=ev.key;
+      if(k!=="ArrowLeft"&&k!=="ArrowRight"&&k!=="ArrowUp"&&k!=="ArrowDown")return;
+      if(current===8)return;                       /* 第八关不动 */
+      var t=ev.target;
+      if(t&&(t.tagName==="TEXTAREA"||t.tagName==="SELECT"||t.isContentEditable))return;
+      if(t&&t.tagName==="INPUT"&&t.type!=="range")return;
+
+      var n=current;
+
+      /* 第三关、第七关：交给各自注册的钩子 */
+      if(KBHOOK[n]){
+        if(KBHOOK[n](k,ev.shiftKey)!==false)ev.preventDefault();
+        return;
+      }
+
+      var axis=(k==="ArrowLeft"||k==="ArrowRight")?"x":"y";
+      var focusRange=(t&&t.tagName==="INPUT"&&t.type==="range")?t:null;
+      var input=focusRange||pick(n,axis);
+      if(!input)return;
+
+      if(input.disabled){
+        ev.preventDefault();
+        toast(n===5?"先把幼虫放到一块海底上，再来调水流":"这个调节项暂时不可用");
+        return;
+      }
+      ev.preventDefault();                          /* 阻止方向键滚动页面 */
+      nudge(input,(k==="ArrowRight"||k==="ArrowUp")?1:-1,ev.shiftKey);
+    },true);
+
+    /* 记住最近用过的滑块，多滑块关卡里方向键优先调它 */
+    function remember(t){
+      if(t&&t.tagName==="INPUT"&&t.type==="range")lastUsed[current]=t;
+    }
+    document.addEventListener("pointerdown",function(ev){remember(ev.target);},true);
+    document.addEventListener("focusin",function(ev){remember(ev.target);});
+
+    /* 控制条右侧的键盘提示 */
+    var TIPS={
+      1:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水温',
+      3:'<kbd>↑</kbd><kbd>↓</kbd> 让珊瑚上浮 / 下沉',
+      4:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调营养盐',
+      5:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水流',
+      6:'<kbd>←</kbd><kbd>→</kbd> 调 pH · <kbd>↑</kbd><kbd>↓</kbd> 调溶解氧',
+      7:'<kbd>←</kbd><kbd>→</kbd> 转动地球'
+    };
+    Object.keys(TIPS).forEach(function(k){
+      var box=document.querySelector("#lv"+k+" .controls");
+      if(!box)return;
+      var s=document.createElement("span");
+      s.className="kbhint";
+      s.innerHTML=TIPS[k];
+      /* 控制条里已经有靠右对齐的按钮时，提示跟在它后面即可，免得两侧各留一段空白 */
+      var hasRight=Array.prototype.some.call(box.children,function(c){
+        return (c.getAttribute&&c.getAttribute("style")||"").indexOf("margin-left:auto")>=0;
+      });
+      if(hasRight)s.style.marginLeft="0";
+      box.appendChild(s);
+    });
+  })();
+
+  /* =========================================================
+     通用珊瑚图形
+     ========================================================= */
+  function coralBranch(color,seed,depth){
+    var rnd=seeded(seed),out="";
+    depth=depth||3;
+    function grow(x,y,ang,len,w,d){
+      var x2=x+Math.cos(ang)*len, y2=y+Math.sin(ang)*len;
+      out+='<path d="M'+x.toFixed(1)+' '+y.toFixed(1)+'L'+x2.toFixed(1)+' '+y2.toFixed(1)+'" stroke="'+color+'" stroke-width="'+w.toFixed(1)+'" stroke-linecap="round" fill="none"/>';
+      if(d>0){
+        grow(x2,y2,ang-0.40-rnd()*0.20,len*0.76,w*0.72,d-1);
+        grow(x2,y2,ang+0.40+rnd()*0.20,len*0.76,w*0.72,d-1);
+        if(rnd()>0.45)grow(x2,y2,ang+(rnd()-0.5)*0.34,len*0.62,w*0.6,d-1);
+      }
+    }
+    grow(0,0,-Math.PI/2,24,7,depth);
+    return out;
+  }
+  function coralDome(color,seed){
+    var rnd=seeded(seed),out='<path d="M-30 0 A30 26 0 0 1 30 0 Z" fill="'+color+'"/>';
+    for(var i=0;i<4;i++){
+      var yy=-4-i*5.2, ww=26-i*5.6;
+      out+='<path d="M'+(-ww)+' '+yy+' Q0 '+(yy-7)+' '+ww+' '+yy+'" fill="none" stroke="rgba(255,255,255,.42)" stroke-width="1.3"/>';
+    }
+    out+='<ellipse cx="0" cy="0" rx="30" ry="4" fill="'+color+'"/>';
+    return out;
+  }
+  function coralFan(color,seed){
+    var rnd=seeded(seed),out='<path d="M0 0 L-25 -33 A28 28 0 0 1 25 -33 Z" fill="'+color+'"/>';
+    for(var i=-2;i<=2;i++){
+      out+='<path d="M0 -1 L'+(i*10)+' '+(-36-Math.abs(i)*-2)+'" stroke="rgba(255,255,255,.4)" stroke-width="1.2" fill="none"/>';
+    }
+    return out;
+  }
+  function coralOf(type,color,seed){
+    if(type==="dome")return coralDome(color,seed);
+    if(type==="fan")return coralFan(color,seed);
+    return coralBranch(color,seed,type==="branch2"?4:3);
+  }
+  function algaeShape(seed){
+    var rnd=seeded(seed),out="";
+    var n=4+Math.floor(rnd()*2);
+    for(var i=0;i<n;i++){
+      var x0=(i-(n-1)/2)*9+(rnd()-0.5)*4;
+      var h=26+rnd()*22;
+      var bend=(rnd()-0.5)*18;
+      var w=7+rnd()*4;
+      out+='<path d="M'+x0.toFixed(1)+' 0 C'+(x0-w).toFixed(1)+' '+(-h*0.35).toFixed(1)+' '+(x0+bend-w*0.55).toFixed(1)+' '+(-h*0.75).toFixed(1)+' '+(x0+bend).toFixed(1)+' '+(-h).toFixed(1)
+        +' C'+(x0+bend+w*0.55).toFixed(1)+' '+(-h*0.72).toFixed(1)+' '+(x0+w).toFixed(1)+' '+(-h*0.32).toFixed(1)+' '+x0.toFixed(1)+' 0 Z" fill="currentColor" opacity="0.9"/>';
+      out+='<path d="M'+x0.toFixed(1)+' 0 Q'+(x0+bend*0.4).toFixed(1)+' '+(-h*0.5).toFixed(1)+' '+(x0+bend).toFixed(1)+' '+(-h).toFixed(1)+'" stroke="rgba(255,255,255,.32)" stroke-width="1" fill="none"/>';
+    }
+    out+='<ellipse cx="0" cy="0" rx="'+(n*6).toFixed(1)+'" ry="4.5" fill="currentColor" opacity="0.38"/>';
+    return out;
+  }
+  function crestY(x,pts){
+    for(var i=0;i<pts.length-1;i++){
+      if(x>=pts[i][0]&&x<=pts[i+1][0]){
+        var t=(x-pts[i][0])/(pts[i+1][0]-pts[i][0]);
+        return lerp(pts[i][1],pts[i+1][1],t);
+      }
+    }
+    return pts[pts.length-1][1];
+  }
+
+  /* =========================================================
+     第一关：温度危机
+     ========================================================= */
+  INIT[1]=function(){
+    var svg=$("#s1"),W=900,H=440;
+    var defs=el("defs",{},svg);
+    var gr=el("linearGradient",{id:"sea1",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#EAF7FB"},gr);
+    el("stop",{offset:"70%","stop-color":"#CFE7F2"},gr);
+    el("stop",{offset:"100%","stop-color":"#BFDCE9"},gr);
+    el("rect",{x:0,y:0,width:W,height:H,fill:"url(#sea1)"},svg);
+
+    for(var i=0;i<4;i++){
+      el("path",{d:"M"+(120+i*180)+" 0 L"+(80+i*180)+" 330 L"+(190+i*180)+" 330 Z",fill:"#FFFFFF",opacity:"0.16"},svg);
+    }
+
+    var pts=[[0,378],[90,364],[180,352],[270,358],[360,338],[450,352],[540,334],[630,354],[720,342],[810,358],[900,370]];
+    var d="M0 440 L0 "+pts[0][1];
+    for(var p=1;p<pts.length;p++)d+=" L"+pts[p][0]+" "+pts[p][1];
+    d+=" L900 440 Z";
+    el("path",{d:d,fill:"#E6DDC6"},svg);
+    var d2="M0 "+pts[0][1];
+    for(var p2=1;p2<pts.length;p2++)d2+=" L"+pts[p2][0]+" "+pts[p2][1];
+    el("path",{d:d2,fill:"none",stroke:"#CFC3A4","stroke-width":1.4},svg);
+
+    var coralsG=el("g",{},svg);
+    var dotsG=el("g",{},svg);
+
+    var specs=[
+      {x:58,t:"branch",c:"#E2684B",s:0.95},{x:146,t:"dome",c:"#D9547C",s:0.88},
+      {x:236,t:"fan",c:"#9A73C9",s:0.92},{x:322,t:"branch2",c:"#E08A3C",s:1.02},
+      {x:410,t:"dome",c:"#C9553F",s:0.90},{x:498,t:"branch",c:"#7C6BC4",s:1.06},
+      {x:588,t:"dome",c:"#E2684B",s:0.84},{x:672,t:"fan",c:"#D9547C",s:0.96},
+      {x:760,t:"branch2",c:"#D98A2B",s:1.00},{x:846,t:"dome",c:"#9A73C9",s:0.80}
+    ];
+    var corals=[];
+    specs.forEach(function(sp,idx){
+      var g=el("g",{},coralsG);
+      var y=crestY(sp.x,pts)+2;
+      g.setAttribute("transform","translate("+sp.x+" "+y+") scale("+sp.s+")");
+      var skel=el("g",{opacity:"1"},g);
+      skel.innerHTML=coralOf(sp.t,"#F4F0E2",idx*37+11);
+      var live=el("g",{},g);
+      live.innerHTML=coralOf(sp.t,sp.c,idx*37+11);
+      live.style.cursor="pointer";
+      live.addEventListener("click",function(ev){
+        var bl=parseFloat(g.getAttribute("data-bl")||"0");
+        if(bl>0.35){
+          tipAt(ev,"如果温度快降回来，我还有救！但如果持续太久，我就真的死了……");
+        }else{
+          tipAt(ev,"我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。");
+        }
+      });
+      corals.push({g:g,live:live,skel:skel,x:sp.x,y:y,c:sp.c,idx:idx});
+    });
+
+    /* 温度计 */
+    var thX=858,thTop=96,thBot=364;
+    el("rect",{x:thX-9,y:thTop-14,width:18,height:thBot-thTop+16,rx:9,fill:"#FBF9F1",stroke:"#DFD8C4","stroke-width":1.2},svg);
+    el("rect",{x:thX-6,y:thTop,width:12,height:thBot-thTop,fill:"#F0EDE1",rx:6},svg);
+    var yOf=function(t){return thBot-(t-15)/20*(thBot-thTop);};
+    el("rect",{x:thX-6,y:yOf(29),width:12,height:yOf(23)-yOf(29),fill:"#8CC9A8",opacity:"0.55"},svg);
+    var merc=el("rect",{x:thX-4.5,y:yOf(25),width:9,height:thBot-yOf(25),rx:4.5,fill:"#3E8E5A"},svg);
+    el("circle",{cx:thX,cy:thBot+8,r:11,fill:"#FBF9F1",stroke:"#DFD8C4","stroke-width":1.2},svg);
+    var mercB=el("circle",{cx:thX,cy:thBot+8,r:7.5,fill:"#3E8E5A"},svg);
+    var tTxt=el("text",{x:thX,y:thTop-24,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#3C4E49",text:"25.0 ℃"},svg);
+    el("text",{x:thX,y:thBot+38,"text-anchor":"middle","font-size":10.5,fill:"#7C8A85",text:"水温"},svg);
+    el("text",{x:thX+14,y:yOf(29)-4,"font-size":9.5,fill:"#3E8E5A",text:"最适"},svg);
+
+    /* 顶部刻度提示 */
+    var capTxt=el("text",{x:26,y:34,"font-size":12,fill:"#5E7B85",text:"健康珊瑚礁 · 25.0 ℃"},svg);
+
+    var tSlider=$("#t1"),tVal=$("#t1v"),fb=$("#f1"),bar=$("#g1"),barV=$("#g1v");
+    var growth=40, bleach=0, last=0, spawning=0;
+
+    function state(t){
+      if(t<18)return {k:"cold",s:"能活，但成不了礁",msg:"水温只有 "+t.toFixed(1)+" ℃。珊瑚还活着，可钙化几乎停了 —— 它们能长，却堆不出礁体。这就是「<b>能活 ≠ 能成礁</b>」。",cls:"warn",rate:0};
+      if(t<23)return {k:"cool",s:"活着，长得慢",msg:"水温 "+t.toFixed(1)+" ℃，偏低。珊瑚还在长，但钙化速度只有最适温度的一半左右，礁体增厚很慢。",cls:"warn",rate:0.35};
+      if(t<=29)return {k:"opt",s:"最佳生长期",msg:"水温 "+t.toFixed(1)+" ℃，正好在 <b>23–29 ℃</b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。",cls:"good",rate:1.7};
+      if(t<=30.5)return {k:"warm",s:"开始紧张",msg:"水温 "+t.toFixed(1)+" ℃，已经超出舒适区。珊瑚开始排出体内的虫黄藻 —— 看，褐色小点正在飘走。",cls:"warn",rate:0.5};
+      return {k:"hot",s:"白化中",msg:"水温 "+t.toFixed(1)+" ℃，严重过热。珊瑚正在失去约 <b>80%</b> 的能量来源，颜色褪成白色。再持续下去就会死亡。",cls:"bad",rate:-1.1};
+    }
+
+    function spawnDot(){
+      if(!corals.length)return;
+      var c=corals[Math.floor(Math.random()*corals.length)];
+      var x=c.x+(Math.random()-0.5)*40, y=c.y-18-Math.random()*26;
+      var dot=el("circle",{cx:x,cy:y,r:1.8+Math.random()*1.6,fill:"#8A6A3B",opacity:"0.95"},dotsG);
+      el("animate",{attributeName:"cy",from:y,to:y-70-Math.random()*40,dur:"2.2s",fill:"freeze"},dot);
+      el("animate",{attributeName:"cx",from:x,to:x+(Math.random()-0.5)*30,dur:"2.2s",fill:"freeze"},dot);
+      el("animate",{attributeName:"opacity",from:"0.95",to:"0",dur:"2.2s",fill:"freeze"},dot);
+      setTimeout(function(){if(dot.parentNode)dot.parentNode.removeChild(dot);},2300);
+    }
+
+    function render(){
+      var t=parseFloat(tSlider.value);
+      var st=state(t);
+      tVal.textContent=t.toFixed(1)+" ℃";
+      tTxt.textContent=t.toFixed(1)+" ℃";
+
+      bleach = t<=29 ? Math.max(0,bleach-0.05) : clamp(bleach+(t>30.5?0.05:0.02),0,1);
+      if(t<18)bleach=Math.max(0,bleach-0.06);
+
+      corals.forEach(function(c,i){
+        var hot = t>29 ? clamp((t-29)/4.5,0,1) : 0;
+        var col = mix(c.c,"#F5F2E6",Math.max(hot*0.55, t>30.5?bleach*0.9:0));
+        c.live.innerHTML=coralOf(specs[i].t,col,i*37+11);
+        c.live.style.opacity=(1-0.72*(t>30.5?bleach:hot*0.5)).toFixed(2);
+        var sc=specs[i].s*(t<18?0.94:1);
+        c.g.setAttribute("transform","translate("+c.x+" "+c.y+") scale("+sc.toFixed(3)+")");
+        c.g.setAttribute("data-bl",bleach.toFixed(2));
+      });
+
+      var my=clamp(t,15,35);
+      merc.setAttribute("y",yOf(my));
+      merc.setAttribute("height",Math.max(2,thBot-yOf(my)));
+      var mc=t<18?"#3C7FB0":(t<=29?"#3E8E5A":(t<=30.5?"#D98A2B":"#C2453E"));
+      merc.setAttribute("fill",mc);mercB.setAttribute("fill",mc);
+
+      fb.className="fb "+st.cls;
+      fb.innerHTML="<b>"+st.s+"</b> · "+st.msg;
+
+      capTxt.textContent=(t<18?"冷水 · 停止成礁":(t<23?"偏凉 · 缓慢":(t<=29?"健康珊瑚礁":"过热 · 白化")))+" · "+t.toFixed(1)+" ℃";
+      capTxt.setAttribute("fill",t<23?"#4A7A96":(t<=29?"#3E7A5E":"#A33A32"));
+
+      bar.style.width=growth.toFixed(1)+"%";
+      bar.style.background=t<18?"#B9B4A4":(t>30.5?"#C2453E":(t<=29?"#3E8E5A":"#D98A2B"));
+      barV.textContent=Math.round(growth)+"%";
+    }
+
+    tSlider.addEventListener("input",render);
+    $("#r1").addEventListener("click",function(){growth=40;bleach=0;render();toast("礁体重新开始生长");});
+
+    render();
+
+    setInterval(function(){
+      if(current!==1)return;
+      var t=parseFloat(tSlider.value),st=state(t);
+      growth=clamp(growth+st.rate*0.28,0,100);
+      if(t>30.5&&bleach>0.15&&Date.now()-spawning>260){spawning=Date.now();spawnDot();}
+      render();
+    },280);
+  };
+
+  /* =========================================================
+     第二关：盐度逃生
+     ========================================================= */
+  INIT[2]=function(){
+    var svg=$("#s2"),fb=$("#f2");
+    var defs=el("defs",{},svg);
+    var g=el("linearGradient",{id:"sea2",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#E9F8FC"},g);
+    el("stop",{offset:"100%","stop-color":"#C4E0ED"},g);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"url(#sea2)"},svg);
+
+    for(var i=0;i<5;i++){
+      el("path",{d:"M"+(60+i*190)+" 0 L"+(20+i*190)+" 340 L"+(140+i*190)+" 340 Z",fill:"#FFFFFF",opacity:"0.14"},svg);
+    }
+
+    /* 河口淡水羽流 */
+    var pg=el("linearGradient",{id:"plume2",x1:"1",y1:"0",x2:"0",y2:"0"},defs);
+    el("stop",{offset:"0%","stop-color":"#BE8742","stop-opacity":"0.45"},pg);
+    el("stop",{offset:"55%","stop-color":"#C79A57","stop-opacity":"0.32"},pg);
+    el("stop",{offset:"100%","stop-color":"#D6C79E","stop-opacity":"0.04"},pg);
+    var plumeD="M900 66 L900 356 Q834 348 786 316 Q738 282 752 238 Q766 190 810 150 Q856 110 900 88 Z";
+    el("path",{d:plumeD,fill:"url(#plume2)"},svg);
+    el("path",{d:plumeD,fill:"none",stroke:"#B5813F","stroke-width":1.2,"stroke-dasharray":"6 7",opacity:"0.35"},svg);
+    for(var a=0;a<3;a++){
+      var ay=158+a*58;
+      el("path",{d:"M872 "+ay+" L806 "+(ay+7),stroke:"#8C6026","stroke-width":1.6,opacity:"0.45"},svg);
+      el("path",{d:"M818 "+(ay+5)+" l11 -6 l-2 12 Z",fill:"#8C6026",opacity:"0.45"},svg);
+    }
+    el("text",{x:808,y:112,"font-size":11,fill:"#7A4E14",text:"淡水注入"},svg);
+
+    /* 海床 */
+    el("path",{d:"M0 368 Q120 356 240 366 Q360 374 470 362 Q590 350 700 362 Q800 370 900 356 L900 440 L0 440 Z",fill:"#E8DCBF"},svg);
+    el("path",{d:"M620 372 Q700 358 780 366 Q850 370 900 358 L900 440 L620 440 Z",fill:"#C9A46B"},svg);
+    el("path",{d:"M0 368 Q120 356 240 366 Q360 374 470 362 Q590 350 700 362",fill:"none",stroke:"#D2C4A2","stroke-width":1.4},svg);
+
+    /* 礁石 */
+    function rock(x,y,w,h,c){
+      el("path",{d:"M"+x+" "+y+" q"+(w*0.18)+" "+(-h)+" "+(w*0.5)+" "+(-h*0.82)+" q"+(w*0.3)+" "+(-h*0.2)+" "+(w*0.5)+" "+(h*0.5)+" Z",fill:c},svg);
+    }
+    rock(96,368,120,54,"#CFC0A2");
+    rock(255,366,90,38,"#D6C7A9");
+    rock(392,368,110,46,"#CFC0A2");
+    rock(540,362,72,34,"#D6C7A9");
+
+    /* 分区线与标签 */
+    [330,620].forEach(function(x){
+      el("line",{x1:x,y1:58,x2:x,y2:356,stroke:"#7FA9B9","stroke-width":1.1,"stroke-dasharray":"5 7",opacity:"0.65"},svg);
+    });
+    var zones=[
+      {x:165,name:"外海",sub:"开阔海域 · 远离河口"},
+      {x:475,name:"近岸",sub:"靠近海岸"},
+      {x:760,name:"河口",sub:"淡水与海水交汇"}
+    ];
+    zones.forEach(function(z){
+      el("text",{x:z.x,y:36,"text-anchor":"middle","font-size":15,"font-weight":600,fill:"#2A3E3B",text:z.name},svg);
+      el("text",{x:z.x,y:52,"text-anchor":"middle","font-size":10.5,fill:"#6E8580",text:z.sub},svg);
+    });
+
+    /* 盐度标签（点击后出现） */
+    var salTexts={};
+    [[165,"35‰"],[475,"32‰"],[760,"25‰"]].forEach(function(p){
+      salTexts[p[0]]=el("text",{x:p[0],y:86,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#0F5F63",opacity:"0",text:"盐度 约 "+p[1]},svg);
+    });
+
+    /* 河口泥沙 */
+    var mud=el("path",{d:"M690 372 Q740 356 800 362 Q860 368 900 356 L900 404 Q800 410 690 398 Z",fill:"#B08A55",cursor:"pointer"},svg);
+    mud.addEventListener("click",function(ev){
+      tipAt(ev,"大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！");
+    });
+
+    /* 珊瑚宝宝 */
+    var babyG=el("g",{},svg);
+    babyG.style.transform="translate(150px,130px)";
+    babyG.style.transition="transform .9s cubic-bezier(.35,.02,.3,1), opacity .5s";
+    babyG.style.cursor="pointer";
+    var COLOR="#E2684B";
+    function paintBaby(c,op){
+      babyG.querySelectorAll("[data-c]").forEach(function(n){
+        if(n.tagName==="path"){n.setAttribute("stroke",c);}
+        else{n.setAttribute("fill",c);}
+      });
+      babyG.style.opacity=op;
+    }
+    function babyMarkup(){
+      var s='<ellipse data-c="1" cx="0" cy="2" rx="17" ry="13" fill="'+COLOR+'"/>';
+      for(var i=-3;i<=3;i++){
+        var ang=-Math.PI/2+i*0.28;
+        s+='<path data-c="1" d="M'+(i*4.6)+' -9 Q'+(i*4.6+i*2.2)+' '+(-19-i*0.6)+' '+(i*4.6+i*1.4)+' '+(-22-Math.abs(i)) +'" stroke="'+COLOR+'" stroke-width="3.4" fill="none" stroke-linecap="round"/>';
+      }
+      s+='<circle cx="-5.5" cy="0" r="3.2" fill="#fff"/><circle cx="5.5" cy="0" r="3.2" fill="#fff"/>';
+      s+='<circle cx="-5" cy="0.6" r="1.5" fill="#26332F"/><circle cx="6" cy="0.6" r="1.5" fill="#26332F"/>';
+      s+='<path d="M-4 7 Q0 10.5 4 7" stroke="#8E3A28" stroke-width="1.6" fill="none" stroke-linecap="round"/>';
+      return s;
+    }
+    babyG.innerHTML=babyMarkup();
+    var babyBody=babyG.querySelector("ellipse");
+    babyBody.style.transformOrigin="0px 0px";
+    babyG.addEventListener("click",function(ev){
+      tipAt(ev,"我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。");
+    });
+
+    /* 点击区域 */
+    var ovs=[];
+    [[0,330],[330,620],[620,900]].forEach(function(r){
+      var o=el("rect",{x:r[0],y:58,width:r[1]-r[0],height:298,fill:"#FFFFFF",opacity:"0",cursor:"pointer"},svg);
+      o.addEventListener("mouseenter",function(){o.setAttribute("opacity","0.10");});
+      o.addEventListener("mouseleave",function(){o.setAttribute("opacity","0");});
+      ovs.push(o);
+    });
+    var busy=false;
+    function setSal(x){
+      for(var k in salTexts){salTexts[k].setAttribute("opacity","0");}
+      if(salTexts[x])salTexts[x].setAttribute("opacity","1");
+    }
+    function fbSet(cls,title,msg){
+      fb.className="fb "+cls;
+      fb.innerHTML="<b>"+title+"</b> · "+msg;
+    }
+
+    /* 结果展示用图层 */
+    var resultG=el("g",{},svg);
+
+    function go(zone){
+      if(busy)return;
+      busy=true;
+      var spots={1:{x:175,y:300},2:{x:470,y:302},3:{x:745,y:300}};
+      var p=spots[zone];
+      setSal(zone===1?165:(zone===2?475:760));
+      babyG.style.transition="transform .9s cubic-bezier(.35,.02,.3,1)";
+      babyG.style.transform="translate("+p.x+"px,"+p.y+"px)";
+      setTimeout(function(){outcome(zone,p);},930);
+    }
+
+    function outcome(zone,p){
+      if(zone===1){
+        babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.35)";
+        paintBaby("#E2684B",1);
+        for(var i=0;i<4;i++){
+          (function(k){
+            var cx=p.x-78+k*52, cy=p.y+16+(k%2)*5;
+            var gg=el("g",{},resultG);
+            gg.innerHTML=coralDome(k%2?"#D9547C":"#E08A3C",k*11+3);
+            gg.style.transformOrigin="0 0";
+            gg.style.transform="translate("+cx+"px,"+cy+"px) scale(0.08)";
+            gg.style.transition="transform .65s cubic-bezier(.2,1.4,.4,1)";
+            setTimeout(function(){
+              gg.style.transform="translate("+cx+"px,"+cy+"px) scale(0.8)";
+            },120+k*120);
+          })(i);
+        }
+        fbSet("good","定居成功","这里是外海，盐度约 35‰ —— 正合适。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。");
+        complete(2);
+      }else if(zone===2){
+        babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.02)";
+        paintBaby("#C97C63",1);
+        fbSet("warn","勉强活着","这里是近岸，盐度约 32‰，偏低。它还能活，但一直在调渗透压，长得慢、骨骼也薄 —— 只能算勉强。");
+      }else{
+        paintBaby("#C08A6E",1);
+        babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.35,.78)";
+        fbSet("bad","细胞受不了了","这里是河口，盐度只有约 25‰。淡水一个劲往它身体里钻，细胞膨胀、变形……");
+        setTimeout(function(){
+          paintBaby("#A9A79E",1);
+          babyG.style.transform="translate("+p.x+"px,"+(p.y+6)+"px) rotate(74deg) scale(.95)";
+          babyG.style.opacity="0.55";
+          fbSet("bad","它死了","盐度太低，我的细胞受不了！珊瑚没法在河口安家 —— 这就是为什么大河口附近几乎没有岸礁。");
+        },700);
+      }
+    }
+
+    ovs[0].addEventListener("click",function(){go(1);});
+    ovs[1].addEventListener("click",function(){go(2);});
+    ovs[2].addEventListener("click",function(){go(3);});
+
+    $("#r2").addEventListener("click",function(){
+      busy=false;
+      resultG.innerHTML="";
+      babyG.style.transition="transform .6s ease, opacity .4s";
+      babyG.style.opacity="1";
+      babyG.style.transform="translate(150px,130px)";
+      paintBaby("#E2684B",1);
+      for(var k in salTexts){salTexts[k].setAttribute("opacity","0");}
+      fbSet("","再试一次","点一下外海、近岸或河口，看看这次它能不能安家。");
+    });
+  };
+
+  /* =========================================================
+     第三关：阳光猜猜看
+     ========================================================= */
+  INIT[3]=function(){
+    var svg=$("#s3"),fb=$("#f3");
+    var top=80,bottom=412,MAXD=50;
+    var depth=8, clarity="clear", touched=false;
+
+    var defs=el("defs",{},svg);
+    var gc=el("linearGradient",{id:"d3c",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#DFF4FB"},gc);
+    el("stop",{offset:"45%","stop-color":"#8FBED2"},gc);
+    el("stop",{offset:"100%","stop-color":"#37647C"},gc);
+    var gt=el("linearGradient",{id:"d3t",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#DDEBDA"},gt);
+    el("stop",{offset:"35%","stop-color":"#8FA894"},gt);
+    el("stop",{offset:"100%","stop-color":"#33484A"},gt);
+
+    /* 天空与海面 */
+    el("rect",{x:0,y:0,width:900,height:top,fill:"#F2FAFD"},svg);
+    var water=el("rect",{x:0,y:top,width:900,height:440-top,fill:"url(#d3c)"},svg);
+
+    /* 阳光 */
+    var sunG=el("g",{cursor:"pointer"},svg);
+    el("circle",{cx:58,cy:34,r:19,fill:"#F6C453"},sunG);
+    el("circle",{cx:58,cy:34,r:25,fill:"#F6C453",opacity:"0.22"},sunG);
+    for(var i=0;i<8;i++){
+      var a=i*Math.PI/4;
+      el("line",{x1:58+Math.cos(a)*28,y1:34+Math.sin(a)*28,x2:58+Math.cos(a)*35,y2:34+Math.sin(a)*35,stroke:"#EFB93F","stroke-width":2.6,"stroke-linecap":"round"},sunG);
+    }
+    sunG.addEventListener("click",function(ev){
+      tipAt(ev,"判断一片海能不能长礁？看水够不够清澈就知道了！");
+    });
+
+    /* 光柱 */
+    var rays=el("g",{opacity:"0.20"},svg);
+    for(var r=0;r<4;r++){
+      el("path",{d:"M"+(120+r*170)+" 30 L"+(70+r*170)+" 412 L"+(190+r*170)+" 412 Z",fill:"#FFFFFF",opacity:"0.5"},rays);
+    }
+
+    /* 海床 */
+    el("path",{d:"M0 412 Q150 402 300 410 Q450 418 600 408 Q760 400 900 410 L900 440 L0 440 Z",fill:"#C9BE9F"},svg);
+
+    /* 深度刻度 */
+    el("line",{x1:0,y1:top,x2:900,y2:top,stroke:"#9FC6D6","stroke-width":1.4},svg);
+    el("text",{x:20,y:top-8,"font-size":11,fill:"#4A6B78",text:"海面 0 m"},svg);
+    for(var d=10;d<=50;d+=10){
+      var yy=top+(d/MAXD)*(bottom-top);
+      el("line",{x1:64,y1:yy,x2:82,y2:yy,stroke:"#DFF1F7","stroke-width":1,opacity:"0.65"},svg);
+      el("text",{x:56,y:yy+4,"text-anchor":"end","font-size":10.5,fill:"#2C4A55",opacity:"0.85",stroke:"#FFFFFF","stroke-width":2.6,"stroke-opacity":"0.55","paint-order":"stroke",text:d+" m"},svg);
+    }
+
+    /* 分层说明 */
+    var zoneInfo=[
+      {y:top+26,t:"0–20 m · 光照充足",c:"#EAF7D9"},
+      {y:top+(22/MAXD)*(bottom-top),t:"20–30 m · 明显减弱",c:"#F5E6C8"},
+      {y:top+(36/MAXD)*(bottom-top),t:"30 m 以下 · 太暗",c:"#E7D3D0"}
+    ];
+    zoneInfo.forEach(function(z){
+      el("text",{x:886,y:z.y,"text-anchor":"end","font-size":10.5,fill:"#22404A",stroke:"#FFFFFF","stroke-width":3,"stroke-opacity":"0.9","paint-order":"stroke",text:z.t},svg);
+    });
+
+    /* 深度指示线 */
+    var dline=el("line",{x1:90,y1:0,x2:886,y2:0,stroke:"#FFFFFF","stroke-width":1,"stroke-dasharray":"4 6",opacity:"0.55"},svg);
+    var dlabel=el("text",{x:96,y:0,"font-size":11,fill:"#FFFFFF",opacity:"0.9",text:""},svg);
+
+    /* 珊瑚 */
+    var coralG=el("g",{cursor:"grab"},svg);
+    var glowG=el("g",{},coralG);
+    var bodyG=el("g",{},coralG);
+    var badge=el("g",{opacity:"0"},coralG);
+    el("rect",{x:26,y:-42,width:96,height:19,rx:9,fill:"#FFFFFF",opacity:"0.9"},badge);
+    el("text",{x:74,y:-28,"text-anchor":"middle","font-size":10.5,fill:"#2F6B4F","font-weight":600,text:"光合作用中"},badge);
+
+    function yOf(d){return top+(d/MAXD)*(bottom-top);}
+    function lightAt(d){return 100*Math.exp(-(clarity==="clear"?0.072:0.16)*d);}
+
+    function render(){
+      var yBase=Math.max(yOf(depth),126);
+      var L=lightAt(depth);
+      var col = L>=20 ? "#E2684B" : (L>=8 ? mix("#E2684B","#C8A78E",(20-L)/12) : mix("#B7B2A2","#EBE7D8",clamp((8-L)/8,0,1)));
+      var sc=0.74*(L<8?0.9:1);
+      coralG.setAttribute("transform","translate(560 "+yBase+") scale("+sc+")");
+
+      var html=coralBranch(col,91,3);
+      bodyG.innerHTML=html;
+
+      /* 共生藻发光点 */
+      var gh="";
+      if(L>18){
+        var n=6, op=clamp((L-18)/45,0.25,0.95);
+        for(var i=0;i<n;i++){
+          var gx=-22+i*9, gy=-14-(i%3)*13;
+          gh+='<circle cx="'+gx+'" cy="'+gy+'" r="2.1" fill="#F6E27A" opacity="'+op.toFixed(2)+'">'
+            + '<animate attributeName="opacity" values="0.15;'+op.toFixed(2)+';0.15" dur="'+(2+i*0.2)+'s" repeatCount="indefinite"/></circle>';
+        }
+      }
+      glowG.innerHTML=gh;
+      badge.setAttribute("opacity",L>18?"1":"0");
+
+      dline.setAttribute("y1",yBase);dline.setAttribute("y2",yBase);
+      dlabel.setAttribute("y",yBase-6);
+      dlabel.textContent=depth.toFixed(0)+" m";
+
+      var pct=Math.round(L);
+      $("#l3").style.width=clamp(L,2,100)+"%";
+      $("#l3").style.background=L>=20?"#3E8E5A":(L>=8?"#D98A2B":"#C2453E");
+      $("#l3v").textContent=pct+"%";
+
+      var cls,title,msg;
+      if(L>=20){
+        cls="good";title="阳光充足";
+        msg="水深 "+depth.toFixed(0)+" m，光照约为表层的 <b>"+pct+"%</b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。";
+      }else if(L>=8){
+        cls="warn";title="阳光变弱";
+        msg="水深 "+depth.toFixed(0)+" m，光照只剩表层的 <b>"+pct+"%</b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。";
+      }else{
+        cls="bad";title="太暗了";
+        msg="水深 "+depth.toFixed(0)+" m，光照仅约 <b>"+pct+"%</b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死</b>。";
+      }
+      if(clarity==="turbid"){
+        msg+=" <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。</span>";
+      }
+      fb.className="fb "+cls;
+      fb.innerHTML="<b>"+title+"</b> · "+msg;
+
+      if(touched&&L>=20&&depth<=20)complete(3);
+    }
+
+    function setDepthFromY(y){
+      depth=clamp((y-top)/(bottom-top)*MAXD,0,50);
+      render();
+    }
+    function pt(ev){
+      var r=svg.getBoundingClientRect();
+      return {x:(ev.clientX-r.left)/r.width*900,y:(ev.clientY-r.top)/r.height*440};
+    }
+    var dragging=false;
+    svg.addEventListener("pointerdown",function(ev){
+      var p=pt(ev);
+      if(p.y<top-6||p.y>bottom+10)return;
+      dragging=true;touched=true;
+      coralG.style.cursor="grabbing";
+      setDepthFromY(p.y);
+      if(svg.setPointerCapture)svg.setPointerCapture(ev.pointerId);
+    });
+    svg.addEventListener("pointermove",function(ev){
+      if(!dragging)return;
+      var p=pt(ev);
+      setDepthFromY(p.y);
+    });
+    svg.addEventListener("pointerup",function(){dragging=false;coralG.style.cursor="grab";});
+    svg.addEventListener("pointercancel",function(){dragging=false;coralG.style.cursor="grab";});
+
+    $("#w3").addEventListener("click",function(){
+      clarity = clarity==="clear"?"turbid":"clear";
+      touched=true;
+      water.setAttribute("fill",clarity==="clear"?"url(#d3c)":"url(#d3t)");
+      rays.setAttribute("opacity",clarity==="clear"?"0.20":"0.06");
+      this.textContent = clarity==="clear"?"切换为「浑浊海水」":"切换为「清澈海水」";
+      this.classList.toggle("on",clarity==="turbid");
+      render();
+      toast(clarity==="clear"?"清澈海水：30 米处仍有微弱阳光":"浑浊海水：20 米以下几乎全黑");
+    });
+
+    /* 键盘：↑ / ← 上浮，↓ / → 下沉；按住 Shift 一次 5 米 */
+    KBHOOK[3]=function(key,big){
+      var step=big?5:1;
+      var down=(key==="ArrowDown"||key==="ArrowRight")?1:-1;
+      var next=clamp(depth+down*step,0,50);
+      if(next===depth)return false;
+      depth=next;touched=true;render();
+      return true;
+    };
+
+    render();
+  };
+
+  /* =========================================================
+     第四关：施肥陷阱
+     ========================================================= */
+  INIT[4]=function(){
+    var svg=$("#s4"),fb=$("#f4");
+    var defs=el("defs",{},svg);
+    var g=el("linearGradient",{id:"sea4",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#ECF8FA"},g);
+    el("stop",{offset:"100%","stop-color":"#CBE4E4"},g);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"url(#sea4)"},svg);
+    for(var i=0;i<4;i++){el("path",{d:"M"+(110+i*200)+" 0 L"+(70+i*200)+" 330 L"+(180+i*200)+" 330 Z",fill:"#FFFFFF",opacity:"0.15"},svg);}
+
+    var pts=[[0,376],[90,362],[180,352],[270,358],[360,338],[450,352],[540,334],[630,354],[720,342],[810,358],[900,370]];
+    var d="M0 440 L0 "+pts[0][1];
+    for(var p=1;p<pts.length;p++)d+=" L"+pts[p][0]+" "+pts[p][1];
+    d+=" L900 440 Z";
+    el("path",{d:d,fill:"#E6DDC6"},svg);
+
+    var coralsG=el("g",{},svg);
+    var algaeG=el("g",{},svg);
+    var skelG=el("g",{},svg);
+    var fishG=el("g",{},svg);
+
+    var specs=[
+      {x:52,t:"branch",c:"#E2684B"},{x:145,t:"dome",c:"#D9547C"},{x:238,t:"fan",c:"#9A73C9"},
+      {x:330,t:"branch2",c:"#E08A3C"},{x:422,t:"dome",c:"#C9553F"},{x:515,t:"branch",c:"#7C6BC4"},
+      {x:608,t:"dome",c:"#E2684B"},{x:700,t:"fan",c:"#D9547C"},{x:792,t:"branch2",c:"#D98A2B"},
+      {x:864,t:"dome",c:"#9A73C9"}
+    ];
+    var corals=specs.map(function(sp,i){
+      var y=crestY(sp.x,pts)+2;
+      var live=el("g",{},coralsG);live.innerHTML=coralOf(sp.t,sp.c,i*23+5);
+      var sk=el("g",{opacity:"0"},skelG);sk.innerHTML=coralOf(sp.t,"#F4F0E2",i*23+5);
+      return {live:live,sk:sk,x:sp.x,y:y,i:i,c:sp.c,t:sp.t};
+    });
+
+    var algae=[];
+    for(var a=0;a<22;a++){
+      var ax=34+a*(832/21)+(Math.random()-0.5)*14;
+      var gg=el("g",{},algaeG);
+      gg.innerHTML=algaeShape(a*17+3);
+      var st={x:ax,g:gg,base:0.55+Math.random()*0.55,min:(a%5===0?0.15:0),onset:clamp((a/22)*0.86+Math.random()*0.12,0,0.92)};
+      gg.style.cursor="pointer";
+      gg.addEventListener("click",function(ev){
+        tipAt(ev,"过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！");
+      });
+      algae.push(st);
+    }
+
+    var banner=el("g",{opacity:"0"},svg);
+    el("rect",{x:300,y:20,width:300,height:34,rx:17,fill:"#FFFFFF",opacity:"0.92"},banner);
+    var bannerTxt=el("text",{x:450,y:42,"text-anchor":"middle","font-size":13,"font-weight":600,fill:"#3E8E5A",text:"珊瑚主导的礁体"},banner);
+
+    var slider=$("#n4"),val=$("#n4v");
+    var p=5,cover=0,af=1,fishOn=false,fishTimer=null,easeTimer=null;
+
+    function smooth(a,b,x){var t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);}
+
+    function algaeVigor(){return clamp((p-6)/76,0,1);}
+
+    function render(){
+      val.textContent=Math.round(p);
+      var w=algaeVigor();
+      var target=fishOn?0.32:1;
+      af+= (target-af)*0.12;
+
+      var sum=0;
+      algae.forEach(function(al){
+        var wi=Math.max(al.min||0,smooth(al.onset,al.onset+0.26,w));
+        sum+=wi;
+        var sc=al.base*(0.75+1.40*wi*af);
+        al.g.setAttribute("transform","translate("+al.x.toFixed(1)+" "+(crestY(al.x,pts)+4).toFixed(1)+") scale("+sc.toFixed(3)+")");
+        var op=Math.max(al.min?0.60:0.22,(0.25+0.75*clamp(wi*af*1.3,0,1)).toFixed(2));
+        al.g.setAttribute("opacity",op.toFixed(2));
+        al.g.style.color=mix("#8FBF4A","#2F5C0C",clamp(wi*0.95,0,1));
+      });
+
+      cover=sum/algae.length;
+      var cf=clamp(cover*af,0,1);
+
+      corals.forEach(function(c){
+        var dead=clamp((cf-0.40)/0.52,0,1);
+        var shrink=1-0.40*dead;
+        c.live.setAttribute("transform","translate("+c.x+" "+c.y+") scale("+shrink.toFixed(3)+")");
+        c.live.innerHTML=coralOf(c.t,mix(c.c,"#B3AE9E",clamp(dead*1.05,0,1)),c.i*23+5);
+        c.live.style.opacity=(1-0.55*dead).toFixed(2);
+        c.sk.setAttribute("transform","translate("+c.x+" "+c.y+") scale("+shrink.toFixed(3)+")");
+        c.sk.setAttribute("opacity",(clamp((cf-0.74)/0.24,0,1)*0.95).toFixed(2));
+      });
+
+      var coralCover=Math.round(clamp(88-70*cf,5,92));
+      var algaeCover=Math.round(clamp(cf*128,1,99));
+      $("#c4").style.width=coralCover+"%";
+      $("#a4").style.width=algaeCover+"%";
+
+      banner.setAttribute("opacity",w>0.62?"1":"0");
+      if(w>0.62){
+        bannerTxt.textContent="珊瑚主导 → 海藻主导（相变）";
+        bannerTxt.setAttribute("fill","#2F5C0C");
+      }
+
+      var cls,title,msg;
+      if(p<15){cls="good";title="水很瘦";msg="营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。";}
+      else if(p<40){cls="warn";title="海藻开始冒头";msg="营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。";}
+      else if(p<72){cls="warn";title="礁面被抢占了";msg="海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘</b>，慢慢饿死。";}
+      else{cls="bad";title="严重富营养化";msg="海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）</b>，而且往往很难逆转。";}
+      if(fishOn){
+        msg+=" <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。</span>";
+      }
+      fb.className="fb "+cls;
+      fb.innerHTML="<b>"+title+"</b> · "+msg;
+
+      if(p>=78)complete(4);
+    }
+
+    /* 让海藻「慢慢」被吃掉 / 慢慢长回来，而不是一帧跳变 */
+    function easeAF(){
+      clearTimeout(easeTimer);
+      render();
+      var target=fishOn?0.32:1;
+      if(Math.abs(target-af)>0.02){easeTimer=setTimeout(easeAF,110);}
+    }
+
+    function leaveFish(msg){
+      if(!fishOn)return;
+      fishOn=false;
+      fishG.innerHTML="";
+      $("#fish4").textContent="投放草食性鱼类";
+      easeAF();
+      toast(msg||"营养盐太高，海藻又长回来了");
+    }
+
+    /* 回到起点：营养盐归零、撤走鱼群、海藻缩回零星几簇 */
+    function resetLevel4(){
+      clearTimeout(fishTimer);
+      clearTimeout(easeTimer);
+      fishOn=false;
+      fishG.innerHTML="";
+      $("#fish4").textContent="投放草食性鱼类";
+      p=5;
+      slider.value=5;
+      af=1;
+      banner.setAttribute("opacity","0");
+      bannerTxt.textContent="珊瑚主导的礁体";
+      render();
+      fb.className="fb";
+      fb.innerHTML="回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？";
+    }
+
+    $("#r4").addEventListener("click",resetLevel4);
+
+    slider.addEventListener("input",function(){
+      p=+slider.value;
+      render();
+      if(fishOn&&p>58){clearTimeout(fishTimer);fishTimer=setTimeout(leaveFish,4200);}
+    });
+
+    $("#fish4").addEventListener("click",function(){
+      if(fishOn){clearTimeout(fishTimer);leaveFish("草食鱼被撤走了，海藻又开始蔓延");return;}
+      fishOn=true;
+      this.textContent="清理中 · 点此撤走";
+      for(var i=0;i<4;i++){
+        var outer=el("g",{},fishG);
+        outer.setAttribute("transform","translate(0 "+(120+i*46)+")");
+        var inner=el("g",{class:"fish"},outer);
+        inner.style.animationDelay=(-i*2.6)+"s";
+        inner.innerHTML='<path d="M0 0 q14 -9 28 0 q-14 9 -28 0 Z" fill="#3B6E8F"/>'
+          +'<path d="M0 0 l-11 -8 l2 8 l-2 8 Z" fill="#3B6E8F"/>'
+          +'<circle cx="22" cy="-2" r="1.8" fill="#fff"/>';
+      }
+      easeAF();
+      clearTimeout(fishTimer);
+      fishTimer=setTimeout(function(){if(p>55)leaveFish();},5200);
+    });
+
+    render();
+  };
+
+  /* =========================================================
+     第五关：安家大作战
+     ========================================================= */
+  INIT[5]=function(){
+    var svg=$("#s5"),fb=$("#f5");
+    var defs=el("defs",{},svg);
+    var g=el("linearGradient",{id:"sea5",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#EAF7FB"},g);
+    el("stop",{offset:"100%","stop-color":"#C7E3EF"},g);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"url(#sea5)"},svg);
+    for(var i=0;i<4;i++){el("path",{d:"M"+(110+i*200)+" 0 L"+(70+i*200)+" 340 L"+(180+i*200)+" 340 Z",fill:"#FFFFFF",opacity:"0.14"},svg);}
+
+    /* 粒子 */
+    var particleG=el("g",{},svg);
+    var parts=[];
+    for(var pi=0;pi<34;pi++){
+      var c=el("circle",{cx:Math.random()*900,cy:60+Math.random()*250,r:1+Math.random()*1.6,fill:"#FFFFFF",opacity:(0.25+Math.random()*0.4).toFixed(2)},particleG);
+      parts.push({e:c,x:+c.getAttribute("cx"),y:+c.getAttribute("cy"),v:0.3+Math.random()*0.9});
+    }
+
+    /* 海床 */
+    el("path",{d:"M0 340 Q120 332 240 338 Q360 344 470 336 Q590 328 700 336 Q810 344 900 334 L900 440 L0 440 Z",fill:"#DCCDA8"},svg);
+
+    var subs=[
+      {x:152,type:"rock",name:"岩石",ok:true},
+      {x:352,type:"sand",name:"泥沙",ok:false},
+      {x:552,type:"gravel",name:"砾石",ok:false},
+      {x:762,type:"reef",name:"珊瑚灰岩",ok:true}
+    ];
+
+    var hitG=el("g",{},svg);
+    subs.forEach(function(s){
+      var gp=el("g",{cursor:"pointer"},svg);
+      var y=338;
+      if(s.type==="rock"){
+        gp.innerHTML='<path d="M-92 0 L-74 -34 L-34 -50 L6 -42 L36 -56 L74 -28 L92 0 Z" fill="#ADA695" stroke="#948D7C" stroke-width="1.2"/>'
+          +'<path d="M-74 -34 L-30 -20 L6 -42 M36 -56 L18 -26 L74 -28" stroke="#8C8574" stroke-width="1.6" fill="none" opacity="0.8"/>';
+      }else if(s.type==="sand"){
+        gp.innerHTML='<path d="M-96 0 Q-60 -16 0 -13 Q60 -10 96 0 Z" fill="#F1E2BE" stroke="#DCCB9F" stroke-width="1.2"/>';
+        for(var k=0;k<10;k++){gp.innerHTML+='<circle cx="'+(-80+k*17)+'" cy="'+(-4-k%3*3)+'" r="1.6" fill="#D3BF8E"/>';}
+      }else if(s.type==="gravel"){
+        gp.innerHTML='<path d="M-96 0 Q-50 -18 0 -14 Q55 -10 96 0 Z" fill="#C8BB9C" stroke="#B3A583" stroke-width="1.2"/>';
+        for(var q=0;q<14;q++){
+          var px=-86+ (q*13)%176, py=-4-((q*7)%11);
+          gp.innerHTML+='<ellipse cx="'+px+'" cy="'+py+'" rx="'+(3+q%3)+'" ry="'+(2+q%2)+'" fill="#A99B78"/>';
+        }
+      }else{
+        gp.innerHTML='<path d="M-96 0 Q-62 -34 0 -40 Q58 -44 96 0 Z" fill="#F6EFDC" stroke="#DDD2B4" stroke-width="1.4"/>'
+          +'<path d="M-52 -8 q10 -18 24 -4 q10 12 22 -6" stroke="#D8CDB0" stroke-width="2" fill="none"/>'
+          +'<circle cx="30" cy="-14" r="4" fill="none" stroke="#D8CDB0" stroke-width="1.6"/>';
+      }
+      gp.setAttribute("transform","translate("+s.x+" "+y+")");
+      el("text",{x:s.x,y:404,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#3C4E49",text:s.name},svg);
+      el("text",{x:s.x,y:420,"text-anchor":"middle","font-size":10,fill:s.ok?"#3E8E5A":"#A2775B",text:s.ok?"硬底 · 能附着":"太软 / 会滚 · 附不住"},svg);
+      var hit=el("rect",{x:s.x-100,y:278,width:200,height:112,fill:"#FFFFFF",opacity:"0",cursor:"pointer"},hitG);
+      hit.addEventListener("mouseenter",function(){gp.setAttribute("opacity","0.86");});
+      hit.addEventListener("mouseleave",function(){gp.setAttribute("opacity","1");});
+      hit.addEventListener("click",function(){
+        if(settled||busy){resetLevel();setTimeout(function(){drop(s);},240);}
+        else drop(s);
+      });
+    });
+    svg.appendChild(hitG);
+
+    /* 珊瑚与泥沙层 */
+    var coralG=el("g",{opacity:"0"},svg);
+    var siltG=el("g",{},svg);
+
+    /* 幼虫 */
+    var larvaO=el("g",{},svg);
+    larvaO.style.transform="translate(430px,120px)";
+    larvaO.style.transition="transform .85s cubic-bezier(.4,0,.2,1),opacity .5s";
+    var larvaI=el("g",{class:"bob"},larvaO);
+    larvaI.innerHTML='<ellipse cx="0" cy="0" rx="13" ry="10" fill="#E2684B"/>'
+      +'<ellipse cx="-3" cy="-3" rx="6" ry="4" fill="#F0906F" opacity="0.7"/>'
+      +'<circle cx="-4" cy="1" r="2.1" fill="#fff"/><circle cx="4" cy="1" r="2.1" fill="#fff"/>'
+      +'<circle cx="-3.6" cy="1.4" r="1" fill="#26332F"/><circle cx="4.4" cy="1.4" r="1" fill="#26332F"/>'
+      +'<path d="M-8 -8 q-5 -7 -8 -2 M8 -8 q5 -7 8 -2 M-9 7 q-6 5 -9 1 M9 7 q6 5 9 1" stroke="#E2684B" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+
+    /* 水流线 */
+    var flowG=el("g",{cursor:"pointer"},svg);
+    for(var f=0;f<3;f++){
+      el("path",{class:"flow",d:"M-40 "+(176+f*38)+" q60 -16 120 0 t120 0 t120 0 t120 0 t120 0",
+        stroke:"#FFFFFF","stroke-width":2,fill:"none",opacity:"0.35","stroke-dasharray":"10 14",
+        "stroke-linecap":"round"},flowG);
+    }
+    flowG.addEventListener("click",function(ev){
+      tipAt(ev,"水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。");
+    });
+
+    var settled=false,busy=false,sub=null,health=100;
+    var strength=50,siltH=0,siltTarget=0;
+    var wSlider=$("#w5"),wVal=$("#w5v"),hBar=$("#h5"),resetBtn=$("#r5");
+    var zone="mid",prevZone="mid";
+    var gen=0;   /* 重置世代：每次重置 +1，用来作废还在路上的动画回调 */
+
+    function setFb(cls,title,msg){fb.className="fb "+cls;fb.innerHTML="<b>"+title+"</b> · "+msg;}
+
+    /* 把这一关恢复到初始状态：幼虫回到水里、珊瑚清空、水流锁回、泥沙清零 */
+    function resetLevel(){
+      gen++;
+      settled=false;busy=false;sub=null;health=100;
+      strength=50;siltH=0;siltTarget=0;
+      zone="mid";prevZone="mid";
+
+      wSlider.value=50;
+      wSlider.disabled=true;
+      wVal.textContent="—";
+
+      coralG.setAttribute("opacity","0");
+      coralG.setAttribute("transform","translate(430 338) scale(0.1)");
+      coralG.style.transition="";
+      coralG.innerHTML="";
+
+      siltG.innerHTML="";
+
+      larvaO.style.transition="transform .85s cubic-bezier(.4,0,.2,1),opacity .5s";
+      larvaO.style.transform="translate(430px,120px) rotate(0deg)";
+      larvaO.style.opacity="1";
+
+      hBar.style.width="100%";
+      hBar.style.background="#3E8E5A";
+
+      parts.forEach(function(p){
+        p.y=60+Math.random()*250;
+        p.e.setAttribute("cy",p.y.toFixed(1));
+      });
+
+      svg.querySelectorAll(".ring").forEach(function(r){if(r.parentNode)r.parentNode.removeChild(r);});
+
+      fb.className="fb";
+      fb.innerHTML="珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。";
+      resetBtn.textContent="重新开始";
+      updateFlow();
+    }
+
+    function drop(s){
+      if(busy||settled)return;
+      busy=true;sub=s;
+      var g0=gen;
+      larvaO.style.transition="transform .85s cubic-bezier(.4,0,.2,1),opacity .5s";
+      larvaO.style.opacity="1";
+      larvaO.style.transform="translate("+s.x+"px,"+(300)+"px)";
+      setTimeout(function(){if(g0!==gen)return;resolve(s);},880);
+    }
+
+    function resolve(s){
+      if(!s.ok){
+        setFb("bad","附不住！","我落到"+s.name+"上了……这里太软、不稳，我抓不牢。我需要硬底！");
+        larvaO.style.transition="transform 1.1s ease, opacity .9s";
+        larvaO.style.transform="translate("+(s.x+150)+"px,286px) rotate(40deg)";
+        larvaO.style.opacity="0";
+        var g1=gen;
+        setTimeout(function(){
+          if(g1!==gen)return;
+          busy=false;
+          larvaO.style.transition="transform .6s ease, opacity .6s";
+          larvaO.style.transform="translate(430px,120px) rotate(0deg)";
+          larvaO.style.opacity="1";
+          setFb("warn","再试一次","这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。");
+        },1400);
+        return;
+      }
+
+      settled=true;busy=false;
+      larvaO.style.opacity="0";
+      coralG.setAttribute("opacity","1");
+      coralG.setAttribute("transform","translate("+s.x+" 338) scale(0.1)");
+      coralG.innerHTML=coralBranch("#E2684B",77,3);
+      coralG.style.transition="transform .9s cubic-bezier(.2,1.3,.4,1)";
+      setTimeout(function(){coralG.setAttribute("transform","translate("+s.x+" 338) scale(0.95)");},60);
+      setTimeout(function(){coralG.style.transition="";},1200);
+
+      var ring=el("circle",{cx:s.x,cy:330,r:18,fill:"none",stroke:"#3E8E5A","stroke-width":2,class:"ring"},svg);
+      setTimeout(function(){if(ring.parentNode)ring.parentNode.removeChild(ring);},2200);
+
+      wSlider.value=50;
+      wSlider.disabled=false;
+      wVal.textContent="50";
+      setFb("good","附着成功","这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。");
+    }
+
+    function updateFlow(){
+      var sp=strength;
+      flowG.querySelectorAll("path").forEach(function(p){
+        p.style.animationDuration=(3.4-sp/100*2.4)+"s";
+        p.setAttribute("opacity",(0.12+sp/100*0.4).toFixed(2));
+      });
+    }
+
+    wSlider.addEventListener("input",function(){
+      strength=+wSlider.value;
+      wVal.textContent=strength;
+      updateFlow();
+    });
+
+    resetBtn.addEventListener("click",function(){
+      resetLevel();
+      resetBtn.blur();
+    });
+
+    function tick(){
+      if(current!==5)return;
+
+      parts.forEach(function(p){
+        p.x+=p.v*(0.2+strength/100*4.4);
+        if(p.x>912)p.x=-12;
+        p.e.setAttribute("cx",p.x.toFixed(1));
+      });
+
+      if(strength<26)siltTarget=34;
+      else siltTarget=0;
+      siltH+=(siltTarget-siltH)*0.05;
+      if(sub&&settled){
+        siltG.innerHTML="";
+        if(siltH>1){
+          var sx=sub.x-72, top=338-siltH;
+          var sd="M"+sx+" 344 L"+sx+" "+top.toFixed(1)
+            +" q18 -13 36 0 t36 0 t36 0 t36 0"
+            +" L"+(sx+144)+" 344 Z";
+          el("path",{d:sd,fill:"#C2AC80",opacity:"0.96"},siltG);
+          el("path",{d:"M"+sx+" "+top.toFixed(1)+" q18 -13 36 0 t36 0 t36 0 t36 0",stroke:"#AD9668","stroke-width":1.2,fill:"none"},siltG);
+          for(var sp=0;sp<5;sp++){
+            el("circle",{cx:sx+16+sp*28,cy:top+12+(sp%3)*7,r:1.7,fill:"#A28D60",opacity:"0.65"},siltG);
+          }
+        }
+      }
+
+      if(!settled)return;
+
+      if(strength<26)health-=0.55;
+      else if(strength<=70)health+=0.45;
+      else health-=0.85;
+      health=clamp(health,0,100);
+
+      var dmg=(100-health)/100;
+      var tilt=strength>70?-(strength-70)/30*26:0;
+      coralG.setAttribute("transform","translate("+sub.x+" 338) rotate("+tilt.toFixed(1)+") scale("+(0.95-0.18*dmg).toFixed(3)+")");
+      coralG.querySelectorAll("path").forEach(function(pp){
+        pp.setAttribute("stroke",mix("#E2684B","#A9A79E",dmg*0.95));
+      });
+
+      hBar.style.width=health.toFixed(0)+"%";
+      hBar.style.background=health>65?"#3E8E5A":(health>35?"#D98A2B":"#C2453E");
+
+      zone = strength<26?"calm":(strength<=70?"mid":"strong");
+      if(zone!==prevZone){
+        prevZone=zone;
+        if(zone==="calm")setFb("warn","水流太静","泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。");
+        else if(zone==="mid")setFb("good","水流适中","氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。");
+        else setFb("bad","水流太强","浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。");
+      }
+
+      if(zone==="mid"&&health>88){complete(5);}
+    }
+
+    updateFlow();
+    setInterval(tick,140);
+  };
+
+  /* =========================================================
+     第六关：造骨头实验室
+     ========================================================= */
+  INIT[6]=function(){
+    var svg=$("#s6"),fb=$("#f6");
+    var defs=el("defs",{},svg);
+    var g=el("linearGradient",{id:"sea6",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    el("stop",{offset:"0%","stop-color":"#E9F6FA"},g);
+    el("stop",{offset:"100%","stop-color":"#CBE4EA"},g);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"url(#sea6)"},svg);
+
+    /* 背景网格，像实验室 */
+    for(var gx=0;gx<900;gx+=60){el("line",{x1:gx,y1:0,x2:gx,y2:440,stroke:"#FFFFFF","stroke-width":1,opacity:"0.35"},svg);}
+    for(var gy=0;gy<440;gy+=60){el("line",{x1:0,y1:gy,x2:900,y2:gy,stroke:"#FFFFFF","stroke-width":1,opacity:"0.35"},svg);}
+
+    /* 礁座 */
+    el("path",{d:"M292 402 Q300 366 344 356 Q392 344 438 350 Q492 340 548 356 Q596 368 606 402 Z",fill:"#E6DCC4"},svg);
+    el("path",{d:"M292 402 Q300 366 344 356 Q392 344 438 350 Q492 340 548 356 Q596 368 606 402",fill:"none",stroke:"#D3C6A8","stroke-width":1.2},svg);
+    el("ellipse",{cx:450,cy:352,rx:142,ry:9,fill:"#DACDB0",opacity:"0.6"},svg);
+
+    /* 刻度尺：骨骼厚度 */
+    el("rect",{x:700,y:110,width:18,height:240,rx:9,fill:"#FFFFFF",opacity:"0.55",stroke:"#CFE0E2"},svg);
+    var gauge=el("rect",{x:704,y:290,width:10,height:60,rx:5,fill:"#D8C9A8"},svg);
+    el("text",{x:709,y:100,"text-anchor":"middle","font-size":10.5,fill:"#4A6B78",text:"骨骼"},svg);
+    var gaugeTxt=el("text",{x:709,y:366,"text-anchor":"middle","font-size":10,fill:"#4A6B78",text:"35"},svg);
+
+    var coralG=el("g",{},svg);
+    coralG.innerHTML=coralBranch("currentColor",33,3);
+    coralG.style.color="#E2684B";
+
+    var bubG=el("g",{},svg);
+
+    /* 图注 */
+    el("text",{x:40,y:42,"font-size":12,"fill":"#5E7B85",text:"Ca²⁺ + CO₃²⁻ → CaCO₃（文石）"},svg);
+    el("text",{x:40,y:64,"font-size":11,fill:"#7C918F",text:"pH 越高、Ω 越大，这个反应越容易往右走"},svg);
+
+    var phS=$("#p6"),doS=$("#d6"),phV=$("#p6v"),doV=$("#d6v"),omV=$("#om6");
+    var ph=8.15,dox=7,skel=35,rate=0,omega=3.2,lastBub=0;
+
+    function omegaOf(){return 1.2+(ph-7.6)*3.6;}
+    function rateOf(){return (omegaOf()-2.4)*0.95+(dox-4)*0.22;}
+
+    function bubble(){
+      var x=450+(Math.random()-0.5)*90, y=320-Math.random()*60;
+      var c=el("circle",{cx:x,cy:y,r:1.6+Math.random()*2,fill:"#FFFFFF",opacity:"0.8"},bubG);
+      el("animate",{attributeName:"cy",from:y,to:y-120-Math.random()*80,dur:"2.4s",fill:"freeze"},c);
+      el("animate",{attributeName:"opacity",from:"0.8",to:"0",dur:"2.4s",fill:"freeze"},c);
+      setTimeout(function(){if(c.parentNode)c.parentNode.removeChild(c);},2500);
+    }
+
+    function render(){
+      omega=omegaOf();rate=rateOf();
+      phV.textContent=ph.toFixed(2);
+      doV.textContent=dox.toFixed(1);
+      omV.textContent=omega.toFixed(2);
+      omV.style.color=omega>=2.8?"#2F6B4F":"#C2453E";
+
+      var sc=0.85+clamp(skel,0,100)/100*0.55;
+      coralG.setAttribute("transform","translate(450 352) scale("+sc.toFixed(3)+")");
+
+      var dmg=clamp(-rate/1.3,0,1);
+      coralG.style.color=mix(mix("#E2684B","#B3ABA0",clamp((0.6-rate)/1.6,0,1)),"#D9D2C2",dmg*0.8);
+
+      gauge.setAttribute("y",350-clamp(skel,0,100)/100*240);
+      gauge.setAttribute("height",clamp(skel,0,100)/100*240);
+      gauge.setAttribute("fill",rate<0?"#C98B7F":"#D8C9A8");
+      gaugeTxt.textContent=Math.round(clamp(skel,0,100))+"%";
+
+      var cls,title,msg;
+      if(rate<0){
+        cls="bad";title="净溶解";
+        msg="Ω 只有 <b>"+omega.toFixed(2)+"</b>，海水对碳酸钙已经不饱和 —— 造骨速度赶不上溶解，骨骼正在变薄、变脆。这就是<b>海洋酸化</b>：pH 每降低 0.1，钙化就更难一分。";
+      }else if(dox<4.5){
+        cls="warn";title="缺氧，没力气";
+        msg="溶解氧只有 <b>"+dox.toFixed(1)+" mg/L</b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。";
+      }else if(ph<8.0){
+        cls="warn";title="水偏酸";
+        msg="pH "+ph.toFixed(2)+"，低于正常的 8.0–8.2。Ω 降到 "+omega.toFixed(2)+"，造骨变得更费劲，骨骼也更疏松。";
+      }else if(rate>1.4){
+        cls="good";title="造骨顺利";
+        msg="pH "+ph.toFixed(2)+"、溶解氧 "+dox.toFixed(1)+" mg/L，Ω 达到 <b>"+omega.toFixed(2)+"</b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。";
+      }else{
+        cls="good";title="正常钙化";
+        msg="条件合适：Ω "+omega.toFixed(2)+"、溶解氧 "+dox.toFixed(1)+" mg/L，珊瑚稳稳地把海水变成骨头。";
+      }
+      fb.className="fb "+cls;
+      fb.innerHTML="<b>"+title+"</b> · "+msg;
+    }
+
+    phS.addEventListener("input",function(){ph=+phS.value;render();});
+    doS.addEventListener("input",function(){dox=+doS.value;render();});
+
+    render();
+
+    setInterval(function(){
+      if(current!==6)return;
+      skel=clamp(skel+rate*0.34,0,100);
+      render();
+      if(rate<0&&Date.now()-lastBub>320){lastBub=Date.now();bubble();}
+      if(skel>=95&&rate>0.5)complete(6);
+    },200);
+  };
+
+  /* =========================================================
+     第七关：地球仪大冒险
+     ========================================================= */
+  INIT[7]=function(){
+    var svg=$("#s7"),fb=$("#f7");
+    var CX=286,CY=222,R=158,rot=-118;
+
+    var defs=el("defs",{},svg);
+    var rg=el("radialGradient",{id:"globe7",cx:"35%",cy:"28%",r:"78%"},defs);
+    el("stop",{offset:"0%","stop-color":"#F0FBFE"},rg);
+    el("stop",{offset:"45%","stop-color":"#A8D6E6"},rg);
+    el("stop",{offset:"100%","stop-color":"#4A88A4"},rg);
+
+    el("ellipse",{cx:CX,cy:CY+R+30,rx:R*0.8,ry:14,fill:"#B9C6C4",opacity:"0.35"},svg);
+    el("circle",{cx:CX,cy:CY,r:R,fill:"url(#globe7)"},svg);
+    el("circle",{cx:CX,cy:CY,r:R,fill:"none",stroke:"#7EA9BC","stroke-width":1.4,opacity:"0.7"},svg);
+
+    var dyn=el("g",{},svg);
+
+    /* 静态信息卡 */
+    el("rect",{x:512,y:96,width:362,height:212,rx:14,fill:"#FFFFFF",opacity:"0.9",stroke:"#DCE7E4"},svg);
+    el("text",{x:534,y:124,"font-size":10.5,"letter-spacing":"0.12em",fill:"#8A9691",text:"试种结果"},svg);
+    var cardTitle=el("text",{x:534,y:150,"font-size":15,"font-weight":700,fill:"#1E2B2A",text:"点击编号，试着种珊瑚"},svg);
+    var cardBody=[];
+    for(var i=0;i<4;i++){
+      cardBody.push(el("text",{x:534,y:176+i*20,"font-size":11.5,fill:"#4E5F5A",text:""},svg));
+    }
+    var counter=el("text",{x:534,y:290,"font-size":11,fill:"#0F7C80","font-weight":600,text:"已点亮 0 / 6 片礁区"},svg);
+
+    var LAND=[
+      [[70,8],[62,22],[46,32],[38,44],[58,54],[100,56],[124,45],[122,32],[110,22],[100,10],[92,4],[80,6]],
+      [[-18,34],[8,37],[32,31],[43,13],[40,-4],[35,-20],[25,-34],[15,-30],[8,-6],[0,4],[-10,16]],
+      [[113,-22],[130,-12],[145,-15],[153,-28],[148,-38],[130,-32],[115,-34]],
+      [[-10,36],[0,44],[12,45],[30,45],[40,55],[24,60],[10,58],[0,50],[-8,44]],
+      [[-125,48],[-100,55],[-80,50],[-68,44],[-80,30],[-96,25],[-106,22],[-118,32]],
+      [[-80,9],[-60,10],[-45,-4],[-35,-10],[-45,-25],[-56,-35],[-70,-50],[-75,-28],[-70,-8]]
+    ];
+
+    function project(lat,lon){
+      var la=lat*Math.PI/180, lo=(lon+rot)*Math.PI/180;
+      var x=Math.cos(la)*Math.sin(lo), y=Math.sin(la), z=Math.cos(la)*Math.cos(lo);
+      return {x:CX+R*x,y:CY-R*y,z:z};
+    }
+
+    var LOCS=[
+      {n:"大堡礁",lat:-18,lon:147,r:"ok"},
+      {n:"珊瑚大三角",lat:0,lon:125,r:"ok"},
+      {n:"西沙群岛",lat:16.5,lon:112,r:"ok"},
+      {n:"红海",lat:20,lon:38,r:"ok"},
+      {n:"马尔代夫",lat:4,lon:73,r:"ok"},
+      {n:"加勒比海",lat:18,lon:-75,r:"ok"},
+      {n:"中国海南",lat:19,lon:110,r:"mid"},
+      {n:"长江口",lat:31.5,lon:122,r:"no",why:"est"},
+      {n:"亚马逊河口",lat:-1,lon:-50,r:"no",why:"est"},
+      {n:"悉尼外海",lat:-34,lon:151,r:"no",why:"cold"}
+    ];
+    var res={};
+
+    function draw(){
+      dyn.innerHTML="";
+
+      LAND.forEach(function(poly){
+        var pts=poly.map(function(p){return project(p[0],p[1]);});
+        var out=[];
+        for(var i=0;i<pts.length;i++){
+          var a=pts[i], b=pts[(i+1)%pts.length];
+          if(a.z>=0)out.push(a);
+          if((a.z>=0)!==(b.z>=0)){
+            var t=a.z/(a.z-b.z);
+            out.push({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t,z:0});
+          }
+        }
+        if(out.length<3)return;
+        var dd="";
+        out.forEach(function(q,i){dd+=(i?"L":"M")+q.x.toFixed(1)+" "+q.y.toFixed(1);});
+        el("path",{d:dd+"Z",fill:"#DDD7AC",stroke:"#BFB98C","stroke-width":0.9,opacity:"0.98"},dyn);
+      });
+
+      for(var lat=-60;lat<=60;lat+=30){
+        var half=R*Math.cos(lat*Math.PI/180), yy=CY-R*Math.sin(lat*Math.PI/180);
+        el("line",{x1:CX-half,y1:yy,x2:CX+half,y2:yy,stroke:"#93C2D4","stroke-width":0.9,opacity:lat===0?"0.85":"0.5"},dyn);
+      }
+
+      [-30,30].forEach(function(lat){
+        var half=R*Math.cos(lat*Math.PI/180), yy=CY-R*Math.sin(lat*Math.PI/180);
+        el("line",{x1:CX-half,y1:yy,x2:CX+half,y2:yy,stroke:"#E3A83C","stroke-width":1.8,"stroke-dasharray":"6 5",opacity:"0.95"},dyn);
+        el("text",{x:CX-half+4,y:yy-5,"font-size":9,fill:"#8A5E12",text:(lat>0?"30°N":"30°S")},dyn);
+        var hit=el("line",{x1:CX-half,y1:yy,x2:CX+half,y2:yy,stroke:"#000000",opacity:"0","stroke-width":12,cursor:"pointer"},dyn);
+        hit.addEventListener("click",function(ev){
+          ev.stopPropagation();
+          tipAt(ev,"这条线就是珊瑚礁的生死边界！大致对应年均 20 ℃ 等温线 —— 越过它，珊瑚就活不下去了。");
+        });
+      });
+
+      for(var lon=0;lon<360;lon+=30){
+        var d="",started=false;
+        for(var la=-80;la<=80;la+=5){
+          var q=project(la,lon);
+          if(q.z>0){d+=(started?"L":"M")+q.x.toFixed(1)+" "+q.y.toFixed(1);started=true;}
+          else{started=false;}
+        }
+        if(d)el("path",{d:d,stroke:"#93C2D4","stroke-width":0.75,fill:"none",opacity:"0.42"},dyn);
+      }
+
+      LOCS.forEach(function(loc,i){
+        var q=project(loc.lat,loc.lon);
+        if(q.z<=0.03)return;
+        var st=res[i];
+        var fill=st==="ok"?"#3E8E5A":(st==="no"?"#C2453E":(st==="mid"?"#D98A2B":"#FFFFFF"));
+        var g=el("g",{cursor:"pointer"},dyn);
+        if(st==="ok"){
+          el("circle",{cx:q.x,cy:q.y,r:9,fill:"#3E8E5A",opacity:"0.25"},g);
+        }
+        el("circle",{cx:q.x,cy:q.y,r:6,fill:fill,stroke:"#2A3E3B","stroke-width":1.1},g);
+        el("text",{x:q.x,y:q.y+3,"text-anchor":"middle","font-size":7.5,"font-weight":700,fill:st?"#FFFFFF":"#2A3E3B",text:i+1},g);
+        g.addEventListener("click",function(ev){ev.stopPropagation();attempt(i);});
+      });
+    }
+
+    function setCard(title,lines,color){
+      cardTitle.textContent=title;
+      cardTitle.setAttribute("fill",color||"#1E2B2A");
+      cardBody.forEach(function(t,i){t.textContent=lines[i]||"";});
+    }
+
+    function attempt(i){
+      var loc=LOCS[i];
+      res[i]=loc.r;
+      if(loc.r==="ok"){
+        setCard(loc.n+"：成功",[
+          "水温常年 23–29 ℃，盐度约 35‰，",
+          "水清、有硬底、远离大河河口 ——",
+          "珊瑚定居，礁体开始一层层堆积。",
+          ""
+        ],"#2F6B4F");
+        fb.className="fb good";
+        fb.innerHTML="<b>成功！</b>"+loc.n+" 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。";
+      }else if(loc.r==="mid"){
+        setCard(loc.n+"：勉强存活",[
+          "已接近珊瑚礁分布的北缘，",
+          "冬季水温偏低，只能长出稀疏矮小的",
+          "「高纬度珊瑚礁」，礁体很薄。"
+        ],"#8A5E12");
+        fb.className="fb warn";
+        fb.innerHTML="<b>勉强存活。</b>海南约 19°N，已经在珊瑚礁分布的边缘。冬天一冷，珊瑚就长得吃力，只能形成稀疏的「高纬度珊瑚礁」。";
+      }else{
+        if(loc.why==="est"){
+          setCard(loc.n+"：失败",[
+            "这里是大河口：淡水把盐度压到 30‰ 以下，",
+            "泥沙又不断沉积 —— 珊瑚既受不了低盐，",
+            "也会被泥沙埋住。"
+          ],"#A33A32");
+          fb.className="fb bad";
+          fb.innerHTML="<b>失败。</b>"+loc.n+" 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。";
+        }else{
+          setCard(loc.n+"：失败",[
+            "纬度 "+Math.abs(loc.lat).toFixed(0)+"°，年均水温低于 20 ℃。",
+            "珊瑚也许能活一小段，",
+            "但钙化太慢，堆不出礁体。"
+          ],"#A33A32");
+          fb.className="fb bad";
+          fb.innerHTML="<b>失败。</b>"+loc.n+" 在南北纬 30° 以外，年均水温低于 20 ℃ —— 这里年均温度太低，我活不下去。";
+        }
+      }
+      var ok=0;
+      for(var k in res){if(res[k]==="ok")ok++;}
+      counter.textContent="已点亮 "+ok+" / 6 片礁区";
+      draw();
+      if(ok>=6)complete(7);
+    }
+
+    $("#l7l").addEventListener("click",function(){rot+=30;draw();});
+    $("#l7r").addEventListener("click",function(){rot-=30;draw();});
+
+    /* 键盘：← / → 转动地球，按住 Shift 一次转 60° */
+    KBHOOK[7]=function(key,big){
+      var step=big?60:15;
+      if(key==="ArrowLeft"){rot+=step;draw();return true;}
+      if(key==="ArrowRight"){rot-=step;draw();return true;}
+      return false;
+    };
+
+    var dragging=false,lastX=0;
+    svg.addEventListener("pointerdown",function(ev){
+      dragging=true;lastX=ev.clientX;
+      if(svg.setPointerCapture)svg.setPointerCapture(ev.pointerId);
+    });
+    svg.addEventListener("pointermove",function(ev){
+      if(!dragging)return;
+      var dx=ev.clientX-lastX;
+      if(Math.abs(dx)<1)return;
+      lastX=ev.clientX;
+      rot+=dx*0.42;
+      draw();
+    });
+    svg.addEventListener("pointerup",function(){dragging=false;});
+    svg.addEventListener("pointercancel",function(){dragging=false;});
+
+    /* 地名按钮 */
+    var list=$("#loc7");
+    LOCS.forEach(function(loc,i){
+      var b=document.createElement("button");
+      b.textContent=(i+1)+" "+loc.n;
+      b.addEventListener("click",function(){
+        var q=project(loc.lat,loc.lon);
+        if(q.z<=0.03){rot=-loc.lon;draw();setTimeout(function(){attempt(i);},60);}
+        else attempt(i);
+      });
+      b.dataset.i=i;
+      list.appendChild(b);
+    });
+    function refreshBtns(){
+      list.querySelectorAll("button").forEach(function(b){
+        var st=res[b.dataset.i];
+        b.className=st==="ok"?"ok":(st==="no"?"no":(st==="mid"?"mid":""));
+      });
+    }
+    var _attempt=attempt;
+    attempt=function(i){_attempt(i);refreshBtns();};
+    LOCS.forEach(function(loc,i){loc._i=i;});
+
+    draw();
+    setCard("点击编号，试着种珊瑚",["白色圆点是候选地点，编号对应下方按钮。","绿色 = 能成礁，橙色 = 勉强，红色 = 失败。","拖动地球，看看南北纬 30° 之外是什么。",""],null);
+  };
+
+  /* =========================================================
+     第八关：终极生存挑战
+     ========================================================= */
+  INIT[8]=function(){
+    var svg=$("#s8"),fb=$("#f8");
+    var defs=el("defs",{},svg);
+    var wg=el("linearGradient",{id:"w8",x1:"0",y1:"0",x2:"0",y2:"1"},defs);
+    var stop1=el("stop",{offset:"0%","stop-color":"#EAF7FB"},wg);
+    var stop2=el("stop",{offset:"100%","stop-color":"#CBE6EE"},wg);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"url(#w8)"},svg);
+
+    var pts=[[0,376],[90,362],[180,352],[270,358],[360,338],[450,352],[540,334],[630,354],[720,342],[810,358],[900,370]];
+    var d="M0 440 L0 "+pts[0][1];
+    for(var p=1;p<pts.length;p++)d+=" L"+pts[p][0]+" "+pts[p][1];
+    d+=" L900 440 Z";
+    el("path",{d:d,fill:"#E6DDC6"},svg);
+
+    var algaeG=el("g",{opacity:"0"},svg);
+    for(var al=0;al<14;al++){
+      var ax=40+al*62;
+      var ag=el("g",{},algaeG);
+      ag.innerHTML=algaeShape(al*13+7);
+      ag.setAttribute("transform","translate("+ax+" "+(crestY(ax,pts)+4)+") scale(1.3)");
+      ag.style.color="#4E7A1C";
+    }
+
+    var coralsG=el("g",{},svg);
+    var specs=[
+      {x:60,t:"branch",c:"#E2684B"},{x:152,t:"dome",c:"#D9547C"},{x:246,t:"fan",c:"#9A73C9"},
+      {x:340,t:"branch2",c:"#E08A3C"},{x:436,t:"dome",c:"#C9553F"},{x:530,t:"branch",c:"#7C6BC4"},
+      {x:624,t:"dome",c:"#E2684B"},{x:716,t:"fan",c:"#D9547C"},{x:808,t:"branch2",c:"#D98A2B"},
+      {x:870,t:"dome",c:"#9A73C9"}
+    ];
+    var corals=specs.map(function(sp,i){
+      var y=crestY(sp.x,pts)+2;
+      var g=el("g",{},coralsG);
+      var live=el("g",{},g);
+      live.innerHTML=coralOf(sp.t,sp.c,i*31+9);
+      return {g:g,live:live,x:sp.x,y:y,c:sp.c,i:i};
+    });
+
+    /* 事件横幅 */
+    var banner=el("g",{opacity:"0",style:"pointer-events:none"},svg);
+    el("rect",{x:220,y:18,width:460,height:40,rx:20,fill:"#1F2E2C",opacity:"0.9"},banner);
+    var bannerT=el("text",{x:450,y:44,"text-anchor":"middle","font-size":14,"font-weight":600,fill:"#FFFFFF",text:""},banner);
+
+    /* 崩溃遮罩 */
+    var over=el("g",{opacity:"0",style:"pointer-events:none"},svg);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"#1B2A28",opacity:"0.55"},over);
+    el("text",{x:450,y:196,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:"礁体崩溃了"},over);
+    el("text",{x:450,y:228,"text-anchor":"middle","font-size":13,fill:"#D9E4DF",text:"八项条件里只要长期有几项不合格，礁就撑不住。"},over);
+
+    /* 通关遮罩 */
+    var winG=el("g",{opacity:"0",style:"pointer-events:none"},svg);
+    el("rect",{x:0,y:0,width:900,height:440,fill:"#0B3A34",opacity:"0.66"},winG);
+    el("text",{x:450,y:176,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:"你守住了这片礁"},winG);
+    el("text",{x:450,y:208,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:"45 秒里，八项条件同时达标。"},winG);
+    el("text",{x:450,y:232,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:"而现实中的珊瑚礁，需要的是永远达标。"},winG);
+    el("text",{x:450,y:270,"text-anchor":"middle","font-size":12,fill:"#9FC9B9",text:"减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥"},winG);
+
+    var P={temp:25,sal:35,light:85,nut:8,flow:50,ph:8.12,sub:"hard",place:"trop"};
+    var running=false,health=100,score=0,time=0,overFlag=false;
+
+    var ROWS=[
+      {k:"temp",lab:"水温",min:18,max:34,step:0.5,fmt:function(v){return v.toFixed(1)+"℃";}},
+      {k:"sal",lab:"盐度",min:26,max:40,step:0.5,fmt:function(v){return v.toFixed(1)+"‰";}},
+      {k:"light",lab:"光照",min:0,max:100,step:1,fmt:function(v){return Math.round(v)+"%";}},
+      {k:"nut",lab:"营养盐",min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
+      {k:"flow",lab:"水流",min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
+      {k:"ph",lab:"pH",min:7.6,max:8.4,step:0.05,fmt:function(v){return v.toFixed(2);}},
+      {k:"sub",lab:"基底",toggle:["hard","soft"],names:["硬底","泥沙"]},
+      {k:"place",lab:"位置",toggle:["trop","high"],names:["热带","高纬"]}
+    ];
+
+    function statusOf(k){
+      var v=P[k];
+      if(k==="temp")return (v>=23&&v<=29)?"ok":(((v>=20&&v<23)||(v>29&&v<=30.5))?"warn":"bad");
+      if(k==="sal")return (v>=32&&v<=36)?"ok":(((v>=30&&v<32)||(v>36&&v<=38))?"warn":"bad");
+      if(k==="light")return v>=55?"ok":(v>=30?"warn":"bad");
+      if(k==="nut")return v<=30?"ok":(v<=55?"warn":"bad");
+      if(k==="flow")return (v>=30&&v<=70)?"ok":(((v>=15&&v<30)||(v>70&&v<=85))?"warn":"bad");
+      if(k==="ph")return (v>=8.0&&v<=8.2)?"ok":(((v>=7.9&&v<8.0)||(v>8.2&&v<=8.3))?"warn":"bad");
+      if(k==="sub")return v==="hard"?"ok":"bad";
+      return v==="trop"?"ok":"bad";
+    }
+
+    /* 生成仪表盘 */
+    var dash=$("#dash8");
+    var ui={};
+    ROWS.forEach(function(r){
+      var row=document.createElement("div");
+      row.className="row";
+      var lab=document.createElement("span");
+      lab.className="lab";lab.textContent=r.lab;
+      row.appendChild(lab);
+      var dot=document.createElement("i");dot.className="dot";
+      row.appendChild(dot);
+      if(r.toggle){
+        var btn=document.createElement("button");
+        btn.textContent=r.names[0];
+        btn.addEventListener("click",function(){
+          P[r.k]=P[r.k]===r.toggle[0]?r.toggle[1]:r.toggle[0];
+          render();
+        });
+        row.appendChild(btn);
+        var b2=document.createElement("b");b2.style.width="auto";
+        row.appendChild(b2);
+        ui[r.k]={btn:btn,b:b2,dot:dot};
+      }else{
+        var inp=document.createElement("input");
+        inp.type="range";inp.min=r.min;inp.max=r.max;inp.step=r.step;inp.value=P[r.k];
+        inp.addEventListener("input",function(){P[r.k]=+inp.value;render();});
+        var bv=document.createElement("b");
+        row.appendChild(inp);row.appendChild(bv);
+        ui[r.k]={inp:inp,b:bv,dot:dot};
+      }
+      dash.appendChild(row);
+    });
+
+    function renderScene(){
+      var h=clamp(health,0,100)/100;
+      stop1.setAttribute("stop-color",mix("#EAF7FB","#DCD8C0",(1-h)*0.9));
+      stop2.setAttribute("stop-color",mix("#CBE6EE","#A8A98E",(1-h)*0.9));
+      corals.forEach(function(c){
+        var sc=0.62+0.38*h;
+        c.g.setAttribute("transform","translate("+c.x+" "+c.y+") scale("+sc.toFixed(3)+")");
+        c.g.style.opacity=(0.28+0.72*h).toFixed(2);
+        c.live.innerHTML=coralOf(c.t?c.t:specs[c.i].t,mix(c.c,"#B7B2A2",(1-h)*0.85),c.i*31+9);
+      });
+      algaeG.setAttribute("opacity",clamp((P.nut-42)/45,0,1).toFixed(2));
+    }
+
+    function render(){
+      ROWS.forEach(function(r){
+        var s=statusOf(r.k);
+        ui[r.k].dot.className="dot"+(s==="warn"?" warn":(s==="bad"?" bad":""));
+        if(r.toggle){
+          ui[r.k].btn.textContent=r.names[P[r.k]===r.toggle[0]?0:1];
+          ui[r.k].b.textContent=s==="ok"?"安全":(s==="warn"?"临界":"危险");
+        }else{
+          ui[r.k].inp.value=P[r.k];
+          ui[r.k].b.textContent=r.fmt(P[r.k]);
+        }
+      });
+      $("#hp8").style.width=clamp(health,0,100).toFixed(0)+"%";
+      $("#hp8").style.background=health>60?"#3E8E5A":(health>30?"#D98A2B":"#C2453E");
+      $("#sc8").textContent=score;
+      $("#tm8").textContent=time+" s";
+      renderScene();
+    }
+
+    var EVENTS=[
+      {t:"全球变暖！水温上升",f:function(){P.temp=clamp(P.temp+1.8+Math.random()*1.4,18,34);}},
+      {t:"暴雨来袭！盐度下降",f:function(){P.sal=clamp(P.sal-3.5-Math.random()*2,26,40);}},
+      {t:"污水排放！营养盐飙升",f:function(){P.nut=clamp(P.nut+16+Math.random()*10,0,100);}},
+      {t:"台风过境！水流过强",f:function(){P.flow=clamp(P.flow+22+Math.random()*16,0,100);}},
+      {t:"海洋酸化！pH 下降",f:function(){P.ph=clamp(P.ph-0.06,7.6,8.4);}},
+      {t:"海岸工程！硬底被泥沙覆盖",f:function(){P.sub="soft";}},
+      {t:"拖网捕捞！草食鱼被捞光，海藻暴发",f:function(){P.nut=clamp(P.nut+14,0,100);}}
+    ];
+
+    function fireEvent(){
+      var e=EVENTS[Math.floor(Math.random()*EVENTS.length)];
+      e.f();
+      bannerT.textContent=e.t;
+      banner.setAttribute("opacity","1");
+      clearTimeout(banner._h);
+      banner._h=setTimeout(function(){banner.setAttribute("opacity","0");},2400);
+      render();
+    }
+
+    function gameOver(){
+      running=false;overFlag=true;
+      over.setAttribute("opacity","1");
+      over.style.pointerEvents="none";
+      $("#start8").textContent="重新开始";
+      $("#start8").disabled=false;
+      fb.className="fb bad";
+      fb.innerHTML="<b>礁体崩溃了。</b>你坚持了 "+time+" 秒，得分 "+score+"。八项条件里只要长期有几项不合格，礁就撑不住。"
+        +"<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。</span>";
+    }
+
+    function win(){
+      running=false;overFlag=true;
+      winG.setAttribute("opacity","1");
+      $("#start8").textContent="再挑战一次";
+      $("#start8").disabled=false;
+      fb.className="fb good";
+      fb.innerHTML="<b>你守住了这片礁！</b>坚持了 "+time+" 秒，得分 "+score+"。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。"
+        +"<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。</span>";
+      complete(8);
+    }
+
+    function reset(){
+      P={temp:25,sal:35,light:85,nut:8,flow:50,ph:8.12,sub:"hard",place:"trop"};
+      health=100;score=0;time=0;overFlag=false;
+      clearTimeout(banner._h);
+      over.setAttribute("opacity","0");
+      winG.setAttribute("opacity","0");
+      banner.setAttribute("opacity","0");
+      render();
+    }
+
+    /* 挑战进行中也可以「重新开始」：随时清零重来，不用等礁体崩溃 */
+    $("#start8").addEventListener("click",function(){
+      var wasRunning=running;
+      reset();
+      running=true;
+      this.textContent="重新开始";
+      this.disabled=false;
+      fb.className="fb";
+      fb.innerHTML=wasRunning
+        ? "<b>已重新开始。</b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。"
+        : "<b>灾难开始。</b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。";
+    });
+
+    setInterval(function(){
+      if(!running||current!==8)return;
+      time++;
+      var penalty=0;
+      ROWS.forEach(function(r){
+        var s=statusOf(r.k);
+        penalty+=(s==="bad"?1:(s==="warn"?0.35:0));
+      });
+      if(penalty===0){health=Math.min(100,health+1.6);score+=3;}
+      else{health-=penalty*3.4;score+=1;}
+      if(time%5===0)fireEvent();
+      render();
+      if(health<=0)gameOver();
+      if(time>=45&&running)win();
+    },1000);
+
+    render();
+  };
+
+  /* @INIT */
+
+  var m=location.search.match(/lv=([1-8])/);
+  showLevel(m?+m[1]:1);
+})();
+</script>
+</body>
+</html>
