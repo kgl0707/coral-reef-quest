@@ -112,6 +112,51 @@
   .loclist button.no{background:#FBEDEB;border-color:#EBC7C1;color:#A33A32}
   .loclist button.mid{background:#FBF3E2;border-color:#EDDDB9;color:#7A5A22}
 
+  /* ---------- 观察室：为什么面板 ---------- */
+  .obs{margin-top:13px}
+  .obs-open{width:100%;display:flex;align-items:center;gap:11px;padding:11px 14px;background:linear-gradient(#FCFCF8,#F6F8F3);border:1px dashed #D6D3C4;border-radius:12px;cursor:pointer;font:inherit;text-align:left;color:#3C4E49;transition:.16s}
+  .obs-open:hover{border-color:#0F7C80;background:#F4FAF9}
+  .obs-open .ico{width:24px;height:24px;flex:0 0 24px;border-radius:50%;background:#0F7C80;color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;font-family:Georgia,serif}
+  .obs-open .tx{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .obs-open .tx b{font-size:13.5px;font-weight:650;color:#1E2B2A}
+  .obs-open .tx em{font-style:normal;font-size:11.8px;color:#7C8A85}
+  .obs-open .arw{margin-left:auto;font-size:10px;color:#93A09B;transition:transform .22s}
+  .obs-open.on .arw{transform:rotate(180deg)}
+  .obs-body{margin-top:9px;padding:13px 14px 15px;background:#FBFBF7;border:1px solid #EDEADF;border-radius:12px;animation:fade .24s ease}
+  #obs4body[hidden]{display:none}
+  .obs-sum{margin:0 0 12px;padding:11px 13px;background:#fff;border:1px solid #E7E3D8;border-left:3px solid #0F7C80;border-radius:9px;font-size:12.8px;line-height:1.72;color:#31443F}
+  .obs-sum b{color:#0F5F63;font-weight:650}
+  .flipgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;align-items:start}
+  .flip{perspective:1400px;cursor:pointer;outline:none;border-radius:13px}
+  .flip:focus-visible{box-shadow:0 0 0 3px rgba(15,124,128,.3)}
+  .flip-in{position:relative;min-height:180px;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .62s cubic-bezier(.2,.8,.2,1),height .32s ease}
+  .flip.on .flip-in{transform:rotateY(180deg)}
+  .face{position:absolute;top:0;left:0;width:100%;display:flex;flex-direction:column;-webkit-backface-visibility:hidden;backface-visibility:hidden;border-radius:12px;padding:13px 14px 12px;background:#fff;border:1px solid #E7E3D8;box-shadow:0 10px 22px -20px rgba(30,43,42,.7)}
+  .back{transform:rotateY(180deg);background:#FEFDF9}
+  /* 正面 */
+  .ftop{display:flex;align-items:center;gap:6px;margin-bottom:7px}
+  .fnum{font-size:10.5px;font-weight:700;letter-spacing:.1em;color:#fff;background:var(--ac);border-radius:5px;padding:1px 7px}
+  .frange{font-size:10.5px;font-weight:600;color:var(--ac);background:rgba(0,0,0,.045);border-radius:5px;padding:1px 7px;font-variant-numeric:tabular-nums}
+  .front h4{margin:0 0 3px;font-size:16px;font-weight:650;letter-spacing:-.01em;color:#1E2B2A}
+  .front .fsub{margin:0 0 9px;font-size:12px;color:var(--ac);font-weight:600}
+  .front .fobs{margin:0;font-size:12.2px;line-height:1.68;color:#5F6E6A}
+  .front{background:#fff}
+  .front::after{content:attr(data-n);position:absolute;right:10px;bottom:0;font-family:Georgia,"Times New Roman",serif;font-size:58px;font-weight:700;line-height:1;letter-spacing:-.03em;color:rgba(15,124,128,.055);pointer-events:none}
+  .front .fmore{margin-top:11px;padding-top:9px;border-top:1px dashed #EFECE0;font-size:11.5px;color:#98A39E;display:flex;align-items:center;gap:5px;position:relative;z-index:1}
+  /* 背面 */
+  .back .btop{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-bottom:8px;margin-bottom:9px;border-bottom:1px dashed #E5E1D4}
+  .back .btop b{font-size:12.5px;font-weight:650;color:var(--ac)}
+  .back .btop span{font-size:10.5px;color:#B3BAB4}
+  .blk{margin:0 0 9px}
+  .blk:last-of-type{margin-bottom:0}
+  .blk .lb{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;color:#6B7A74;background:#F0EFE6;border-radius:4px;padding:1px 6px;margin-bottom:3px}
+  .blk p{margin:0;font-size:12px;line-height:1.7;color:#3F4F4A}
+  .blk p b{color:#1E2B2A;font-weight:650}
+  .blk ol{margin:3px 0 0;padding-left:16px}
+  .blk ol li{font-size:12px;line-height:1.66;color:#3F4F4A;margin-bottom:3px}
+  .blk ol li b{color:#1E2B2A}
+  .obs-tip{margin:11px 0 0;font-size:11px;color:#9AA5A0;text-align:center}
+
   .dash{display:grid;grid-template-columns:1fr 1fr;gap:7px 22px;margin-top:12px}
   .row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#4E5F5A}
   .row .lab{width:58px;flex:0 0 58px;color:#5F6E6A}
@@ -130,6 +175,10 @@
     .point{display:none}
     input[type=range]{width:150px}
     .wrap{padding:22px 14px 56px}
+    .flipgrid{grid-template-columns:1fr}
+    .obs-open .tx em{display:none}
+    .obs-body{padding:11px 11px 13px}
+    .flipgrid .face{padding:12px 12px 11px}
   }
 </style>
 </head>
@@ -211,6 +260,128 @@
         <button class="btn ghost" id="r4" type="button" style="margin-left:auto">重新开始</button>
       </div>
       <div class="fb" id="f4">水很瘦，海藻只有零星几簇，珊瑚长得很好。试试把营养盐往上推？</div>
+
+      <!-- ---------- 观察室：为什么海藻会赢 ---------- -->
+      <div class="obs">
+        <button class="obs-open" id="obs4" type="button" aria-expanded="false" aria-controls="obs4body">
+          <span class="ico">?</span>
+          <span class="tx">
+            <b>观察室 · 为什么海藻会赢？</b>
+            <em>四个阶段，四张卡片 —— 点开看每一段到底发生了什么</em>
+          </span>
+          <span class="arw">▼</span>
+        </button>
+
+        <div class="obs-body" id="obs4body" hidden>
+          <p class="obs-sum">
+            四个阶段其实是同一条链条上的四段：<b>营养盐把短板填平</b> → <b>海藻靠速度抢先占位</b> → <b>遮光把珊瑚饿弱</b> → 珊瑚退场后，藻垫封住硬底、鱼群离散，三重锁各自加固。
+            核心是<b>遮光正反馈</b>：藻越多，光越少，珊瑚越弱，藻越容易扩张 —— 这个循环一旦转起来，就会自己加速。
+          </p>
+
+          <div class="flipgrid">
+
+            <!-- 阶段 1 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
+              <div class="flip-in">
+                <div class="face front" data-n="01">
+                  <div class="ftop"><span class="fnum">阶段 01</span><span class="frange">0 – 14</span></div>
+                  <h4>水很瘦</h4>
+                  <p class="fsub">好，而且是「看不见的好」</p>
+                  <p class="fobs">水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>阶段 01 · 水很瘦</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么好</span>
+                    <p>氮、磷在这里是「短板」，海藻拿不到原料，想长也长不起来。珊瑚不靠水里的养分过日子 —— 它体内养着共生藻，能把自身代谢废物循环再利用，还能伸出触手捕食浮游动物补氮。</p>
+                    <p>于是形成两种完全不同的生存策略：<b>海藻是「靠天吃饭」的外包型，珊瑚是「自给自足」的内循环型</b>。资源稀缺时，内循环效率更高；养分充足时，外包型的爆发力更强。所以珊瑚礁并不是「喜欢贫瘠」，只是只有在贫瘠的环境里，它才赢得了竞争。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 阶段 2 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#BE8C2E">
+              <div class="flip-in">
+                <div class="face front" data-n="02">
+                  <div class="ftop"><span class="fnum">阶段 02</span><span class="frange">15 – 39</span></div>
+                  <h4>海藻冒头</h4>
+                  <p class="fsub">开始变坏，但坏得几乎看不出来</p>
+                  <p class="fobs">珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点 —— 最容易让人误判为没事。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>阶段 02 · 海藻冒头</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点。这一阶段最容易让人误判为没事。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么开始不好</span>
+                    <p>短板被填平了。海藻一旦拿到氮、磷，就立刻把养分转化成生物量，<b>几周内就能翻倍</b>；而珊瑚造骨架是石灰岩工程，<b>一年才长一两厘米</b>。两者速度不在同一个量级，供给端稍微松动，竞争结果就在往海藻那边倒。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么看不出来</span>
+                    <p>因为还有两重缓冲：一是草食性鱼类在吃掉一部分海藻；二是活珊瑚本身还在长。这个阶段的海藻像是「被压住」了，并没有真正消失 —— <b>这时候把草食鱼捞走，几周内就能直接跳到第四阶段</b>。这也解释了现实中为什么很多礁看起来「昨天还好好的」：消失的其实不是缓冲，而是你以为的那份稳定。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 阶段 3 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C06A35">
+              <div class="flip-in">
+                <div class="face front" data-n="03">
+                  <div class="ftop"><span class="fnum">阶段 03</span><span class="frange">40 – 71</span></div>
+                  <h4>礁面被占</h4>
+                  <p class="fsub">坏开始显形，机制是「饿死」不是「毒死」</p>
+                  <p class="fobs">绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>阶段 03 · 礁面被占</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>关键机制是<b>遮光</b>。海藻长在珊瑚上方，把阳光截走，珊瑚体内共生藻的光合作用随之下降，能量收支转为赤字。珊瑚还得额外花能量去清理身上的藻和泥沙，于是停止生长，开始缩小。<b>它不是被毒死的，是被挡住光、挤掉地盘，慢慢饿死的。</b></p>
+                    <p>第二个后果：珊瑚死掉后留下的白色骨架，会被藻和沉积物盖住。等到这一层铺满，这片礁面就对珊瑚幼虫关闭了 —— 珊瑚的「下一代」没法在这里落脚。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 阶段 4 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#A33A32">
+              <div class="flip-in">
+                <div class="face front" data-n="04">
+                  <div class="ftop"><span class="fnum">阶段 04</span><span class="frange">≥ 72</span></div>
+                  <h4>相变锁定</h4>
+                  <p class="fsub">坏到换人，而且换不回来</p>
+                  <p class="fobs">几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>阶段 04 · 相变锁定</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么难回头</span>
+                    <p>三重锁互相加固：</p>
+                    <ol>
+                      <li><b>遮光正反馈</b>：藻越多，光越少，珊瑚越弱，藻越容易扩张。</li>
+                      <li><b>补充断档</b>：硬底被藻垫封住，幼虫无处附着，没有新个体来接班。</li>
+                      <li><b>清藻工也没了</b>：活珊瑚的三维结构本身就是鱼类的「房子」；珊瑚死了结构塌了，草食鱼跟着减少，啃藻的力量更弱。</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p class="obs-tip">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
+        </div>
+      </div>
     </section>
     <!-- @L4 -->
     <!-- ================= 第五关 ================= -->
@@ -2119,6 +2290,70 @@
 
   var m=location.search.match(/lv=([1-8])/);
   showLevel(m?+m[1]:1);
+})();
+</script>
+<script>
+/* ---------- 观察室：展开 + 卡片翻转 ---------- */
+(function(){
+  var openBtn = document.getElementById("obs4");
+  var body = document.getElementById("obs4body");
+  if(!openBtn || !body) return;
+
+  var cards = Array.prototype.slice.call(body.querySelectorAll(".flip"));
+
+  /* 两面高度不同：按当前朝向把容器撑到对应高度，内容永远不会被裁掉 */
+  function fit(card){
+    var inner = card.querySelector(".flip-in");
+    var on = card.classList.contains("on");
+    var face = card.querySelector(on ? ".back" : ".front");
+    if(!inner || !face) return 0;
+    var h = Math.ceil(Math.max(face.offsetHeight, face.scrollHeight, face.getBoundingClientRect().height)) + 2;
+    if(h > 2){ inner.style.height = h + "px"; }
+    return h;
+  }
+  /* 全部正面朝上时，同一行的两张对齐到较高的那张，卡片阵才齐整 */
+  function fitAll(){
+    var tops = cards.map(function(c){ return Math.round(c.getBoundingClientRect().top); });
+    var hs = cards.map(fit);
+    var anyOn = cards.some(function(c){ return c.classList.contains("on"); });
+    if(anyOn){ return; }
+    if(!hs.some(function(h){ return h > 0; })){ return; }
+    cards.forEach(function(c, i){
+      var mx = hs[i];
+      cards.forEach(function(_, j){ if(tops[j] === tops[i] && hs[j] > mx){ mx = hs[j]; } });
+      if(mx > hs[i]){ c.querySelector(".flip-in").style.height = mx + "px"; }
+    });
+  }
+
+  openBtn.addEventListener("click", function(){
+    var willOpen = body.hasAttribute("hidden");
+    if(willOpen){ body.removeAttribute("hidden"); }
+    else { body.setAttribute("hidden", ""); }
+    openBtn.classList.toggle("on", willOpen);
+    openBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+    if(willOpen){ fitAll(); }
+  });
+
+  cards.forEach(function(card){
+    function flip(){
+      var on = card.classList.toggle("on");
+      card.setAttribute("aria-pressed", on ? "true" : "false");
+      fitAll();
+    }
+    card.addEventListener("click", flip);
+    card.addEventListener("keydown", function(ev){
+      if(ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar"){
+        ev.preventDefault();
+        flip();
+      }
+    });
+  });
+
+  var rt = null;
+  window.addEventListener("resize", function(){
+    if(rt){ clearTimeout(rt); }
+    rt = setTimeout(fitAll, 160);
+  });
 })();
 </script>
 </body>
