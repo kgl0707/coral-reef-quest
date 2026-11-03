@@ -43,6 +43,8 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
 ## Features
 
 - **Single file** — `index.html` is the whole game (about 100 KB). Copy it anywhere and it still works offline.
+- **Cover first, then one level at a time** — a title screen with an undersea scene, then levels unlocked in order; each level ends with 上一关 / 下一关 instead of a jump menu. Progress is saved in `localStorage`, and 重置 clears it.
+- **Five hidden easter eggs** — 🐚 🦀 🐙 🐠 ⭐ tucked into the scenes of levels 1, 2, 3, 4 and 8. Clicking one fires a small confetti burst and opens a centred card explaining the fact behind it; the 🥚 counter in the top bar opens a collection list. All five unlock a closing message.
 - **Keyboard control** — every slider accepts arrow keys, with on-screen key hints. Level 3 moves the coral, level 7 rotates the globe.
 - **Reset anywhere** — levels 4, 5 and 8 have a restart button, so you can re-run a scenario without reloading.
 - **Observation room (观察室)** — a collapsible panel in levels 1 and 4 holds flip cards: eight temperature bands in level 1 (`<16.5 / 16.5–18 / 18–23 / 23–29 / 29–30.5 / 30.5–32 / 32–34.5 / >34.5 ℃`, each labelled with its growth rate) and four nutrient stages in level 4 (`0–14 / 15–39 / 40–71 / ≥72`). The front shows the phenomenon, the back explains the mechanism; a summary line above the cards ties the stages into one chain.
