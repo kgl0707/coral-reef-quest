@@ -157,7 +157,7 @@
     <section class="panel" id="lv1">
       <div class="lvhead">
         <div><span class="lvno">第一关</span><h2>温度危机</h2></div>
-        <div class="point"><b>能活 ≠ 能成礁</b>；温度过高会让珊瑚排出共生藻而白化。</div>
+        <div class="point"><b>能活 ≠ 能成礁</b>；过热会白化，再热就是死亡 —— <b>白化可逆，死亡不可逆</b>。</div>
       </div>
       <div class="stage"><svg id="s1" viewBox="0 0 900 440" role="img" aria-label="珊瑚礁温度模拟场景"></svg></div>
       <div class="controls">
@@ -612,8 +612,11 @@
       live.style.cursor="pointer";
       live.addEventListener("click",function(ev){
         var bl=parseFloat(g.getAttribute("data-bl")||"0");
-        if(bl>0.35){
-          tipAt(ev,"如果温度快降回来，我还有救！但如果持续太久，我就真的死了……");
+        var mt=parseFloat(g.getAttribute("data-mt")||"0");
+        if(mt>=0.6){
+          tipAt(ev,"我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。");
+        }else if(bl>0.35){
+          tipAt(ev,"如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……");
         }else{
           tipAt(ev,"我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。");
         }
@@ -627,25 +630,56 @@
     el("rect",{x:thX-6,y:thTop,width:12,height:thBot-thTop,fill:"#F0EDE1",rx:6},svg);
     var yOf=function(t){return thBot-(t-15)/20*(thBot-thTop);};
     el("rect",{x:thX-6,y:yOf(29),width:12,height:yOf(23)-yOf(29),fill:"#8CC9A8",opacity:"0.55"},svg);
+    el("rect",{x:thX-6,y:yOf(35),width:12,height:yOf(32)-yOf(35),fill:"#D9756B",opacity:"0.5"},svg);
     var merc=el("rect",{x:thX-4.5,y:yOf(25),width:9,height:thBot-yOf(25),rx:4.5,fill:"#3E8E5A"},svg);
     el("circle",{cx:thX,cy:thBot+8,r:11,fill:"#FBF9F1",stroke:"#DFD8C4","stroke-width":1.2},svg);
     var mercB=el("circle",{cx:thX,cy:thBot+8,r:7.5,fill:"#3E8E5A"},svg);
     var tTxt=el("text",{x:thX,y:thTop-24,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#3C4E49",text:"25.0 ℃"},svg);
     el("text",{x:thX,y:thBot+38,"text-anchor":"middle","font-size":10.5,fill:"#7C8A85",text:"水温"},svg);
     el("text",{x:thX+14,y:yOf(29)-4,"font-size":9.5,fill:"#3E8E5A",text:"最适"},svg);
+    el("text",{x:thX-12,y:yOf(32)+3,"text-anchor":"end","font-size":9,fill:"#C2453E",text:"32 致死线"},svg);
 
     /* 顶部刻度提示 */
     var capTxt=el("text",{x:26,y:34,"font-size":12,fill:"#5E7B85",text:"健康珊瑚礁 · 25.0 ℃"},svg);
 
     var tSlider=$("#t1"),tVal=$("#t1v"),fb=$("#f1"),bar=$("#g1"),barV=$("#g1v");
-    var growth=40, bleach=0, last=0, spawning=0;
+    var growth=40, bleach=0, last=0, spawning=0, mort=0;
+
+    /* 致死压力 0..1：只出现在高温、低温两端 —— 34.5 ℃ 以上或 15 ℃ 视为全部死亡 */
+    function lethalAt(t){
+      if(t>=34.5)return 1;
+      if(t>32)return (t-32)/2.5;
+      if(t<16.5)return clamp((16.5-t)/1.5,0,1);
+      return 0;
+    }
 
     function state(t){
-      if(t<18)return {k:"cold",s:"能活，但成不了礁",msg:"水温只有 "+t.toFixed(1)+" ℃。珊瑚还活着，可钙化几乎停了 —— 它们能长，却堆不出礁体。这就是「<b>能活 ≠ 能成礁</b>」。",cls:"warn",rate:0};
-      if(t<23)return {k:"cool",s:"活着，长得慢",msg:"水温 "+t.toFixed(1)+" ℃，偏低。珊瑚还在长，但钙化速度只有最适温度的一半左右，礁体增厚很慢。",cls:"warn",rate:0.35};
-      if(t<=29)return {k:"opt",s:"最佳生长期",msg:"水温 "+t.toFixed(1)+" ℃，正好在 <b>23–29 ℃</b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。",cls:"good",rate:1.7};
-      if(t<=30.5)return {k:"warm",s:"开始紧张",msg:"水温 "+t.toFixed(1)+" ℃，已经超出舒适区。珊瑚开始排出体内的虫黄藻 —— 看，褐色小点正在飘走。",cls:"warn",rate:0.5};
-      return {k:"hot",s:"白化中",msg:"水温 "+t.toFixed(1)+" ℃，严重过热。珊瑚正在失去约 <b>80%</b> 的能量来源，颜色褪成白色。再持续下去就会死亡。",cls:"bad",rate:-1.1};
+      if(t>=34.5)return {k:"dead",s:"全部死亡",cls:"bad",rate:-9,
+        msg:"水温 "+t.toFixed(1)+" ℃。造礁珊瑚的生存上限就在 <b>34 ℃</b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡</b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。"};
+      if(t>32)return {k:"dying",s:"大面积死亡",cls:"bad",rate:-2.2,
+        msg:"水温 "+t.toFixed(1)+" ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死</b>；但停在这一段，死就是迟早的事。"};
+      if(t>30.5)return {k:"bleach",s:"白化中",cls:"bad",rate:-1.1,
+        msg:"水温 "+t.toFixed(1)+" ℃，超出生理上限约 "+(t-29).toFixed(1)+" ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的</b>：水温若及时回落，它能把这些共生藻重新请回来。"};
+      if(t>29)return {k:"warm",s:"开始紧张",cls:"warn",rate:0.5,
+        msg:"水温 "+t.toFixed(1)+" ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。"};
+      if(t>=23)return {k:"opt",s:"最佳生长期",cls:"good",rate:1.7,
+        msg:"水温 "+t.toFixed(1)+" ℃，正好落在 <b>23–29 ℃</b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。"};
+      if(t>=18)return {k:"cool",s:"活着，长得慢",cls:"warn",rate:0.3,
+        msg:"水温 "+t.toFixed(1)+" ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。"};
+      if(t>=16.5)return {k:"cold",s:"接近生存下限",cls:"warn",rate:0,
+        msg:"水温 "+t.toFixed(1)+" ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁</b>」。"};
+      return {k:"freeze",s:"冷白化 · 死亡",cls:"bad",rate:-2.2,
+        msg:"水温 "+t.toFixed(1)+" ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚</b>，不只是变暖。"};
+    }
+
+    /* 叠加「已死亡」状态：死亡不可逆，只有重置能让礁重新开始 */
+    function effState(t){
+      var st=state(t);
+      if(mort>=0.99&&st.k!=="dead"&&st.k!=="freeze"){
+        st={k:"dead",s:"全部死亡",cls:"bad",rate:-9,
+          msg:"这片礁已经全部死亡，<b>降温也救不回来</b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。"};
+      }
+      return st;
     }
 
     function spawnDot(){
@@ -661,7 +695,7 @@
 
     function render(){
       var t=parseFloat(tSlider.value);
-      var st=state(t);
+      var st=effState(t);
       tVal.textContent=t.toFixed(1)+" ℃";
       tTxt.textContent=t.toFixed(1)+" ℃";
 
@@ -669,41 +703,47 @@
       if(t<18)bleach=Math.max(0,bleach-0.06);
 
       corals.forEach(function(c,i){
-        var hot = t>29 ? clamp((t-29)/4.5,0,1) : 0;
-        var col = mix(c.c,"#F5F2E6",Math.max(hot*0.55, t>30.5?bleach*0.9:0));
+        var hot = t>29 ? clamp((t-29)/5.5,0,1) : 0;
+        var pale=Math.max(hot*0.55, t>30.5?bleach*0.92:0);
+        var col = mix(mix(c.c,"#F7F4E8",pale),"#9C9A8C",mort*0.92);
         c.live.innerHTML=coralOf(specs[i].t,col,i*37+11);
-        c.live.style.opacity=(1-0.72*(t>30.5?bleach:hot*0.5)).toFixed(2);
-        var sc=specs[i].s*(t<18?0.94:1);
+        c.live.style.opacity=clamp(1-0.92*mort,0.05,1).toFixed(2);
+        var sc=specs[i].s*(1-0.20*mort)*(t<18?0.94:1);
         c.g.setAttribute("transform","translate("+c.x+" "+c.y+") scale("+sc.toFixed(3)+")");
         c.g.setAttribute("data-bl",bleach.toFixed(2));
+        c.g.setAttribute("data-mt",mort.toFixed(2));
       });
 
       var my=clamp(t,15,35);
       merc.setAttribute("y",yOf(my));
       merc.setAttribute("height",Math.max(2,thBot-yOf(my)));
-      var mc=t<18?"#3C7FB0":(t<=29?"#3E8E5A":(t<=30.5?"#D98A2B":"#C2453E"));
+      var mc=t<16.5?"#3C7FB0":(t<=29?"#3E8E5A":(t<=30.5?"#D98A2B":"#C2453E"));
       merc.setAttribute("fill",mc);mercB.setAttribute("fill",mc);
 
       fb.className="fb "+st.cls;
       fb.innerHTML="<b>"+st.s+"</b> · "+st.msg;
 
-      capTxt.textContent=(t<18?"冷水 · 停止成礁":(t<23?"偏凉 · 缓慢":(t<=29?"健康珊瑚礁":"过热 · 白化")))+" · "+t.toFixed(1)+" ℃";
-      capTxt.setAttribute("fill",t<23?"#4A7A96":(t<=29?"#3E7A5E":"#A33A32"));
+      capTxt.textContent=(mort>=0.99?"已死亡":(t<16.5?"冷水 · 冷白化":(t<23?"偏凉 · 缓慢":(t<=29?"健康珊瑚礁":(t<=32?"白化 · 可逆":"死亡边缘")))))+" · "+t.toFixed(1)+" ℃";
+      capTxt.setAttribute("fill",(mort>=0.99||t>32)?(mort>=0.99?"#6B6B6B":"#A33A32"):(t<23?"#4A7A96":(t<=29?"#3E7A5E":"#A33A32")));
 
       bar.style.width=growth.toFixed(1)+"%";
-      bar.style.background=t<18?"#B9B4A4":(t>30.5?"#C2453E":(t<=29?"#3E8E5A":"#D98A2B"));
+      bar.style.background=mort>=0.99?"#9A968A":(t<16.5?"#4A7FB0":(t>30.5?"#C2453E":(t<=29?"#3E8E5A":"#D98A2B")));
       barV.textContent=Math.round(growth)+"%";
     }
 
     tSlider.addEventListener("input",render);
-    $("#r1").addEventListener("click",function(){growth=40;bleach=0;render();toast("礁体重新开始生长");});
+    $("#r1").addEventListener("click",function(){growth=40;bleach=0;mort=0;render();toast("礁体重新开始生长");});
 
     render();
 
     setInterval(function(){
       if(current!==1)return;
-      var t=parseFloat(tSlider.value),st=state(t);
-      growth=clamp(growth+st.rate*0.28,0,100);
+      var t=parseFloat(tSlider.value);
+      growth=clamp(growth+effState(t).rate*0.28,0,100);
+      var hz=lethalAt(t);
+      if(hz>=0.999)mort=1;
+      else if(hz>0)mort=clamp(mort+(hz-mort)*0.12,0,1);
+      else if(mort<0.995)mort=Math.max(0,mort-0.006);
       if(t>30.5&&bleach>0.15&&Date.now()-spawning>260){spawning=Date.now();spawnDot();}
       render();
     },280);
@@ -769,7 +809,7 @@
 
     /* 盐度标签（点击后出现） */
     var salTexts={};
-    [[165,"35‰"],[475,"32‰"],[760,"25‰"]].forEach(function(p){
+    [[165,"35‰"],[475,"30‰"],[760,"18‰"]].forEach(function(p){
       salTexts[p[0]]=el("text",{x:p[0],y:86,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#0F5F63",opacity:"0",text:"盐度 约 "+p[1]},svg);
     });
 
@@ -859,21 +899,21 @@
             },120+k*120);
           })(i);
         }
-        fbSet("good","定居成功","这里是外海，盐度约 35‰ —— 正合适。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。");
+        fbSet("good","定居成功","这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。");
         complete(2);
       }else if(zone===2){
         babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.02)";
         paintBaby("#C97C63",1);
-        fbSet("warn","勉强活着","这里是近岸，盐度约 32‰，偏低。它还能活，但一直在调渗透压，长得慢、骨骼也薄 —— 只能算勉强。");
+        fbSet("warn","勉强活着","这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。");
       }else{
         paintBaby("#C08A6E",1);
         babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.35,.78)";
-        fbSet("bad","细胞受不了了","这里是河口，盐度只有约 25‰。淡水一个劲往它身体里钻，细胞膨胀、变形……");
+        fbSet("bad","细胞受不了了","这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……");
         setTimeout(function(){
           paintBaby("#A9A79E",1);
           babyG.style.transform="translate("+p.x+"px,"+(p.y+6)+"px) rotate(74deg) scale(.95)";
           babyG.style.opacity="0.55";
-          fbSet("bad","它死了","盐度太低，我的细胞受不了！珊瑚没法在河口安家 —— 这就是为什么大河口附近几乎没有岸礁。");
+          fbSet("bad","它死了","盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。");
         },700);
       }
     }
@@ -948,9 +988,9 @@
 
     /* 分层说明 */
     var zoneInfo=[
-      {y:top+26,t:"0–20 m · 光照充足",c:"#EAF7D9"},
-      {y:top+(22/MAXD)*(bottom-top),t:"20–30 m · 明显减弱",c:"#F5E6C8"},
-      {y:top+(36/MAXD)*(bottom-top),t:"30 m 以下 · 太暗",c:"#E7D3D0"}
+      {y:top+26,t:"0–22 m · 光照充足",c:"#EAF7D9"},
+      {y:top+(22/MAXD)*(bottom-top),t:"22–35 m · 明显减弱",c:"#F5E6C8"},
+      {y:top+(36/MAXD)*(bottom-top),t:"35 m 以下 · 太暗",c:"#E7D3D0"}
     ];
     zoneInfo.forEach(function(z){
       el("text",{x:886,y:z.y,"text-anchor":"end","font-size":10.5,fill:"#22404A",stroke:"#FFFFFF","stroke-width":3,"stroke-opacity":"0.9","paint-order":"stroke",text:z.t},svg);
@@ -1162,7 +1202,7 @@
         c.sk.setAttribute("opacity",(clamp((cf-0.74)/0.24,0,1)*0.95).toFixed(2));
       });
 
-      var coralCover=Math.round(clamp(88-70*cf,5,92));
+      var coralCover=Math.round(clamp(88-83*cf,5,92));
       var algaeCover=Math.round(clamp(cf*128,1,99));
       $("#c4").style.width=coralCover+"%";
       $("#a4").style.width=algaeCover+"%";
@@ -1274,10 +1314,12 @@
     el("path",{d:"M0 340 Q120 332 240 338 Q360 344 470 336 Q590 328 700 336 Q810 344 900 334 L900 440 L0 440 Z",fill:"#DCCDA8"},svg);
 
     var subs=[
-      {x:152,type:"rock",name:"岩石",ok:true},
-      {x:352,type:"sand",name:"泥沙",ok:false},
-      {x:552,type:"gravel",name:"砾石",ok:false},
-      {x:762,type:"reef",name:"珊瑚灰岩",ok:true}
+      {x:152,type:"rock",name:"岩石",ok:true,tip:"硬底 · 能附着"},
+      {x:352,type:"sand",name:"泥沙",ok:false,tip:"太软 · 会陷进去",
+        fail:"泥沙是软的、还会被水冲走，我根本抓不住。"},
+      {x:552,type:"gravel",name:"砾石",ok:false,tip:"松散 · 会被水翻动",
+        fail:"砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。"},
+      {x:762,type:"reef",name:"珊瑚灰岩",ok:true,tip:"硬底 · 能附着"}
     ];
 
     var hitG=el("g",{},svg);
@@ -1303,7 +1345,7 @@
       }
       gp.setAttribute("transform","translate("+s.x+" "+y+")");
       el("text",{x:s.x,y:404,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#3C4E49",text:s.name},svg);
-      el("text",{x:s.x,y:420,"text-anchor":"middle","font-size":10,fill:s.ok?"#3E8E5A":"#A2775B",text:s.ok?"硬底 · 能附着":"太软 / 会滚 · 附不住"},svg);
+      el("text",{x:s.x,y:420,"text-anchor":"middle","font-size":10,fill:s.ok?"#3E8E5A":"#A2775B",text:s.tip},svg);
       var hit=el("rect",{x:s.x-100,y:278,width:200,height:112,fill:"#FFFFFF",opacity:"0",cursor:"pointer"},hitG);
       hit.addEventListener("mouseenter",function(){gp.setAttribute("opacity","0.86");});
       hit.addEventListener("mouseleave",function(){gp.setAttribute("opacity","1");});
@@ -1398,7 +1440,7 @@
 
     function resolve(s){
       if(!s.ok){
-        setFb("bad","附不住！","我落到"+s.name+"上了……这里太软、不稳，我抓不牢。我需要硬底！");
+        setFb("bad","附不住！","我落到"+s.name+"上了……"+(s.fail||"这里不稳，我抓不牢。")+"我需要稳定的硬底！");
         larvaO.style.transition="transform 1.1s ease, opacity .9s";
         larvaO.style.transform="translate("+(s.x+150)+"px,286px) rotate(40deg)";
         larvaO.style.opacity="0";
@@ -1581,7 +1623,7 @@
       var cls,title,msg;
       if(rate<0){
         cls="bad";title="净溶解";
-        msg="Ω 只有 <b>"+omega.toFixed(2)+"</b>，海水对碳酸钙已经不饱和 —— 造骨速度赶不上溶解，骨骼正在变薄、变脆。这就是<b>海洋酸化</b>：pH 每降低 0.1，钙化就更难一分。";
+        msg="Ω 降到 <b>"+omega.toFixed(2)+"</b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度</b>，骨骼正在变薄、变脆。这就是<b>海洋酸化</b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。";
       }else if(dox<4.5){
         cls="warn";title="缺氧，没力气";
         msg="溶解氧只有 <b>"+dox.toFixed(1)+" mg/L</b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。";
@@ -1703,7 +1745,7 @@
         var hit=el("line",{x1:CX-half,y1:yy,x2:CX+half,y2:yy,stroke:"#000000",opacity:"0","stroke-width":12,cursor:"pointer"},dyn);
         hit.addEventListener("click",function(ev){
           ev.stopPropagation();
-          tipAt(ev,"这条线就是珊瑚礁的生死边界！大致对应年均 20 ℃ 等温线 —— 越过它，珊瑚就活不下去了。");
+          tipAt(ev,"这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。");
         });
       });
 
@@ -1752,12 +1794,12 @@
         fb.innerHTML="<b>成功！</b>"+loc.n+" 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。";
       }else if(loc.r==="mid"){
         setCard(loc.n+"：勉强存活",[
-          "已接近珊瑚礁分布的北缘，",
-          "冬季水温偏低，只能长出稀疏矮小的",
-          "「高纬度珊瑚礁」，礁体很薄。"
+          "靠近中国珊瑚礁分布的北缘，",
+          "冬季寒潮会让水温跌破 20 ℃，",
+          "只能长出矮小、稀疏的礁体。"
         ],"#8A5E12");
         fb.className="fb warn";
-        fb.innerHTML="<b>勉强存活。</b>海南约 19°N，已经在珊瑚礁分布的边缘。冬天一冷，珊瑚就长得吃力，只能形成稀疏的「高纬度珊瑚礁」。";
+        fb.innerHTML="<b>勉强存活。</b>"+loc.n+" 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。";
       }else{
         if(loc.why==="est"){
           setCard(loc.n+"：失败",[
@@ -1769,12 +1811,12 @@
           fb.innerHTML="<b>失败。</b>"+loc.n+" 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。";
         }else{
           setCard(loc.n+"：失败",[
-            "纬度 "+Math.abs(loc.lat).toFixed(0)+"°，年均水温低于 20 ℃。",
-            "珊瑚也许能活一小段，",
-            "但钙化太慢，堆不出礁体。"
+            "纬度 "+Math.abs(loc.lat).toFixed(0)+"°，已在温带海域。",
+            "冬季水温跌到 18 ℃ 以下，",
+            "珊瑚熬不过冬天，堆不出礁体。"
           ],"#A33A32");
           fb.className="fb bad";
-          fb.innerHTML="<b>失败。</b>"+loc.n+" 在南北纬 30° 以外，年均水温低于 20 ℃ —— 这里年均温度太低，我活不下去。";
+          fb.innerHTML="<b>失败。</b>"+loc.n+" 在 "+Math.abs(loc.lat).toFixed(0)+"°S，属于温带：<b>冬季</b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。";
         }
       }
       var ok=0;
@@ -1916,8 +1958,8 @@
       var v=P[k];
       if(k==="temp")return (v>=23&&v<=29)?"ok":(((v>=20&&v<23)||(v>29&&v<=30.5))?"warn":"bad");
       if(k==="sal")return (v>=32&&v<=36)?"ok":(((v>=30&&v<32)||(v>36&&v<=38))?"warn":"bad");
-      if(k==="light")return v>=55?"ok":(v>=30?"warn":"bad");
-      if(k==="nut")return v<=30?"ok":(v<=55?"warn":"bad");
+      if(k==="light")return v>=20?"ok":(v>=8?"warn":"bad");
+      if(k==="nut")return v<=20?"ok":(v<=40?"warn":"bad");
       if(k==="flow")return (v>=30&&v<=70)?"ok":(((v>=15&&v<30)||(v>70&&v<=85))?"warn":"bad");
       if(k==="ph")return (v>=8.0&&v<=8.2)?"ok":(((v>=7.9&&v<8.0)||(v>8.2&&v<=8.3))?"warn":"bad");
       if(k==="sub")return v==="hard"?"ok":"bad";
