@@ -12,7 +12,7 @@ All eight levels are about one question: **what does a coral need to survive?** 
 
 | # | Level | What you do |
 |---|-------|-------------|
-| 1 | 温度危机 / Heat Crisis | Drag the temperature into the coral's comfort band and watch the reef bleach when you overshoot |
+| 1 | 温度危机 / Heat Crisis | Drag the temperature from 15 °C to 35 °C: bleaching from 30.5 °C, mass mortality above 32 °C, everything dead at 34.5 °C and 15 °C |
 | 2 | 盐度逃生 / Salinity Escape | Survive a salinity swing — too fresh or too salty and the polyps shut down |
 | 3 | 阳光猜猜看 / Guess the Light | Drag the coral down the slope until it lands where the light is just right |
 | 4 | 施肥陷阱 / The Fertilizer Trap | Add nutrients and watch algae take the reef over |
@@ -20,6 +20,25 @@ All eight levels are about one question: **what does a coral need to survive?** 
 | 6 | 造骨头实验室 / Build a Skeleton | Balance calcium and carbonate so the coral can calcify |
 | 7 | 地球仪大冒险 / Globe Adventure | Spin the globe to the latitudes where reef-building corals actually live |
 | 8 | 终极生存挑战 / Final Challenge | Everything at once — keep the reef alive as the stressors stack |
+
+## The thresholds behind the numbers
+
+The model is simplified, but every cut-off follows the ranges used in textbooks and the reef literature. The ones worth checking:
+
+| Variable | Value used | Why |
+|---|---|---|
+| Temperature, optimal | 23–29 °C | Standard range for reef-building corals |
+| Temperature, stress onset | > 29 °C | ~1 °C above the usual summer maximum |
+| Temperature, bleaching | 30.5–32 °C | Symbionts expelled; **reversible** if the water cools |
+| Temperature, mass mortality | 32–34.5 °C | Tissue necrosis begins; mortality climbs steeply |
+| Temperature, lethal | ≥ 34.5 °C / ≤ 15 °C | Whole reef dies — this is **not** bleaching |
+| Salinity, optimal | 34–36‰ | Normal seawater |
+| Salinity, marginal | 30‰ | Survives, but spends energy on osmoregulation |
+| Salinity, lethal | 18‰ | Cells take on water; estuaries have no reefs |
+| Light for reef growth | ≥ 20% of surface | Below ~8% the coral starves |
+| Aragonite saturation | Ω < 2.4 | Net dissolution overtakes calcification |
+
+Two ideas the game tries hard to keep separate: **bleaching is reversible, death is not**, and the lethal limit exists at *both* ends of the thermometer — a cold snap kills corals just as a heatwave does.
 
 ## Features
 
