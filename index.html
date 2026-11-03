@@ -536,6 +536,21 @@
   .blk p b,.blk ol li b{color:#F0F9F7}
   .obs-tip{color:#7E9995}
 
+  /* 观察室 · 指标清单（第八关） */
+  .obs-h{margin:15px 0 9px;font-size:10.8px;letter-spacing:.16em;color:#7E9995;display:flex;align-items:center;gap:9px}
+  .obs-h::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(150,210,205,.22),rgba(150,210,205,0))}
+  .lims{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .lim{padding:9px 11px 10px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(150,210,205,.13)}
+  .lim .hd{display:flex;align-items:center;gap:6px;margin-bottom:5px;flex-wrap:wrap}
+  .lim .hd b{font-size:12.4px;color:#EAF7F4;font-weight:600;min-width:42px}
+  .lim .g{font-size:10.4px;color:#9BEBBE;background:rgba(62,142,90,.20);border-radius:4px;padding:1px 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .lim .y{font-size:10.4px;color:#FFD79A;background:rgba(217,138,43,.18);border-radius:4px;padding:1px 6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .lim p{margin:0;font-size:11.3px;line-height:1.62;color:#9DB8B3}
+  .lim p b{color:#D8EBE7;font-weight:600}
+  .flipgrid.tri{grid-template-columns:repeat(3,1fr)}
+  .flipgrid.tri .flip:last-child:nth-child(3n+1){grid-column:1/-1}
+  @media(max-width:760px){.flipgrid.tri{grid-template-columns:1fr}.lims{grid-template-columns:1fr}.flipgrid.tri .flip:last-child:nth-child(3n+1){grid-column:auto}}
+
   .loclist button{background:rgba(255,255,255,.05);border-color:rgba(160,210,205,.20);color:#C6DCD8}
   .loclist button:hover{border-color:#5FD3CB;color:#9BE6DF}
   .loclist button.ok{background:rgba(62,142,90,.18);border-color:rgba(111,211,155,.38);color:#9BEBBE}
@@ -549,6 +564,24 @@
   .row button:hover{border-color:#5FD3CB;color:#9BE6DF}
 
   .lvfoot{border-top-color:rgba(150,210,205,.14)}
+
+  /* 语言切换 */
+  .tb-lang{display:inline-flex;align-items:center;justify-content:center;min-width:42px;height:29px;padding:0 9px;
+    font:inherit;font-size:11px;font-weight:700;letter-spacing:.08em;color:#9FB8B4;background:rgba(255,255,255,.04);
+    border:1px solid rgba(150,210,205,.20);border-radius:9px;cursor:pointer;transition:.18s;white-space:nowrap}
+  .tb-lang:hover{border-color:rgba(95,211,203,.46);color:#9BE6DF;background:rgba(95,211,203,.08)}
+  .tb-lang.on{color:#04222A;background:linear-gradient(135deg,#7FE6DE,#3FC4BC);border-color:#3FC4BC;
+    box-shadow:0 0 16px -4px rgba(95,211,203,.55)}
+.tb-lang:active{transform:scale(.95)}
+/* 封面右上角的语言按钮 */
+.cover-lang{position:absolute;top:24px;right:28px;z-index:8;display:inline-flex;align-items:center;gap:7px;
+    height:34px;padding:0 14px;font:inherit;font-size:11.5px;font-weight:700;letter-spacing:.12em;
+    color:#BFE4DF;background:rgba(5,30,38,.55);border:1px solid rgba(150,210,205,.26);border-radius:999px;
+    cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:.2s}
+.cover-lang:hover{color:#EAFBF8;border-color:rgba(127,230,222,.5);background:rgba(10,48,58,.75)}
+.cover-lang.on{color:#04222A;background:linear-gradient(135deg,#7FE6DE,#3FC4BC);border-color:#3FC4BC}
+.cover-lang:active{transform:scale(.96)}
+@media(max-width:560px){.cover-lang{top:16px;right:16px;height:30px;padding:0 11px;font-size:10.5px}}
   .lvfoot .pos{color:#7E9995}
   .lvfoot .pos b{color:#9BE6DF}
   .lvfoot .pos i{background:rgba(255,255,255,.10)}
@@ -602,6 +635,7 @@
      封面
      ============================================================ -->
 <div class="cover" id="cover">
+  <button class="cover-lang" id="langBtn2" type="button" title="Switch to English">EN</button>
   <svg class="cover-scene" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
       <linearGradient id="cvSea" x1="0" y1="0" x2="0" y2="1">
@@ -757,11 +791,11 @@
 
   <div class="cover-inner">
     <div class="cover-tag">Coral Reef Quest</div>
-    <h1 class="cover-title">珊瑚礁<em>生存挑战</em></h1>
+    <h1 class="cover-title" data-i18n="t0">珊瑚礁<em>生存挑战</em></h1>
     <div class="cover-rule"></div>
-    <p class="cover-sub">八道关卡，八条生存底线。<br>从水温到光照，从基底到钙化 —— 一条一条，<b>试给你看</b>。</p>
-    <button class="cover-btn" id="startBtn">进入挑战<span>→</span></button>
-    <div class="cover-meta">8 个关卡<i>·</i>约 15 分钟<i>·</i>支持键盘操作</div>
+    <p class="cover-sub" data-i18n="t1">八道关卡，八条生存底线。<br>从水温到光照，从基底到钙化 —— 一条一条，<b>试给你看</b>。</p>
+    <button class="cover-btn" id="startBtn" data-i18n="t2">进入挑战<span>→</span></button>
+    <div class="cover-meta" data-i18n="t3">8 个关卡<i>·</i>约 15 分钟<i>·</i>支持键盘操作</div>
   </div>
 </div>
 
@@ -770,7 +804,7 @@
     <div class="topbar-in">
       <button class="tb-home" id="homeBtn" aria-label="返回封面">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 L5 8 L10 13"/></svg>
-        封面
+        <span data-i18n="home">封面</span>
       </button>
       <div class="tb-sep"></div>
       <div class="tb-brand">
@@ -779,11 +813,12 @@
       </div>
       <div class="tb-right">
         <div class="tb-dots" id="tbDots"></div>
+        <button class="tb-lang" id="langBtn" type="button" title="Switch to English">EN</button>
         <button class="tb-egg" id="eggBadge" title="礁石里藏着 5 枚彩蛋，找到它们">
           <svg class="eggico" viewBox="0 0 16 20" aria-hidden="true"><path d="M8 1.2C5.3 1.2 2.8 6.6 2.8 11.2 2.8 15.5 5.1 18.8 8 18.8s5.2-3.3 5.2-7.6C13.2 6.6 10.7 1.2 8 1.2Z" fill="currentColor" fill-opacity=".14" stroke="currentColor" stroke-width="1.4"/><circle cx="6.2" cy="8.2" r="1.15" fill="currentColor" opacity=".55"/><circle cx="9.7" cy="12.3" r="1.4" fill="currentColor" opacity=".45"/><circle cx="9.4" cy="6.7" r=".8" fill="currentColor" opacity=".4"/></svg>
           <b id="eggNum">0</b>/5
         </button>
-        <button class="tb-reset" id="resetBtn" title="清空进度，从第一关重新开始">↺ 重置</button>
+        <button class="tb-reset" id="resetBtn" title="清空进度，从第一关重新开始" data-i18n="t6">↺ 重置</button>
       </div>
     </div>
     <div class="prog"><i id="progBar"></i></div>
@@ -794,24 +829,24 @@
     <!-- ================= 第一关 ================= -->
     <section class="panel" id="lv1">
       <div class="lvhead">
-        <div><span class="lvno">第一关</span><h2>温度危机</h2></div>
-        <div class="point"><b>能活 ≠ 能成礁</b>；过热会白化，再热就是死亡 —— <b>白化可逆，死亡不可逆</b>。</div>
+        <div><span class="lvno" data-i18n="t7">第一关</span><h2 data-i18n="t8">温度危机</h2></div>
+        <div class="point" data-i18n="t9"><b>能活 ≠ 能成礁</b>；过热会白化，再热就是死亡 —— <b>白化可逆，死亡不可逆</b>。</div>
       </div>
       <div class="stage"><svg id="s1" viewBox="0 0 900 440" role="img" aria-label="珊瑚礁温度模拟场景"></svg></div>
       <div class="controls">
-        <label class="ctrl"><span class="k">水温</span><input id="t1" type="range" min="15" max="35" step="0.5" value="25" aria-label="水温"><b id="t1v">25.0 ℃</b></label>
-        <div class="meter"><span class="k">礁体厚度</span><div class="bar"><i id="g1"></i></div><b id="g1v" style="min-width:38px;font-variant-numeric:tabular-nums">40%</b></div>
-        <button class="btn ghost" id="r1">重置礁体</button>
+        <label class="ctrl"><span class="k" data-i18n="k_temp">水温</span><input id="t1" type="range" min="15" max="35" step="0.5" value="25" aria-label="水温"><b id="t1v">25.0 ℃</b></label>
+        <div class="meter"><span class="k" data-i18n="t10">礁体厚度</span><div class="bar"><i id="g1"></i></div><b id="g1v" style="min-width:38px;font-variant-numeric:tabular-nums">40%</b></div>
+        <button class="btn ghost" id="r1" data-i18n="t11">重置礁体</button>
       </div>
-      <div class="fb" id="f1">拖动滑块，看看不同水温下这片礁会发生什么。</div>
+      <div class="fb" id="f1" data-i18n="t12">拖动滑块，看看不同水温下这片礁会发生什么。</div>
 
       <!-- ---------- 观察室：温度到底卡在哪 ---------- -->
       <div class="obs">
         <button class="obs-open" id="obs1" type="button" aria-expanded="false" aria-controls="obs1body">
           <span class="ico">?</span>
           <span class="tx">
-            <b>观察室 · 温度到底卡在哪？</b>
-            <em>八段温度带，八张卡片 —— 从冻死到热死，中间只有一小段能成礁</em>
+            <b data-i18n="obs_t1">观察室 · 温度到底卡在哪？</b>
+            <em data-i18n="t14">八段温度带，八张卡片 —— 从冻死到热死，中间只有一小段能成礁</em>
           </span>
           <span class="arw">▼</span>
         </button>
@@ -828,19 +863,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#3C6E9E">
               <div class="flip-in">
                 <div class="face front" data-n="1">
-                  <div class="ftop"><span class="fnum">＜ 16.5 ℃</span><span class="frange">速率 −2.2</span></div>
-                  <h4>冷白化 → 死亡</h4>
-                  <p class="fobs">珊瑚褪成灰白，组织开始脱落，最后只剩骨架 —— 下跌速度仅次于「全部死亡」。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t16"><span class="fnum">＜ 16.5 ℃</span><span class="frange">速率 −2.2</span></div>
+                  <h4 data-i18n="t17">冷白化 → 死亡</h4>
+                  <p class="fobs" data-i18n="t18">珊瑚褪成灰白，组织开始脱落，最后只剩骨架 —— 下跌速度仅次于「全部死亡」。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>＜ 16.5 ℃ · 冷白化 → 死亡</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>珊瑚褪成灰白，组织开始脱落，最后只剩骨架。速率 −2.2，是仅次于「全部死亡」下跌最快的一档。</p>
+                  <div class="btop" data-i18n="t20"><b>＜ 16.5 ℃ · 冷白化 → 死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t22">珊瑚褪成灰白，组织开始脱落，最后只剩骨架。速率 −2.2，是仅次于「全部死亡」下跌最快的一档。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>珊瑚是变温动物，体温跟着水温走。温度过低时，<b>细胞膜的流动性会明显下降</b>，膜上的蛋白和酶几乎转不动，钙化相关的酶活性基本归零；虫黄藻的光合也停了。</p>
-                    <p>热量不足让整个代谢链条卡住 —— 不是「慢一点」，而是<b>走不动</b>。所以寒潮和热浪一样能杀死珊瑚，这也是公众最容易漏掉的那一半。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t24">珊瑚是变温动物，体温跟着水温走。温度过低时，<b>细胞膜的流动性会明显下降</b>，膜上的蛋白和酶几乎转不动，钙化相关的酶活性基本归零；虫黄藻的光合也停了。</p>
+                    <p data-i18n="t25">热量不足让整个代谢链条卡住 —— 不是「慢一点」，而是<b>走不动</b>。所以寒潮和热浪一样能杀死珊瑚，这也是公众最容易漏掉的那一半。</p>
                   </div>
                 </div>
               </div>
@@ -850,19 +885,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#4A7A96">
               <div class="flip-in">
                 <div class="face front" data-n="2">
-                  <div class="ftop"><span class="fnum">16.5 – 18 ℃</span><span class="frange">速率 0</span></div>
-                  <h4>活着，但造不出礁</h4>
-                  <p class="fobs">颜色还在，看不出病态，也死不了 —— 但生长条完全不动。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t26"><span class="fnum">16.5 – 18 ℃</span><span class="frange">速率 0</span></div>
+                  <h4 data-i18n="t27">活着，但造不出礁</h4>
+                  <p class="fobs" data-i18n="t28">颜色还在，看不出病态，也死不了 —— 但生长条完全不动。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>16.5–18 ℃ · 活着，但造不出礁</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>珊瑚颜色还在，看不出病态，也死不了，但生长条完全不动。</p>
+                  <div class="btop" data-i18n="t29"><b>16.5–18 ℃ · 活着，但造不出礁</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t30">珊瑚颜色还在，看不出病态，也死不了，但生长条完全不动。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>这一段是全关最锋利的一处。钙化在 18 ℃ 以下基本停摆，珊瑚只是维持最低限度的代谢在「撑着」。</p>
-                    <p>关键区分是：<b>珊瑚是一个生物，礁是一层碳酸钙堆积出来的地貌</b>。生物可以活着却完全不堆积碳酸钙 —— 那就只是一丛活着的珊瑚，不是礁。所以这一段速率是 0，并写明「能活不代表能成礁」。珊瑚礁真正的存在条件是<b>净增长为正</b>，而不只是「没死」。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t31">这一段是全关最锋利的一处。钙化在 18 ℃ 以下基本停摆，珊瑚只是维持最低限度的代谢在「撑着」。</p>
+                    <p data-i18n="t32">关键区分是：<b>珊瑚是一个生物，礁是一层碳酸钙堆积出来的地貌</b>。生物可以活着却完全不堆积碳酸钙 —— 那就只是一丛活着的珊瑚，不是礁。所以这一段速率是 0，并写明「能活不代表能成礁」。珊瑚礁真正的存在条件是<b>净增长为正</b>，而不只是「没死」。</p>
                   </div>
                 </div>
               </div>
@@ -872,19 +907,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
               <div class="flip-in">
                 <div class="face front" data-n="3">
-                  <div class="ftop"><span class="fnum">18 – 23 ℃</span><span class="frange">速率 +0.3</span></div>
-                  <h4>活着，长得很慢</h4>
-                  <p class="fobs">颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t33"><span class="fnum">18 – 23 ℃</span><span class="frange">速率 +0.3</span></div>
+                  <h4 data-i18n="t34">活着，长得很慢</h4>
+                  <p class="fobs" data-i18n="t35">颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>18–23 ℃ · 活着，长得很慢</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
+                  <div class="btop" data-i18n="t36"><b>18–23 ℃ · 活着，长得很慢</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t35">颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>这个区间已经脱离了生存下限，钙化酶重新开始工作，但活性只有最适温度的一半左右（<b>+0.3 对 +1.7，差了近六倍</b>）；虫黄藻的光合速率也偏低，供给的能量有限。</p>
-                    <p>结果就是「能长，但长得像没长」。现实中这样的礁体增厚速度，远赶不上海平面上升和侵蚀的速度，长期看仍然是亏的。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t37">这个区间已经脱离了生存下限，钙化酶重新开始工作，但活性只有最适温度的一半左右（<b>+0.3 对 +1.7，差了近六倍</b>）；虫黄藻的光合速率也偏低，供给的能量有限。</p>
+                    <p data-i18n="t38">结果就是「能长，但长得像没长」。现实中这样的礁体增厚速度，远赶不上海平面上升和侵蚀的速度，长期看仍然是亏的。</p>
                   </div>
                 </div>
               </div>
@@ -894,19 +929,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2F8A4E">
               <div class="flip-in">
                 <div class="face front" data-n="4">
-                  <div class="ftop"><span class="fnum">23 – 29 ℃</span><span class="frange">速率 +1.7</span></div>
-                  <h4>最佳生长期</h4>
-                  <p class="fobs">虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚 —— 全关唯一的高增长区。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t39"><span class="fnum">23 – 29 ℃</span><span class="frange">速率 +1.7</span></div>
+                  <h4 data-i18n="t40">最佳生长期</h4>
+                  <p class="fobs" data-i18n="t41">虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚 —— 全关唯一的高增长区。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>23–29 ℃ · 最佳生长期</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚。速率 +1.7，是全关唯一的高增长区。</p>
+                  <div class="btop" data-i18n="t42"><b>23–29 ℃ · 最佳生长期</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t43">虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚。速率 +1.7，是全关唯一的高增长区。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>珊瑚体内有<b>两套温度响应曲线，峰值并不重合</b>：虫黄藻的光合作用偏好偏暖，珊瑚自身的钙化偏好略凉。两者曲线重叠的那一段，就是 23–29 ℃。</p>
-                    <p>在这个窗口里，能量供给最足、造骨效率也最高，两边同时达到高点。这也解释了为什么珊瑚礁只分布在热带和亚热带，而且分布边界恰好对应「<b>最冷月水温 18 ℃</b>」这条线 —— 不是年均温，是最冷的时候。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t44">珊瑚体内有<b>两套温度响应曲线，峰值并不重合</b>：虫黄藻的光合作用偏好偏暖，珊瑚自身的钙化偏好略凉。两者曲线重叠的那一段，就是 23–29 ℃。</p>
+                    <p data-i18n="t45">在这个窗口里，能量供给最足、造骨效率也最高，两边同时达到高点。这也解释了为什么珊瑚礁只分布在热带和亚热带，而且分布边界恰好对应「<b>最冷月水温 18 ℃</b>」这条线 —— 不是年均温，是最冷的时候。</p>
                   </div>
                 </div>
               </div>
@@ -916,19 +951,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#B8971F">
               <div class="flip-in">
                 <div class="face front" data-n="5">
-                  <div class="ftop"><span class="fnum">29 – 30.5 ℃</span><span class="frange">速率 +0.5</span></div>
-                  <h4>开始紧张</h4>
-                  <p class="fobs">开始少量排出虫黄藻，褐色小点往上飘；生长明显变慢，颜色略淡。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t46"><span class="fnum">29 – 30.5 ℃</span><span class="frange">速率 +0.5</span></div>
+                  <h4 data-i18n="t47">开始紧张</h4>
+                  <p class="fobs" data-i18n="t48">开始少量排出虫黄藻，褐色小点往上飘；生长明显变慢，颜色略淡。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>29–30.5 ℃ · 开始紧张</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>珊瑚开始少量排出虫黄藻，能看到褐色小点往上飘；生长明显变慢（速率从 1.7 掉到 0.5），颜色略淡。</p>
+                  <div class="btop" data-i18n="t49"><b>29–30.5 ℃ · 开始紧张</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t50">珊瑚开始少量排出虫黄藻，能看到褐色小点往上飘；生长明显变慢（速率从 1.7 掉到 0.5），颜色略淡。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>刚越过舒适上限，虫黄藻的光合系统开始出现轻微损伤。热胁迫下，光合电子传递链会「堵车」，多余的电子传给氧气，生成<b>活性氧</b> —— 一种会破坏蛋白和膜的有害分子。珊瑚的第一反应是把一部分藻排掉，减少活性氧来源。</p>
-                    <p>但注意：这一段的损伤是<b>可修复</b>的。温度及时回落，藻会被重新摄回，几乎不留下后果 —— 这也是「短暂的热浪」和「持续的热浪」结局完全不同的原因。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t51">刚越过舒适上限，虫黄藻的光合系统开始出现轻微损伤。热胁迫下，光合电子传递链会「堵车」，多余的电子传给氧气，生成<b>活性氧</b> —— 一种会破坏蛋白和膜的有害分子。珊瑚的第一反应是把一部分藻排掉，减少活性氧来源。</p>
+                    <p data-i18n="t52">但注意：这一段的损伤是<b>可修复</b>的。温度及时回落，藻会被重新摄回，几乎不留下后果 —— 这也是「短暂的热浪」和「持续的热浪」结局完全不同的原因。</p>
                   </div>
                 </div>
               </div>
@@ -938,19 +973,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C9762E">
               <div class="flip-in">
                 <div class="face front" data-n="6">
-                  <div class="ftop"><span class="fnum">30.5 – 32 ℃</span><span class="frange">速率 −1.1</span></div>
-                  <h4>白化，但还没死</h4>
-                  <p class="fobs">排掉九成以上的虫黄藻，颜色彻底变白，像被漂过；开始缩小。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t53"><span class="fnum">30.5 – 32 ℃</span><span class="frange">速率 −1.1</span></div>
+                  <h4 data-i18n="t54">白化，但还没死</h4>
+                  <p class="fobs" data-i18n="t55">排掉九成以上的虫黄藻，颜色彻底变白，像被漂过；开始缩小。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>30.5–32 ℃ · 白化，但还没死</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>珊瑚排掉九成以上的虫黄藻，颜色彻底变白，像被漂过。速率转为负值 −1.1，开始缩小。</p>
+                  <div class="btop" data-i18n="t56"><b>30.5–32 ℃ · 白化，但还没死</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t57">珊瑚排掉九成以上的虫黄藻，颜色彻底变白，像被漂过。速率转为负值 −1.1，开始缩小。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>这是「自保」和「自杀」重叠的一段。活性氧的伤害已经超过阈值，珊瑚必须把藻全部清出去才能保住自己的细胞 —— 但藻是它 <b>90% 以上的口粮来源</b>，排干净就等于断了粮。</p>
-                    <p>它此刻并没有死，只是进入一种靠库存维生的休克状态，能撑几周。所以<b>白化只是掉色，还不等于死亡</b>；只要水温及时回落，它还能把藻请回来重新变褐。这是全关最重要的一个区分。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t58">这是「自保」和「自杀」重叠的一段。活性氧的伤害已经超过阈值，珊瑚必须把藻全部清出去才能保住自己的细胞 —— 但藻是它 <b>90% 以上的口粮来源</b>，排干净就等于断了粮。</p>
+                    <p data-i18n="t59">它此刻并没有死，只是进入一种靠库存维生的休克状态，能撑几周。所以<b>白化只是掉色，还不等于死亡</b>；只要水温及时回落，它还能把藻请回来重新变褐。这是全关最重要的一个区分。</p>
                   </div>
                 </div>
               </div>
@@ -960,19 +995,19 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C2453E">
               <div class="flip-in">
                 <div class="face front" data-n="7">
-                  <div class="ftop"><span class="fnum">32 – 34.5 ℃</span><span class="frange">速率 −2.2</span></div>
-                  <h4>大面积死亡</h4>
-                  <p class="fobs">藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t60"><span class="fnum">32 – 34.5 ℃</span><span class="frange">速率 −2.2</span></div>
+                  <h4 data-i18n="t61">大面积死亡</h4>
+                  <p class="fobs" data-i18n="t62">藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>32–34.5 ℃ · 大面积死亡</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来，速率 −2.2。</p>
+                  <div class="btop" data-i18n="t63"><b>32–34.5 ℃ · 大面积死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t64">藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来，速率 −2.2。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>白化只是失去了供给，但珊瑚还可以靠体内储存的脂类和蛋白质撑一段时间。问题是持续高温下，这笔储备撑不了太久，而高温本身还在持续伤害组织 —— 细胞坏死、组织从骨架上剥离。</p>
-                    <p>到了这一步，<b>即使温度降回来也救不回来</b>：组织已经没了，只剩下骨骼，没有可以复原的活体。停在白化，死是迟早的事。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t65">白化只是失去了供给，但珊瑚还可以靠体内储存的脂类和蛋白质撑一段时间。问题是持续高温下，这笔储备撑不了太久，而高温本身还在持续伤害组织 —— 细胞坏死、组织从骨架上剥离。</p>
+                    <p data-i18n="t66">到了这一步，<b>即使温度降回来也救不回来</b>：组织已经没了，只剩下骨骼，没有可以复原的活体。停在白化，死是迟早的事。</p>
                   </div>
                 </div>
               </div>
@@ -982,81 +1017,276 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#8E2A24">
               <div class="flip-in">
                 <div class="face front" data-n="8">
-                  <div class="ftop"><span class="fnum">＞ 34.5 ℃</span><span class="frange">速率 −9</span></div>
-                  <h4>全部死亡</h4>
-                  <p class="fobs">整片礁全白、随后被藻覆盖，生长条清零。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t67"><span class="fnum">＞ 34.5 ℃</span><span class="frange">速率 −9</span></div>
+                  <h4 data-i18n="t68">全部死亡</h4>
+                  <p class="fobs" data-i18n="t69">整片礁全白、随后被藻覆盖，生长条清零。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>＞ 34.5 ℃ · 全部死亡</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>整片礁全白、随后被藻覆盖，生长条清零，速率 −9。</p>
+                  <div class="btop" data-i18n="t70"><b>＞ 34.5 ℃ · 全部死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t71">整片礁全白、随后被藻覆盖，生长条清零，速率 −9。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>造礁珊瑚的生存上限大致在 34 ℃ 上下。超过这个温度，<b>蛋白质会变性、代谢彻底崩掉</b>；浅水区升温更快，有时几小时就够。</p>
-                    <p>这里不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t72">造礁珊瑚的生存上限大致在 34 ℃ 上下。超过这个温度，<b>蛋白质会变性、代谢彻底崩掉</b>；浅水区升温更快，有时几小时就够。</p>
+                    <p data-i18n="t73">这里不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。</p>
                   </div>
                 </div>
               </div>
             </div>
 
           </div>
-          <p class="obs-tip">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
+          <p class="obs-tip" data-i18n="t74">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
         </div>
       </div>
     </section>
     <!-- ================= 第二关 ================= -->
     <section class="panel" id="lv2">
       <div class="lvhead">
-        <div><span class="lvno">第二关</span><h2>盐度逃生</h2></div>
-        <div class="point"><b>必须远离河口</b>；盐度过低会造成渗透压胁迫。</div>
+        <div><span class="lvno" data-i18n="t75">第二关</span><h2 data-i18n="t76">盐度逃生</h2></div>
+        <div class="point" data-i18n="t77"><b>必须远离河口</b>；盐度过低会造成渗透压胁迫。</div>
       </div>
       <div class="stage"><svg id="s2" viewBox="0 0 900 440" role="img" aria-label="外海、近岸与河口三个区域"></svg></div>
       <div class="controls">
-        <span class="ctrl"><span class="k">点击海里的三个区域，帮它选一个家</span></span>
-        <button class="btn ghost" id="r2">让它重来</button>
+        <span class="ctrl"><span class="k" data-i18n="k_click2">点击海里的三个区域，帮它选一个家</span></span>
+        <button class="btn ghost" id="r2" data-i18n="t79">让它重来</button>
       </div>
-      <div class="fb" id="f2">一只珊瑚宝宝（浮浪幼虫）正在漂流，它得找一块合适的水域定居。</div>
+      <div class="fb" id="f2" data-i18n="t80">一只珊瑚宝宝（浮浪幼虫）正在漂流，它得找一块合适的水域定居。</div>
+
+      <!-- ---------- 观察室：盐度为什么不能偏 ---------- -->
+      <div class="obs">
+        <button class="obs-open" id="obs2" type="button" aria-expanded="false" aria-controls="obs2body">
+          <span class="ico">?</span>
+          <span class="tx">
+            <b data-i18n="obs_t2">观察室 · 盐度为什么两头都不能偏？</b>
+            <em data-i18n="t82">四张卡片 —— 35‰ 最省力，偏淡要排水，偏咸要保水，再淡就撑不住</em>
+          </span>
+          <span class="arw">▼</span>
+        </button>
+
+        <div class="obs-body" id="obs2body" hidden>
+          <p class="obs-sum">
+            盐度这一项没有「越多越好」，只有<b>一个最省力的点</b>：35‰ 附近，海水与珊瑚体液内外等渗，水不往哪边跑。
+            往淡了走，水往细胞里钻，珊瑚要开泵排水；往咸了走，水被抽出去，珊瑚要保水 —— <b>两个方向都是在烧同一笔钱</b>，而本来这笔钱是拿去造骨的。
+            低于 30‰，问题就从「费钱」变成「致命」。
+          </p>
+
+          <div class="flipgrid">
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
+              <div class="flip-in">
+                <div class="face front" data-n="1">
+                  <div class="ftop" data-i18n="t84"><span class="fnum">33 – 36‰</span><span class="frange">等渗 · 最省力</span></div>
+                  <h4 data-i18n="t85">它什么都不用做</h4>
+                  <p class="fobs" data-i18n="t86">不排水也不吸水，稳稳贴在礁石上，把能量全拿去造骨。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t87"><b>33–36‰ · 等渗</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t88">珊瑚虫不排水、也不吸水，触手舒展，钙化速度最快 —— 外海的礁长得最厚。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t89"><b>35‰ 是海水与珊瑚体液的等渗点</b>。内外浓度相当，水分子不往任何一边净移动，渗透压调节几乎不耗能。</p>
+                    <p data-i18n="t90">省下来的每一分能量，都能变成碳酸钙。这就是第二关里「外海」那一片珊瑚长得最好的原因 —— 不是那里食物多，而是那里<b>不用花钱维持体液</b>。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C08A2B">
+              <div class="flip-in">
+                <div class="face front" data-n="2">
+                  <div class="ftop" data-i18n="t91"><span class="fnum">30 – 32‰</span><span class="frange">偏淡 · 要多排水</span></div>
+                  <h4 data-i18n="t92">活着，但住得不舒服</h4>
+                  <p class="fobs" data-i18n="t93">还能活，长得慢、骨骼薄 —— 第二关的「近岸」就是这一档。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t94"><b>30–32‰ · 偏淡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t95">颜色正常、能生长，但速度明显慢下来，骨骼也更薄更脆。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t96">外面淡了，水顺着渗透压往细胞里钻。珊瑚得开动「排水泵」，把多余的水排出去。泵烧的是能量 —— <b>本来用于钙化的能量</b>。</p>
+                    <p data-i18n="t97">珊瑚是等渗动物，没有真正的调渗器官，靠的是细胞层面的离子泵，效率不高。所以哪怕只淡了 3‰，代价也立刻反映在生长速度上。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C08A2B">
+              <div class="flip-in">
+                <div class="face front" data-n="3">
+                  <div class="ftop" data-i18n="t98"><span class="fnum">36 – 38‰</span><span class="frange">偏咸 · 要保住水</span></div>
+                  <h4 data-i18n="t99">反过来，它得省着用水</h4>
+                  <p class="fobs" data-i18n="t100">组织发紧、生长变慢 —— 这是干燥海区常见的处境。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t101"><b>36–38‰ · 偏咸</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t102">珊瑚虫收缩、触手不舒展，生长速度下降，极端时会排出共生藻。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t103">外面更咸，细胞里的水会被抽走。珊瑚得反过来<b>保水</b>：合成相容性溶质、把体内的渗透压提上去，同样是额外开支。</p>
+                    <p data-i18n="t104">红海北部蒸发强，盐度能到 40‰ 以上 —— 那里的珊瑚礁并非不存在，但能活下来的种类明显更少。这就是「不是不能住，是住得贵」。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#A33A32">
+              <div class="flip-in">
+                <div class="face front" data-n="4">
+                  <div class="ftop" data-i18n="t105"><span class="fnum">＜ 30‰</span><span class="frange">细胞撑不住</span></div>
+                  <h4 data-i18n="t106">水一直往里涌</h4>
+                  <p class="fobs" data-i18n="t107">组织膨胀、变形，最后死亡 —— 河口就是这个结局。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t108"><b>＜ 30‰ · 致命</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t109">珊瑚虫吸水膨胀、组织从骨架上剥离，几小时到几天内死亡。第二关点「河口」看到的就是这个。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t110">外面太淡，水不停地往细胞里渗，珊瑚的排水泵<b>排不过涌入的速度</b>，细胞被撑破，酶和膜系统一起失效。</p>
+                    <p data-i18n="t111">大河口常年低于 25‰，所以世界主要河口附近几乎看不到岸礁 —— 不是没有幼虫漂过来，是<b>漂过来也活不下来</b>。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p class="obs-tip" data-i18n="t112">四张卡片对应第二关的三个候选水域：外海 ≈ 35‰、近岸 ≈ 30‰、河口 ≈ 18‰。</p>
+        </div>
+      </div>
     </section>
     <!-- @L2 -->
     <!-- ================= 第三关 ================= -->
     <section class="panel" id="lv3">
       <div class="lvhead">
-        <div><span class="lvno">第三关</span><h2>阳光猜猜看</h2></div>
-        <div class="point"><b>光照不足</b>，共生藻无法光合作用，珊瑚会被饿死。</div>
+        <div><span class="lvno" data-i18n="t113">第三关</span><h2 data-i18n="t114">阳光猜猜看</h2></div>
+        <div class="point" data-i18n="t115"><b>光照不足</b>，共生藻无法光合作用，珊瑚会被饿死。</div>
       </div>
       <div class="stage"><svg id="s3" viewBox="0 0 900 440" role="img" aria-label="从海面到海底的深度剖面"></svg></div>
       <div class="controls">
-        <span class="ctrl"><span class="k">把珊瑚拖到不同深度试试（也可以直接点水里）</span></span>
-        <button class="btn ghost" id="w3">切换为「浑浊海水」</button>
-        <span class="meter"><span class="k">光照</span><div class="bar"><i id="l3" style="background:#E9B44C"></i></div><b id="l3v" style="min-width:44px">56%</b></span>
+        <span class="ctrl"><span class="k" data-i18n="k_drag3">把珊瑚拖到不同深度试试（也可以直接点水里）</span></span>
+        <button class="btn ghost" id="w3" data-i18n="t117">切换为「浑浊海水」</button>
+        <span class="meter"><span class="k" data-i18n="k_light">光照</span><div class="bar"><i id="l3" style="background:#E9B44C"></i></div><b id="l3v" style="min-width:44px">56%</b></span>
       </div>
-      <div class="fb" id="f3">拖动珊瑚，或点击水层任意一处，让它上下移动。</div>
+      <div class="fb" id="f3" data-i18n="t119">拖动珊瑚，或点击水层任意一处，让它上下移动。</div>
+
+      <!-- ---------- 观察室：光照的三档收支 ---------- -->
+      <div class="obs">
+        <button class="obs-open" id="obs3" type="button" aria-expanded="false" aria-controls="obs3body">
+          <span class="ico">?</span>
+          <span class="tx">
+            <b data-i18n="obs_t3">观察室 · 光照到底在管什么？</b>
+            <em data-i18n="t121">三张卡片 —— 有盈余、勉强持平、持续亏损</em>
+          </span>
+          <span class="arw">▼</span>
+        </button>
+
+        <div class="obs-body" id="obs3body" hidden>
+          <p class="obs-sum">
+            光照这一关讲的其实是<b>收支</b>：≥ 20% 时光合收入覆盖呼吸还有富余，这笔盈余就是钙化的本钱；8–20% 勉强持平，能活但没有余钱造骨；低于 8% 跌破补偿点，开始动用储备。
+            <b>它没有受伤，只是长期入不敷出</b> —— 这和第一关的「热损伤」是两种完全不同的死法。
+          </p>
+
+          <div class="flipgrid tri">
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
+              <div class="flip-in">
+                <div class="face front" data-n="1">
+                  <div class="ftop" data-i18n="t123"><span class="fnum">≥ 20%</span><span class="frange">有盈余</span></div>
+                  <h4 data-i18n="t124">阳光充足</h4>
+                  <p class="fobs" data-i18n="t125">颜色饱满，身上有会闪的黄色小点 —— 那是共生藻在光合作用。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t126"><b>≥ 20% · 阳光充足</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t127">珊瑚颜色饱满，体表有闪烁的黄色光点（游戏用它们表示共生藻在光合），生长正常。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t128">虫黄藻是珊瑚体内的「太阳能板」。光照足够时，它光合产生的糖和氧，能覆盖珊瑚自身呼吸的消耗，<b>还有很多富余</b> —— 这笔富余就是钙化、生长、繁殖的全部收入。</p>
+                    <p data-i18n="t129">所以这一段不是「够用」，而是<b>能存下钱</b>。珊瑚礁能堆成这么大地貌，靠的就是这笔盈余。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C08A2B">
+              <div class="flip-in">
+                <div class="face front" data-n="2">
+                  <div class="ftop" data-i18n="t130"><span class="fnum">8% – 20%</span><span class="frange">勉强持平</span></div>
+                  <h4 data-i18n="t131">它还在撑</h4>
+                  <p class="fobs" data-i18n="t132">颜色变淡、生长变慢，但没死 —— 这一档是黄色警告。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t133"><b>8–20% · 变弱</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t134">珊瑚颜色变淡、生长变慢，但组织完好，没有死亡。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t135">光合收入掉到「勉强覆盖开支」附近，珊瑚做了一件很现实的事：<b>降低体内共生藻的密度</b>。藻少了，自养的负担轻了，但颜色也淡了 —— 因为珊瑚的颜色本来就是藻的颜色，不是它自己的色素。</p>
+                    <p data-i18n="t136">所以「变淡」不是装饰变化，而是它在<b>减少体内的发电设备</b>。同时它伸出触手捕食浮游动物，但捕食得到的能量远比不上光合的量级。这一段收支勉强平衡：能活、能维持组织，几乎没有余钱造骨，礁体基本停止增厚。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#A33A32">
+              <div class="flip-in">
+                <div class="face front" data-n="3">
+                  <div class="ftop" data-i18n="t137"><span class="fnum">＜ 8%</span><span class="frange">持续亏损</span></div>
+                  <h4 data-i18n="t138">太暗了，慢慢饿死</h4>
+                  <p class="fobs" data-i18n="t139">灰白或灰褐，体型缩小，光点完全消失。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t140"><b>＜ 8% · 太暗</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t141">珊瑚变成灰白或灰褐色，体型缩小，光点完全消失。它不是变丑，是在慢慢饿死。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t142">光照跌破<b>补偿点</b>：光合产出已经低于呼吸消耗。到了这一步，虫黄藻不但不供给能量，反而成了净负担，珊瑚只能消耗体内储存的脂类和蛋白质。</p>
+                    <p data-i18n="t143">能量不足时，它连维持组织都吃力，造骨完全停摆；久了组织变薄、退缩，最后死亡。关键在于：<b>它没有受到伤害，只是能量长期不足</b> —— 温度关是组织被热损伤，这一关是能量持续亏损。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </section>
     <!-- @L3 -->
     <!-- ================= 第四关 ================= -->
     <section class="panel" id="lv4">
       <div class="lvhead">
-        <div><span class="lvno">第四关</span><h2>施肥陷阱</h2></div>
-        <div class="point"><b>营养盐越高，海藻越旺</b>；珊瑚被抢走阳光和地盘，反而死。</div>
+        <div><span class="lvno" data-i18n="t144">第四关</span><h2 data-i18n="t145">施肥陷阱</h2></div>
+        <div class="point" data-i18n="t146"><b>营养盐越高，海藻越旺</b>；珊瑚被抢走阳光和地盘，反而死。</div>
       </div>
       <div class="stage"><svg id="s4" viewBox="0 0 900 440" role="img" aria-label="营养盐与海藻覆盖的珊瑚礁"></svg></div>
       <div class="controls">
-        <label class="ctrl"><span class="k">营养盐浓度</span><input id="n4" type="range" min="0" max="100" step="1" value="5"><b id="n4v">5</b></label>
-        <button class="btn" id="fish4">投放草食性鱼类</button>
-        <span class="meter"><span class="k">珊瑚</span><div class="bar"><i id="c4" style="width:88%;background:#E2684B"></i></div></span>
-        <span class="meter"><span class="k">海藻</span><div class="bar"><i id="a4" style="width:2%;background:#7FA83F"></i></div></span>
-        <button class="btn ghost" id="r4" type="button" style="margin-left:auto">重新开始</button>
+        <label class="ctrl"><span class="k" data-i18n="k_nut">营养盐浓度</span><input id="n4" type="range" min="0" max="100" step="1" value="5"><b id="n4v">5</b></label>
+        <button class="btn" id="fish4" data-i18n="t147">投放草食性鱼类</button>
+        <span class="meter"><span class="k" data-i18n="k_coral">珊瑚</span><div class="bar"><i id="c4" style="width:88%;background:#E2684B"></i></div></span>
+        <span class="meter"><span class="k" data-i18n="k_algae">海藻</span><div class="bar"><i id="a4" style="width:2%;background:#7FA83F"></i></div></span>
+        <button class="btn ghost" id="r4" type="button" style="margin-left:auto" data-i18n="t150">重新开始</button>
       </div>
-      <div class="fb" id="f4">水很瘦，海藻只有零星几簇，珊瑚长得很好。试试把营养盐往上推？</div>
+      <div class="fb" id="f4" data-i18n="t151">水很瘦，海藻只有零星几簇，珊瑚长得很好。试试把营养盐往上推？</div>
 
       <!-- ---------- 观察室：为什么海藻会赢 ---------- -->
       <div class="obs">
         <button class="obs-open" id="obs4" type="button" aria-expanded="false" aria-controls="obs4body">
           <span class="ico">?</span>
           <span class="tx">
-            <b>观察室 · 为什么海藻会赢？</b>
-            <em>四个阶段，四张卡片 —— 点开看每一段到底发生了什么</em>
+            <b data-i18n="obs_t4">观察室 · 为什么海藻会赢？</b>
+            <em data-i18n="t153">四个阶段，四张卡片 —— 点开看每一段到底发生了什么</em>
           </span>
           <span class="arw">▼</span>
         </button>
@@ -1073,20 +1303,20 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
               <div class="flip-in">
                 <div class="face front" data-n="01">
-                  <div class="ftop"><span class="fnum">阶段 01</span><span class="frange">0 – 14</span></div>
-                  <h4>水很瘦</h4>
-                  <p class="fsub">好，而且是「看不见的好」</p>
-                  <p class="fobs">水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t155"><span class="fnum">阶段 01</span><span class="frange">0 – 14</span></div>
+                  <h4 data-i18n="t156">水很瘦</h4>
+                  <p class="fsub" data-i18n="t157">好，而且是「看不见的好」</p>
+                  <p class="fobs" data-i18n="t158">水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>阶段 01 · 水很瘦</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
+                  <div class="btop" data-i18n="t159"><b>阶段 01 · 水很瘦</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t158">水极清，能见度几十米；珊瑚颜色饱和；海藻只有零星几小簇，缩在缝隙和死珊瑚的角落。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么好</span>
-                    <p>氮、磷在这里是「短板」，海藻拿不到原料，想长也长不起来。珊瑚不靠水里的养分过日子 —— 它体内养着共生藻，能把自身代谢废物循环再利用，还能伸出触手捕食浮游动物补氮。</p>
-                    <p>于是形成两种完全不同的生存策略：<b>海藻是「靠天吃饭」的外包型，珊瑚是「自给自足」的内循环型</b>。资源稀缺时，内循环效率更高；养分充足时，外包型的爆发力更强。所以珊瑚礁并不是「喜欢贫瘠」，只是只有在贫瘠的环境里，它才赢得了竞争。</p>
+                  <div class="blk"><span class="lb" data-i18n="t160">为什么好</span>
+                    <p data-i18n="t161">氮、磷在这里是「短板」，海藻拿不到原料，想长也长不起来。珊瑚不靠水里的养分过日子 —— 它体内养着共生藻，能把自身代谢废物循环再利用，还能伸出触手捕食浮游动物补氮。</p>
+                    <p data-i18n="t162">于是形成两种完全不同的生存策略：<b>海藻是「靠天吃饭」的外包型，珊瑚是「自给自足」的内循环型</b>。资源稀缺时，内循环效率更高；养分充足时，外包型的爆发力更强。所以珊瑚礁并不是「喜欢贫瘠」，只是只有在贫瘠的环境里，它才赢得了竞争。</p>
                   </div>
                 </div>
               </div>
@@ -1096,22 +1326,22 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#BE8C2E">
               <div class="flip-in">
                 <div class="face front" data-n="02">
-                  <div class="ftop"><span class="fnum">阶段 02</span><span class="frange">15 – 39</span></div>
-                  <h4>海藻冒头</h4>
-                  <p class="fsub">开始变坏，但坏得几乎看不出来</p>
-                  <p class="fobs">珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点 —— 最容易让人误判为没事。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t163"><span class="fnum">阶段 02</span><span class="frange">15 – 39</span></div>
+                  <h4 data-i18n="t164">海藻冒头</h4>
+                  <p class="fsub" data-i18n="t165">开始变坏，但坏得几乎看不出来</p>
+                  <p class="fobs" data-i18n="t166">珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点 —— 最容易让人误判为没事。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>阶段 02 · 海藻冒头</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点。这一阶段最容易让人误判为没事。</p>
+                  <div class="btop" data-i18n="t167"><b>阶段 02 · 海藻冒头</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t168">珊瑚之间冒出绿色小丛，礁面看起来还是「珊瑚礁」，覆盖度只掉了一点。这一阶段最容易让人误判为没事。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么开始不好</span>
-                    <p>短板被填平了。海藻一旦拿到氮、磷，就立刻把养分转化成生物量，<b>几周内就能翻倍</b>；而珊瑚造骨架是石灰岩工程，<b>一年才长一两厘米</b>。两者速度不在同一个量级，供给端稍微松动，竞争结果就在往海藻那边倒。</p>
+                  <div class="blk"><span class="lb" data-i18n="t169">为什么开始不好</span>
+                    <p data-i18n="t170">短板被填平了。海藻一旦拿到氮、磷，就立刻把养分转化成生物量，<b>几周内就能翻倍</b>；而珊瑚造骨架是石灰岩工程，<b>一年才长一两厘米</b>。两者速度不在同一个量级，供给端稍微松动，竞争结果就在往海藻那边倒。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么看不出来</span>
-                    <p>因为还有两重缓冲：一是草食性鱼类在吃掉一部分海藻；二是活珊瑚本身还在长。这个阶段的海藻像是「被压住」了，并没有真正消失 —— <b>这时候把草食鱼捞走，几周内就能直接跳到第四阶段</b>。这也解释了现实中为什么很多礁看起来「昨天还好好的」：消失的其实不是缓冲，而是你以为的那份稳定。</p>
+                  <div class="blk"><span class="lb" data-i18n="t171">为什么看不出来</span>
+                    <p data-i18n="t172">因为还有两重缓冲：一是草食性鱼类在吃掉一部分海藻；二是活珊瑚本身还在长。这个阶段的海藻像是「被压住」了，并没有真正消失 —— <b>这时候把草食鱼捞走，几周内就能直接跳到第四阶段</b>。这也解释了现实中为什么很多礁看起来「昨天还好好的」：消失的其实不是缓冲，而是你以为的那份稳定。</p>
                   </div>
                 </div>
               </div>
@@ -1121,20 +1351,20 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C06A35">
               <div class="flip-in">
                 <div class="face front" data-n="03">
-                  <div class="ftop"><span class="fnum">阶段 03</span><span class="frange">40 – 71</span></div>
-                  <h4>礁面被占</h4>
-                  <p class="fsub">坏开始显形，机制是「饿死」不是「毒死」</p>
-                  <p class="fobs">绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t173"><span class="fnum">阶段 03</span><span class="frange">40 – 71</span></div>
+                  <h4 data-i18n="t174">礁面被占</h4>
+                  <p class="fsub" data-i18n="t175">坏开始显形，机制是「饿死」不是「毒死」</p>
+                  <p class="fobs" data-i18n="t176">绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>阶段 03 · 礁面被占</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
+                  <div class="btop" data-i18n="t177"><b>阶段 03 · 礁面被占</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t176">绿色连成片，珊瑚缩小、颜色变浅、边缘被藻垫和沉积物包住，水开始变浑。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么</span>
-                    <p>关键机制是<b>遮光</b>。海藻长在珊瑚上方，把阳光截走，珊瑚体内共生藻的光合作用随之下降，能量收支转为赤字。珊瑚还得额外花能量去清理身上的藻和泥沙，于是停止生长，开始缩小。<b>它不是被毒死的，是被挡住光、挤掉地盘，慢慢饿死的。</b></p>
-                    <p>第二个后果：珊瑚死掉后留下的白色骨架，会被藻和沉积物盖住。等到这一层铺满，这片礁面就对珊瑚幼虫关闭了 —— 珊瑚的「下一代」没法在这里落脚。</p>
+                  <div class="blk"><span class="lb" data-i18n="t23">为什么</span>
+                    <p data-i18n="t178">关键机制是<b>遮光</b>。海藻长在珊瑚上方，把阳光截走，珊瑚体内共生藻的光合作用随之下降，能量收支转为赤字。珊瑚还得额外花能量去清理身上的藻和泥沙，于是停止生长，开始缩小。<b>它不是被毒死的，是被挡住光、挤掉地盘，慢慢饿死的。</b></p>
+                    <p data-i18n="t179">第二个后果：珊瑚死掉后留下的白色骨架，会被藻和沉积物盖住。等到这一层铺满，这片礁面就对珊瑚幼虫关闭了 —— 珊瑚的「下一代」没法在这里落脚。</p>
                   </div>
                 </div>
               </div>
@@ -1144,23 +1374,23 @@
             <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#A33A32">
               <div class="flip-in">
                 <div class="face front" data-n="04">
-                  <div class="ftop"><span class="fnum">阶段 04</span><span class="frange">≥ 72</span></div>
-                  <h4>相变锁定</h4>
-                  <p class="fsub">坏到换人，而且换不回来</p>
-                  <p class="fobs">几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
-                  <span class="fmore">点开看为什么 →</span>
+                  <div class="ftop" data-i18n="t180"><span class="fnum">阶段 04</span><span class="frange">≥ 72</span></div>
+                  <h4 data-i18n="t181">相变锁定</h4>
+                  <p class="fsub" data-i18n="t182">坏到换人，而且换不回来</p>
+                  <p class="fobs" data-i18n="t183">几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
                 </div>
                 <div class="face back">
-                  <div class="btop"><b>阶段 04 · 相变锁定</b><span>再点一次翻回</span></div>
-                  <div class="blk"><span class="lb">现象</span>
-                    <p>几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
+                  <div class="btop" data-i18n="t184"><b>阶段 04 · 相变锁定</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t21">现象</span>
+                    <p data-i18n="t183">几乎全绿，珊瑚只剩白骨，水浑，鱼群组成也变了。</p>
                   </div>
-                  <div class="blk"><span class="lb">为什么难回头</span>
-                    <p>三重锁互相加固：</p>
+                  <div class="blk"><span class="lb" data-i18n="t185">为什么难回头</span>
+                    <p data-i18n="t186">三重锁互相加固：</p>
                     <ol>
-                      <li><b>遮光正反馈</b>：藻越多，光越少，珊瑚越弱，藻越容易扩张。</li>
-                      <li><b>补充断档</b>：硬底被藻垫封住，幼虫无处附着，没有新个体来接班。</li>
-                      <li><b>清藻工也没了</b>：活珊瑚的三维结构本身就是鱼类的「房子」；珊瑚死了结构塌了，草食鱼跟着减少，啃藻的力量更弱。</li>
+                      <li data-i18n="t187"><b>遮光正反馈</b>：藻越多，光越少，珊瑚越弱，藻越容易扩张。</li>
+                      <li data-i18n="t188"><b>补充断档</b>：硬底被藻垫封住，幼虫无处附着，没有新个体来接班。</li>
+                      <li data-i18n="t189"><b>清藻工也没了</b>：活珊瑚的三维结构本身就是鱼类的「房子」；珊瑚死了结构塌了，草食鱼跟着减少，啃藻的力量更弱。</li>
                     </ol>
                   </div>
                 </div>
@@ -1168,7 +1398,7 @@
             </div>
 
           </div>
-          <p class="obs-tip">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
+          <p class="obs-tip" data-i18n="t74">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
         </div>
       </div>
     </section>
@@ -1176,72 +1406,264 @@
     <!-- ================= 第五关 ================= -->
     <section class="panel" id="lv5">
       <div class="lvhead">
-        <div><span class="lvno">第五关</span><h2>安家大作战</h2></div>
-        <div class="point"><b>必须有硬底附着</b>；水流太静会淤积，太强会折断。</div>
+        <div><span class="lvno" data-i18n="t190">第五关</span><h2 data-i18n="t191">安家大作战</h2></div>
+        <div class="point" data-i18n="t192"><b>必须有硬底附着</b>；水流太静会淤积，太强会折断。</div>
       </div>
       <div class="stage"><svg id="s5" viewBox="0 0 900 440" role="img" aria-label="不同类型的海底与水流"></svg></div>
       <div class="controls">
-        <span class="ctrl"><span class="k">① 先选一块海底，让幼虫落下去</span></span>
-        <label class="ctrl"><span class="k">② 水流强度</span><input id="w5" type="range" min="0" max="100" step="1" value="50" disabled><b id="w5v">—</b></label>
-        <span class="meter"><span class="k">小珊瑚</span><div class="bar"><i id="h5" style="width:100%;background:#3E8E5A"></i></div></span>
-        <button class="btn ghost" id="r5" type="button">重新开始</button>
+        <span class="ctrl"><span class="k" data-i18n="k_step5">① 先选一块海底，让幼虫落下去</span></span>
+        <label class="ctrl"><span class="k" data-i18n="k_flow">② 水流强度</span><input id="w5" type="range" min="0" max="100" step="1" value="50" disabled><b id="w5v">—</b></label>
+        <span class="meter"><span class="k" data-i18n="k_baby">小珊瑚</span><div class="bar"><i id="h5" style="width:100%;background:#3E8E5A"></i></div></span>
+        <button class="btn ghost" id="r5" type="button" data-i18n="t150">重新开始</button>
       </div>
-      <div class="fb" id="f5">珊瑚幼虫正在水里漂。它得先找到一块能抓住的海底 —— 点一下岩石、泥沙、砾石或珊瑚灰岩。</div>
+      <div class="fb" id="f5" data-i18n="t195">珊瑚幼虫正在水里漂。它得先找到一块能抓住的海底 —— 点一下岩石、泥沙、砾石或珊瑚灰岩。</div>
     </section>
     <!-- @L5 -->
     <!-- ================= 第六关 ================= -->
     <section class="panel" id="lv6">
       <div class="lvhead">
-        <div><span class="lvno">第六关</span><h2>造骨头实验室</h2></div>
-        <div class="point"><b>pH 与碳酸钙饱和度</b>决定钙化难易；<b>溶解氧</b>决定它有没有力气造。</div>
+        <div><span class="lvno" data-i18n="t196">第六关</span><h2 data-i18n="t197">造骨头实验室</h2></div>
+        <div class="point" data-i18n="t198"><b>pH 与碳酸钙饱和度</b>决定钙化难易；<b>溶解氧</b>决定它有没有力气造。</div>
       </div>
       <div class="stage"><svg id="s6" viewBox="0 0 900 440" role="img" aria-label="珊瑚钙化实验室"></svg></div>
       <div class="controls">
         <label class="ctrl"><span class="k">pH</span><input id="p6" type="range" min="7.6" max="8.4" step="0.05" value="8.15" style="background:linear-gradient(90deg,#E6C6BE 0%,#E6C6BE 50%,#BEDFC8 50%,#BEDFC8 75%,#E6C6BE 75%,#E6C6BE 100%)"><b id="p6v">8.15</b></label>
-        <label class="ctrl"><span class="k">溶解氧</span><input id="d6" type="range" min="2" max="10" step="0.2" value="7" style="background:linear-gradient(90deg,#E6C6BE 0%,#E6C6BE 50%,#BEDFC8 50%,#BEDFC8 100%)"><b id="d6v">7.0</b></label>
-        <span class="ctrl"><span class="k">文石饱和度 Ω</span><b id="om6">3.2</b></span>
+        <label class="ctrl"><span class="k" data-i18n="k_do">溶解氧</span><input id="d6" type="range" min="2" max="10" step="0.2" value="7" style="background:linear-gradient(90deg,#E6C6BE 0%,#E6C6BE 50%,#BEDFC8 50%,#BEDFC8 100%)"><b id="d6v">7.0</b></label>
+        <span class="ctrl"><span class="k" data-i18n="k_omega">文石饱和度 Ω</span><b id="om6">3.2</b></span>
       </div>
-      <div class="fb" id="f6">这片海水的 pH 是 8.15，碳酸钙接近饱和 —— 珊瑚正在正常造骨。</div>
+      <div class="fb" id="f6" data-i18n="t200">这片海水的 pH 是 8.15，碳酸钙接近饱和 —— 珊瑚正在正常造骨。</div>
     </section>
     <!-- @L6 -->
     <!-- ================= 第七关 ================= -->
     <section class="panel" id="lv7">
       <div class="lvhead">
-        <div><span class="lvno">第七关</span><h2>地球仪大冒险</h2></div>
-        <div class="point">只在<b>南北纬 30° 以内</b>；还必须<b>避开河口与泥质海岸</b>。</div>
+        <div><span class="lvno" data-i18n="t201">第七关</span><h2 data-i18n="t202">地球仪大冒险</h2></div>
+        <div class="point" data-i18n="t203">只在<b>南北纬 30° 以内</b>；还必须<b>避开河口与泥质海岸</b>。</div>
       </div>
       <div class="stage"><svg id="s7" viewBox="0 0 900 440" role="img" aria-label="可旋转的地球仪与珊瑚分布"></svg></div>
       <div class="controls">
-        <button class="btn ghost" id="l7l">← 左转</button>
-        <button class="btn ghost" id="l7r">右转 →</button>
-        <span class="ctrl"><span class="k">拖动地球也能转</span></span>
+        <button class="btn ghost" id="l7l" data-i18n="t204">← 左转</button>
+        <button class="btn ghost" id="l7r" data-i18n="t205">右转 →</button>
+        <span class="ctrl"><span class="k" data-i18n="k_globe">拖动地球也能转</span></span>
       </div>
       <div class="loclist" id="loc7"></div>
-      <div class="fb" id="f7">点地球上的编号，或点下面的地名，试着在各地种下一片珊瑚。</div>
+      <div class="fb" id="f7" data-i18n="t207">点地球上的编号，或点下面的地名，试着在各地种下一片珊瑚。</div>
     </section>
     <!-- @L7 -->
     <!-- ================= 第八关 ================= -->
     <section class="panel" id="lv8">
       <div class="lvhead">
-        <div><span class="lvno">第八关</span><h2>终极生存挑战</h2></div>
-        <div class="point">八个条件必须<b>同时</b>满足，珊瑚才能成礁 —— 所以它才这么珍贵、这么脆弱。</div>
+        <div><span class="lvno" data-i18n="t208">第八关</span><h2 data-i18n="t209">终极生存挑战</h2></div>
+        <div class="point" data-i18n="t210">八个条件必须<b>同时</b>满足，珊瑚才能成礁 —— 所以它才这么珍贵、这么脆弱。</div>
       </div>
       <div class="stage"><svg id="s8" viewBox="0 0 900 440" role="img" aria-label="八项指标仪表盘与珊瑚礁"></svg></div>
       <div class="controls" style="display:block">
         <div style="display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center">
-          <button class="btn" id="start8">开始挑战</button>
-          <span class="ctrl"><span class="k">坚持</span><b id="tm8">0 s</b></span>
-          <span class="ctrl"><span class="k">得分</span><b id="sc8">0</b></span>
-          <span class="meter"><span class="k">礁体健康</span><div class="bar" style="width:150px"><i id="hp8" style="width:100%"></i></div></span>
+          <button class="btn" id="start8" data-i18n="t211">开始挑战</button>
+          <span class="ctrl"><span class="k" data-i18n="k_time">坚持</span><b id="tm8">0 s</b></span>
+          <span class="ctrl"><span class="k" data-i18n="k_score">得分</span><b id="sc8">0</b></span>
+          <span class="meter"><span class="k" data-i18n="k_hp">礁体健康</span><div class="bar" style="width:150px"><i id="hp8" style="width:100%"></i></div></span>
         </div>
         <div class="dash" id="dash8"></div>
       </div>
-      <div class="fb" id="f8">点「开始挑战」。随机灾难会不断来袭，你要把八项指标都调回绿色安全区 —— 缺一项，礁体就会垮。</div>
+      <div class="fb" id="f8" data-i18n="t215">点「开始挑战」。随机灾难会不断来袭，你要把八项指标都调回绿色安全区 —— 缺一项，礁体就会垮。</div>
+
+      <!-- ---------- 观察室：八条线 + 七个灾难 ---------- -->
+      <div class="obs">
+        <button class="obs-open" id="obs8" type="button" aria-expanded="false" aria-controls="obs8body">
+          <span class="ico">?</span>
+          <span class="tx">
+            <b data-i18n="obs_t8">观察室 · 八条线，你踩在哪一条上？</b>
+            <em data-i18n="t217">八项指标的绿/黄分界，外加七个灾难各自「动了哪一格」</em>
+          </span>
+          <span class="arw">▼</span>
+        </button>
+
+        <div class="obs-body" id="obs8body" hidden>
+          <p class="obs-sum">
+            八项指标<b>没有一项是「差不多就行」</b>。绿区是「不额外耗能、还能净增长」的窄带；黄区是「还活着，但在透支」；红区里，珊瑚要么在赔本，要么根本住不下。
+            灾难的设计逻辑也很统一：<b>每个灾难只动一项</b>，逼你看清是哪一格被推歪了 —— 因为现实里，你也要先知道是谁动的手，才谈得上救。
+          </p>
+
+          <div class="obs-h" data-i18n="t219">八项指标 · 绿区 / 黄区</div>
+          <div class="lims">
+            <div class="lim"><div class="hd" data-i18n="t220"><b>水温</b><span class="g">23–29 ℃</span><span class="y">20–23 · 29–30.5</span></div>
+              <p data-i18n="t221">虫黄藻光合与珊瑚钙化两套最佳温度重叠的区间；出了这个区间，就等于在边缘耗能。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t222"><b>盐度</b><span class="g">32–36‰</span><span class="y">30–32 · 36–38</span></div>
+              <p data-i18n="t223">35‰ 内外等渗、不额外耗能；偏淡要排水，偏咸要保水，都在减少用于生长的能量。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t224"><b>光照</b><span class="g">≥ 20%</span><span class="y">8–20%</span></div>
+              <p data-i18n="t225">20% 是「光合收入覆盖呼吸消耗还有余」的门槛，低于它就只能动用储备。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t226"><b>营养盐</b><span class="g">≤ 20</span><span class="y">20–40</span></div>
+              <p data-i18n="t227">营养盐不是珊瑚的养分，而是海藻的养分；超过 40，海藻就会成片占领礁面。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t228"><b>水流</b><span class="g">30–70</span><span class="y">15–30 · 70–85</span></div>
+              <p data-i18n="t229">低于 30 会淤积缺氧，高于 70 会折断枝干；中间才是既能送氧送食、又不造成破坏的区间。</p></div>
+            <div class="lim"><div class="hd"><b>pH</b><span class="g">8.0–8.2</span><span class="y">7.9–8.0 · 8.2–8.3</span></div>
+              <p data-i18n="t230">pH 决定碳酸根多不多，而碳酸根是造骨的原料；降到 7.9 以下，骨骼会变薄变脆。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t231"><b>基底</b><span class="g">硬底</span><span class="y">泥沙 · 直接红</span></div>
+              <p data-i18n="t232">没有黄色缓冲 —— 幼虫在软泥上根本无法附着，这属于「无法附着」，不能算「勉强住了」。</p></div>
+            <div class="lim"><div class="hd" data-i18n="t233"><b>位置</b><span class="g">热带</span><span class="y">高纬 · 直接红</span></div>
+              <p data-i18n="t234">同样是二选一，因为高纬度的冬季水温会跌破珊瑚的生存下限，这不是程度问题。</p></div>
+          </div>
+
+          <div class="obs-h" data-i18n="t235">七个灾难 · 每个只动一项</div>
+          <div class="flipgrid tri">
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C2453E">
+              <div class="flip-in">
+                <div class="face front" data-n="1">
+                  <div class="ftop" data-i18n="t236"><span class="fnum">灾难 01</span><span class="frange">水温 +2~3 ℃</span></div>
+                  <h4 data-i18n="t237">全球变暖</h4>
+                  <p class="fobs" data-i18n="t238">一次把 25 ℃ 推到 27–28 ℃，连来两次就跨过 29 ℃ 的黄线。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t239"><b>全球变暖 · 水温 +2~3 ℃</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t241">水温。现实里它就是热浪，也是八个变量中<b>最难在现场调控</b>的一个 —— 你没法给整片海装空调。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t242">为什么危险</span>
+                    <p data-i18n="t243">25 ℃ 加 3 ℃ 是 28 ℃，看着还在绿区边缘；但热浪往往连着来，第二次就过 29 ℃，第三次直接进 30.5 ℃ 以上的白化区。</p>
+                    <p data-i18n="t244">这也解释了为什么「今年夏天特别热」比「今年平均高 0.5 ℃」可怕得多 —— 峰值才是杀珊瑚的那一下。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#3C7FB0">
+              <div class="flip-in">
+                <div class="face front" data-n="2">
+                  <div class="ftop" data-i18n="t245"><span class="fnum">灾难 02</span><span class="frange">盐度 −3.5~5.5‰</span></div>
+                  <h4 data-i18n="t246">暴雨来袭</h4>
+                  <p class="fobs" data-i18n="t247">35‰ 一步掉到 29.5–31.5‰，从绿区直接跳进黄区甚至红区。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t248"><b>暴雨来袭 · 盐度 −3.5~5.5‰</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t249">盐度。降雨和径流把淡水灌进近岸 —— 这就是第二关「河口不能住」的<b>临时版本</b>。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t242">为什么危险</span>
+                    <p data-i18n="t250">外海 35‰ 的礁，一场台风暴雨可以在几小时内把表层盐度压到 30‰ 以下。珊瑚来不及调渗，排水泵排不过涌入的淡水。</p>
+                    <p data-i18n="t251">所以现实中的近岸礁，往往不是被热死的，是被<b>一场大雨</b>打掉的。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#8A6A2B">
+              <div class="flip-in">
+                <div class="face front" data-n="3">
+                  <div class="ftop" data-i18n="t252"><span class="fnum">灾难 03</span><span class="frange">营养盐 +16~26</span></div>
+                  <h4 data-i18n="t253">污水排放</h4>
+                  <p class="fobs" data-i18n="t254">8 → 24–34：一次进黄区，两次突破 40 变红。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t255"><b>污水排放 · 营养盐 +16~26</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t256">营养盐。这是第四关的入口，也是现实中最常见的一项。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t242">为什么危险</span>
+                    <p data-i18n="t257">生活污水、农业化肥、养殖饲料，最后都变成水里的氮和磷。珊瑚不需要它们，<b>海藻非常需要</b>。</p>
+                    <p data-i18n="t258">而海藻几周就能翻倍，珊瑚一年才长一两厘米 —— 供给端一松，竞争结果立刻倒向海藻。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#3C7FB0">
+              <div class="flip-in">
+                <div class="face front" data-n="4">
+                  <div class="ftop" data-i18n="t259"><span class="fnum">灾难 04</span><span class="frange">水流 → 70 以上</span></div>
+                  <h4 data-i18n="t260">台风过境</h4>
+                  <p class="fobs" data-i18n="t261">50 冲到 72–88，直接压到黄区上限甚至红线。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t262"><b>台风过境 · 水流骤增</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t263">水流。注意它动的<b>不是</b>温度、也不是盐度，就是水流这一格。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t242">为什么危险</span>
+                    <p data-i18n="t264">强流会折断枝状珊瑚（枝状长得快，但最脆），把浮浪幼虫冲离适合附着的硬底，还会把细沙翻起来埋住礁面。</p>
+                    <p data-i18n="t265">现实中台风还会同时带来泥沙和降温 —— 游戏做了简化，一次只动一项，好让你看清是哪一格被推歪的。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#7A5AA8">
+              <div class="flip-in">
+                <div class="face front" data-n="5">
+                  <div class="ftop" data-i18n="t266"><span class="fnum">灾难 05</span><span class="frange">pH −0.06</span></div>
+                  <h4 data-i18n="t267">海洋酸化</h4>
+                  <p class="fobs" data-i18n="t268">8.12 → 8.06 看不出问题；被砸三次就是 7.94，跌破 8.0 开始变黄。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t269"><b>海洋酸化 · pH −0.06</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t270">pH。单次看着小，但它是<b>累积</b>的 —— 这一项不会自己回升。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t242">为什么危险</span>
+                    <p data-i18n="t271">pH 决定海水里碳酸根有多少，而碳酸根就是造骨的原料。pH 掉到 7.9 以下，碳酸钙开始净溶解，骨骼变薄变脆。</p>
+                    <p data-i18n="t272">最麻烦的是：<b>你没法靠调整其他指标把它救回来</b>。别的项推绿了能补，pH 只能等大气 CO₂ 降下来。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#A2775B">
+              <div class="flip-in">
+                <div class="face front" data-n="6">
+                  <div class="ftop" data-i18n="t273"><span class="fnum">灾难 06</span><span class="frange">基底 → 泥沙</span></div>
+                  <h4 data-i18n="t274">海岸工程</h4>
+                  <p class="fobs" data-i18n="t275">绿直接变红，没有黄色缓冲 —— 七项里唯一「无法补救」的一个。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t276"><b>海岸工程 · 基底被埋</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t277">基底。填海、疏浚、修码头，把硬底盖上一层泥沙。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t278">为什么不可逆</span>
+                    <p data-i18n="t279">其他指标都能靠调节拉回绿区，基底不行：幼虫需要一块<b>能抓牢的硬面</b>，软泥上它根本附不住，也没有「勉强住下」这回事。</p>
+                    <p data-i18n="t280">游戏里只能立刻把基底切回硬底；现实中，挖掉一层泥沙要几十年，而且得先停止继续输入。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#8A6A2B">
+              <div class="flip-in">
+                <div class="face front" data-n="7">
+                  <div class="ftop" data-i18n="t281"><span class="fnum">灾难 07</span><span class="frange">营养盐 +14</span></div>
+                  <h4 data-i18n="t282">拖网捕捞</h4>
+                  <p class="fobs" data-i18n="t283">表面上抓的是鱼，实际效果是施肥 —— 8 一次就到 22。</p>
+                  <span class="fmore" data-i18n="t19">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop" data-i18n="t284"><b>拖网捕捞 · 营养盐 +14</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb" data-i18n="t240">它动了哪一项</span>
+                    <p data-i18n="t285">营养盐。这是七项里设计得最巧的一个：它动的是「看不见的那一格」。</p>
+                  </div>
+                  <div class="blk"><span class="lb" data-i18n="t286">为什么等于施肥</span>
+                    <p data-i18n="t287">草食鱼被捞光，没人吃海藻，海藻就等于获得了免费的养分优势 —— 这份「省下来的被吃掉的量」，在效果上等同于额外施肥。</p>
+                    <p data-i18n="t288">所以「过度捕捞 ≈ 施肥」不是比喻，是<b>同一件事的两种说法</b>：少了一个把养分搬走的人。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p class="obs-tip" data-i18n="t289">八个数字取自游戏里的实际判定函数；七个灾难的幅度也照抄自灾难表，不是估的。</p>
+        </div>
+      </div>
     </section>
     <!-- @L8 -->
   </main>
 
-  <footer>画面为示意模型，用于表达生态关系，数值取自通行教材与文献区间。<br>建议用 <b>Chrome / Edge / Safari</b> 打开；拖不动的地方，试试直接点它。</footer>
+  <footer data-i18n="footer">画面为示意模型，用于表达生态关系，数值取自通行教材与文献区间。<br>建议用 <b>Chrome / Edge / Safari</b> 打开；拖不动的地方，试试直接点它。</footer>
   </div>
 </div>
 
@@ -1254,9 +1676,9 @@
     <div class="finale-eggs">
       <span style="animation-delay:.05s">🐚</span><span style="animation-delay:.12s">🦀</span><span style="animation-delay:.19s">🐙</span><span style="animation-delay:.26s">🐠</span><span style="animation-delay:.33s">⭐</span>
     </div>
-    <h2>五枚彩蛋，全被你找到了</h2>
-    <p>你把这片礁从水面翻到礁底 —— <b>很牛，很棒。</b><br>珊瑚礁只占海洋不到 0.1%，值得被这样认真看过。</p>
-    <button class="btn" id="finaleBtn">继续挑战</button>
+    <h2 data-i18n="t291">五枚彩蛋，全被你找到了</h2>
+    <p data-i18n="t292">你把这片礁从水面翻到礁底 —— <b>很牛，很棒。</b><br>珊瑚礁只占海洋不到 0.1%，值得被这样认真看过。</p>
+    <button class="btn" id="finaleBtn" data-i18n="t293">继续挑战</button>
   </div>
 </div>
 
@@ -1266,18 +1688,43 @@
     <button class="eggsheet-x" id="eggSheetX" aria-label="关闭">×</button>
     <span class="eggsheet-ico" id="eggSheetIco">🐚</span>
     <div class="eggsheet-no" id="eggSheetNo"></div>
-    <h3 id="eggSheetTitle">彩蛋</h3>
+    <h3 id="eggSheetTitle" data-i18n="t294">彩蛋</h3>
     <p class="eggsheet-tip" id="eggSheetTip"></p>
-    <div class="eggsheet-why" id="eggSheetWhyWrap"><b>为什么把它放在这儿</b><span id="eggSheetWhy"></span></div>
+    <div class="eggsheet-why" id="eggSheetWhyWrap"><b data-i18n="t295">为什么把它放在这儿</b><span id="eggSheetWhy"></span></div>
     <div class="eggsheet-lead" id="eggSheetLead" hidden></div>
     <ul class="dex-list" id="eggDexList"></ul>
     <div class="eggsheet-foot">
       <span class="cnt" id="eggSheetCnt"></span>
-      <button class="btn" id="eggSheetOk">继续寻找</button>
+      <button class="btn" id="eggSheetOk" data-i18n="t296">继续寻找</button>
     </div>
   </div>
 </div>
 
+
+<script id="dyn-en" type="application/json">{"中":"中","在":"Hidden in "," 关":"","临界":"Marginal","位置":"Location","光照":"Light","危险":"Danger","基底":"Substrate","外海":"Open sea","安全":"Safe","岩石":"Rock","彩蛋":"Egg","最适":"Optimum","水流":"Current","水温":"Water temp","河口":"River mouth","泥沙":"Mud / sand","热带":"Tropical","盐度":"Salinity","砾石":"Gravel","硬底":"Hard bottom","第 ":"Level ","红海":"Red Sea","近岸":"Near shore","骨骼":"Skeleton","高纬":"High lat."," 在 ":" at ","净溶解":"Net dissolution","大堡礁":"Great Barrier Reef","太暗了":"Too dark","它死了":"It's dead","已死亡":"Dead","我落到":"I landed on ","水偏酸":"Water too acidic","水很瘦":"Lean water","水深 ":"Depth ","水温 ":"Water temp ","白化中":"Bleaching","纬度 ":"Latitude ","营养盐":"Nutrients","长江口":"Yangtze mouth","：失败":": failed","：成功":": success","上了……":"…","中国海南":"Hainan, China","全部死亡":"Total death","再试一次":"Try again","加勒比海":"Caribbean","勉强活着":"Barely alive","定居成功":"Settled!","尚未找到":"Not found yet","已点亮 ":"Lit ","开始紧张":"Getting tense","悉尼外海":"Off Sydney","施肥陷阱":"The Fertilizer Trap","正常钙化":"Normal calcification","死亡边缘":"At death's edge","水流太强":"Current too strong","水流太静":"Current too still","水流适中":"Current just right","淡水注入":"Freshwater inflow","温度危机":"Heat Crisis","珊瑚灰岩":"Coral limestone","的画面里":"","盐度逃生":"Salinity Escape","看看结局":"See the ending","继续寻找":"Keep looking","继续挑战":"Keep playing","西沙群岛":"Xisha Islands","试种结果":"Result","进入挑战":"Enter the quest","进入第 ":"Go to Level ","造骨顺利":"Skeleton building well","重新开始":"Restart","阳光充足":"Plenty of light","阳光变弱":"Light fading","附不住！":"Can't attach!","附着成功":"Attached!","靠近海岸":"Close to shore","马尔代夫":"Maldives","← 上一关":"← Previous","、溶解氧 ":", O₂ ","下一关 →":"Next →","亚马逊河口":"Amazon mouth","健康珊瑚礁":"Healthy reef","光合作用中":"Photosynthesising","再挑战一次":"Try again","切换回中文":"Switch to Chinese","大面积死亡":"Mass mortality","安家大作战":"Home Hunt","找到彩蛋 ":"Found: ","最佳生长期":"Optimum growth","最后的星星":"The last star","珊瑚大三角":"Coral Triangle","盐度 约 ":"Salinity ≈ ","礁体崩溃了":"The reef collapsed","迷路的小蟹":"The lost crab","阳光猜猜看":"Guess the Light","：勉强存活":": barely survives"," 关完成 ✓":" complete ✓"," 秒，得分 ":" s, score ","32 致死线":"32 lethal","严重富营养化":"Severe eutrophication","地球仪大冒险":"Globe Adventure","完成挑战 ↺":"Finish ↺","接近生存下限":"Near the survival floor","活着，长得慢":"Alive, growing slowly","海藻开始冒头":"Algae appearing","海面 0 m":"Surface 0 m","深水里的章鱼":"The deep-water octopus","礁面被抢占了":"Reef surface overrun","细胞受不了了":"Cells failing","终极生存挑战":"Final Challenge","缺氧，没力气":"Hypoxic, no strength","贝壳里的留言":"A message in a shell","躲进海藻的鱼":"The fish hiding in the algae","造骨头实验室":"Build a Skeleton","你守住了这片礁":"You held the reef","偏凉 · 缓慢":"Cool · slow","投放草食性鱼类":"Add herbivorous fish","条件合适：Ω ":"Conditions good: Ω ","淡水与海水交汇":"Fresh meets salt","珊瑚主导的礁体":"Coral-dominated reef","白化 · 可逆":"Bleached · reversible"," / 5 已找到":" / 5 found"," / 6 片礁区":" / 6 zones","Ω 降到 <b>":"Ω has fallen to <b>","也会被泥沙埋住。":" and gets buried in silt.","冷水 · 冷白化":"Cold water · bleaching","冷白化 · 死亡":"Cold bleaching · death","硬底 · 能附着":"Hard · can attach","礁体重新开始生长":"The reef starts growing again","°，已在温带海域。":"°, in temperate seas.","全球变暖！水温上升":"Global warming! Water warms","切换为「浑浊海水」":"Switch to \"murky water\"","切换为「清澈海水」":"Switch to \"clear water\"","台风过境！水流过强":"Typhoon! Current too strong","太软 · 会陷进去":"Too soft · sinks in","我需要稳定的硬底！":"I need stable hard bottom!","暴雨来袭！盐度下降":"Storm! Salinity drops","溶解氧只有 <b>":"Dissolved O₂ is only <b>","礁石里的五句悄悄话":"Five whispers in the reef","<b>失败。<\/b>":"<b>Failed.<\/b>","<b>成功！<\/b>":"<b>Success!<\/b>","松散 · 会被水翻动":"Loose · washed around","污水排放！营养盐飙升":"Sewage! Nutrients spike","海洋酸化！pH 下降":"Acidification! pH drops","清理中 · 点此撤走":"Cleaning · click to remove","点击编号，试着种珊瑚":"Click a number to plant coral","第一关 · 温度危机":"Level 01 · Heat Crisis","第二关 · 盐度逃生":"Level 02 · Salinity Escape","第四关 · 施肥陷阱":"Level 04 · The Fertilizer Trap","这个调节项暂时不可用":"This control isn't available yet","这里不稳，我抓不牢。":"This isn't stable — I can't hold on."," m，光照仅约 <b>":" m, light is only about <b>"," ℃，超出生理上限约 ":" ℃, roughly ","开阔海域 · 远离河口":"Open water · away from rivers","看看这五枚彩蛋都是什么":"See what the five eggs are","第三关 · 阳光猜猜看":"Level 03 · Guess the Light","35 m 以下 · 太暗":"Below 35 m · too dark","<b>勉强存活。<\/b>":"<b>Barely survives.<\/b>","海岸工程！硬底被泥沙覆盖":"Coastal works! Hard bottom buried","第八关 · 终极生存挑战":"Level 08 · Final Challenge","隐藏收藏 · 共 5 枚":"Hidden collection · 5 in all","0–22 m · 光照充足":"0–22 m · plenty of light","只能长出矮小、稀疏的礁体。":"only low, sparse reef can grow.","回到封面，可从头再挑战一次":"Back to the cover — start over from Level 1","已点亮 0 / 6 片礁区":"0 / 6 reef zones lit","营养盐太高，海藻又长回来了":"Nutrients too high — the algae are back","靠近中国珊瑚礁分布的北缘，":"close to the northern edge of China's reefs, "," mg/L，Ω 达到 <b>":" mg/L and Ω reaches <b>"," m，光照只剩表层的 <b>":" m, light is down to <b>"," m，光照约为表层的 <b>":" m, light is about <b>","22–35 m · 明显减弱":"22–35 m · much dimmer","健康珊瑚礁 · 25.0 ℃":"Healthy reef · 25.0 ℃","珊瑚熬不过冬天，堆不出礁体。":"coral can't survive the winter, so no reef builds up.","45 秒里，八项条件同时达标。":"All eight conditions held for 45 seconds.","冬季水温跌到 18 ℃ 以下，":"winter water drops below 18 ℃, ","浑浊海水：20 米以下几乎全黑":"Murky: almost black below 20 m","珊瑚主导 → 海藻主导（相变）":"Coral → algae (phase shift)","珊瑚定居，礁体开始一层层堆积。":"coral settles and the reef builds up, layer by layer.","草食鱼被撤走了，海藻又开始蔓延":"Herbivores removed — algae spread again","冬季寒潮会让水温跌破 20 ℃，":"winter cold snaps push water below 20 ℃, ","拖网捕捞！草食鱼被捞光，海藻暴发":"Trawling! Herbivores gone, algae bloom","水清、有硬底、远离大河河口 ——":"clear water, hard bottom, far from big rivers —","清澈海水：30 米处仍有微弱阳光":"Clear: faint light even at 30 m","清空全部进度，从第一关重新开始？":"Erase all progress and restart from Level 1?","，造骨变得更费劲，骨骼也更疏松。":", so building skeleton gets harder and the skeleton turns porous.","先把幼虫放到一块海底上，再来调水流":"Put the larva on a seabed first, then adjust the current","<b>礁体崩溃了。<\/b>你坚持了 ":"<b>The reef collapsed.<\/b> You lasted ","珊瑚礁的缝隙，是甲壳类最爱的托儿所。":"Reef crevices are a crustacean nursery.","而现实中的珊瑚礁，需要的是永远达标。":"Real reefs need it to hold forever."," mg/L，珊瑚稳稳地把海水变成骨头。":" mg/L — the coral is steadily turning seawater into bone.","<b>你守住了这片礁！<\/b>坚持了 ":"<b>You held the reef!<\/b> You lasted ","白色圆点是候选地点，编号对应下方按钮。":"White dots = sites; numbers match the buttons.","泥沙又不断沉积 —— 珊瑚既受不了低盐，":"and silt keeps settling — coral can't take the low salt, ","泥沙是软的、还会被水冲走，我根本抓不住。":"Mud is soft and gets washed away; I can't hold on at all.","，低于正常的 8.0–8.2。Ω 降到 ":", below the normal 8.0–8.2. Ω has dropped to ","pH 越高、Ω 越大，这个反应越容易往右走":"Higher pH and higher Ω push this reaction to the right","拖动地球，看看南北纬 30° 之外是什么。":"Drag the globe to see what lies beyond 30° N/S.","水温常年 23–29 ℃，盐度约 35‰，":"water stays 23–29 ℃, salinity about 35‰, ","藻长起来，鱼先变多 —— 但那是另一批鱼。":"Algae grow, fish increase — but they're a different crowd.","八项条件里只要长期有几项不合格，礁就撑不住。":"If a few of the eight conditions stay off, the reef gives way.","大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！":"Big rivers bring silt as well as fresh water — it buries coral!","这里是大河口：淡水把盐度压到 30‰ 以下，":"A big river mouth — fresh water pushes salinity below 30‰, ","。八项条件里只要长期有几项不合格，礁就撑不住。":". If a few of the eight conditions stay off, the reef gives way.","判断一片海能不能长礁？看水够不够清澈就知道了！":"Can a sea grow reef? Just check how clear the water is!","点一下外海、近岸或河口，看看这次它能不能安家。":"Tap open sea, near shore or river mouth and see if it can settle.","这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。":"Pick a harder seabed this time — rock or coral limestone.","30 米以下光只剩几个百分点，珊瑚就住不下去了。":"Below 30 m only a few percent of light is left — coral can't live there.","Ca²⁺ + CO₃²⁻ → CaCO₃（文石）":"Ca²⁺ + CO₃²⁻ → CaCO₃ (aragonite)","我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。":"I'm fine now: my zooxanthellae feed me and I'm slowly building skeleton.","浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。":"The swell is too strong — branches get torn and washed away.","八个条件同时满足的地方，不到海洋面积的 0.1%。":"Places where all eight conditions meet are under 0.1% of the ocean.","珊瑚虫其实是一只只小海葵，它们合伙盖了这座石头城。":"A coral polyp is a tiny sea anemone; together they built this stone city.","绿色 = 能成礁，橙色 = 勉强，红色 = 失败。":"Green = reef, orange = marginal, red = fail.","减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥":"Cut carbon · clean water · protect fish · spare the coast · less fertiliser","我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。":"I'm just a tiny planula — I need the right salinity before I can settle.","<\/b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。":"<\/b> — plenty of calcium and carbonate; the coral is laying down aragonite fast.","如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……":"If it cools soon I can still be saved! But if it stays this hot, I really die…","%<\/b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。":"%<\/b>. Colours fade and growth slows; it's hanging on, but it's not enough.","泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。":"Silt is settling and burying the young coral. It needs current to carry this away.","水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。":"Current does three jobs: bring oxygen and food, carry waste away, flush out burying silt."," ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。":" ℃, on the cool side. Still alive, but calcification runs at about half speed and the reef thickens slowly.","。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。":". What you just did is the whole secret of reef protection: keep all eight in the green.","氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。":"Oxygen and food come in, waste and silt go out — the young coral can finally grow.","营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。":"Nutrients are up, algae outgrow coral, spreading between colonies and stealing light and space.","<b>灾难开始。<\/b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。":"<b>Disasters begin.<\/b> Watch all eight: fix them once orange — red drains health.","我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。":"I'm dead… coral death can't be undone; only new larvae settling can rebuild the reef.","%<\/b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。":"%<\/b>. The zooxanthellae are photosynthesising hard, turning sunlight into food — see the glowing dots.","过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！":"Overfish the herbivores and nothing controls the algae — the reef flips to algae, and it rarely flips back!"," 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。":" sits within 30° of the equator — temperature, salinity, light and substrate all check out, so a real reef can grow.","海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘<\/b>，慢慢饿死。":"Algae blanket the reef and shade the coral. It isn't poisoned — it's <b>shaded and squeezed out<\/b>, slowly starved.","回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？":"Back to the start: nutrients near 0, lean water, a few algae tufts, coral back in charge. Push nutrients up again?"," mg/L<\/b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。":" mg/L<\/b>. Respiration is a struggle, let alone hauling calcium to build skeleton — it has to live first.","珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。":"The larva is back in the water — it needs a seabed it can grip: rock, mud, gravel or coral limestone. Try again.","砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。":"Gravel is hard, but these grains are loose and small — one swell and they roll, carrying me off with them.","这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……":"This is a river mouth: salinity only about 18‰ — half of normal seawater. Fresh water floods in, cells swell and distort…"," 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。":" is a river mouth: too fresh, too silty. Fresh water wrecks its osmosis and sediment buries it — that's why there are almost no fringing reefs off big rivers."," ℃，正好落在 <b>23–29 ℃<\/b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。":" ℃ — right in the <b>23–29 ℃<\/b> sweet spot. Peak photosynthesis, fast calcification, the reef is thickening.","%<\/b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死<\/b>。":"%<\/b>. Symbionts can barely photosynthesise; the energy supply is cut — the coral isn't \"getting ugly\", it's <b>starving<\/b>.","这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。":"Calm water, hard bottom — I'm glued down tight. Next I metamorphose into a polyp. Now adjust the current and see if it grows."," <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。<\/span>":" <span class='hint'>The water is murky; particles block light, so the depth where reef can grow shrinks sharply.<\/span>","八个滑块都推对的那一刻，才有这颗星。它不算奖励 —— 它就是「刚好」这件事本身，出现得少，才值得抬头看一眼。":"This star only appears when all eight sliders are right. It isn't a reward — it is \"just right\" itself; rare enough to look up for.","富营养化不是「海变丑了」，是「住在里面的换了一批」。这条小鱼躲得很自在，可它属于后来的那一批，不是原来那群。":"Eutrophication isn't \"the sea got ugly\" — it's \"the residents changed\". This little fish hides happily, but it belongs to the new crowd, not the old one.","营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。":"Nutrients near 0 make the water almost a desert — and that's exactly why coral wins: its symbionts recycle nutrients far more efficiently than algae.","<b>已重新开始。<\/b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。":"<b>Restarted.<\/b> Timer, score and all eight indicators are reset; random disasters keep coming — this time try to hold them all in the green.","盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。":"Too fresh — my cells can't take it! Reef corals hold out to about 30‰; below that they fail. That's why big river mouths have almost no fringing reef.","这一关问的是「能不能住下来」。珊瑚先住下，缝隙才长出来；缝隙长出来，小蟹才有地方躲。它说迷路，是因为家本来就在礁里。":"This level asks \"can you move in?\". Coral settles first, crevices grow later; the crevices come, and only then does the crab have somewhere to hide. It says it's lost because home was always in the reef.","这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。":"This is near shore, about 30‰ — fresher than the open sea. It survives, but spends energy balancing osmosis: slow growth, thin skeleton. Barely.","这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。":"This line is the reef's life-and-death border — roughly the 18 ℃ isotherm of the coldest winter month (mean annual ~20 ℃). Cross it and coral can't survive the winter.","这不是成就，也不解锁任何关卡。<b>它只是五个我舍不得删掉的小事实<\/b>，藏在画面里 —— 愿意多看一眼的人才碰得到。":"Not an achievement, and it unlocks nothing. <b>Just five small facts I couldn't bring myself to cut<\/b>, hidden in the scenes — only those who look twice will find them."," ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。":" ℃ — just past the 29 ℃ comfort limit. Coral starts expelling a few symbionts; see the brown specks drifting away. Cool it now and almost no damage is done.","光够不够，人眼是看不出来的。滑到那个深度，画面暗下去，珊瑚悄悄退场，章鱼还留在原地 —— 它是「光不够了」这件事唯一的证人。":"You can't judge light by eye. Slide to that depth and the scene darkens, the coral quietly leaves, the octopus stays — the only witness that the light ran out.","这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。":"This is the open sea, about 35‰ — normal seawater (34–36‰). It settles firmly on rock, starts building its own skeleton and grows into a coral."," <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。<\/span>":" <span class='hint'>Herbivorous fish are grazing the algae and bare reef shows again. But nutrients are still high — the algae will be back soon.<\/span>"," ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚<\/b>，不只是变暖。":" ℃ — below the survival floor. Most species cold-bleach and necrose around 16 ℃ — <b>cold snaps kill coral too<\/b>, not just warming.","海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）<\/b>，而且往往很难逆转。":"Algae cover the whole reef, coral is almost gone and only white skeleton remains — the <b>phase shift<\/b> of ecology, usually very hard to reverse."," ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死<\/b>；但停在这一段，死就是迟早的事。":" ℃. Symbionts are gone, tissue necroses, skeleton shows and mortality climbs fast. <b>Bleaching is only colour loss, not death<\/b> — but stay here and death is only a matter of time."," ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的<\/b>：水温若及时回落，它能把这些共生藻重新请回来。":" ℃. Coral expels over 90% of its symbionts, losing colour and most of its food. <b>Bleaching is reversible<\/b>: if the water cools in time, it takes them back.","温度计被拖到 35 ℃ 的时候，画面里是「珊瑚死了」—— 但那不是一块石头变了颜色，是几万只小海葵同时停止呼吸。所以我把这枚贝壳放在温度计的脚下。":"Drag the thermometer to 35 ℃ and the scene shows \"coral dead\" — not a stone changing colour, but tens of thousands of tiny anemones stopping at once. That's why this shell sits at the foot of the thermometer.","°S，属于温带：<b>冬季<\/b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。":"°S — temperate: <b>winter<\/b> water drops below 18 ℃ and coral can't ride it out. What really limits reefs is \"how cold the coldest gets\" — which is why they stop near 30° N/S."," ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁<\/b>」。":" ℃. Below 18 ℃ calcification almost stops; this is near the survival floor (~16–18 ℃) — not dead yet, but it can't build reef. <b>Alive ≠ a reef.<\/b>","这片礁已经全部死亡，<b>降温也救不回来<\/b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。":"This reef is completely dead — <b>cooling it won't help<\/b>. Bleaching is only colour loss and can recover; after death the skeleton is bare and only new larvae can rebuild it, which takes years. Hit \"Reset reef\" to grow it again."," 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。":" at about 19°N is near the northern edge of China's reefs (further north, Weizhou Island at 21°N is about the end). Winter cold snaps push water below 20 ℃, so growth is slow and reef thin; add coastal pollution and overfishing and these reefs are clearly degraded.","<\/b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度<\/b>，骨骼正在变薄、变脆。这就是<b>海洋酸化<\/b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。":"<\/b> — below the threshold for net calcification (~2.4). <b>Dissolution now outruns deposition<\/b>: skeleton thins and weakens. This is <b>ocean acidification<\/b> — every 0.1 drop in pH costs about 0.36 of Ω, and calcification gets harder."," ℃。造礁珊瑚的生存上限就在 <b>34 ℃<\/b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡<\/b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。":" ℃. Reef corals top out around <b>34 ℃<\/b>; a few days above 34.5 ℃ (hours in shallow water) and the whole reef <b>dies<\/b> — not \"80% bleached\", dead. Bare skeleton, then algae, and no more growth.","<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。<\/span>":"<br><span class='hint'>What we can do: cut carbon (cooling and acidification), control fertiliser and sewage (nutrients), protect herbivorous fish (the algae crew), stop dredging and filling the shoreline (hard bottom and clear water), and use less single-use plastic.<\/span>","<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。<\/span>":"<br><span class='hint'>In reality human activity pulls several of these at once: carbon warms and acidifies the sea, fertiliser and sewage raise nutrients, coastal works bury hard bottom, overfishing removes herbivores, river diversion brings fresh water and silt. What we can do is concrete: cut carbon, clean the water, protect fish, leave the coastline alone.<\/span>"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature"," <kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":" <kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current"," <kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":" <kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂"," <kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":" <kbd>←<\/kbd><kbd>→<\/kbd> spin the globe"," / 8 关":" / 8","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature","<kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":"<kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current","<kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":"<kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂","<kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":"<kbd>←<\/kbd><kbd>→<\/kbd> spin the globe"}</script>
+<script>
+/* ---------- 英文动态文案：T() 在脚本里包裹中文字面量 ---------- */
+(function(){
+  var KEY="coralReefQuest.lang";
+  var lang="zh";
+  try{
+    var q=(location.search.match(/[?&]lang=(en|zh)/)||[])[1];
+    lang=q||localStorage.getItem(KEY)||"zh";
+  }catch(e){}
+  if(lang!=="en"){ lang="zh"; }
+  var D={};
+  try{ D=JSON.parse(document.getElementById("dyn-en").textContent); }catch(e){ D={}; }
+  window.coralDyn=D;
+  window.coralLang=function(){ return lang; };
+  window.isCoralEN=function(){ return lang==="en"; };
+  window.T=function(s){
+    if(lang!=="en"||typeof s!=="string"){ return s; }
+    var e=D[s];
+    return (e===undefined? s : e);
+  };
+  document.documentElement.setAttribute("lang", lang==="en"?"en":"zh-Hans");
+})();
+</script>
 <script>
 (function(){
   "use strict";
@@ -1334,7 +1781,9 @@
   var done={};
   var current=0;
   var KEY="coralReefQuest.v2";
-  var LVNAME=["","温度危机","盐度逃生","阳光猜猜看","施肥陷阱","安家大作战","造骨头实验室","地球仪大冒险","终极生存挑战"];
+  var LVNAME=["",T("温度危机"),T("盐度逃生"),T("阳光猜猜看"),T("施肥陷阱"),T("安家大作战"),T("造骨头实验室"),T("地球仪大冒险"),T("终极生存挑战")];
+  var LVNAME_EN=["","Heat Crisis","Salinity Escape","Guess the Light","The Fertilizer Trap","Home Hunt","Build a Skeleton","Globe Adventure","Final Challenge"];
+  function isEN(){ return !!(window.coralLang && window.coralLang()==="en"); }
 
   function pad2(n){return (n<10?"0":"")+n;}
   function save(){
@@ -1361,7 +1810,7 @@
   var PROG=document.getElementById("progBar");
 
   function paintChrome(n){
-    if(TBNAME)TBNAME.textContent=LVNAME[n]||"";
+    if(TBNAME)TBNAME.textContent=(isEN()?LVNAME_EN[n]:LVNAME[n])||"";
     if(TBPOS)TBPOS.textContent="LEVEL "+pad2(n)+" / 08";
     if(PROG)PROG.style.width=(n/8*100)+"%";
     DOTS.forEach(function(d,i){
@@ -1370,13 +1819,24 @@
     });
   }
 
+  function paintFoot(){
+    for(var k=1;k<=8;k++){
+      var f=FOOT[k]; if(!f)continue;
+      var en=isEN();
+      if(f.prev)f.prev.textContent=(en?"← Previous":T("← 上一关"));
+      f.next.textContent=(k===8?(en?"Finish ↺":T("完成挑战 ↺")):(en?"Next →":T("下一关 →")));
+      f.next.title=(k===8?(en?"Back to the cover, start again from Level 1":T("回到封面，可从头再挑战一次")):(en?("Go to Level "+(k+1)):T("进入第 ")+(k+1)+T(" 关")));
+    }
+  }
+  window.addEventListener("langchange",function(){ paintChrome(current); paintFoot(); });
+
   function complete(n){
     if(done[n])return;
     done[n]=1;
     paintChrome(current);
     if(FOOT[n]&&FOOT[n].next)FOOT[n].next.classList.add("ready");
     save();
-    toast("第 "+n+" 关完成 ✓");
+    toast(isEN()?("Level "+pad2(n)+" complete ✓"):(T("第 ")+n+T(" 关完成 ✓")));
   }
   function showLevel(n){
     n=Math.max(1,Math.min(8,n));
@@ -1405,7 +1865,7 @@
         var row=document.createElement("div");
         row.className="lvfoot";
         var prev=document.createElement("button");
-        prev.className="btn ghost";prev.textContent="← 上一关";
+        prev.className="btn ghost";prev.textContent=(isEN()?"← Previous":T("← 上一关"));
         prev.disabled=(k===1);
         prev.addEventListener("click",function(){if(k>1)stepTo(k-1);});
         var pos=document.createElement("span");
@@ -1413,13 +1873,13 @@
         pos.innerHTML="<b>"+pad2(k)+"</b><i><em style=\"width:"+(k/8*100)+"%\"></em></i><span>/ 08</span>";
         var next=document.createElement("button");
         next.className="btn go";
-        next.textContent=(k===8?"完成挑战 ↺":"下一关 →");
-        next.title=(k===8?"回到封面，可从头再挑战一次":"进入第 "+(k+1)+" 关");
+        next.textContent=(k===8?(isEN()?"Finish ↺":T("完成挑战 ↺")):(isEN()?"Next →":T("下一关 →")));
+        next.title=(k===8?(isEN()?"Back to the cover, start again from Level 1":T("回到封面，可从头再挑战一次")):(isEN()?("Go to Level "+(k+1)):T("进入第 ")+(k+1)+T(" 关")));
         next.addEventListener("click",function(){
           if(k===8){ showCover(true); }
           else { stepTo(k+1); }
         });
-        FOOT[k]={next:next};
+        FOOT[k]={next:next,prev:prev,k:k};
         row.appendChild(prev);row.appendChild(pos);row.appendChild(next);
         panel.appendChild(row);
       })(n);
@@ -1478,7 +1938,7 @@
       return panel.querySelector("input[type=range]");
     }
 
-    window.addEventListener("keydown",function(ev){
+  window.addEventListener("keydown",function(ev){
       if(ev.altKey||ev.ctrlKey||ev.metaKey||ev.isComposing)return;
       if(!appEl||!appEl.classList.contains("on"))return;   /* 封面时方向键不接管 */
       var k=ev.key;
@@ -1503,7 +1963,7 @@
 
       if(input.disabled){
         ev.preventDefault();
-        toast(n===5?"先把幼虫放到一块海底上，再来调水流":"这个调节项暂时不可用");
+        toast(n===5?T("先把幼虫放到一块海底上，再来调水流"):T("这个调节项暂时不可用"));
         return;
       }
       ev.preventDefault();                          /* 阻止方向键滚动页面 */
@@ -1519,12 +1979,12 @@
 
     /* 控制条右侧的键盘提示 */
     var TIPS={
-      1:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水温',
-      3:'<kbd>↑</kbd><kbd>↓</kbd> 让珊瑚上浮 / 下沉',
-      4:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调营养盐',
-      5:'<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水流',
-      6:'<kbd>←</kbd><kbd>→</kbd> 调 pH · <kbd>↑</kbd><kbd>↓</kbd> 调溶解氧',
-      7:'<kbd>←</kbd><kbd>→</kbd> 转动地球'
+      1:T('<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水温'),
+      3:T('<kbd>↑</kbd><kbd>↓</kbd> 让珊瑚上浮 / 下沉'),
+      4:T('<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调营养盐'),
+      5:T('<kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> 也能调水流'),
+      6:T('<kbd>←</kbd><kbd>→</kbd> 调 pH · <kbd>↑</kbd><kbd>↓</kbd> 调溶解氧'),
+      7:T('<kbd>←</kbd><kbd>→</kbd> 转动地球')
     };
     Object.keys(TIPS).forEach(function(k){
       var box=document.querySelector("#lv"+k+" .controls");
@@ -1654,11 +2114,11 @@
         var bl=parseFloat(g.getAttribute("data-bl")||"0");
         var mt=parseFloat(g.getAttribute("data-mt")||"0");
         if(mt>=0.6){
-          tipAt(ev,"我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。");
+          tipAt(ev,T("我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。"));
         }else if(bl>0.35){
-          tipAt(ev,"如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……");
+          tipAt(ev,T("如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……"));
         }else{
-          tipAt(ev,"我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。");
+          tipAt(ev,T("我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。"));
         }
       });
       corals.push({g:g,live:live,skel:skel,x:sp.x,y:y,c:sp.c,idx:idx});
@@ -1675,12 +2135,12 @@
     el("circle",{cx:thX,cy:thBot+8,r:11,fill:"#FBF9F1",stroke:"#DFD8C4","stroke-width":1.2},svg);
     var mercB=el("circle",{cx:thX,cy:thBot+8,r:7.5,fill:"#3E8E5A"},svg);
     var tTxt=el("text",{x:thX,y:thTop-24,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#3C4E49",text:"25.0 ℃"},svg);
-    el("text",{x:thX,y:thBot+38,"text-anchor":"middle","font-size":10.5,fill:"#7C8A85",text:"水温"},svg);
-    el("text",{x:thX+14,y:yOf(29)-4,"font-size":9.5,fill:"#3E8E5A",text:"最适"},svg);
-    el("text",{x:thX-12,y:yOf(32)+3,"text-anchor":"end","font-size":9,fill:"#C2453E",text:"32 致死线"},svg);
+    el("text",{x:thX,y:thBot+38,"text-anchor":"middle","font-size":10.5,fill:"#7C8A85",text:((window.isCoralEN&&window.isCoralEN())?"water":T("水温"))},svg);
+    el("text",{x:thX-14,y:yOf(29)-4,"text-anchor":"end","font-size":9.5,fill:"#3E8E5A",text:((window.isCoralEN&&window.isCoralEN())?"optimum":T("最适"))},svg);
+    el("text",{x:thX-12,y:yOf(32)+3,"text-anchor":"end","font-size":9,fill:"#C2453E",text:((window.isCoralEN&&window.isCoralEN())?"32 °C lethal":T("32 致死线"))},svg);
 
     /* 顶部刻度提示 */
-    var capTxt=el("text",{x:26,y:34,"font-size":12,fill:"#5E7B85",text:"健康珊瑚礁 · 25.0 ℃"},svg);
+    var capTxt=el("text",{x:26,y:34,"font-size":12,fill:"#5E7B85",text:T("健康珊瑚礁 · 25.0 ℃")},svg);
 
     var tSlider=$("#t1"),tVal=$("#t1v"),fb=$("#f1"),bar=$("#g1"),barV=$("#g1v");
     var growth=40, bleach=0, last=0, spawning=0, mort=0;
@@ -1693,31 +2153,42 @@
       return 0;
     }
 
+    var EN1={
+      dead:["Total death","Above 34.5 °C the whole reef dies — not bleached, dead. Bare skeleton, then algae."],
+      dying:["Mass mortality","Tissue is necrosing and peeling off; bleaching has turned into death."],
+      bleach:["Bleaching","90%+ of symbionts expelled. Reversible only if the water cools in time."],
+      warm:["Getting tense","Just past 29 °C. A few symbionts drift away; cool it now and little harm is done."],
+      opt:["Optimum growth","23–29 °C. Peak photosynthesis, fast calcification — the reef is thickening."],
+      cool:["Alive, growing slowly","Below the optimum: calcification runs at about half speed."],
+      cold:["Near the survival floor","Alive, but not building reef — this is \"alive ≠ a reef\"."],
+      freeze:["Cold bleaching · death","Below the survival floor tissue dies. Cold snaps kill too."]
+    };
+
     function state(t){
-      if(t>=34.5)return {k:"dead",s:"全部死亡",cls:"bad",rate:-9,
-        msg:"水温 "+t.toFixed(1)+" ℃。造礁珊瑚的生存上限就在 <b>34 ℃</b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡</b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。"};
-      if(t>32)return {k:"dying",s:"大面积死亡",cls:"bad",rate:-2.2,
-        msg:"水温 "+t.toFixed(1)+" ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死</b>；但停在这一段，死就是迟早的事。"};
-      if(t>30.5)return {k:"bleach",s:"白化中",cls:"bad",rate:-1.1,
-        msg:"水温 "+t.toFixed(1)+" ℃，超出生理上限约 "+(t-29).toFixed(1)+" ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的</b>：水温若及时回落，它能把这些共生藻重新请回来。"};
-      if(t>29)return {k:"warm",s:"开始紧张",cls:"warn",rate:0.5,
-        msg:"水温 "+t.toFixed(1)+" ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。"};
-      if(t>=23)return {k:"opt",s:"最佳生长期",cls:"good",rate:1.7,
-        msg:"水温 "+t.toFixed(1)+" ℃，正好落在 <b>23–29 ℃</b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。"};
-      if(t>=18)return {k:"cool",s:"活着，长得慢",cls:"warn",rate:0.3,
-        msg:"水温 "+t.toFixed(1)+" ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。"};
-      if(t>=16.5)return {k:"cold",s:"接近生存下限",cls:"warn",rate:0,
-        msg:"水温 "+t.toFixed(1)+" ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁</b>」。"};
-      return {k:"freeze",s:"冷白化 · 死亡",cls:"bad",rate:-2.2,
-        msg:"水温 "+t.toFixed(1)+" ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚</b>，不只是变暖。"};
+      if(t>=34.5)return {k:"dead",s:T("全部死亡"),cls:"bad",rate:-9,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃。造礁珊瑚的生存上限就在 <b>34 ℃</b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡</b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。")};
+      if(t>32)return {k:"dying",s:T("大面积死亡"),cls:"bad",rate:-2.2,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死</b>；但停在这一段，死就是迟早的事。")};
+      if(t>30.5)return {k:"bleach",s:T("白化中"),cls:"bad",rate:-1.1,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃，超出生理上限约 ")+(t-29).toFixed(1)+T(" ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的</b>：水温若及时回落，它能把这些共生藻重新请回来。")};
+      if(t>29)return {k:"warm",s:T("开始紧张"),cls:"warn",rate:0.5,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。")};
+      if(t>=23)return {k:"opt",s:T("最佳生长期"),cls:"good",rate:1.7,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃，正好落在 <b>23–29 ℃</b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。")};
+      if(t>=18)return {k:"cool",s:T("活着，长得慢"),cls:"warn",rate:0.3,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。")};
+      if(t>=16.5)return {k:"cold",s:T("接近生存下限"),cls:"warn",rate:0,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁</b>」。")};
+      return {k:"freeze",s:T("冷白化 · 死亡"),cls:"bad",rate:-2.2,
+        msg:T("水温 ")+t.toFixed(1)+T(" ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚</b>，不只是变暖。")};
     }
 
     /* 叠加「已死亡」状态：死亡不可逆，只有重置能让礁重新开始 */
     function effState(t){
       var st=state(t);
       if(mort>=0.99&&st.k!=="dead"&&st.k!=="freeze"){
-        st={k:"dead",s:"全部死亡",cls:"bad",rate:-9,
-          msg:"这片礁已经全部死亡，<b>降温也救不回来</b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。"};
+        st={k:"dead",s:T("全部死亡"),cls:"bad",rate:-9,
+          msg:T("这片礁已经全部死亡，<b>降温也救不回来</b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。")};
       }
       return st;
     }
@@ -1761,9 +2232,16 @@
       merc.setAttribute("fill",mc);mercB.setAttribute("fill",mc);
 
       fb.className="fb "+st.cls;
-      fb.innerHTML="<b>"+st.s+"</b> · "+st.msg;
+      if(window.isCoralEN&&window.isCoralEN()){
+        var e1=EN1[st.k]||[st.s,""];
+        fb.innerHTML="<b>"+e1[0]+"</b> · "+e1[1];
+      }else{
+        fb.innerHTML="<b>"+st.s+"</b> · "+st.msg;
+      }
 
-      capTxt.textContent=(mort>=0.99?"已死亡":(t<16.5?"冷水 · 冷白化":(t<23?"偏凉 · 缓慢":(t<=29?"健康珊瑚礁":(t<=32?"白化 · 可逆":"死亡边缘")))))+" · "+t.toFixed(1)+" ℃";
+      var capEn=(mort>=0.99?"dead":(t<16.5?"cold · bleaching":(t<23?"cool · slow":(t<=29?"healthy reef":(t<=32?"bleached · reversible":"at the edge")))));
+      var capZh=(mort>=0.99?T("已死亡"):(t<16.5?T("冷水 · 冷白化"):(t<23?T("偏凉 · 缓慢"):(t<=29?T("健康珊瑚礁"):(t<=32?T("白化 · 可逆"):T("死亡边缘"))))));
+      capTxt.textContent=((window.isCoralEN&&window.isCoralEN())?capEn:capZh)+" · "+t.toFixed(1)+" ℃";
       capTxt.setAttribute("fill",(mort>=0.99||t>32)?(mort>=0.99?"#6B6B6B":"#A33A32"):(t<23?"#4A7A96":(t<=29?"#3E7A5E":"#A33A32")));
 
       bar.style.width=growth.toFixed(1)+"%";
@@ -1772,7 +2250,7 @@
     }
 
     tSlider.addEventListener("input",render);
-    $("#r1").addEventListener("click",function(){growth=40;bleach=0;mort=0;render();toast("礁体重新开始生长");});
+    $("#r1").addEventListener("click",function(){growth=40;bleach=0;mort=0;render();toast(T("礁体重新开始生长"));});
 
     render();
 
@@ -1817,7 +2295,7 @@
       el("path",{d:"M872 "+ay+" L806 "+(ay+7),stroke:"#8C6026","stroke-width":1.6,opacity:"0.45"},svg);
       el("path",{d:"M818 "+(ay+5)+" l11 -6 l-2 12 Z",fill:"#8C6026",opacity:"0.45"},svg);
     }
-    el("text",{x:808,y:112,"font-size":11,fill:"#7A4E14",text:"淡水注入"},svg);
+    el("text",{x:892,y:112,"text-anchor":"end","font-size":11,fill:"#7A4E14",text:T("淡水注入")},svg);
 
     /* 海床 */
     el("path",{d:"M0 368 Q120 356 240 366 Q360 374 470 362 Q590 350 700 362 Q800 370 900 356 L900 440 L0 440 Z",fill:"#E8DCBF"},svg);
@@ -1838,9 +2316,9 @@
       el("line",{x1:x,y1:58,x2:x,y2:356,stroke:"#7FA9B9","stroke-width":1.1,"stroke-dasharray":"5 7",opacity:"0.65"},svg);
     });
     var zones=[
-      {x:165,name:"外海",sub:"开阔海域 · 远离河口"},
-      {x:475,name:"近岸",sub:"靠近海岸"},
-      {x:760,name:"河口",sub:"淡水与海水交汇"}
+      {x:165,name:T("外海"),sub:T("开阔海域 · 远离河口")},
+      {x:475,name:T("近岸"),sub:T("靠近海岸")},
+      {x:760,name:T("河口"),sub:T("淡水与海水交汇")}
     ];
     zones.forEach(function(z){
       el("text",{x:z.x,y:36,"text-anchor":"middle","font-size":15,"font-weight":600,fill:"#2A3E3B",text:z.name},svg);
@@ -1850,13 +2328,13 @@
     /* 盐度标签（点击后出现） */
     var salTexts={};
     [[165,"35‰"],[475,"30‰"],[760,"18‰"]].forEach(function(p){
-      salTexts[p[0]]=el("text",{x:p[0],y:86,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#0F5F63",opacity:"0",text:"盐度 约 "+p[1]},svg);
+      salTexts[p[0]]=el("text",{x:p[0],y:86,"text-anchor":"middle","font-size":12,"font-weight":600,fill:"#0F5F63",opacity:"0",text:T("盐度 约 ")+p[1]},svg);
     });
 
     /* 河口泥沙 */
     var mud=el("path",{d:"M690 372 Q740 356 800 362 Q860 368 900 356 L900 404 Q800 410 690 398 Z",fill:"#B08A55",cursor:"pointer"},svg);
     mud.addEventListener("click",function(ev){
-      tipAt(ev,"大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！");
+      tipAt(ev,T("大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！"));
     });
 
     /* 珊瑚宝宝 */
@@ -1887,7 +2365,7 @@
     var babyBody=babyG.querySelector("ellipse");
     babyBody.style.transformOrigin="0px 0px";
     babyG.addEventListener("click",function(ev){
-      tipAt(ev,"我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。");
+      tipAt(ev,T("我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。"));
     });
 
     /* 点击区域 */
@@ -1939,21 +2417,21 @@
             },120+k*120);
           })(i);
         }
-        fbSet("good","定居成功","这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。");
+        fbSet("good",T("定居成功"),T("这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。"));
         complete(2);
       }else if(zone===2){
         babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.02)";
         paintBaby("#C97C63",1);
-        fbSet("warn","勉强活着","这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。");
+        fbSet("warn",T("勉强活着"),T("这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。"));
       }else{
         paintBaby("#C08A6E",1);
         babyG.style.transform="translate("+p.x+"px,"+p.y+"px) scale(1.35,.78)";
-        fbSet("bad","细胞受不了了","这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……");
+        fbSet("bad",T("细胞受不了了"),T("这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……"));
         setTimeout(function(){
           paintBaby("#A9A79E",1);
           babyG.style.transform="translate("+p.x+"px,"+(p.y+6)+"px) rotate(74deg) scale(.95)";
           babyG.style.opacity="0.55";
-          fbSet("bad","它死了","盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。");
+          fbSet("bad",T("它死了"),T("盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。"));
         },700);
       }
     }
@@ -1970,7 +2448,7 @@
       babyG.style.transform="translate(150px,130px)";
       paintBaby("#E2684B",1);
       for(var k in salTexts){salTexts[k].setAttribute("opacity","0");}
-      fbSet("","再试一次","点一下外海、近岸或河口，看看这次它能不能安家。");
+      fbSet("",T("再试一次"),T("点一下外海、近岸或河口，看看这次它能不能安家。"));
     });
   };
 
@@ -2005,7 +2483,7 @@
       el("line",{x1:58+Math.cos(a)*28,y1:34+Math.sin(a)*28,x2:58+Math.cos(a)*35,y2:34+Math.sin(a)*35,stroke:"#EFB93F","stroke-width":2.6,"stroke-linecap":"round"},sunG);
     }
     sunG.addEventListener("click",function(ev){
-      tipAt(ev,"判断一片海能不能长礁？看水够不够清澈就知道了！");
+      tipAt(ev,T("判断一片海能不能长礁？看水够不够清澈就知道了！"));
     });
 
     /* 光柱 */
@@ -2019,7 +2497,7 @@
 
     /* 深度刻度 */
     el("line",{x1:0,y1:top,x2:900,y2:top,stroke:"#9FC6D6","stroke-width":1.4},svg);
-    el("text",{x:20,y:top-8,"font-size":11,fill:"#4A6B78",text:"海面 0 m"},svg);
+    el("text",{x:20,y:top-8,"font-size":11,fill:"#4A6B78",text:T("海面 0 m")},svg);
     for(var d=10;d<=50;d+=10){
       var yy=top+(d/MAXD)*(bottom-top);
       el("line",{x1:64,y1:yy,x2:82,y2:yy,stroke:"#DFF1F7","stroke-width":1,opacity:"0.65"},svg);
@@ -2028,12 +2506,12 @@
 
     /* 分层说明 */
     var zoneInfo=[
-      {y:top+26,t:"0–22 m · 光照充足",c:"#EAF7D9"},
-      {y:top+(22/MAXD)*(bottom-top),t:"22–35 m · 明显减弱",c:"#F5E6C8"},
-      {y:top+(36/MAXD)*(bottom-top),t:"35 m 以下 · 太暗",c:"#E7D3D0"}
+      {y:top+26,t:T("0–22 m · 光照充足"),c:"#EAF7D9"},
+      {y:top+(22/MAXD)*(bottom-top),t:T("22–35 m · 明显减弱"),c:"#F5E6C8"},
+      {y:top+(36/MAXD)*(bottom-top),t:T("35 m 以下 · 太暗"),c:"#E7D3D0"}
     ];
     zoneInfo.forEach(function(z){
-      el("text",{x:886,y:z.y,"text-anchor":"end","font-size":10.5,fill:"#22404A",stroke:"#FFFFFF","stroke-width":3,"stroke-opacity":"0.9","paint-order":"stroke",text:z.t},svg);
+      el("text",{x:872,y:z.y,"text-anchor":"end","font-size":10.5,fill:"#22404A",stroke:"#FFFFFF","stroke-width":3,"stroke-opacity":"0.9","paint-order":"stroke",text:z.t},svg);
     });
 
     /* 深度指示线 */
@@ -2046,7 +2524,7 @@
     var bodyG=el("g",{},coralG);
     var badge=el("g",{opacity:"0"},coralG);
     el("rect",{x:26,y:-42,width:96,height:19,rx:9,fill:"#FFFFFF",opacity:"0.9"},badge);
-    el("text",{x:74,y:-28,"text-anchor":"middle","font-size":10.5,fill:"#2F6B4F","font-weight":600,text:"光合作用中"},badge);
+    el("text",{x:74,y:-28,"text-anchor":"middle","font-size":10.5,fill:"#2F6B4F","font-weight":600,text:T("光合作用中")},badge);
 
     function yOf(d){return top+(d/MAXD)*(bottom-top);}
     function lightAt(d){return 100*Math.exp(-(clarity==="clear"?0.072:0.16)*d);}
@@ -2085,17 +2563,17 @@
 
       var cls,title,msg;
       if(L>=20){
-        cls="good";title="阳光充足";
-        msg="水深 "+depth.toFixed(0)+" m，光照约为表层的 <b>"+pct+"%</b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。";
+        cls="good";title=T("阳光充足");
+        msg=T("水深 ")+depth.toFixed(0)+T(" m，光照约为表层的 <b>")+pct+T("%</b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。");
       }else if(L>=8){
-        cls="warn";title="阳光变弱";
-        msg="水深 "+depth.toFixed(0)+" m，光照只剩表层的 <b>"+pct+"%</b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。";
+        cls="warn";title=T("阳光变弱");
+        msg=T("水深 ")+depth.toFixed(0)+T(" m，光照只剩表层的 <b>")+pct+T("%</b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。");
       }else{
-        cls="bad";title="太暗了";
-        msg="水深 "+depth.toFixed(0)+" m，光照仅约 <b>"+pct+"%</b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死</b>。";
+        cls="bad";title=T("太暗了");
+        msg=T("水深 ")+depth.toFixed(0)+T(" m，光照仅约 <b>")+pct+T("%</b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死</b>。");
       }
       if(clarity==="turbid"){
-        msg+=" <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。</span>";
+        msg+=T(" <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。</span>");
       }
       fb.className="fb "+cls;
       fb.innerHTML="<b>"+title+"</b> · "+msg;
@@ -2133,10 +2611,10 @@
       touched=true;
       water.setAttribute("fill",clarity==="clear"?"url(#d3c)":"url(#d3t)");
       rays.setAttribute("opacity",clarity==="clear"?"0.20":"0.06");
-      this.textContent = clarity==="clear"?"切换为「浑浊海水」":"切换为「清澈海水」";
+      this.textContent = clarity==="clear"?T("切换为「浑浊海水」"):T("切换为「清澈海水」");
       this.classList.toggle("on",clarity==="turbid");
       render();
-      toast(clarity==="clear"?"清澈海水：30 米处仍有微弱阳光":"浑浊海水：20 米以下几乎全黑");
+      toast(clarity==="clear"?T("清澈海水：30 米处仍有微弱阳光"):T("浑浊海水：20 米以下几乎全黑"));
     });
 
     /* 键盘：↑ / ← 上浮，↓ / → 下沉；按住 Shift 一次 5 米 */
@@ -2196,14 +2674,14 @@
       var st={x:ax,g:gg,base:0.55+Math.random()*0.55,min:(a%5===0?0.15:0),onset:clamp((a/22)*0.86+Math.random()*0.12,0,0.92)};
       gg.style.cursor="pointer";
       gg.addEventListener("click",function(ev){
-        tipAt(ev,"过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！");
+        tipAt(ev,T("过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！"));
       });
       algae.push(st);
     }
 
     var banner=el("g",{opacity:"0"},svg);
     el("rect",{x:300,y:20,width:300,height:34,rx:17,fill:"#FFFFFF",opacity:"0.92"},banner);
-    var bannerTxt=el("text",{x:450,y:42,"text-anchor":"middle","font-size":13,"font-weight":600,fill:"#3E8E5A",text:"珊瑚主导的礁体"},banner);
+    var bannerTxt=el("text",{x:450,y:42,"text-anchor":"middle","font-size":13,"font-weight":600,fill:"#3E8E5A",text:T("珊瑚主导的礁体")},banner);
 
     var slider=$("#n4"),val=$("#n4v");
     var p=5,cover=0,af=1,fishOn=false,fishTimer=null,easeTimer=null;
@@ -2249,17 +2727,17 @@
 
       banner.setAttribute("opacity",w>0.62?"1":"0");
       if(w>0.62){
-        bannerTxt.textContent="珊瑚主导 → 海藻主导（相变）";
+        bannerTxt.textContent=T("珊瑚主导 → 海藻主导（相变）");
         bannerTxt.setAttribute("fill","#2F5C0C");
       }
 
       var cls,title,msg;
-      if(p<15){cls="good";title="水很瘦";msg="营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。";}
-      else if(p<40){cls="warn";title="海藻开始冒头";msg="营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。";}
-      else if(p<72){cls="warn";title="礁面被抢占了";msg="海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘</b>，慢慢饿死。";}
-      else{cls="bad";title="严重富营养化";msg="海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）</b>，而且往往很难逆转。";}
+      if(p<15){cls="good";title=T("水很瘦");msg=T("营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。");}
+      else if(p<40){cls="warn";title=T("海藻开始冒头");msg=T("营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。");}
+      else if(p<72){cls="warn";title=T("礁面被抢占了");msg=T("海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘</b>，慢慢饿死。");}
+      else{cls="bad";title=T("严重富营养化");msg=T("海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）</b>，而且往往很难逆转。");}
       if(fishOn){
-        msg+=" <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。</span>";
+        msg+=T(" <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。</span>");
       }
       fb.className="fb "+cls;
       fb.innerHTML="<b>"+title+"</b> · "+msg;
@@ -2279,9 +2757,9 @@
       if(!fishOn)return;
       fishOn=false;
       fishG.innerHTML="";
-      $("#fish4").textContent="投放草食性鱼类";
+      $("#fish4").textContent=T("投放草食性鱼类");
       easeAF();
-      toast(msg||"营养盐太高，海藻又长回来了");
+      toast(msg||T("营养盐太高，海藻又长回来了"));
     }
 
     /* 回到起点：营养盐归零、撤走鱼群、海藻缩回零星几簇 */
@@ -2290,15 +2768,15 @@
       clearTimeout(easeTimer);
       fishOn=false;
       fishG.innerHTML="";
-      $("#fish4").textContent="投放草食性鱼类";
+      $("#fish4").textContent=T("投放草食性鱼类");
       p=5;
       slider.value=5;
       af=1;
       banner.setAttribute("opacity","0");
-      bannerTxt.textContent="珊瑚主导的礁体";
+      bannerTxt.textContent=T("珊瑚主导的礁体");
       render();
       fb.className="fb";
-      fb.innerHTML="回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？";
+      fb.innerHTML=T("回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？");
     }
 
     $("#r4").addEventListener("click",resetLevel4);
@@ -2310,9 +2788,9 @@
     });
 
     $("#fish4").addEventListener("click",function(){
-      if(fishOn){clearTimeout(fishTimer);leaveFish("草食鱼被撤走了，海藻又开始蔓延");return;}
+      if(fishOn){clearTimeout(fishTimer);leaveFish(T("草食鱼被撤走了，海藻又开始蔓延"));return;}
       fishOn=true;
-      this.textContent="清理中 · 点此撤走";
+      this.textContent=T("清理中 · 点此撤走");
       for(var i=0;i<4;i++){
         var outer=el("g",{},fishG);
         outer.setAttribute("transform","translate(0 "+(120+i*46)+")");
@@ -2354,12 +2832,12 @@
     el("path",{d:"M0 340 Q120 332 240 338 Q360 344 470 336 Q590 328 700 336 Q810 344 900 334 L900 440 L0 440 Z",fill:"#DCCDA8"},svg);
 
     var subs=[
-      {x:152,type:"rock",name:"岩石",ok:true,tip:"硬底 · 能附着"},
-      {x:352,type:"sand",name:"泥沙",ok:false,tip:"太软 · 会陷进去",
-        fail:"泥沙是软的、还会被水冲走，我根本抓不住。"},
-      {x:552,type:"gravel",name:"砾石",ok:false,tip:"松散 · 会被水翻动",
-        fail:"砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。"},
-      {x:762,type:"reef",name:"珊瑚灰岩",ok:true,tip:"硬底 · 能附着"}
+      {x:152,type:"rock",name:T("岩石"),ok:true,tip:T("硬底 · 能附着")},
+      {x:352,type:"sand",name:T("泥沙"),ok:false,tip:T("太软 · 会陷进去"),
+        fail:T("泥沙是软的、还会被水冲走，我根本抓不住。")},
+      {x:552,type:"gravel",name:T("砾石"),ok:false,tip:T("松散 · 会被水翻动"),
+        fail:T("砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。")},
+      {x:762,type:"reef",name:T("珊瑚灰岩"),ok:true,tip:T("硬底 · 能附着")}
     ];
 
     var hitG=el("g",{},svg);
@@ -2419,7 +2897,7 @@
         "stroke-linecap":"round"},flowG);
     }
     flowG.addEventListener("click",function(ev){
-      tipAt(ev,"水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。");
+      tipAt(ev,T("水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。"));
     });
 
     var settled=false,busy=false,sub=null,health=100;
@@ -2463,8 +2941,8 @@
       svg.querySelectorAll(".ring").forEach(function(r){if(r.parentNode)r.parentNode.removeChild(r);});
 
       fb.className="fb";
-      fb.innerHTML="珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。";
-      resetBtn.textContent="重新开始";
+      fb.innerHTML=T("珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。");
+      resetBtn.textContent=T("重新开始");
       updateFlow();
     }
 
@@ -2480,7 +2958,7 @@
 
     function resolve(s){
       if(!s.ok){
-        setFb("bad","附不住！","我落到"+s.name+"上了……"+(s.fail||"这里不稳，我抓不牢。")+"我需要稳定的硬底！");
+        setFb("bad",T("附不住！"),T("我落到")+s.name+T("上了……")+(s.fail||T("这里不稳，我抓不牢。"))+T("我需要稳定的硬底！"));
         larvaO.style.transition="transform 1.1s ease, opacity .9s";
         larvaO.style.transform="translate("+(s.x+150)+"px,286px) rotate(40deg)";
         larvaO.style.opacity="0";
@@ -2491,7 +2969,7 @@
           larvaO.style.transition="transform .6s ease, opacity .6s";
           larvaO.style.transform="translate(430px,120px) rotate(0deg)";
           larvaO.style.opacity="1";
-          setFb("warn","再试一次","这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。");
+          setFb("warn",T("再试一次"),T("这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。"));
         },1400);
         return;
       }
@@ -2511,7 +2989,7 @@
       wSlider.value=50;
       wSlider.disabled=false;
       wVal.textContent="50";
-      setFb("good","附着成功","这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。");
+      setFb("good",T("附着成功"),T("这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。"));
     }
 
     function updateFlow(){
@@ -2580,9 +3058,9 @@
       zone = strength<26?"calm":(strength<=70?"mid":"strong");
       if(zone!==prevZone){
         prevZone=zone;
-        if(zone==="calm")setFb("warn","水流太静","泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。");
-        else if(zone==="mid")setFb("good","水流适中","氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。");
-        else setFb("bad","水流太强","浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。");
+        if(zone==="calm")setFb("warn",T("水流太静"),T("泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。"));
+        else if(zone==="mid")setFb("good",T("水流适中"),T("氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。"));
+        else setFb("bad",T("水流太强"),T("浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。"));
       }
 
       if(zone==="mid"&&health>88){complete(5);}
@@ -2615,7 +3093,7 @@
     /* 刻度尺：骨骼厚度 */
     el("rect",{x:700,y:110,width:18,height:240,rx:9,fill:"#FFFFFF",opacity:"0.55",stroke:"#CFE0E2"},svg);
     var gauge=el("rect",{x:704,y:290,width:10,height:60,rx:5,fill:"#D8C9A8"},svg);
-    el("text",{x:709,y:100,"text-anchor":"middle","font-size":10.5,fill:"#4A6B78",text:"骨骼"},svg);
+    el("text",{x:709,y:100,"text-anchor":"middle","font-size":10.5,fill:"#4A6B78",text:T("骨骼")},svg);
     var gaugeTxt=el("text",{x:709,y:366,"text-anchor":"middle","font-size":10,fill:"#4A6B78",text:"35"},svg);
 
     var coralG=el("g",{},svg);
@@ -2625,8 +3103,8 @@
     var bubG=el("g",{},svg);
 
     /* 图注 */
-    el("text",{x:40,y:42,"font-size":12,"fill":"#5E7B85",text:"Ca²⁺ + CO₃²⁻ → CaCO₃（文石）"},svg);
-    el("text",{x:40,y:64,"font-size":11,fill:"#7C918F",text:"pH 越高、Ω 越大，这个反应越容易往右走"},svg);
+    el("text",{x:40,y:42,"font-size":12,"fill":"#5E7B85",text:T("Ca²⁺ + CO₃²⁻ → CaCO₃（文石）")},svg);
+    el("text",{x:40,y:64,"font-size":11,fill:"#7C918F",text:T("pH 越高、Ω 越大，这个反应越容易往右走")},svg);
 
     var phS=$("#p6"),doS=$("#d6"),phV=$("#p6v"),doV=$("#d6v"),omV=$("#om6");
     var ph=8.15,dox=7,skel=35,rate=0,omega=3.2,lastBub=0;
@@ -2662,20 +3140,20 @@
 
       var cls,title,msg;
       if(rate<0){
-        cls="bad";title="净溶解";
-        msg="Ω 降到 <b>"+omega.toFixed(2)+"</b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度</b>，骨骼正在变薄、变脆。这就是<b>海洋酸化</b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。";
+        cls="bad";title=T("净溶解");
+        msg=T("Ω 降到 <b>")+omega.toFixed(2)+T("</b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度</b>，骨骼正在变薄、变脆。这就是<b>海洋酸化</b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。");
       }else if(dox<4.5){
-        cls="warn";title="缺氧，没力气";
-        msg="溶解氧只有 <b>"+dox.toFixed(1)+" mg/L</b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。";
+        cls="warn";title=T("缺氧，没力气");
+        msg=T("溶解氧只有 <b>")+dox.toFixed(1)+T(" mg/L</b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。");
       }else if(ph<8.0){
-        cls="warn";title="水偏酸";
-        msg="pH "+ph.toFixed(2)+"，低于正常的 8.0–8.2。Ω 降到 "+omega.toFixed(2)+"，造骨变得更费劲，骨骼也更疏松。";
+        cls="warn";title=T("水偏酸");
+        msg="pH "+ph.toFixed(2)+T("，低于正常的 8.0–8.2。Ω 降到 ")+omega.toFixed(2)+T("，造骨变得更费劲，骨骼也更疏松。");
       }else if(rate>1.4){
-        cls="good";title="造骨顺利";
-        msg="pH "+ph.toFixed(2)+"、溶解氧 "+dox.toFixed(1)+" mg/L，Ω 达到 <b>"+omega.toFixed(2)+"</b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。";
+        cls="good";title=T("造骨顺利");
+        msg="pH "+ph.toFixed(2)+T("、溶解氧 ")+dox.toFixed(1)+T(" mg/L，Ω 达到 <b>")+omega.toFixed(2)+T("</b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。");
       }else{
-        cls="good";title="正常钙化";
-        msg="条件合适：Ω "+omega.toFixed(2)+"、溶解氧 "+dox.toFixed(1)+" mg/L，珊瑚稳稳地把海水变成骨头。";
+        cls="good";title=T("正常钙化");
+        msg=T("条件合适：Ω ")+omega.toFixed(2)+T("、溶解氧 ")+dox.toFixed(1)+T(" mg/L，珊瑚稳稳地把海水变成骨头。");
       }
       fb.className="fb "+cls;
       fb.innerHTML="<b>"+title+"</b> · "+msg;
@@ -2716,13 +3194,13 @@
 
     /* 静态信息卡 */
     el("rect",{x:512,y:96,width:362,height:212,rx:14,fill:"#FFFFFF",opacity:"0.9",stroke:"#DCE7E4"},svg);
-    el("text",{x:534,y:124,"font-size":10.5,"letter-spacing":"0.12em",fill:"#8A9691",text:"试种结果"},svg);
-    var cardTitle=el("text",{x:534,y:150,"font-size":15,"font-weight":700,fill:"#1E2B2A",text:"点击编号，试着种珊瑚"},svg);
+    el("text",{x:534,y:124,"font-size":10.5,"letter-spacing":"0.12em",fill:"#8A9691",text:T("试种结果")},svg);
+    var cardTitle=el("text",{x:534,y:150,"font-size":15,"font-weight":700,fill:"#1E2B2A",text:T("点击编号，试着种珊瑚")},svg);
     var cardBody=[];
     for(var i=0;i<4;i++){
       cardBody.push(el("text",{x:534,y:176+i*20,"font-size":11.5,fill:"#4E5F5A",text:""},svg));
     }
-    var counter=el("text",{x:534,y:290,"font-size":11,fill:"#0F7C80","font-weight":600,text:"已点亮 0 / 6 片礁区"},svg);
+    var counter=el("text",{x:534,y:290,"font-size":11,fill:"#0F7C80","font-weight":600,text:T("已点亮 0 / 6 片礁区")},svg);
 
     var LAND=[
       [[70,8],[62,22],[46,32],[38,44],[58,54],[100,56],[124,45],[122,32],[110,22],[100,10],[92,4],[80,6]],
@@ -2740,16 +3218,16 @@
     }
 
     var LOCS=[
-      {n:"大堡礁",lat:-18,lon:147,r:"ok"},
-      {n:"珊瑚大三角",lat:0,lon:125,r:"ok"},
-      {n:"西沙群岛",lat:16.5,lon:112,r:"ok"},
-      {n:"红海",lat:20,lon:38,r:"ok"},
-      {n:"马尔代夫",lat:4,lon:73,r:"ok"},
-      {n:"加勒比海",lat:18,lon:-75,r:"ok"},
-      {n:"中国海南",lat:19,lon:110,r:"mid"},
-      {n:"长江口",lat:31.5,lon:122,r:"no",why:"est"},
-      {n:"亚马逊河口",lat:-1,lon:-50,r:"no",why:"est"},
-      {n:"悉尼外海",lat:-34,lon:151,r:"no",why:"cold"}
+      {n:T("大堡礁"),lat:-18,lon:147,r:"ok"},
+      {n:T("珊瑚大三角"),lat:0,lon:125,r:"ok"},
+      {n:T("西沙群岛"),lat:16.5,lon:112,r:"ok"},
+      {n:T("红海"),lat:20,lon:38,r:"ok"},
+      {n:T("马尔代夫"),lat:4,lon:73,r:"ok"},
+      {n:T("加勒比海"),lat:18,lon:-75,r:"ok"},
+      {n:T("中国海南"),lat:19,lon:110,r:"mid"},
+      {n:T("长江口"),lat:31.5,lon:122,r:"no",why:"est"},
+      {n:T("亚马逊河口"),lat:-1,lon:-50,r:"no",why:"est"},
+      {n:T("悉尼外海"),lat:-34,lon:151,r:"no",why:"cold"}
     ];
     var res={};
 
@@ -2785,7 +3263,7 @@
         var hit=el("line",{x1:CX-half,y1:yy,x2:CX+half,y2:yy,stroke:"#000000",opacity:"0","stroke-width":12,cursor:"pointer"},dyn);
         hit.addEventListener("click",function(ev){
           ev.stopPropagation();
-          tipAt(ev,"这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。");
+          tipAt(ev,T("这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。"));
         });
       });
 
@@ -2824,44 +3302,44 @@
       var loc=LOCS[i];
       res[i]=loc.r;
       if(loc.r==="ok"){
-        setCard(loc.n+"：成功",[
-          "水温常年 23–29 ℃，盐度约 35‰，",
-          "水清、有硬底、远离大河河口 ——",
-          "珊瑚定居，礁体开始一层层堆积。",
+        setCard(loc.n+T("：成功"),[
+          T("水温常年 23–29 ℃，盐度约 35‰，"),
+          T("水清、有硬底、远离大河河口 ——"),
+          T("珊瑚定居，礁体开始一层层堆积。"),
           ""
         ],"#2F6B4F");
         fb.className="fb good";
-        fb.innerHTML="<b>成功！</b>"+loc.n+" 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。";
+        fb.innerHTML=T("<b>成功！</b>")+loc.n+T(" 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。");
       }else if(loc.r==="mid"){
-        setCard(loc.n+"：勉强存活",[
-          "靠近中国珊瑚礁分布的北缘，",
-          "冬季寒潮会让水温跌破 20 ℃，",
-          "只能长出矮小、稀疏的礁体。"
+        setCard(loc.n+T("：勉强存活"),[
+          T("靠近中国珊瑚礁分布的北缘，"),
+          T("冬季寒潮会让水温跌破 20 ℃，"),
+          T("只能长出矮小、稀疏的礁体。")
         ],"#8A5E12");
         fb.className="fb warn";
-        fb.innerHTML="<b>勉强存活。</b>"+loc.n+" 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。";
+        fb.innerHTML=T("<b>勉强存活。</b>")+loc.n+T(" 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。");
       }else{
         if(loc.why==="est"){
-          setCard(loc.n+"：失败",[
-            "这里是大河口：淡水把盐度压到 30‰ 以下，",
-            "泥沙又不断沉积 —— 珊瑚既受不了低盐，",
-            "也会被泥沙埋住。"
+          setCard(loc.n+T("：失败"),[
+            T("这里是大河口：淡水把盐度压到 30‰ 以下，"),
+            T("泥沙又不断沉积 —— 珊瑚既受不了低盐，"),
+            T("也会被泥沙埋住。")
           ],"#A33A32");
           fb.className="fb bad";
-          fb.innerHTML="<b>失败。</b>"+loc.n+" 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。";
+          fb.innerHTML=T("<b>失败。</b>")+loc.n+T(" 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。");
         }else{
-          setCard(loc.n+"：失败",[
-            "纬度 "+Math.abs(loc.lat).toFixed(0)+"°，已在温带海域。",
-            "冬季水温跌到 18 ℃ 以下，",
-            "珊瑚熬不过冬天，堆不出礁体。"
+          setCard(loc.n+T("：失败"),[
+            T("纬度 ")+Math.abs(loc.lat).toFixed(0)+T("°，已在温带海域。"),
+            T("冬季水温跌到 18 ℃ 以下，"),
+            T("珊瑚熬不过冬天，堆不出礁体。")
           ],"#A33A32");
           fb.className="fb bad";
-          fb.innerHTML="<b>失败。</b>"+loc.n+" 在 "+Math.abs(loc.lat).toFixed(0)+"°S，属于温带：<b>冬季</b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。";
+          fb.innerHTML=T("<b>失败。</b>")+loc.n+T(" 在 ")+Math.abs(loc.lat).toFixed(0)+T("°S，属于温带：<b>冬季</b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。");
         }
       }
       var ok=0;
       for(var k in res){if(res[k]==="ok")ok++;}
-      counter.textContent="已点亮 "+ok+" / 6 片礁区";
+      counter.textContent=T("已点亮 ")+ok+T(" / 6 片礁区");
       draw();
       if(ok>=6)complete(7);
     }
@@ -2917,7 +3395,7 @@
     LOCS.forEach(function(loc,i){loc._i=i;});
 
     draw();
-    setCard("点击编号，试着种珊瑚",["白色圆点是候选地点，编号对应下方按钮。","绿色 = 能成礁，橙色 = 勉强，红色 = 失败。","拖动地球，看看南北纬 30° 之外是什么。",""],null);
+    setCard(T("点击编号，试着种珊瑚"),[T("白色圆点是候选地点，编号对应下方按钮。"),T("绿色 = 能成礁，橙色 = 勉强，红色 = 失败。"),T("拖动地球，看看南北纬 30° 之外是什么。"),""],null);
   };
 
   /* =========================================================
@@ -2969,29 +3447,29 @@
     /* 崩溃遮罩 */
     var over=el("g",{opacity:"0",style:"pointer-events:none"},svg);
     el("rect",{x:0,y:0,width:900,height:440,fill:"#1B2A28",opacity:"0.55"},over);
-    el("text",{x:450,y:196,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:"礁体崩溃了"},over);
-    el("text",{x:450,y:228,"text-anchor":"middle","font-size":13,fill:"#D9E4DF",text:"八项条件里只要长期有几项不合格，礁就撑不住。"},over);
+    el("text",{x:450,y:196,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:T("礁体崩溃了")},over);
+    el("text",{x:450,y:228,"text-anchor":"middle","font-size":13,fill:"#D9E4DF",text:T("八项条件里只要长期有几项不合格，礁就撑不住。")},over);
 
     /* 通关遮罩 */
     var winG=el("g",{opacity:"0",style:"pointer-events:none"},svg);
     el("rect",{x:0,y:0,width:900,height:440,fill:"#0B3A34",opacity:"0.66"},winG);
-    el("text",{x:450,y:176,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:"你守住了这片礁"},winG);
-    el("text",{x:450,y:208,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:"45 秒里，八项条件同时达标。"},winG);
-    el("text",{x:450,y:232,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:"而现实中的珊瑚礁，需要的是永远达标。"},winG);
-    el("text",{x:450,y:270,"text-anchor":"middle","font-size":12,fill:"#9FC9B9",text:"减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥"},winG);
+    el("text",{x:450,y:176,"text-anchor":"middle","font-size":26,"font-weight":700,fill:"#FFFFFF",text:T("你守住了这片礁")},winG);
+    el("text",{x:450,y:208,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:T("45 秒里，八项条件同时达标。")},winG);
+    el("text",{x:450,y:232,"text-anchor":"middle","font-size":13,fill:"#CFE9DE",text:T("而现实中的珊瑚礁，需要的是永远达标。")},winG);
+    el("text",{x:450,y:270,"text-anchor":"middle","font-size":12,fill:"#9FC9B9",text:T("减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥")},winG);
 
     var P={temp:25,sal:35,light:85,nut:8,flow:50,ph:8.12,sub:"hard",place:"trop"};
     var running=false,health=100,score=0,time=0,overFlag=false;
 
     var ROWS=[
-      {k:"temp",lab:"水温",min:18,max:34,step:0.5,fmt:function(v){return v.toFixed(1)+"℃";}},
-      {k:"sal",lab:"盐度",min:26,max:40,step:0.5,fmt:function(v){return v.toFixed(1)+"‰";}},
-      {k:"light",lab:"光照",min:0,max:100,step:1,fmt:function(v){return Math.round(v)+"%";}},
-      {k:"nut",lab:"营养盐",min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
-      {k:"flow",lab:"水流",min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
+      {k:"temp",lab:T("水温"),min:18,max:34,step:0.5,fmt:function(v){return v.toFixed(1)+"℃";}},
+      {k:"sal",lab:T("盐度"),min:26,max:40,step:0.5,fmt:function(v){return v.toFixed(1)+"‰";}},
+      {k:"light",lab:T("光照"),min:0,max:100,step:1,fmt:function(v){return Math.round(v)+"%";}},
+      {k:"nut",lab:T("营养盐"),min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
+      {k:"flow",lab:T("水流"),min:0,max:100,step:1,fmt:function(v){return Math.round(v);}},
       {k:"ph",lab:"pH",min:7.6,max:8.4,step:0.05,fmt:function(v){return v.toFixed(2);}},
-      {k:"sub",lab:"基底",toggle:["hard","soft"],names:["硬底","泥沙"]},
-      {k:"place",lab:"位置",toggle:["trop","high"],names:["热带","高纬"]}
+      {k:"sub",lab:T("基底"),toggle:["hard","soft"],names:[T("硬底"),T("泥沙")]},
+      {k:"place",lab:T("位置"),toggle:["trop","high"],names:[T("热带"),T("高纬")]}
     ];
 
     function statusOf(k){
@@ -3058,7 +3536,7 @@
         ui[r.k].dot.className="dot"+(s==="warn"?" warn":(s==="bad"?" bad":""));
         if(r.toggle){
           ui[r.k].btn.textContent=r.names[P[r.k]===r.toggle[0]?0:1];
-          ui[r.k].b.textContent=s==="ok"?"安全":(s==="warn"?"临界":"危险");
+          ui[r.k].b.textContent=s==="ok"?T("安全"):(s==="warn"?T("临界"):T("危险"));
         }else{
           ui[r.k].inp.value=P[r.k];
           ui[r.k].b.textContent=r.fmt(P[r.k]);
@@ -3072,13 +3550,13 @@
     }
 
     var EVENTS=[
-      {t:"全球变暖！水温上升",f:function(){P.temp=clamp(P.temp+1.8+Math.random()*1.4,18,34);}},
-      {t:"暴雨来袭！盐度下降",f:function(){P.sal=clamp(P.sal-3.5-Math.random()*2,26,40);}},
-      {t:"污水排放！营养盐飙升",f:function(){P.nut=clamp(P.nut+16+Math.random()*10,0,100);}},
-      {t:"台风过境！水流过强",f:function(){P.flow=clamp(P.flow+22+Math.random()*16,0,100);}},
-      {t:"海洋酸化！pH 下降",f:function(){P.ph=clamp(P.ph-0.06,7.6,8.4);}},
-      {t:"海岸工程！硬底被泥沙覆盖",f:function(){P.sub="soft";}},
-      {t:"拖网捕捞！草食鱼被捞光，海藻暴发",f:function(){P.nut=clamp(P.nut+14,0,100);}}
+      {t:T("全球变暖！水温上升"),f:function(){P.temp=clamp(P.temp+1.8+Math.random()*1.4,18,34);}},
+      {t:T("暴雨来袭！盐度下降"),f:function(){P.sal=clamp(P.sal-3.5-Math.random()*2,26,40);}},
+      {t:T("污水排放！营养盐飙升"),f:function(){P.nut=clamp(P.nut+16+Math.random()*10,0,100);}},
+      {t:T("台风过境！水流过强"),f:function(){P.flow=clamp(P.flow+22+Math.random()*16,0,100);}},
+      {t:T("海洋酸化！pH 下降"),f:function(){P.ph=clamp(P.ph-0.06,7.6,8.4);}},
+      {t:T("海岸工程！硬底被泥沙覆盖"),f:function(){P.sub="soft";}},
+      {t:T("拖网捕捞！草食鱼被捞光，海藻暴发"),f:function(){P.nut=clamp(P.nut+14,0,100);}}
     ];
 
     function fireEvent(){
@@ -3095,21 +3573,21 @@
       running=false;overFlag=true;
       over.setAttribute("opacity","1");
       over.style.pointerEvents="none";
-      $("#start8").textContent="重新开始";
+      $("#start8").textContent=T("重新开始");
       $("#start8").disabled=false;
       fb.className="fb bad";
-      fb.innerHTML="<b>礁体崩溃了。</b>你坚持了 "+time+" 秒，得分 "+score+"。八项条件里只要长期有几项不合格，礁就撑不住。"
-        +"<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。</span>";
+      fb.innerHTML=T("<b>礁体崩溃了。</b>你坚持了 ")+time+T(" 秒，得分 ")+score+T("。八项条件里只要长期有几项不合格，礁就撑不住。")
+        +T("<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。</span>");
     }
 
     function win(){
       running=false;overFlag=true;
       winG.setAttribute("opacity","1");
-      $("#start8").textContent="再挑战一次";
+      $("#start8").textContent=T("再挑战一次");
       $("#start8").disabled=false;
       fb.className="fb good";
-      fb.innerHTML="<b>你守住了这片礁！</b>坚持了 "+time+" 秒，得分 "+score+"。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。"
-        +"<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。</span>";
+      fb.innerHTML=T("<b>你守住了这片礁！</b>坚持了 ")+time+T(" 秒，得分 ")+score+T("。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。")
+        +T("<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。</span>");
       complete(8);
     }
 
@@ -3128,12 +3606,12 @@
       var wasRunning=running;
       reset();
       running=true;
-      this.textContent="重新开始";
+      this.textContent=T("重新开始");
       this.disabled=false;
       fb.className="fb";
       fb.innerHTML=wasRunning
-        ? "<b>已重新开始。</b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。"
-        : "<b>灾难开始。</b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。";
+        ? T("<b>已重新开始。</b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。")
+        : T("<b>灾难开始。</b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。");
     });
 
     setInterval(function(){
@@ -3192,7 +3670,7 @@
     }
     if(startBtn){
       var at=(saved&&saved.cur&&saved.cur>1)?saved.cur:1;
-      startBtn.innerHTML=(at>1?"继续挑战":"进入挑战")+"<span>→</span>";
+      startBtn.innerHTML=(at>1?T("继续挑战"):T("进入挑战"))+"<span>→</span>";
     }
     window.scrollTo(0,0);
   }
@@ -3205,7 +3683,7 @@
   if(homeBtn){homeBtn.addEventListener("click",showCover);}
   if(resetBtn){
     resetBtn.addEventListener("click",function(){
-      var ok=window.confirm("清空全部进度，从第一关重新开始？");
+      var ok=window.confirm(T("清空全部进度，从第一关重新开始？"));
       if(!ok)return;
       try{localStorage.removeItem(KEY);}catch(e){}
       var u=location.href.split("?")[0].split("#")[0];
@@ -3283,6 +3761,11 @@
 
   groups.forEach(make);
 
+  /* 切语言后文字长度变化，重算卡片高度 */
+  window.addEventListener("langchange", function(){
+    setTimeout(function(){ groups.forEach(function(g){ if(g.__fitAll){ g.__fitAll(); } }); }, 60);
+  });
+
   var rt = null;
   window.addEventListener("resize", function(){
     if(rt){ clearTimeout(rt); }
@@ -3300,21 +3783,21 @@
   "use strict";
   var KEY="coralReefQuest.v2";
   var EGGS=[
-    {lv:1,left:"74%",top:"76%",ico:"🐚",name:"贝壳里的留言",lvName:"第一关 · 温度危机",
-     tip:"珊瑚虫其实是一只只小海葵，它们合伙盖了这座石头城。",
-     why:"温度计被拖到 35 ℃ 的时候，画面里是「珊瑚死了」—— 但那不是一块石头变了颜色，是几万只小海葵同时停止呼吸。所以我把这枚贝壳放在温度计的脚下。"},
-    {lv:2,left:"86%",top:"62%",ico:"🦀",name:"迷路的小蟹",lvName:"第二关 · 盐度逃生",
-     tip:"珊瑚礁的缝隙，是甲壳类最爱的托儿所。",
-     why:"这一关问的是「能不能住下来」。珊瑚先住下，缝隙才长出来；缝隙长出来，小蟹才有地方躲。它说迷路，是因为家本来就在礁里。"},
-    {lv:3,left:"70%",top:"84%",ico:"🐙",name:"深水里的章鱼",lvName:"第三关 · 阳光猜猜看",
-     tip:"30 米以下光只剩几个百分点，珊瑚就住不下去了。",
-     why:"光够不够，人眼是看不出来的。滑到那个深度，画面暗下去，珊瑚悄悄退场，章鱼还留在原地 —— 它是「光不够了」这件事唯一的证人。"},
-    {lv:4,left:"26%",top:"82%",ico:"🐠",name:"躲进海藻的鱼",lvName:"第四关 · 施肥陷阱",
-     tip:"藻长起来，鱼先变多 —— 但那是另一批鱼。",
-     why:"富营养化不是「海变丑了」，是「住在里面的换了一批」。这条小鱼躲得很自在，可它属于后来的那一批，不是原来那群。"},
-    {lv:8,left:"90%",top:"16%",ico:"⭐",name:"最后的星星",lvName:"第八关 · 终极生存挑战",
-     tip:"八个条件同时满足的地方，不到海洋面积的 0.1%。",
-     why:"八个滑块都推对的那一刻，才有这颗星。它不算奖励 —— 它就是「刚好」这件事本身，出现得少，才值得抬头看一眼。"}
+    {lv:1,left:"74%",top:"76%",ico:"🐚",name:T("贝壳里的留言"),lvName:T("第一关 · 温度危机"),
+     tip:T("珊瑚虫其实是一只只小海葵，它们合伙盖了这座石头城。"),
+     why:T("温度计被拖到 35 ℃ 的时候，画面里是「珊瑚死了」—— 但那不是一块石头变了颜色，是几万只小海葵同时停止呼吸。所以我把这枚贝壳放在温度计的脚下。")},
+    {lv:2,left:"86%",top:"62%",ico:"🦀",name:T("迷路的小蟹"),lvName:T("第二关 · 盐度逃生"),
+     tip:T("珊瑚礁的缝隙，是甲壳类最爱的托儿所。"),
+     why:T("这一关问的是「能不能住下来」。珊瑚先住下，缝隙才长出来；缝隙长出来，小蟹才有地方躲。它说迷路，是因为家本来就在礁里。")},
+    {lv:3,left:"70%",top:"84%",ico:"🐙",name:T("深水里的章鱼"),lvName:T("第三关 · 阳光猜猜看"),
+     tip:T("30 米以下光只剩几个百分点，珊瑚就住不下去了。"),
+     why:T("光够不够，人眼是看不出来的。滑到那个深度，画面暗下去，珊瑚悄悄退场，章鱼还留在原地 —— 它是「光不够了」这件事唯一的证人。")},
+    {lv:4,left:"26%",top:"82%",ico:"🐠",name:T("躲进海藻的鱼"),lvName:T("第四关 · 施肥陷阱"),
+     tip:T("藻长起来，鱼先变多 —— 但那是另一批鱼。"),
+     why:T("富营养化不是「海变丑了」，是「住在里面的换了一批」。这条小鱼躲得很自在，可它属于后来的那一批，不是原来那群。")},
+    {lv:8,left:"90%",top:"16%",ico:"⭐",name:T("最后的星星"),lvName:T("第八关 · 终极生存挑战"),
+     tip:T("八个条件同时满足的地方，不到海洋面积的 0.1%。"),
+     why:T("八个滑块都推对的那一刻，才有这颗星。它不算奖励 —— 它就是「刚好」这件事本身，出现得少，才值得抬头看一眼。")}
   ];
 
   var found={};
@@ -3425,8 +3908,8 @@
     sheetLead.hidden=true;
     dexList.hidden=true;
     dexList.textContent="";
-    sheetCnt.textContent=count()+" / 5 已找到";
-    sheetOk.textContent="继续寻找";
+    sheetCnt.textContent=count()+T(" / 5 已找到");
+    sheetOk.textContent=T("继续寻找");
     openSheet();
   }
 
@@ -3434,13 +3917,13 @@
     if(!sheet)return;
     sheetMode="dex";
     sheet.classList.add("dex");
-    sheetNo.textContent="隐藏收藏 · 共 5 枚";
-    sheetTitle.textContent="礁石里的五句悄悄话";
+    sheetNo.textContent=T("隐藏收藏 · 共 5 枚");
+    sheetTitle.textContent=T("礁石里的五句悄悄话");
     sheetIco.hidden=true;
     sheetTip.hidden=true;
     sheetWhyWrap.hidden=true;
     sheetLead.hidden=false;
-    sheetLead.innerHTML="这不是成就，也不解锁任何关卡。<b>它只是五个我舍不得删掉的小事实</b>，藏在画面里 —— 愿意多看一眼的人才碰得到。";
+    sheetLead.innerHTML=T("这不是成就，也不解锁任何关卡。<b>它只是五个我舍不得删掉的小事实</b>，藏在画面里 —— 愿意多看一眼的人才碰得到。");
     dexList.hidden=false;
     dexList.textContent="";
     EGGS.forEach(function(e,i){
@@ -3454,18 +3937,18 @@
       tx.className="tx";
       var nm=document.createElement("div");
       nm.className="nm";
-      nm.textContent=got?e.name:"尚未找到";
+      nm.textContent=got?e.name:T("尚未找到");
       var dt=document.createElement("div");
       dt.className="dt";
-      dt.textContent=got?e.tip:("在"+e.lvName+"的画面里");
+      dt.textContent=got?e.tip:(T("在")+e.lvName+T("的画面里"));
       tx.appendChild(nm);
       tx.appendChild(dt);
       li.appendChild(ic);
       li.appendChild(tx);
       dexList.appendChild(li);
     });
-    sheetCnt.textContent=count()+" / 5 已找到";
-    sheetOk.textContent=(count()===5?"看看结局":"继续寻找");
+    sheetCnt.textContent=count()+T(" / 5 已找到");
+    sheetOk.textContent=(count()===5?T("看看结局"):T("继续寻找"));
     openSheet();
   }
 
@@ -3493,7 +3976,7 @@
     b.style.left=e.left;
     b.style.top=e.top;
     b.textContent=e.ico;
-    b.setAttribute("aria-label","彩蛋");
+    b.setAttribute("aria-label",T("彩蛋"));
     if(found[i+1])b.classList.add("found");
     b.addEventListener("click",function(){
       if(b.classList.contains("found"))return;
@@ -3504,11 +3987,11 @@
       persist();
       paintBadge();
       var n=count();
-      say("找到彩蛋 "+n+"/5 · "+e.name);
+      say(T("找到彩蛋 ")+n+"/5 · "+e.name);
       if(n===5){ pendingFinale=true; }
       setTimeout(function(){
         openEgg(i);
-        if(n===5){ sheetOk.textContent="看看结局"; }
+        if(n===5){ sheetOk.textContent=T("看看结局"); }
       },520);
     });
     stage.appendChild(b);
@@ -3518,7 +4001,7 @@
 
   var badge=document.getElementById("eggBadge");
   if(badge){
-    badge.setAttribute("title","看看这五枚彩蛋都是什么");
+    badge.setAttribute("title",T("看看这五枚彩蛋都是什么"));
     badge.addEventListener("click",openDex);
   }
 
@@ -3530,6 +4013,74 @@
   }
   if(close)close.addEventListener("click",hideFinale);
   if(ok)ok.addEventListener("click",hideFinale);
+})();
+</script>
+<script id="i18n-en" type="application/json">{"t0":"Coral<em>Reef Quest<\/em>","t1":"Eight levels, eight survival limits.<br>From temperature to light, from substrate to calcification — one at a time, <b>shown to you<\/b>.","t2":"Enter the reef<span>→<\/span>","t3":"8 levels<i>·<\/i>~15 min<i>·<\/i>keyboard friendly","t4":"Cover","t5":"<span class=\"tb-name\" id=\"tbName\">Heat Crisis<\/span><span class=\"tb-pos\" id=\"tbPos\">LEVEL 01 / 08<\/span>","t6":"↺ Reset","t7":"Level 01","t8":"Heat Crisis","t9":"<b>Alive ≠ a reef<\/b>; heat bleaches, more heat kills — <b>bleaching is reversible, death is not<\/b>.","t10":"Reef thickness","t11":"Reset reef","t12":"Drag the slider and watch what happens to this reef at different temperatures.","t14":"Eight bands, eight cards — from frozen to cooked, only a narrow stretch can build reef","t15":"Join the eight bands and you get a curve that is <b>narrow in the middle and steep at both ends<\/b>: only <b>23–29 °C<\/b> gives net growth. Going colder, calcification stops first and then the coral freezes. Going warmer, it expels its algae to protect itself, runs out of food, and the tissue dies.<br>Both ends kill, but differently — <b>heat starves it, cold freezes it<\/b>. The 16.5–18 °C band is the easiest to overlook: still alive, already unable to build reef.","t16":"<span class=\"fnum\">＜ 16.5 ℃<\/span><span class=\"frange\">rate −2.2<\/span>","t17":"Cold bleaching → death","t18":"It fades to grey-white, tissue begins to slough off, and only skeleton is left — the second-fastest decline after total death.","t19":"Tap to see why →","t20":"<b>＜ 16.5 ℃ · cold bleaching → death<\/b><span>tap again to flip back<\/span>","t21":"What you see","t22":"It fades to grey-white, tissue sloughs off, only skeleton remains. Rate −2.2 — the fastest decline apart from total death.","t23":"Why","t24":"Corals are ectotherms: body temperature follows the water. Below the limit, <b>cell membranes lose fluidity<\/b>, membrane proteins and enzymes barely turn, calcification enzymes fall to near zero, and the symbionts stop photosynthesising too.","t25":"With too little heat the whole metabolic chain jams — not \"slower\", but <b>stalled<\/b>. Cold snaps kill corals just as heatwaves do; this is the half the public usually forgets.","t26":"<span class=\"fnum\">16.5 – 18 ℃<\/span><span class=\"frange\">rate 0<\/span>","t27":"Alive, but cannot build reef","t28":"The colour is still there, it looks fine, it will not die — but the growth bar does not move at all.","t29":"<b>16.5–18 ℃ · alive, but no reef<\/b><span>tap again to flip back<\/span>","t30":"The colour is still there, no sign of disease, it will not die — but the growth bar does not move at all.","t31":"This is the sharpest point in the level. Below 18 °C calcification essentially stops; the coral merely keeps a minimum metabolism running.","t32":"The key distinction: <b>a coral is an organism; a reef is a landform made of piled-up calcium carbonate<\/b>. An organism can be alive and deposit no calcium carbonate at all — that is a living colony, not a reef. So the rate here is 0, with the label \"alive does not mean reef-building\". A reef exists only when <b>net growth is positive<\/b>, not merely when nothing has died.","t33":"<span class=\"fnum\">18 – 23 ℃<\/span><span class=\"frange\">rate +0.3<\/span>","t34":"Alive, growing very slowly","t35":"Normal colour, the coral slowly gets bigger, the growth bar creeps up — but you cannot see it at a glance.","t36":"<b>18–23 ℃ · alive, growing slowly<\/b><span>tap again to flip back<\/span>","t37":"This range is above the survival floor: calcification enzymes work again, but at about half their optimum activity (<b>+0.3 versus +1.7 — nearly six times lower<\/b>), and symbiont photosynthesis is weak, so the energy supply is limited.","t38":"The result is \"it grows, but looks like it doesn't\". In reality, reef thickening at this rate loses the race against sea-level rise and erosion — still a net loss over time.","t39":"<span class=\"fnum\">23 – 29 ℃<\/span><span class=\"frange\">rate +1.7<\/span>","t40":"Optimum growth","t41":"Photosynthesis at its peak, rapid calcification, the reef visibly thickens — the only high-growth band in the level.","t42":"<b>23–29 ℃ · optimum growth<\/b><span>tap again to flip back<\/span>","t43":"Photosynthesis at its peak, rapid calcification, the reef visibly thickens. Rate +1.7 — the only high-growth band in the level.","t44":"A coral carries <b>two temperature-response curves, and their peaks do not coincide<\/b>: the symbionts' photosynthesis prefers warmer water, the coral's own calcification prefers slightly cooler. Where the curves overlap is 23–29 °C.","t45":"In that window energy supply and skeleton-building efficiency both peak. It also explains why reefs sit only in the tropics and subtropics, with a boundary matching the <b>coldest-month isotherm of 18 °C<\/b> — not the annual mean, the coldest month.","t46":"<span class=\"fnum\">29 – 30.5 ℃<\/span><span class=\"frange\">rate +0.5<\/span>","t47":"Getting tense","t48":"A few symbionts are expelled — brown specks drift upward; growth slows sharply and the colour fades a little.","t49":"<b>29–30.5 ℃ · getting tense<\/b><span>tap again to flip back<\/span>","t50":"The coral starts expelling a small share of its symbionts — brown specks drift upward; growth slows sharply (rate 1.7 → 0.5) and the colour fades.","t51":"Just past the comfort limit, the symbionts' photosynthetic machinery takes mild damage. Under heat stress the electron transport chain backs up, and surplus electrons go to oxygen, producing <b>reactive oxygen species<\/b> — molecules that damage proteins and membranes. The coral's first response is to expel some algae and cut the source.","t52":"Note that this damage is <b>repairable<\/b>. If the water cools in time the algae are taken back and little trace remains — which is why a short heatwave and a long one end so differently.","t53":"<span class=\"fnum\">30.5 – 32 ℃<\/span><span class=\"frange\">rate −1.1<\/span>","t54":"Bleached, not yet dead","t55":"More than 90% of symbionts expelled, colour bleached white as if dyed out; it starts to shrink.","t56":"<b>30.5–32 ℃ · bleached, not dead<\/b><span>tap again to flip back<\/span>","t57":"The coral expels more than 90% of its symbionts and turns completely white, as if bleached. Rate turns negative (−1.1) and it starts to shrink.","t58":"This is where \"self-preservation\" and \"self-destruction\" overlap. Reactive-oxygen damage is past the threshold, so the coral must clear the algae out to save its own cells — but the algae supply <b>over 90% of its food<\/b>, so clearing them out means cutting off the food.","t59":"It is not dead yet — just in a shock state living off reserves, able to hold on for weeks. So <b>bleaching is only loss of colour, not death<\/b>; if the water cools in time the algae return and it browns again. This is the most important distinction in the level.","t60":"<span class=\"fnum\">32 – 34.5 ℃<\/span><span class=\"frange\">rate −2.2<\/span>","t61":"Mass mortality","t62":"The algae are gone, tissue begins to necrose and slough off, white skeleton shows through.","t63":"<b>32–34.5 ℃ · mass mortality<\/b><span>tap again to flip back<\/span>","t64":"The algae are gone, tissue begins to necrose and slough off, bare white skeleton appears. Rate −2.2.","t65":"Bleaching only cuts the supply — the coral can live on stored lipids and proteins for a while. But under sustained heat that reserve does not last long, and the heat keeps damaging tissue: cells necrose, tissue peels off the skeleton.","t66":"At this point <b>even cooling the water cannot save it<\/b>: the tissue is gone, only skeleton remains, with nothing left to recover. Once it stops at bleaching, death is only a matter of time.","t67":"<span class=\"fnum\">＞ 34.5 ℃<\/span><span class=\"frange\">rate −9<\/span>","t68":"Total death","t69":"The whole reef turns white, then algae cover it, and the growth bar goes to zero.","t70":"<b>＞ 34.5 ℃ · total death<\/b><span>tap again to flip back<\/span>","t71":"The whole reef turns white, then algae cover it, and the growth bar drops to zero. Rate −9.","t72":"Reef-building corals top out around 34 °C. Above that, <b>proteins denature and metabolism collapses<\/b>; shallow water heats faster, sometimes within hours.","t73":"This is not \"80% bleached\" — this is dead. Afterwards the skeleton lies bare, gets covered by algae, and the reef stops growing.","t74":"The front shows what you see · tap to flip for the explanation · each level's threshold is the range on its cards","t75":"Level 02","t76":"Salinity Escape","t77":"<b>Keep well away from river mouths<\/b> — low salinity causes osmotic stress.","t78":"Click the three zones in the water and pick a home for it","t79":"Let it try again","t80":"A coral larva (planula) is drifting — it needs to find the right water to settle in.","t81":"<span class=\"ico\">?<\/span><span class=\"tx\"><b>Observation Room · Why can't salinity drift either way?<\/b><em>Four cards — 35‰ costs least, fresher means pumping water out, saltier means holding water in<\/em><\/span><span class=\"arw\">▼<\/span>","t82":"Four cards — 35‰ costs least, fresher means pumping water out, saltier means holding water in","t83":"Salinity has no \"more is better\" — just <b>one cheapest point<\/b>: near 35‰, seawater and coral body fluid are isotonic, so water stops moving either way. Going fresher, water pushes into the cells and the coral must pump it out; going saltier, water is pulled out and the coral must hold on to it — <b>both directions burn the same money<\/b>, money that would otherwise go into skeleton. Below 30‰ the problem stops being \"expensive\" and becomes \"fatal\".","t84":"<span class=\"fnum\">33 – 36‰<\/span><span class=\"frange\">isotonic · cheapest<\/span>","t85":"It does nothing at all","t86":"No pumping out, no holding in — it just sits on the rock and puts all its energy into skeleton.","t87":"<b>33–36‰ · isotonic<\/b><span>tap again to flip back<\/span>","t88":"The polyp neither expels nor takes up water, tentacles spread, calcification at its fastest — open-ocean reefs grow thickest.","t89":"<b>35‰ is the isotonic point<\/b> between seawater and coral body fluid. With equal concentrations inside and out, water molecules show no net movement, so osmoregulation costs almost nothing.","t90":"Every bit of energy saved becomes calcium carbonate. That is why the open-ocean patch in Level 2 grows best — not because there is more food, but because <b>keeping the body fluid balanced costs nothing<\/b>.","t91":"<span class=\"fnum\">30 – 32‰<\/span><span class=\"frange\">fresher · pump out<\/span>","t92":"Alive, but uncomfortable","t93":"It survives, grows slowly, skeleton thin — this is the \"nearshore\" band in Level 2.","t94":"<b>30–32‰ · fresher<\/b><span>tap again to flip back<\/span>","t95":"Normal colour and still growing, but noticeably slower, with a thinner, more brittle skeleton.","t96":"Outside is fresher, so water follows the osmotic gradient into the cells. The coral has to run a \"bilge pump\" to push the excess out. The pump burns energy — <b>energy that was meant for calcification<\/b>.","t97":"Corals are osmoconformers without a true osmoregulatory organ; they rely on ion pumps at the cell level, which are not very efficient. So even 3‰ fresher shows up immediately in growth rate.","t98":"<span class=\"fnum\">36 – 38‰<\/span><span class=\"frange\">saltier · hold water<\/span>","t99":"Now it has to ration water","t100":"Tissue tightens, growth slows — a common situation in arid seas.","t101":"<b>36–38‰ · saltier<\/b><span>tap again to flip back<\/span>","t102":"The polyp contracts, tentacles stay closed, growth slows, and in extremes it expels its symbionts.","t103":"Outside is saltier, so water is drawn out of the cells. The coral must <b>hold water<\/b> instead: synthesise compatible solutes and raise its internal osmotic pressure — again an extra cost.","t104":"The northern Red Sea evaporates strongly and reaches over 40‰ — reefs do exist there, but far fewer species survive. That is \"not impossible to live there, just expensive\".","t105":"<span class=\"fnum\">＜ 30‰<\/span><span class=\"frange\">cells give way<\/span>","t106":"Water keeps flooding in","t107":"Tissue swells, deforms, and finally dies — this is the river-mouth ending.","t108":"<b>＜ 30‰ · lethal<\/b><span>tap again to flip back<\/span>","t109":"The polyp swells with water, tissue peels off the skeleton, and it dies within hours to days. This is what clicking \"river mouth\" in Level 2 shows.","t110":"Outside is far too fresh and water keeps seeping into the cells; the coral's pump <b>cannot keep up with the inflow<\/b>, cells burst, and enzymes and membranes fail together.","t111":"Big river mouths stay below 25‰ all year, which is why almost no fringing reefs exist near them — not because no larvae drift in, but because <b>larvae that drift in cannot survive<\/b>.","t112":"Four cards, three candidate waters in Level 2: open ocean ≈ 35‰, nearshore ≈ 30‰, river mouth ≈ 18‰.","t113":"Level 03","t114":"Guess the Light","t115":"<b>Too little light<\/b> and the symbionts cannot photosynthesise — the coral starves.","t116":"Drag the coral to different depths (or just click in the water)","t117":"Switch to \"turbid water\"","t118":"Light","t119":"Drag the coral, or click anywhere in the water column to move it up and down.","t120":"<span class=\"ico\">?<\/span><span class=\"tx\"><b>Observation Room · What is light actually rationing?<\/b><em>Three cards — surplus, break-even, sustained deficit<\/em><\/span><span class=\"arw\">▼<\/span>","t121":"Three cards — surplus, break-even, sustained deficit","t122":"Light in this level is really about <b>budget<\/b>: at ≥ 20% photosynthesis covers respiration with a surplus, and that surplus is the capital for calcification; at 8–20% it barely breaks even — alive, but no spare money for skeleton; below 8% it drops under the compensation point and starts eating reserves. <b>It is not injured, it is chronically in deficit<\/b> — a completely different death from the heat damage in Level 1.","t123":"<span class=\"fnum\">≥ 20%<\/span><span class=\"frange\">surplus<\/span>","t124":"Full sunlight","t125":"Rich colour, and tiny yellow specks flickering on the surface — those are the symbionts photosynthesising.","t126":"<b>≥ 20% · full sunlight<\/b><span>tap again to flip back<\/span>","t127":"Rich colour, flickering yellow points on the surface (the game uses them for symbiont photosynthesis), normal growth.","t128":"Zooxanthellae are the coral's <b>solar panels<\/b>. With enough light, the sugar and oxygen they produce cover the coral's own respiration <b>and leave a large surplus<\/b> — and that surplus is the entire income for calcification, growth and reproduction.","t129":"So this band is not \"just enough\" — it is <b>saving money<\/b>. The reason reefs can pile up into landforms this large is exactly that surplus.","t130":"<span class=\"fnum\">8% – 20%<\/span><span class=\"frange\">break-even<\/span>","t131":"Still holding on","t132":"Colour fades, growth slows, but it is not dead — this is the yellow warning band.","t133":"<b>8–20% · weakening<\/b><span>tap again to flip back<\/span>","t134":"Colour fades and growth slows, but the tissue is intact and nothing has died.","t135":"Photosynthetic income falls to roughly break-even, and the coral does something very practical: <b>it lowers the density of symbionts in its tissue<\/b>. Fewer algae means less autotrophic burden — but also less colour, because a coral's colour is the algae's colour, not its own pigment.","t136":"So \"fading\" is not decoration: it is <b>shutting down some of its own power plants<\/b>. It also extends tentacles to catch zooplankton, but that intake is nowhere near the scale of photosynthesis. The budget barely balances: alive, tissue maintained, almost nothing left for skeleton, and reef thickening essentially stops.","t137":"<span class=\"fnum\">＜ 8%<\/span><span class=\"frange\">deficit<\/span>","t138":"Too dark — slowly starving","t139":"Grey-white or grey-brown, shrunken, the light points gone completely.","t140":"<b>＜ 8% · too dark<\/b><span>tap again to flip back<\/span>","t141":"The coral turns grey-white or grey-brown, shrinks, and the light points vanish. It is not getting ugly — it is slowly starving.","t142":"Light drops below the <b>compensation point<\/b>: photosynthetic output is now lower than respiratory demand. At that point the symbionts stop supplying energy and become a net burden, and the coral can only burn its stored lipids and proteins.","t143":"With too little energy even maintaining tissue is hard, and skeleton building halts; over time the tissue thins, recedes, and dies. The key point: <b>it is not being harmed, it is chronically short of energy<\/b> — the heat level kills by tissue damage, this level kills by sustained deficit.","t144":"Level 04","t145":"The Fertilizer Trap","t146":"<b>The more nutrients, the more algae<\/b>; the coral loses light and space, and dies.","t147":"Add grazing fish","t148":"Coral","t149":"Algae","t150":"Start over","t151":"Lean water, only a few tufts of algae, coral doing well. Try pushing the nutrients up?","t152":"<span class=\"ico\">?<\/span><span class=\"tx\"><b>Observation Room · Why do the algae win?<\/b><em>Four stages, four cards — open one to see what happens at each step<\/em><\/span><span class=\"arw\">▼<\/span>","t153":"Four stages, four cards — open one to see what happens at each step","t154":"The four stages are four links in one chain: <b>nutrients fill the limiting gap → algae win by speed → shading starves the coral → once the coral is gone, algal mats seal the hard substrate and the fish disperse, each of the three locks tightening<\/b>. The core is <b>the shading feedback<\/b>: more algae → less light → weaker coral → easier for algae to spread. Once that loop starts, it accelerates itself.","t155":"<span class=\"fnum\">Stage 01<\/span><span class=\"frange\">0 – 14<\/span>","t156":"Lean water","t157":"Good — and invisibly good","t158":"Water is crystal clear, visibility tens of metres; coral colour saturated; algae only in a few tufts, tucked into crevices and dead-coral corners.","t159":"<b>Stage 01 · lean water<\/b><span>tap again to flip back<\/span>","t160":"Why it is good","t161":"Nitrogen and phosphorus are the <b>limiting factors<\/b> here: the algae cannot get raw material, so they cannot grow even if they try. Corals do not live off nutrients in the water — they farm symbionts inside their tissue, recycle their own metabolic waste, and can also extend tentacles to catch zooplankton for extra nitrogen.","t162":"That produces two completely different strategies: <b>algae outsource — they live off whatever the water delivers; corals run a closed loop and feed themselves<\/b>. When resources are scarce the closed loop wins; when nutrients are abundant the outsourced strategy explodes. So reefs do not \"like barren water\" — barren water is simply the only place where they win the competition.","t163":"<span class=\"fnum\">Stage 02<\/span><span class=\"frange\">15 – 39<\/span>","t164":"Algae appear","t165":"Starting to go bad — almost invisibly","t166":"Green tufts push up between the corals; the surface still looks like \"a reef\", coverage has only dropped a little. This is the stage most easily mistaken for fine.","t167":"<b>Stage 02 · algae appear<\/b><span>tap again to flip back<\/span>","t168":"Green tufts push up between the corals; the surface still looks like \"a reef\", coverage has only dropped a little. This stage is the easiest to misjudge as harmless.","t169":"Why it starts going wrong","t170":"The limiting factor has been filled in. Once algae get nitrogen and phosphorus they convert it straight into biomass — <b>they can double within weeks<\/b> — while a coral builds skeleton like a limestone project, <b>one or two centimetres a year<\/b>. The two speeds are not in the same league: the slightest easing on the supply side tips the competition towards the algae.","t171":"Why you cannot see it","t172":"Because two buffers remain: herbivorous fish eat part of the algae, and the living coral is still growing. At this stage the algae look \"held down\", not gone — <b>remove the grazers now and within weeks you jump straight to stage four<\/b>. It also explains why so many reefs look like they were \"fine yesterday\": what disappeared was not the buffer, but the stability you assumed.","t173":"<span class=\"fnum\">Stage 03<\/span><span class=\"frange\">40 – 71<\/span>","t174":"The surface is taken","t175":"The damage shows — the mechanism is starvation, not poisoning","t176":"Green joins into sheets; corals shrink, colour pales, edges wrapped in algal mat and sediment; the water starts to cloud.","t177":"<b>Stage 03 · surface taken<\/b><span>tap again to flip back<\/span>","t178":"The key mechanism is <b>shading<\/b>. Algae grow above the coral and intercept the light, so photosynthesis inside the coral drops and its energy budget goes into the red. The coral must also spend extra energy cleaning algae and silt off itself, so it stops growing and starts shrinking. <b>It is not poisoned — it is shaded, out-competed for space, and slowly starved.<\/b>","t179":"The second consequence: the white skeleton left behind gets covered by algae and sediment. Once that layer closes over, the surface is shut to coral larvae — <b>the next generation has nowhere to settle<\/b>.","t180":"<span class=\"fnum\">Stage 04<\/span><span class=\"frange\">≥ 72<\/span>","t181":"Phase shift, locked in","t182":"Bad enough to change hands — and it does not change back","t183":"Almost entirely green, corals reduced to white skeletons, turbid water, and the fish community has changed too.","t184":"<b>Stage 04 · locked in<\/b><span>tap again to flip back<\/span>","t185":"Why it is hard to reverse","t186":"Three locks reinforce each other:","t187":"<b>The shading feedback<\/b>: more algae → less light → weaker coral → easier for algae to spread.","t188":"<b>Recruitment cut off<\/b>: the hard substrate is sealed by algal mat, larvae have nowhere to attach, and no new individuals arrive to take over.","t189":"<b>The cleaners are gone too<\/b>: the coral's three-dimensional structure is the fish's \"housing\"; when the coral dies the structure collapses, grazers decline, and grazing pressure weakens further.","t190":"Level 05","t191":"Home Hunt","t192":"<b>It needs hard substrate to attach to<\/b>; water that is too still silts up, water that is too strong breaks branches.","t193":"① First pick a seabed and let the larva settle","t194":"Little coral","t195":"A coral larva is drifting. It first needs a seabed it can grip — click rock, sand, gravel or coral limestone.","t196":"Level 06","t197":"Build a Skeleton","t198":"<b>pH and calcium carbonate saturation<\/b> decide how hard calcification is; <b>dissolved oxygen<\/b> decides whether it has the energy to build.","t199":"Aragonite saturation Ω","t200":"This seawater is at pH 8.15, close to calcium carbonate saturation — the coral is building skeleton normally.","t201":"Level 07","t202":"Globe Adventure","t203":"Only <b>within 30° of the equator<\/b>; and it must <b>avoid river mouths and muddy coasts<\/b>.","t204":"← Turn left","t205":"Turn right →","t206":"You can also drag the globe","t207":"Click a number on the globe, or a place name below, and try planting a reef there.","t208":"Level 08","t209":"Final Challenge","t210":"All eight conditions must hold <b>at the same time<\/b> — which is why reefs are so precious and so fragile.","t211":"Start challenge","t212":"Survived","t213":"Score","t214":"Reef health","t215":"Press \"Start challenge\". Random disasters keep hitting; you must bring all eight indicators back into the green — miss one and the reef collapses.","t216":"<span class=\"ico\">?<\/span><span class=\"tx\"><b>Observation Room · Eight lines — which one are you standing on?<\/b><em>The green/yellow limits for all eight indicators, plus which cell each disaster moves<\/em><\/span><span class=\"arw\">▼<\/span>","t217":"The green/yellow limits for all eight indicators, plus which cell each disaster moves","t218":"<b>Not one of the eight is a \"close enough\"<\/b>. Green is the narrow band where nothing is spent on compensation and net growth is still positive; yellow is \"alive, but overdrawn\"; in red the coral is either losing money or cannot live there at all. The disasters follow the same logic: <b>each one moves exactly one cell<\/b>, forcing you to see which cell was pushed — because in reality you also need to know who did it before you can fix it.","t219":"Eight indicators · green / yellow","t220":"<b>Temperature<\/b><span class=\"g\">23–29 ℃<\/span><span class=\"y\">20–23 · 29–30.5<\/span>","t221":"The overlap of the two temperature optima — symbiont photosynthesis and coral calcification. Outside it, the coral is running at the edge.","t222":"<b>Salinity<\/b><span class=\"g\">32–36‰<\/span><span class=\"y\">30–32 · 36–38<\/span>","t223":"At 35‰ inside and outside are isotonic, so nothing extra is spent; fresher means pumping water out, saltier means holding it in — both cut the energy available for growth.","t224":"<b>Light<\/b><span class=\"g\">≥ 20%<\/span><span class=\"y\">8–20%<\/span>","t225":"20% is the threshold where photosynthetic income covers respiration and still has something left; below it the coral lives on reserves.","t226":"<b>Nutrients<\/b><span class=\"g\">≤ 20<\/span><span class=\"y\">20–40<\/span>","t227":"Nutrients feed the algae, not the coral; above 40 the algae take over the reef surface in sheets.","t228":"<b>Current<\/b><span class=\"g\">30–70<\/span><span class=\"y\">15–30 · 70–85<\/span>","t229":"Below 30 silt builds up and oxygen drops; above 70 branches snap. The middle is where flow delivers oxygen and food without tearing the reef apart.","t230":"pH sets how much carbonate is available, and carbonate is the raw material for skeleton; below 7.9 the skeleton gets thinner and more brittle.","t231":"<b>Substrate<\/b><span class=\"g\">hard bottom<\/span><span class=\"y\">mud · straight to red<\/span>","t232":"No yellow buffer — larvae simply cannot attach to soft mud. This counts as \"cannot attach\", not \"barely settled\".","t233":"<b>Location<\/b><span class=\"g\">tropics<\/span><span class=\"y\">high latitude · straight to red<\/span>","t234":"Also a binary choice, because winter water at high latitudes drops below the coral's survival limit. It is not a matter of degree.","t235":"Seven disasters · each moves one cell","t236":"<span class=\"fnum\">Disaster 01<\/span><span class=\"frange\">temp +2~3 ℃<\/span>","t237":"Global warming","t238":"One hit pushes 25 ℃ to 27–28 ℃; two hits in a row cross the 29 ℃ yellow line.","t239":"<b>Global warming · temp +2~3 ℃<\/b><span>tap again to flip back<\/span>","t240":"Which cell it moves","t241":"Temperature. In reality this is a heatwave, and of the eight variables it is <b>the hardest to control on site<\/b> — you cannot air-condition an entire sea.","t242":"Why it is dangerous","t243":"25 ℃ plus 3 ℃ is 28 ℃, still on the edge of green; but heatwaves tend to come in a row — the second crosses 29 ℃, the third lands in the bleaching zone above 30.5 ℃.","t244":"It also explains why \"an especially hot summer\" is far scarier than \"0.5 ℃ above average\": it is the peak that kills the coral.","t245":"<span class=\"fnum\">Disaster 02<\/span><span class=\"frange\">salinity −3.5~5.5‰<\/span>","t246":"Torrential rain","t247":"35‰ drops straight to 29.5–31.5‰ — from green into yellow, or even red.","t248":"<b>Torrential rain · salinity −3.5~5.5‰<\/b><span>tap again to flip back<\/span>","t249":"Salinity. Rain and runoff flush fresh water into the shallows — this is the <b>temporary version<\/b> of \"river mouths are unlivable\" from Level 2.","t250":"A reef at 35‰ in open water can have its surface salinity pushed below 30‰ within hours by a typhoon downpour. The coral cannot adjust fast enough, and its pumps cannot keep up with the fresh water.","t251":"So nearshore reefs in the real world are often not killed by heat — they are knocked out by <b>one heavy rain<\/b>.","t252":"<span class=\"fnum\">Disaster 03<\/span><span class=\"frange\">nutrients +16~26<\/span>","t253":"Sewage discharge","t254":"8 → 24–34: one hit puts it in yellow, two break 40 and turn it red.","t255":"<b>Sewage discharge · nutrients +16~26<\/b><span>tap again to flip back<\/span>","t256":"Nutrients. This is the door into Level 4, and the most common one in reality.","t257":"Domestic sewage, agricultural fertiliser, aquaculture feed — all of it ends up as nitrogen and phosphorus in the water. Corals do not need them; <b>algae very much do<\/b>.","t258":"And algae can double in weeks while a coral grows one or two centimetres a year — the moment the supply side loosens, the competition tips instantly.","t259":"<span class=\"fnum\">Disaster 04<\/span><span class=\"frange\">current → above 70<\/span>","t260":"Typhoon","t261":"50 surges to 72–88 — straight to the top of yellow, or into the red.","t262":"<b>Typhoon · current surge<\/b><span>tap again to flip back<\/span>","t263":"Current. Note that it moves <b>not<\/b> temperature and <b>not<\/b> salinity — just this one cell.","t264":"Strong flow snaps branching corals (fast-growing, but brittle), washes larvae off suitable hard substrate, and stirs fine sand up over the reef surface.","t265":"In reality a typhoon brings sediment and cooling at the same time — the game simplifies it to one cell at a time, so you can see exactly which one was pushed.","t266":"<span class=\"fnum\">Disaster 05<\/span><span class=\"frange\">pH −0.06<\/span>","t267":"Ocean acidification","t268":"8.12 → 8.06 looks harmless; three hits is 7.94, below 8.0, and it turns yellow.","t269":"<b>Ocean acidification · pH −0.06<\/b><span>tap again to flip back<\/span>","t270":"pH. Small per hit, but it <b>accumulates<\/b> — this cell never recovers on its own.","t271":"pH sets how much carbonate the water holds, and carbonate is the raw material for skeleton. Below 7.9 calcium carbonate starts dissolving faster than it forms, and the skeleton thins and weakens.","t272":"The worst part: <b>you cannot rescue it by adjusting anything else<\/b>. Other cells can be pushed back to green, but pH only comes back when atmospheric CO₂ does.","t273":"<span class=\"fnum\">Disaster 06<\/span><span class=\"frange\">substrate → mud<\/span>","t274":"Coastal construction","t275":"Green to red with no yellow buffer — the only one of the seven that <b>cannot be repaired<\/b>.","t276":"<b>Coastal construction · substrate buried<\/b><span>tap again to flip back<\/span>","t277":"Substrate. Land reclamation, dredging, new piers — a layer of mud laid over hard bottom.","t278":"Why it is irreversible","t279":"Every other indicator can be pushed back to green, but not this one: larvae need <b>a hard surface they can grip<\/b>, and on soft mud they simply cannot attach. There is no \"barely settled\" option.","t280":"In the game you can only switch the substrate straight back to hard; in reality, removing a layer of mud takes decades — and first you have to stop adding more.","t281":"<span class=\"fnum\">Disaster 07<\/span><span class=\"frange\">nutrients +14<\/span>","t282":"Trawling","t283":"It looks like it catches fish; the actual effect is fertiliser — 8 jumps to 22 in one hit.","t284":"<b>Trawling · nutrients +14<\/b><span>tap again to flip back<\/span>","t285":"Nutrients. This is the cleverest design of the seven: it moves <b>the cell you cannot see<\/b>.","t286":"Why it equals fertilising","t287":"Once the grazers are fished out, nothing eats the algae, and the algae get a free nutrient advantage — that \"saved\" amount of grazing is, in effect, identical to extra fertiliser.","t288":"So \"overfishing ≈ fertilising\" is not a metaphor — <b>it is two descriptions of the same thing<\/b>: one fewer party carrying nutrients away.","t289":"The eight numbers come from the game's actual scoring function, and the seven disaster ranges are copied from its event table — not estimated.","t290":"Best viewed in <b>Chrome / Edge / Safari<\/b>","t291":"All five eggs found","t292":"You turned this reef from the surface all the way to the rubble — <b>that is genuinely great.<\/b><br>Reefs cover under 0.1% of the ocean, and they deserve this much attention.","t293":"Keep going","t294":"Easter egg","t295":"Why it sits here","t296":"Keep looking","k_temp":"Temperature","k_click2":"Click one of the three zones to pick a home","k_drag3":"Drag the coral to different depths (or click the water)","k_light":"Light","k_nut":"Nutrient level","k_coral":"Coral","k_algae":"Algae","k_step5":"① Pick a seabed and let the larva settle","k_flow":"② Current strength","k_baby":"Little coral","k_do":"Dissolved oxygen","k_omega":"Aragonite saturation Ω","k_globe":"You can also drag the globe","k_time":"Survived","k_score":"Score","k_hp":"Reef health","obs_t1":"Observation Room · Where does temperature break?","obs_t2":"Observation Room · Why can't salinity drift either way?","obs_t3":"Observation Room · What is light actually rationing?","obs_t4":"Observation Room · Why do the algae win?","obs_t8":"Observation Room · Eight lines — which one are you standing on?","home":"Cover","footer":"A simplified model for showing ecological relationships; values follow standard textbooks and the literature.<br>Best viewed in <b>Chrome / Edge / Safari<\/b> — anything you cannot drag, try clicking it."}</script>
+<script>
+/* ---------- 中 / EN 语言切换 ---------- */
+(function(){
+  "use strict";
+  var KEY="coralReefQuest.lang";
+  var dataEl=document.getElementById("i18n-en");
+  var EN={};
+  try{ EN=JSON.parse(dataEl.textContent); }catch(e){ EN={}; }
+  var els=Array.prototype.slice.call(document.querySelectorAll("[data-i18n]"));
+  els.forEach(function(el){ if(el.__zh===undefined){ el.__zh=el.innerHTML; } });
+  var lang="zh";
+  try{
+    var q=(location.search.match(/[?&]lang=(en|zh)/)||[])[1];
+    lang=q||localStorage.getItem(KEY)||"zh";
+  }catch(e){}
+  if(lang!=="en"){ lang="zh"; }
+
+  function paintBtn(b){
+    if(!b)return;
+    b.textContent=(lang==="en"?"中文":"EN");
+    b.classList.toggle("on",lang==="en");
+    b.title=(lang==="en"?T("切换回中文"):"Switch to English");
+  }
+
+  var TITLE_ZH=document.title;
+  function apply(l){
+    lang=(l==="en")?"en":"zh";
+    document.documentElement.setAttribute("lang", lang==="en"?"en":"zh-Hans");
+    document.title=(lang==="en"?"Coral Reef Quest · eight levels of reef science":TITLE_ZH);
+    els.forEach(function(el){
+      var en=EN[el.getAttribute("data-i18n")];
+      el.innerHTML=(lang==="en"&&en!=null)?en:el.__zh;
+    });
+    paintBtn(document.getElementById("langBtn"));
+    paintBtn(document.getElementById("langBtn2"));
+    try{ localStorage.setItem(KEY,lang); }catch(e){}
+    window.dispatchEvent(new CustomEvent("langchange",{detail:lang}));
+  }
+
+  window.coralLang=function(){ return lang; };
+  window.isCoralEN=function(){ return lang==="en"; };
+  window.setCoralLang=apply;
+
+  /* 场景里的文字是画出来的，切语言后重新载入当前关卡最稳妥 */
+  function reloadFor(target){
+    try{ localStorage.setItem(KEY,target); }catch(e){}
+    var base=location.href.split("#")[0].split("?")[0];
+    var lv=(location.search.match(/[?&]lv=([1-8])/))||[];
+    var qs=[];
+    if(lv[1]){ qs.push("lv="+lv[1]); }
+    if(target==="en"){ qs.push("lang=en"); }
+    location.replace(base+(qs.length?"?"+qs.join("&"):""));
+  }
+  function bind(id){
+    var b=document.getElementById(id);
+    if(!b)return;
+    b.addEventListener("click",function(){
+      var next=(lang==="en"?"zh":"en");
+      apply(next);
+      reloadFor(next);
+    });
+  }
+  bind("langBtn"); bind("langBtn2");
+
+  apply(lang);
 })();
 </script>
 </body>
