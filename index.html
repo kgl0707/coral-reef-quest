@@ -123,7 +123,7 @@
   .obs-open .arw{margin-left:auto;font-size:10px;color:#93A09B;transition:transform .22s}
   .obs-open.on .arw{transform:rotate(180deg)}
   .obs-body{margin-top:9px;padding:13px 14px 15px;background:#FBFBF7;border:1px solid #EDEADF;border-radius:12px;animation:fade .24s ease}
-  #obs4body[hidden]{display:none}
+  .obs-body[hidden]{display:none}
   .obs-sum{margin:0 0 12px;padding:11px 13px;background:#fff;border:1px solid #E7E3D8;border-left:3px solid #0F7C80;border-radius:9px;font-size:12.8px;line-height:1.72;color:#31443F}
   .obs-sum b{color:#0F5F63;font-weight:650}
   .flipgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;align-items:start}
@@ -215,6 +215,206 @@
         <button class="btn ghost" id="r1">重置礁体</button>
       </div>
       <div class="fb" id="f1">拖动滑块，看看不同水温下这片礁会发生什么。</div>
+
+      <!-- ---------- 观察室：温度到底卡在哪 ---------- -->
+      <div class="obs">
+        <button class="obs-open" id="obs1" type="button" aria-expanded="false" aria-controls="obs1body">
+          <span class="ico">?</span>
+          <span class="tx">
+            <b>观察室 · 温度到底卡在哪？</b>
+            <em>八段温度带，八张卡片 —— 从冻死到热死，中间只有一小段能成礁</em>
+          </span>
+          <span class="arw">▼</span>
+        </button>
+
+        <div class="obs-body" id="obs1body" hidden>
+          <p class="obs-sum">
+            把八段连起来，是一条<b>中间窄、两头陡</b>的曲线：只有 <b>23–29 ℃</b> 是净增长为正的窗口；往冷走，钙化先停、再冷就冻死；往热走，先排藻自保、排光就断粮、最后组织坏死。
+            两端都致命，但死法不同 —— <b>热是「饿死」，冷是「冻僵」</b>。而 16.5–18 ℃ 这一段最容易被忽略：它还活着，却已经造不出礁。
+          </p>
+
+          <div class="flipgrid">
+
+            <!-- 1 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#3C6E9E">
+              <div class="flip-in">
+                <div class="face front" data-n="1">
+                  <div class="ftop"><span class="fnum">＜ 16.5 ℃</span><span class="frange">速率 −2.2</span></div>
+                  <h4>冷白化 → 死亡</h4>
+                  <p class="fobs">珊瑚褪成灰白，组织开始脱落，最后只剩骨架 —— 下跌速度仅次于「全部死亡」。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>＜ 16.5 ℃ · 冷白化 → 死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>珊瑚褪成灰白，组织开始脱落，最后只剩骨架。速率 −2.2，是仅次于「全部死亡」下跌最快的一档。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>珊瑚是变温动物，体温跟着水温走。温度过低时，<b>细胞膜的流动性会明显下降</b>，膜上的蛋白和酶几乎转不动，钙化相关的酶活性基本归零；虫黄藻的光合也停了。</p>
+                    <p>热量不足让整个代谢链条卡住 —— 不是「慢一点」，而是<b>走不动</b>。所以寒潮和热浪一样能杀死珊瑚，这也是公众最容易漏掉的那一半。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#4A7A96">
+              <div class="flip-in">
+                <div class="face front" data-n="2">
+                  <div class="ftop"><span class="fnum">16.5 – 18 ℃</span><span class="frange">速率 0</span></div>
+                  <h4>活着，但造不出礁</h4>
+                  <p class="fobs">颜色还在，看不出病态，也死不了 —— 但生长条完全不动。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>16.5–18 ℃ · 活着，但造不出礁</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>珊瑚颜色还在，看不出病态，也死不了，但生长条完全不动。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>这一段是全关最锋利的一处。钙化在 18 ℃ 以下基本停摆，珊瑚只是维持最低限度的代谢在「撑着」。</p>
+                    <p>关键区分是：<b>珊瑚是一个生物，礁是一层碳酸钙堆积出来的地貌</b>。生物可以活着却完全不堆积碳酸钙 —— 那就只是一丛活着的珊瑚，不是礁。所以这一段速率是 0，并写明「能活不代表能成礁」。珊瑚礁真正的存在条件是<b>净增长为正</b>，而不只是「没死」。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2E8B74">
+              <div class="flip-in">
+                <div class="face front" data-n="3">
+                  <div class="ftop"><span class="fnum">18 – 23 ℃</span><span class="frange">速率 +0.3</span></div>
+                  <h4>活着，长得很慢</h4>
+                  <p class="fobs">颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>18–23 ℃ · 活着，长得很慢</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>颜色正常，珊瑚缓慢变大，生长条慢慢涨，但一眼看不出变化。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>这个区间已经脱离了生存下限，钙化酶重新开始工作，但活性只有最适温度的一半左右（<b>+0.3 对 +1.7，差了近六倍</b>）；虫黄藻的光合速率也偏低，供给的能量有限。</p>
+                    <p>结果就是「能长，但长得像没长」。现实中这样的礁体增厚速度，远赶不上海平面上升和侵蚀的速度，长期看仍然是亏的。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#2F8A4E">
+              <div class="flip-in">
+                <div class="face front" data-n="4">
+                  <div class="ftop"><span class="fnum">23 – 29 ℃</span><span class="frange">速率 +1.7</span></div>
+                  <h4>最佳生长期</h4>
+                  <p class="fobs">虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚 —— 全关唯一的高增长区。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>23–29 ℃ · 最佳生长期</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>虫黄藻光合效率最高，珊瑚快速钙化，礁体明显变厚。速率 +1.7，是全关唯一的高增长区。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>珊瑚体内有<b>两套温度响应曲线，峰值并不重合</b>：虫黄藻的光合作用偏好偏暖，珊瑚自身的钙化偏好略凉。两者曲线重叠的那一段，就是 23–29 ℃。</p>
+                    <p>在这个窗口里，能量供给最足、造骨效率也最高，两边同时达到高点。这也解释了为什么珊瑚礁只分布在热带和亚热带，而且分布边界恰好对应「<b>最冷月水温 18 ℃</b>」这条线 —— 不是年均温，是最冷的时候。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#B8971F">
+              <div class="flip-in">
+                <div class="face front" data-n="5">
+                  <div class="ftop"><span class="fnum">29 – 30.5 ℃</span><span class="frange">速率 +0.5</span></div>
+                  <h4>开始紧张</h4>
+                  <p class="fobs">开始少量排出虫黄藻，褐色小点往上飘；生长明显变慢，颜色略淡。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>29–30.5 ℃ · 开始紧张</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>珊瑚开始少量排出虫黄藻，能看到褐色小点往上飘；生长明显变慢（速率从 1.7 掉到 0.5），颜色略淡。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>刚越过舒适上限，虫黄藻的光合系统开始出现轻微损伤。热胁迫下，光合电子传递链会「堵车」，多余的电子传给氧气，生成<b>活性氧</b> —— 一种会破坏蛋白和膜的有害分子。珊瑚的第一反应是把一部分藻排掉，减少活性氧来源。</p>
+                    <p>但注意：这一段的损伤是<b>可修复</b>的。温度及时回落，藻会被重新摄回，几乎不留下后果 —— 这也是「短暂的热浪」和「持续的热浪」结局完全不同的原因。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C9762E">
+              <div class="flip-in">
+                <div class="face front" data-n="6">
+                  <div class="ftop"><span class="fnum">30.5 – 32 ℃</span><span class="frange">速率 −1.1</span></div>
+                  <h4>白化，但还没死</h4>
+                  <p class="fobs">排掉九成以上的虫黄藻，颜色彻底变白，像被漂过；开始缩小。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>30.5–32 ℃ · 白化，但还没死</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>珊瑚排掉九成以上的虫黄藻，颜色彻底变白，像被漂过。速率转为负值 −1.1，开始缩小。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>这是「自保」和「自杀」重叠的一段。活性氧的伤害已经超过阈值，珊瑚必须把藻全部清出去才能保住自己的细胞 —— 但藻是它 <b>90% 以上的口粮来源</b>，排干净就等于断了粮。</p>
+                    <p>它此刻并没有死，只是进入一种靠库存维生的休克状态，能撑几周。所以<b>白化只是掉色，还不等于死亡</b>；只要水温及时回落，它还能把藻请回来重新变褐。这是全关最重要的一个区分。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#C2453E">
+              <div class="flip-in">
+                <div class="face front" data-n="7">
+                  <div class="ftop"><span class="fnum">32 – 34.5 ℃</span><span class="frange">速率 −2.2</span></div>
+                  <h4>大面积死亡</h4>
+                  <p class="fobs">藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>32–34.5 ℃ · 大面积死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>藻已经排光，组织开始坏死、脱落，白色骨骼裸露出来，速率 −2.2。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>白化只是失去了供给，但珊瑚还可以靠体内储存的脂类和蛋白质撑一段时间。问题是持续高温下，这笔储备撑不了太久，而高温本身还在持续伤害组织 —— 细胞坏死、组织从骨架上剥离。</p>
+                    <p>到了这一步，<b>即使温度降回来也救不回来</b>：组织已经没了，只剩下骨骼，没有可以复原的活体。停在白化，死是迟早的事。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="flip" role="button" tabindex="0" aria-pressed="false" style="--ac:#8E2A24">
+              <div class="flip-in">
+                <div class="face front" data-n="8">
+                  <div class="ftop"><span class="fnum">＞ 34.5 ℃</span><span class="frange">速率 −9</span></div>
+                  <h4>全部死亡</h4>
+                  <p class="fobs">整片礁全白、随后被藻覆盖，生长条清零。</p>
+                  <span class="fmore">点开看为什么 →</span>
+                </div>
+                <div class="face back">
+                  <div class="btop"><b>＞ 34.5 ℃ · 全部死亡</b><span>再点一次翻回</span></div>
+                  <div class="blk"><span class="lb">现象</span>
+                    <p>整片礁全白、随后被藻覆盖，生长条清零，速率 −9。</p>
+                  </div>
+                  <div class="blk"><span class="lb">为什么</span>
+                    <p>造礁珊瑚的生存上限大致在 34 ℃ 上下。超过这个温度，<b>蛋白质会变性、代谢彻底崩掉</b>；浅水区升温更快，有时几小时就够。</p>
+                    <p>这里不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <p class="obs-tip">卡片正面是现象 · 点一下翻到背面看解释 · 每一关的判定线就是卡片上的区间</p>
+        </div>
+      </div>
     </section>
     <!-- ================= 第二关 ================= -->
     <section class="panel" id="lv2">
@@ -2293,66 +2493,76 @@
 })();
 </script>
 <script>
-/* ---------- 观察室：展开 + 卡片翻转 ---------- */
+/* ---------- 观察室：展开 + 卡片翻转（支持多组） ---------- */
 (function(){
-  var openBtn = document.getElementById("obs4");
-  var body = document.getElementById("obs4body");
-  if(!openBtn || !body) return;
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".obs"));
+  if(!groups.length){ return; }
 
-  var cards = Array.prototype.slice.call(body.querySelectorAll(".flip"));
+  function make(group){
+    var openBtn = group.querySelector(".obs-open");
+    var body = group.querySelector(".obs-body");
+    if(!openBtn || !body){ return; }
+    var cards = Array.prototype.slice.call(body.querySelectorAll(".flip"));
+    if(!cards.length){ return; }
 
-  /* 两面高度不同：按当前朝向把容器撑到对应高度，内容永远不会被裁掉 */
-  function fit(card){
-    var inner = card.querySelector(".flip-in");
-    var on = card.classList.contains("on");
-    var face = card.querySelector(on ? ".back" : ".front");
-    if(!inner || !face) return 0;
-    var h = Math.ceil(Math.max(face.offsetHeight, face.scrollHeight, face.getBoundingClientRect().height)) + 2;
-    if(h > 2){ inner.style.height = h + "px"; }
-    return h;
-  }
-  /* 全部正面朝上时，同一行的两张对齐到较高的那张，卡片阵才齐整 */
-  function fitAll(){
-    var tops = cards.map(function(c){ return Math.round(c.getBoundingClientRect().top); });
-    var hs = cards.map(fit);
-    var anyOn = cards.some(function(c){ return c.classList.contains("on"); });
-    if(anyOn){ return; }
-    if(!hs.some(function(h){ return h > 0; })){ return; }
-    cards.forEach(function(c, i){
-      var mx = hs[i];
-      cards.forEach(function(_, j){ if(tops[j] === tops[i] && hs[j] > mx){ mx = hs[j]; } });
-      if(mx > hs[i]){ c.querySelector(".flip-in").style.height = mx + "px"; }
-    });
-  }
-
-  openBtn.addEventListener("click", function(){
-    var willOpen = body.hasAttribute("hidden");
-    if(willOpen){ body.removeAttribute("hidden"); }
-    else { body.setAttribute("hidden", ""); }
-    openBtn.classList.toggle("on", willOpen);
-    openBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
-    if(willOpen){ fitAll(); }
-  });
-
-  cards.forEach(function(card){
-    function flip(){
-      var on = card.classList.toggle("on");
-      card.setAttribute("aria-pressed", on ? "true" : "false");
-      fitAll();
+    /* 两面高度不同：按当前朝向把容器撑到对应高度，内容永远不会被裁掉 */
+    function fit(card){
+      var inner = card.querySelector(".flip-in");
+      var face = card.querySelector(card.classList.contains("on") ? ".back" : ".front");
+      if(!inner || !face){ return 0; }
+      var h = Math.ceil(Math.max(face.offsetHeight, face.scrollHeight, face.getBoundingClientRect().height)) + 2;
+      if(h > 2){ inner.style.height = h + "px"; }
+      return h;
     }
-    card.addEventListener("click", flip);
-    card.addEventListener("keydown", function(ev){
-      if(ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar"){
-        ev.preventDefault();
-        flip();
-      }
+    /* 全部正面朝上时，同一行的两张对齐到较高的那张，卡片阵才齐整 */
+    function fitAll(){
+      if(!cards.length){ return; }
+      var tops = cards.map(function(c){ return Math.round(c.getBoundingClientRect().top); });
+      var hs = cards.map(fit);
+      if(cards.some(function(c){ return c.classList.contains("on"); })){ return; }
+      if(!hs.some(function(h){ return h > 0; })){ return; }
+      cards.forEach(function(c, i){
+        var mx = hs[i];
+        cards.forEach(function(_, j){ if(tops[j] === tops[i] && hs[j] > mx){ mx = hs[j]; } });
+        if(mx > hs[i]){ c.querySelector(".flip-in").style.height = mx + "px"; }
+      });
+    }
+
+    openBtn.addEventListener("click", function(){
+      var willOpen = body.hasAttribute("hidden");
+      if(willOpen){ body.removeAttribute("hidden"); }
+      else { body.setAttribute("hidden", ""); }
+      openBtn.classList.toggle("on", willOpen);
+      openBtn.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      if(willOpen){ fitAll(); }
     });
-  });
+
+    cards.forEach(function(card){
+      function flip(){
+        var on = card.classList.toggle("on");
+        card.setAttribute("aria-pressed", on ? "true" : "false");
+        fitAll();
+      }
+      card.addEventListener("click", flip);
+      card.addEventListener("keydown", function(ev){
+        if(ev.key === "Enter" || ev.key === " " || ev.key === "Spacebar"){
+          ev.preventDefault();
+          flip();
+        }
+      });
+    });
+
+    group.__fitAll = fitAll;
+  }
+
+  groups.forEach(make);
 
   var rt = null;
   window.addEventListener("resize", function(){
     if(rt){ clearTimeout(rt); }
-    rt = setTimeout(fitAll, 160);
+    rt = setTimeout(function(){
+      groups.forEach(function(g){ if(g.__fitAll){ g.__fitAll(); } });
+    }, 160);
   });
 })();
 </script>
