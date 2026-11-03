@@ -45,6 +45,7 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
 - **Single file** — `index.html` is the whole game (about 100 KB). Copy it anywhere and it still works offline.
 - **Keyboard control** — every slider accepts arrow keys, with on-screen key hints. Level 3 moves the coral, level 7 rotates the globe.
 - **Reset anywhere** — levels 4, 5 and 8 have a restart button, so you can re-run a scenario without reloading.
+- **Observation room (观察室)** — inside level 4, a collapsible panel holds four flip cards (0–14 / 15–39 / 40–71 / ≥72). The front shows the phenomenon, the back explains the mechanism; a summary line above the cards ties the four stages into one chain of feedback.
 - **Hand-drawn SVG reef** — corals, algae, fish and the globe are drawn with inline SVG, so the whole thing scales cleanly on any screen.
 - **Chinese interface** — written for a middle-school science audience.
 
