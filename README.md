@@ -47,9 +47,18 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
 - **Five hidden easter eggs** — 🐚 🦀 🐙 🐠 ⭐ tucked into the scenes of levels 1, 2, 3, 4 and 8. Clicking one fires a small confetti burst and opens a centred card explaining the fact behind it; the 🥚 counter in the top bar opens a collection list. All five unlock a closing message.
 - **Keyboard control** — every slider accepts arrow keys, with on-screen key hints. Level 3 moves the coral, level 7 rotates the globe.
 - **Reset anywhere** — levels 4, 5 and 8 have a restart button, so you can re-run a scenario without reloading.
-- **Observation room (观察室)** — a collapsible panel in levels 1 and 4 holds flip cards: eight temperature bands in level 1 (`<16.5 / 16.5–18 / 18–23 / 23–29 / 29–30.5 / 30.5–32 / 32–34.5 / >34.5 ℃`, each labelled with its growth rate) and four nutrient stages in level 4 (`0–14 / 15–39 / 40–71 / ≥72`). The front shows the phenomenon, the back explains the mechanism; a summary line above the cards ties the stages into one chain.
+- **Observation room (观察室)** — a collapsible panel with 3-D flip cards, one per relevant level:
+  - level 1: eight temperature bands (`<16.5 / 16.5–18 / 18–23 / 23–29 / 29–30.5 / 30.5–32 / 32–34.5 / >34.5 ℃`), each labelled with its growth rate;
+  - level 2: four salinity bands (`33–36‰` isotonic / `30–32‰` fresher / `36–38‰` saltier / `<30‰` lethal), with the open-sea ≈ 35‰ reference under the cards;
+  - level 3: three light budgets (≥20 % surplus / 8–20 % break-even / <8 % sustained deficit);
+  - level 4: four nutrient stages (`0–14 / 15–39 / 40–71 / ≥72`);
+  - level 8: the eight indicators as a green/yellow table, plus seven disasters that each move exactly one dial (warming +2–3 ℃, storm −3.5–5.5‰, sewage +16–26, typhoon current surge, acidification −0.06 pH, coastal works → mud, trawling +14 nutrients).
+
+  The front shows the phenomenon, the back explains the mechanism; a summary line above the cards ties the stages into one chain.
+- **Chinese / English toggle** — the `EN` button in the top bar (and on the cover) switches the whole page, including everything drawn inside the SVG scenes. The choice is remembered, and can be linked directly: `?lang=en`, `?lv=5&lang=en`.
 - **Hand-drawn SVG reef** — corals, algae, fish and the globe are drawn with inline SVG, so the whole thing scales cleanly on any screen.
-- **Chinese interface** — written for a middle-school science audience.
+- **Written for a middle-school science audience.**
+- **Deep links** — `?lv=3` opens level 3 directly, `?lang=en` opens in English.
 
 ## Run locally
 
