@@ -59,6 +59,11 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
 - **"Why did that fail?" cards** — pushing a dial into the lethal band opens a centred modal that explains the mechanism, not just the result. Thirteen triggers cover all eight levels: temperature (lethal / dying / too cold), salinity (too fresh at a river mouth, and too salty in the final round), light, nutrients, current (too still / too fast), aragonite saturation, site choice (river mouth / high latitude), and a summary when the final reef collapses — which lists the indicators that actually dragged it down. Each reason fires once per attempt, resets with that level's restart button, and the level clock pauses while the card is open.
 - **Hand-drawn SVG reef** — corals, algae, fish and the globe are drawn with inline SVG, so the whole thing scales cleanly on any screen.
 - **Visual pass (2026-11)** — the cover's light shafts are blurred and layered over a soft ambient glow (no hard edges), the page is vignetted so the title sits in a pool of light, and the shell got a quieter texture. Inside the app: a wider 1160 px measure, a glassy fixed top bar, a lit "window" around each scene (inner glass edge + outer glow), filled slider tracks, glowing flip cards, and a compact footer progress bar. Short laptop screens (≤ 850 px tall) automatically use a narrower measure so scene + controls + feedback still fit on one screen.
+- **Skinnable cover** — a `✦ 皮肤` button on the cover opens the skin vault. Three seasonal skins, all unlocked by a passphrase that is only revealed on the five-egg finale card:
+  - 飞花满城 *Petals Over the City* — rose sky, blossoms falling.
+  - 飞雪似花 *Snow Like Blossom* — a pale, desaturated sea with drifting snow.
+  - 阴雨纷纷 *Endless Rain* — grey-blue water, slanting rain.
+  A `<canvas>` layer at z-index 400 draws the particles (petals / flakes / rain), paused automatically when the classic skin is active. The passphrase is asked once and stored; the whole global reset clears it and returns the skin to classic.
 - **Written for a middle-school science audience.**
 - **Deep links** — `?lv=3` opens level 3 directly, `?lang=en` opens in English.
 
