@@ -57,6 +57,7 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
   The front shows the phenomenon, the back explains the mechanism; a summary line above the cards ties the stages into one chain.
 - **Chinese / English toggle** — the `EN` button in the top bar (and on the cover) switches the whole page, including everything drawn inside the SVG scenes. The choice is remembered, and can be linked directly: `?lang=en`, `?lv=5&lang=en`.
 - **Hand-drawn SVG reef** — corals, algae, fish and the globe are drawn with inline SVG, so the whole thing scales cleanly on any screen.
+- **Visual pass (2026-11)** — the cover's light shafts are blurred and layered over a soft ambient glow (no hard edges), the page is vignetted so the title sits in a pool of light, and the shell got a quieter texture. Inside the app: a wider 1160 px measure, a glassy fixed top bar, a lit "window" around each scene (inner glass edge + outer glow), filled slider tracks, glowing flip cards, and a compact footer progress bar. Short laptop screens (≤ 850 px tall) automatically use a narrower measure so scene + controls + feedback still fit on one screen.
 - **Written for a middle-school science audience.**
 - **Deep links** — `?lv=3` opens level 3 directly, `?lang=en` opens in English.
 
