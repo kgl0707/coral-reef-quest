@@ -804,19 +804,19 @@
 
   /* ---------- 滑块：已走过的一段上色 ---------- */
   input[type=range]{
-    background:linear-gradient(90deg,#3FC4BC 0 var(--p,50%),
-      rgba(255,255,255,.13) var(--p,50%) 100%) !important;
-    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
+    background:linear-gradient(90deg,var(--sa1) 0 var(--p,50%),
+      var(--s-track-rest) var(--p,50%) 100%) !important;
+    box-shadow:0 0 0 1px var(--s-line) inset;
     transition:box-shadow .2s;
   }
-  input[type=range]:hover{box-shadow:0 0 0 1px rgba(255,255,255,.09) inset, 0 0 14px -6px rgba(127,230,222,.9)}
+  input[type=range]:hover{box-shadow:0 0 0 1px var(--s-line) inset, 0 0 14px -6px var(--sa-glow)}
   input[type=range]::-webkit-slider-thumb{
-    border-color:#7FE6DE;
-    box-shadow:0 2px 8px rgba(0,0,0,.5), 0 0 0 3px rgba(127,230,222,.10), 0 0 16px -2px rgba(127,230,222,.55);
+    border-color:var(--sa1);
+    box-shadow:0 2px 8px rgba(0,0,0,.45), 0 0 0 3px var(--s-chip), 0 0 16px -2px var(--sa-glow);
     transition:box-shadow .2s,transform .2s;
   }
   input[type=range]:active::-webkit-slider-thumb{transform:scale(1.08)}
-  input[type=range]::-moz-range-thumb{border-color:#7FE6DE}
+  input[type=range]::-moz-range-thumb{border-color:var(--sa1)}
 
   /* ---------- 按钮的手感 ---------- */
   .btn{transition:transform .18s,box-shadow .22s,background .22s,border-color .22s,color .22s}
@@ -1132,6 +1132,208 @@
   .finale-key em{flex:0 0 auto;font-style:normal;font-size:10.5px;color:#C9A96A;letter-spacing:.06em}
 
   /* ============================================================
+     皮肤调色板 —— 按钮 / 观察室 / 滑块 / 外壳 全部吃这几个变量
+     三套皮肤只改变量，不重复写规则
+     ============================================================ */
+  :root{
+    --sa1:#18A3A7; --sa2:#0F7C80; --sa-hi:#1DB2B6; --sa2-hi:#0E6E72;
+    --sa-ink:#F2FFFD; --sa-line:rgba(111,221,212,.45); --sa-glow:rgba(24,163,167,.45);
+    --s-key:#8FE6DE;
+    --s-panel1:rgba(11,48,58,.92); --s-panel2:rgba(6,31,39,.96); --s-panel-edge:rgba(126,205,200,.16);
+    --s-top-bg:rgba(4,26,33,.80); --s-top-edge:rgba(126,205,200,.16);
+    --s-ctrl1:rgba(255,255,255,.05); --s-ctrl2:rgba(255,255,255,.022); --s-ctrl-edge:rgba(140,205,200,.15);
+    --s-ink:#F4FBFA; --s-ink2:#B9CFCA; --s-ink3:#7E9995;
+    --s-line:rgba(150,210,205,.16); --s-chip:rgba(255,255,255,.06);
+    --s-ghost:rgba(255,255,255,.05); --s-ghost-ink:#CFE4E0;
+    --s-card:rgba(255,255,255,.035);
+    --s-track-rest:rgba(255,255,255,.13); --s-thumb:#0C3B45;
+    --s-f1:#0F3B46; --s-f2:#0A2B34; --s-b1:#0C333D; --s-b2:#082530;
+    --s-sum:rgba(10,44,52,.94); --s-sum-ink:#CFE4E0;
+    --s-watermark:rgba(143,224,218,.042);
+    --s-stage-edge:rgba(143,224,218,.30);
+    --s-stage-glow:0 0 0 1px rgba(255,255,255,.04),0 16px 46px -20px rgba(84,205,201,.42),0 26px 60px -46px #000;
+  }
+
+  html[data-skin="bloom"]{
+    --sa1:#F2739C; --sa2:#B23C64; --sa-hi:#FF89AE; --sa2-hi:#C64A72;
+    --sa-ink:#FFF7FA; --sa-line:rgba(255,190,212,.5); --sa-glow:rgba(242,115,156,.5);
+    --s-key:#FFB6CE;
+    --s-panel1:rgba(56,14,32,.93); --s-panel2:rgba(30,7,17,.96); --s-panel-edge:rgba(255,150,190,.15);
+    --s-top-bg:rgba(30,7,17,.85); --s-top-edge:rgba(255,160,190,.16);
+    --s-ctrl1:rgba(255,255,255,.05); --s-ctrl2:rgba(255,255,255,.022); --s-ctrl-edge:rgba(255,155,195,.14);
+    --s-ink:#FFF0F6; --s-ink2:#E4C2CF; --s-ink3:#B98BA0;
+    --s-line:rgba(255,168,198,.15); --s-chip:rgba(255,255,255,.07);
+    --s-ghost:rgba(255,255,255,.06); --s-ghost-ink:#EFCFDB;
+    --s-card:rgba(255,255,255,.045);
+    --s-track-rest:rgba(255,255,255,.13); --s-thumb:#3A0F20;
+    --s-f1:#4A1329; --s-f2:#2A0A16; --s-b1:#3E0F22; --s-b2:#220710;
+    --s-sum:rgba(52,12,28,.95); --s-sum-ink:#F4DCE5;
+    --s-watermark:rgba(255,185,212,.05);
+    --s-stage-edge:rgba(255,168,198,.24);
+    --s-stage-glow:0 0 0 1px rgba(255,255,255,.04),0 16px 46px -20px rgba(255,140,180,.32),0 26px 60px -46px #000;
+  }
+
+  /* 飞雪是浅底：按钮、面板、翻牌一起转成浅色系，字全改深 */
+  html[data-skin="snow"]{
+    --sa1:#7FB8D4; --sa2:#427F9F; --sa-hi:#93C8E0; --sa2-hi:#4E8DAE;
+    --sa-ink:#FFFFFF; --sa-line:rgba(110,158,184,.42); --sa-glow:rgba(90,150,180,.35);
+    --s-key:#2F6E8C;
+    --s-panel1:rgba(255,255,255,.95); --s-panel2:rgba(240,247,251,.97); --s-panel-edge:rgba(120,168,192,.34);
+    --s-top-bg:rgba(255,255,255,.86); --s-top-edge:rgba(120,168,192,.26);
+    --s-ctrl1:rgba(255,255,255,.92); --s-ctrl2:rgba(236,245,250,.92); --s-ctrl-edge:rgba(120,168,192,.26);
+    --s-ink:#123440; --s-ink2:#4A6875; --s-ink3:#7C9AA8;
+    --s-line:rgba(110,158,184,.26); --s-chip:rgba(58,124,156,.10);
+    --s-ghost:rgba(255,255,255,.9); --s-ghost-ink:#38596A;
+    --s-card:rgba(255,255,255,.92);
+    --s-track-rest:rgba(20,60,80,.12); --s-thumb:#FFFFFF;
+    --s-f1:#FFFFFF; --s-f2:#EAF3F9; --s-b1:#FBFDFE; --s-b2:#EDF5FA;
+    --s-sum:rgba(232,242,248,.96); --s-sum-ink:#2C4C58;
+    --s-watermark:rgba(40,90,110,.05);
+    --s-stage-edge:rgba(110,158,184,.34);
+    --s-stage-glow:0 0 0 1px rgba(255,255,255,.6),0 16px 40px -22px rgba(60,110,140,.30),0 24px 56px -46px rgba(0,0,0,.25);
+  }
+
+  html[data-skin="rain"]{
+    --sa1:#5B96B4; --sa2:#2F5F79; --sa-hi:#6FA8C6; --sa2-hi:#386E8A;
+    --sa-ink:#F5FBFF; --sa-line:rgba(160,200,225,.4); --sa-glow:rgba(70,120,150,.45);
+    --s-key:#A9CFE2;
+    --s-panel1:rgba(20,40,50,.93); --s-panel2:rgba(10,21,28,.96); --s-panel-edge:rgba(150,190,215,.15);
+    --s-top-bg:rgba(8,20,26,.84); --s-top-edge:rgba(150,190,215,.14);
+    --s-ctrl1:rgba(255,255,255,.05); --s-ctrl2:rgba(255,255,255,.022); --s-ctrl-edge:rgba(150,190,215,.13);
+    --s-ink:#EFF7FB; --s-ink2:#B6CCD7; --s-ink3:#7D97A4;
+    --s-line:rgba(150,190,215,.14); --s-chip:rgba(255,255,255,.06);
+    --s-ghost:rgba(255,255,255,.06); --s-ghost-ink:#CFE2EC;
+    --s-card:rgba(255,255,255,.04);
+    --s-track-rest:rgba(255,255,255,.12); --s-thumb:#0E1F28;
+    --s-f1:#172B36; --s-f2:#0E1D26; --s-b1:#142631; --s-b2:#0A1720;
+    --s-sum:rgba(14,30,39,.95); --s-sum-ink:#C4D9E3;
+    --s-watermark:rgba(150,190,215,.045);
+    --s-stage-edge:rgba(150,190,215,.24);
+    --s-stage-glow:0 0 0 1px rgba(255,255,255,.04),0 16px 46px -20px rgba(110,160,190,.32),0 26px 60px -46px #000;
+  }
+
+  /* ---------- 外壳 ---------- */
+  .topbar{background:var(--s-top-bg);border-bottom-color:var(--s-top-edge)}
+  .tb-home{color:var(--s-ink2)}
+  .tb-home:hover{background:var(--s-chip);border-color:var(--s-line);color:var(--s-ink)}
+  .tb-sep{background:var(--s-line)}
+  .tb-name{color:var(--s-ink)}
+  .tb-pos{color:var(--s-ink3)}
+  .tb-dots i{background:var(--s-chip)}
+  .tb-dots i.on{background:var(--sa1);box-shadow:0 0 10px var(--sa-glow)}
+  .tb-dots i.done{background:var(--s-key)}
+  .tb-reset{background:var(--s-ghost);border-color:var(--s-line);color:var(--s-ink2)}
+  .prog{background:var(--s-line)}
+  .prog i{background:linear-gradient(90deg,var(--sa2),var(--sa1))}
+  .panel{background:linear-gradient(180deg,var(--s-panel1),var(--s-panel2));border-color:var(--s-panel-edge)}
+  .panel::before{background:linear-gradient(90deg,var(--sa1) 0%,var(--sa-line) 34%,rgba(232,115,92,0) 86%)}
+  .lvno{color:var(--s-key);background:var(--s-chip);border-color:var(--s-line)}
+  .lvhead h2{color:var(--s-ink)}
+  .stage{border-color:var(--s-stage-edge);box-shadow:var(--s-stage-glow)}
+  .controls{background:linear-gradient(180deg,var(--s-ctrl1),var(--s-ctrl2));border-color:var(--s-ctrl-edge);box-shadow:0 1px 0 rgba(255,255,255,.05) inset}
+  .ctrl{color:var(--s-ink2)}
+  .ctrl .k{color:var(--s-ink3)}
+  .ctrl b{color:var(--s-ink)}
+  .kbhint{color:var(--s-ink3)}
+  .kbhint kbd{background:var(--s-chip);border-color:var(--s-line);color:var(--s-ink2)}
+  .bar{background:var(--s-chip)}
+  .meter{color:var(--s-ink2)}
+
+  /* ---------- 按钮 ---------- */
+  .btn{background:linear-gradient(135deg,var(--sa1),var(--sa2));border-color:var(--sa-line);color:var(--sa-ink);
+    box-shadow:0 12px 24px -16px var(--sa-glow),0 1px 0 rgba(255,255,255,.14) inset}
+  .btn:hover{background:linear-gradient(135deg,var(--sa-hi),var(--sa2-hi));border-color:var(--sa-hi)}
+  .btn.ghost{background:var(--s-ghost);color:var(--s-ghost-ink);border-color:var(--s-line);box-shadow:0 1px 0 rgba(255,255,255,.35) inset}
+  .btn.ghost:hover{background:var(--s-chip);border-color:var(--sa-line);color:var(--s-ink)}
+  .btn.ghost.on{background:linear-gradient(135deg,var(--sa1),var(--sa2));border-color:var(--sa-line);color:var(--sa-ink)}
+  .lvfoot{border-top-color:var(--s-line)}
+  .lvfoot .pos{color:var(--s-ink3)}
+  .lvfoot .pos b{color:var(--s-key)}
+  .lvfoot .pos i{background:var(--s-chip)}
+  .lvfoot .pos i em{background:linear-gradient(90deg,var(--sa2),var(--sa1))}
+  .lvfoot .btn.go{background:linear-gradient(135deg,var(--sa1),var(--sa2));border-color:var(--sa-line)}
+  .lvfoot .btn.go:hover{background:linear-gradient(135deg,var(--sa-hi),var(--sa2-hi))}
+  .tb-lang{color:var(--s-ink2);background:var(--s-ghost);border-color:var(--s-line)}
+  .tb-lang:hover{border-color:var(--sa-line);color:var(--s-key);background:var(--s-chip)}
+  .tb-lang.on{color:var(--sa-ink);background:linear-gradient(135deg,var(--sa1),var(--sa2));border-color:var(--sa1);box-shadow:0 0 16px -4px var(--sa-glow)}
+  .obs-open{background:linear-gradient(180deg,var(--s-ctrl1),var(--s-ctrl2));border-color:var(--s-line);color:var(--s-ink2)}
+  .obs-open:hover{background:var(--s-chip);border-color:var(--sa-line)}
+  .obs-open .ico{background:linear-gradient(135deg,var(--sa1),var(--sa2));color:var(--sa-ink)}
+  .obs-open .tx b{color:var(--s-ink)}
+  .obs-open .tx em{color:var(--s-ink3)}
+  .obs-open .arw{color:var(--s-ink3)}
+  .loclist button{background:var(--s-ghost);border-color:var(--s-line);color:var(--s-ghost-ink)}
+  .loclist button:hover{border-color:var(--sa-line);color:var(--s-key)}
+  .row{color:var(--s-ink2)}
+  .row .lab{color:var(--s-ink3)}
+  .row b{color:var(--s-ink)}
+  .row button{background:var(--s-ghost);border-color:var(--s-line);color:var(--s-ghost-ink)}
+  .row button:hover{border-color:var(--sa-line);color:var(--s-key)}
+
+  /* ---------- 封面上的小零件 ---------- */
+  .cover-lang{color:var(--s-ink2);background:var(--s-top-bg);border-color:var(--s-line)}
+  .cover-lang:hover{color:var(--s-ink);border-color:var(--sa-line);background:var(--s-panel1)}
+  .cover-lang.on{color:var(--sa-ink);background:linear-gradient(135deg,var(--sa1),var(--sa2));border-color:var(--sa1)}
+  .cover-skin{color:var(--s-key);background:var(--s-ghost);border-color:var(--s-line)}
+  .cover-skin:hover{background:var(--s-chip);border-color:var(--sa-line);color:var(--s-ink)}
+  .cover-tag{color:var(--s-key);border-color:var(--s-line);background:var(--s-ghost)}
+  .cover-tag::before{background:var(--sa1);box-shadow:0 0 0 4px var(--s-chip)}
+  .cover-rule{background:linear-gradient(90deg,transparent,var(--s-line),transparent)}
+  .cover-meta{color:var(--s-ink3)}
+
+  /* ---------- 滑块 ---------- */
+  input[type=range]{height:7px;
+    background:linear-gradient(90deg,var(--sa1) 0 var(--p,50%),var(--s-track-rest) var(--p,50%) 100%)}
+  input[type=range]::-webkit-slider-thumb{background:var(--s-thumb);border-color:var(--sa1);
+    box-shadow:0 2px 8px rgba(0,0,0,.45),0 0 12px -2px var(--sa-glow)}
+  input[type=range]::-moz-range-thumb{background:var(--s-thumb);border-color:var(--sa1)}
+
+  /* ---------- 观察室 / 翻牌 ---------- */
+  .obs-body{background:var(--s-card);border-color:var(--s-line)}
+  .obs-sum{background:var(--s-sum);border-color:var(--s-line);border-left-color:var(--sa1);color:var(--s-sum-ink)}
+  .obs-sum b{color:var(--s-key)}
+  .face{background:var(--s-f2);border-color:var(--s-line);box-shadow:0 20px 38px -30px rgba(0,0,0,.5)}
+  .front{background:linear-gradient(180deg,var(--s-f1),var(--s-f2))}
+  .back{background:linear-gradient(180deg,var(--s-b1),var(--s-b2))}
+  .front h4{color:var(--s-ink)}
+  .front .fobs{color:var(--s-ink2)}
+  .front .fmore{color:var(--s-ink3);border-top-color:var(--s-line)}
+  .front::after{color:var(--s-watermark)}
+  .frange{background:var(--s-chip)}
+  .back .btop{border-bottom-color:var(--s-line)}
+  .back .btop b{color:var(--s-key)}
+  .back .btop span{color:var(--s-ink3)}
+  .blk .lb{background:var(--s-chip);color:var(--s-ink2)}
+  .blk p,.blk ol li{color:var(--s-ink2)}
+  .blk p b,.blk ol li b{color:var(--s-ink)}
+  .obs-tip{color:var(--s-ink3)}
+  .obs-h{color:var(--s-ink3)}
+  .obs-h::after{background:linear-gradient(90deg,var(--s-line),transparent)}
+  .lim{background:var(--s-card);border-color:var(--s-line)}
+  .lim .hd b{color:var(--s-ink)}
+  .lim p{color:var(--s-ink2)}
+  .lim p b{color:var(--s-ink)}
+
+  /* 飞雪：语义色（成功 / 失败 / 警告）在浅底上要加深，否则看不清 */
+  html[data-skin="snow"] .fb{background:rgba(15,124,128,.10);border-left-color:#4C9E9A;color:#1D4A46;box-shadow:none}
+  html[data-skin="snow"] .fb.bad{background:rgba(194,69,62,.13);border-left-color:#D2685C;color:#8A2E25}
+  html[data-skin="snow"] .fb.warn{background:rgba(217,138,43,.16);border-left-color:#D99A44;color:#7A4E12}
+  html[data-skin="snow"] .fb.good{background:rgba(62,142,90,.14);border-left-color:#4FA877;color:#25603B}
+  html[data-skin="snow"] .fb b{color:#0F6467}
+  html[data-skin="snow"] .fb.bad b{color:#8A2E25}
+  html[data-skin="snow"] .fb.warn b{color:#6E4508}
+  html[data-skin="snow"] .fb.good b{color:#1F5734}
+  html[data-skin="snow"] .fb .hint{color:#7C9AA8}
+  html[data-skin="snow"] .point{color:#7A5A22;background:linear-gradient(#FDF6E7,#FBF1DE);border-color:#EFE1C2}
+  html[data-skin="snow"] .point b{color:#6B4A0E}
+  html[data-skin="snow"] .loclist button.ok{background:rgba(62,142,90,.14);border-color:rgba(70,150,105,.42);color:#25603B}
+  html[data-skin="snow"] .loclist button.no{background:rgba(194,69,62,.12);border-color:rgba(200,90,80,.4);color:#8A2E25}
+  html[data-skin="snow"] .loclist button.mid{background:rgba(217,138,43,.16);border-color:rgba(210,160,80,.44);color:#7A4E12}
+  html[data-skin="snow"] .lim .g{color:#1F5734;background:rgba(62,142,90,.16)}
+  html[data-skin="snow"] .lim .y{color:#7A4E12;background:rgba(217,138,43,.18)}
+  html[data-skin="snow"] .stage::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.65),inset 0 14px 30px -22px rgba(60,110,140,.25),inset 0 -10px 26px -22px rgba(60,110,140,.15)}
+
+  /* ============================================================
      弹窗 / 皮肤仓库 / 确认框：整块跟着皮肤一起变色
      ============================================================ */
 
@@ -1308,6 +1510,14 @@
 
   /* 点击特效层：盖在弹窗之上，只画画，不挡手 */
   #tap{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:620;pointer-events:none}
+
+  /* 彩蛋计数是「奖励」金色，不跟皮肤走，但 hover 别回青 */
+  .tb-egg:hover{background:rgba(255,209,102,.10);border-color:rgba(255,209,102,.45);color:#E8C87E}
+  html[data-skin="snow"] .tb-egg{color:#8A6A2A;border-color:rgba(200,160,90,.42)}
+  html[data-skin="snow"] .tb-egg b{color:#8A5F12}
+  html[data-skin="snow"] .tb-egg:hover{color:#6B4A0E;border-color:rgba(200,160,90,.62);background:rgba(255,209,102,.18)}
+  html[data-skin="snow"] .tb-egg.full{color:#6B4A0E;border-color:rgba(200,160,90,.62);background:rgba(255,209,102,.26)}
+  html[data-skin="snow"] .tb-reset:hover{background:rgba(232,115,92,.12);border-color:rgba(200,90,80,.5);color:#A8392A}
 
   /* ---------- 彩蛋浮窗 / 图鉴：同样交给皮肤（金色点缀保留） ---------- */
   html[data-skin="bloom"] .finale{background:radial-gradient(70% 60% at 50% 40%,rgba(64,14,34,.92),rgba(18,4,10,.96))}
