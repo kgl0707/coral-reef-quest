@@ -64,6 +64,8 @@ Two ideas the game tries hard to keep separate: **bleaching is reversible, death
   - 飞雪似花 *Snow Like Blossom* — a pale, desaturated sea with drifting snow.
   - 阴雨纷纷 *Endless Rain* — grey-blue water, slanting rain.
   A `<canvas>` layer at z-index 400 draws the particles (petals / flakes / rain), paused automatically when the classic skin is active. The passphrase is asked once and stored; the whole global reset clears it and returns the skin to classic.
+- **The skin reaches the modals too** — the "why did that fail?" card, the skin vault and the reset confirmation all repaint with the active skin (rose glass for petals, white paper with ink text for snow, slate for rain), including their scrims, tag chips, list bullets and buttons. Nothing in the page stays teal while a skin is on.
+- **Per-skin tap effects** — a second canvas at z-index 620 sits above every modal (pointer-events off, so it never eats a click). Tapping anywhere throws out that skin's own particle: a small burst of petals, a spray of six-armed snow crystals that fall away, or a splash with a flattened ripple ring; the classic skin gets a faint teal ripple and three rising bubbles.
 - **Written for a middle-school science audience.**
 - **Deep links** — `?lv=3` opens level 3 directly, `?lang=en` opens in English.
 
