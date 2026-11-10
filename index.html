@@ -903,7 +903,235 @@
     .why-fix{flex-direction:column;gap:5px}
     .why-btns .btn{width:100%}
   }
+
+  /* ============================================================
+     皮肤系统 · 飞花满城 / 飞雪似花 / 阴雨纷纷
+     ============================================================ */
+  #fx{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:400;pointer-events:none;opacity:0;transition:opacity .5s ease}
+  html[data-skin="bloom"] #fx,
+  html[data-skin="snow"] #fx,
+  html[data-skin="rain"] #fx{opacity:1}
+
+  /* ---------- 飞花满城 ---------- */
+  html[data-skin="bloom"] body{
+    background:
+      radial-gradient(1200px 720px at 50% -280px, rgba(255,138,178,.42) 0%, rgba(255,138,178,0) 64%),
+      radial-gradient(900px 560px at 6% 4%, rgba(196,88,138,.28) 0%, rgba(196,88,138,0) 62%),
+      linear-gradient(180deg,#3E1428 0%,#2B0D1C 34%,#1A0711 100%);
+  }
+  html[data-skin="bloom"] body::after{
+    background:
+      radial-gradient(860px 540px at 16% 2%, rgba(255,168,196,.10), transparent 64%),
+      radial-gradient(760px 500px at 88% 20%, rgba(255,120,160,.07), transparent 66%),
+      radial-gradient(1100px 660px at 50% 106%, rgba(112,30,64,.34), transparent 68%);
+  }
+  html[data-skin="bloom"] .topbar{
+    background:linear-gradient(180deg,rgba(52,14,30,.94),rgba(32,8,18,.88));
+    border-bottom-color:rgba(255,160,190,.16);
+  }
+  html[data-skin="bloom"] .panel{
+    background:
+      radial-gradient(640px 240px at 10% -70px, rgba(255,150,190,.09), transparent 72%),
+      linear-gradient(180deg,rgba(48,14,28,.94),rgba(28,8,18,.975));
+    border-color:rgba(255,150,190,.15);
+  }
+  html[data-skin="bloom"] .cover{background:#2A0A18}
+  html[data-skin="bloom"] .cover-scene{filter:saturate(.44) brightness(1.05) contrast(1.02)}
+  html[data-skin="bloom"] .cover-veil{
+    background:
+      radial-gradient(130% 82% at 50% 4%, rgba(255,198,218,.46) 0%, rgba(255,130,175,.26) 44%, rgba(255,110,160,0) 70%),
+      linear-gradient(180deg, rgba(250,150,185,.40) 0%, rgba(206,74,126,.46) 52%, rgba(88,14,44,.88) 100%);
+  }
+
+  /* ---------- 飞雪似花（浅色） ---------- */
+  html[data-skin="snow"] body{
+    background:
+      radial-gradient(1200px 720px at 50% -280px, rgba(176,216,238,.60) 0%, rgba(176,216,238,0) 66%),
+      radial-gradient(900px 560px at 6% 4%, rgba(148,190,216,.34) 0%, rgba(148,190,216,0) 62%),
+      linear-gradient(180deg,#F4F9FC 0%,#E7F0F6 40%,#DBE7F0 100%);
+    color:#274551;
+  }
+  html[data-skin="snow"] body::before{background-image:radial-gradient(rgba(60,110,130,.07) .7px, transparent .7px)}
+  html[data-skin="snow"] body::after{
+    background:
+      radial-gradient(860px 540px at 16% 2%, rgba(255,255,255,.78), transparent 64%),
+      radial-gradient(760px 500px at 88% 20%, rgba(176,212,232,.46), transparent 66%),
+      radial-gradient(1100px 660px at 50% 106%, rgba(158,194,218,.48), transparent 68%);
+  }
+  html[data-skin="snow"] footer{color:#6B8494}
+  html[data-skin="snow"] footer b{color:#3F5E6C}
+  html[data-skin="snow"] .cover{background:#EDF6FB}
+  html[data-skin="snow"] .cover-scene{filter:brightness(1.78) saturate(.16) contrast(1.06)}
+  html[data-skin="snow"] .cover-veil{
+    background:
+      radial-gradient(120% 80% at 50% 6%, rgba(255,255,255,.80) 0%, rgba(255,255,255,0) 62%),
+      linear-gradient(180deg, rgba(255,255,255,.46) 0%, rgba(246,251,254,.58) 56%, rgba(222,236,246,.92) 100%);
+  }
+  html[data-skin="snow"] .cover-title{color:#16323D;text-shadow:0 2px 22px rgba(255,255,255,.9),0 1px 2px rgba(255,255,255,.8)}
+  html[data-skin="snow"] .cover-title em{
+    background:none;
+    -webkit-background-clip:border-box;background-clip:border-box;
+    -webkit-text-fill-color:#2A6480;color:#2A6480;
+    text-shadow:0 2px 20px rgba(255,255,255,.85);
+  }
+  html[data-skin="snow"] .cover-sub{color:#3E5F6C}
+  html[data-skin="snow"] .cover-sub b{color:#16323D}
+  html[data-skin="snow"] .cover-tag{color:#2C7A8C;border-color:rgba(44,122,140,.34);background:rgba(255,255,255,.62)}
+  html[data-skin="snow"] .cover-tag::before{background:#2C7A8C;box-shadow:0 0 0 4px rgba(44,122,140,.14)}
+  html[data-skin="snow"] .cover-rule{background:linear-gradient(90deg,transparent,rgba(40,90,110,.42),transparent)}
+  html[data-skin="snow"] .cover-meta{color:rgba(45,80,95,.66)}
+
+  /* ---------- 阴雨纷纷 ---------- */
+  html[data-skin="rain"] body{
+    background:
+      radial-gradient(1200px 720px at 50% -280px, rgba(96,140,170,.34) 0%, rgba(96,140,170,0) 64%),
+      radial-gradient(900px 560px at 6% 4%, rgba(60,96,120,.26) 0%, rgba(60,96,120,0) 62%),
+      linear-gradient(180deg,#182A33 0%,#12212A 34%,#0B161C 100%);
+  }
+  html[data-skin="rain"] body::after{
+    background:
+      radial-gradient(860px 540px at 16% 2%, rgba(150,190,215,.09), transparent 64%),
+      radial-gradient(760px 500px at 88% 20%, rgba(110,150,180,.06), transparent 66%),
+      radial-gradient(1100px 660px at 50% 106%, rgba(30,60,76,.32), transparent 68%);
+  }
+  html[data-skin="rain"] .topbar{
+    background:linear-gradient(180deg,rgba(16,32,40,.94),rgba(10,22,28,.88));
+    border-bottom-color:rgba(150,190,215,.14);
+  }
+  html[data-skin="rain"] .panel{
+    background:
+      radial-gradient(640px 240px at 10% -70px, rgba(160,196,220,.07), transparent 72%),
+      linear-gradient(180deg,rgba(20,38,47,.94),rgba(12,24,31,.975));
+    border-color:rgba(150,190,215,.14);
+  }
+  html[data-skin="rain"] .cover{background:#0D1A21}
+  html[data-skin="rain"] .cover-scene{filter:saturate(.35) brightness(.86) contrast(1.04)}
+  html[data-skin="rain"] .cover-veil{
+    background:
+      radial-gradient(120% 80% at 50% 6%, rgba(158,190,210,.24) 0%, rgba(20,40,52,0) 60%),
+      linear-gradient(180deg, rgba(32,52,64,.46) 0%, rgba(18,32,42,.56) 56%, rgba(6,12,16,.90) 100%);
+  }
+
+  /* ---------- 封面上的「皮肤」入口 ---------- */
+  .cover-skin{
+    margin-top:16px;display:inline-flex;align-items:center;gap:7px;
+    font:inherit;font-size:11.5px;font-weight:600;letter-spacing:.14em;
+    color:#8FE0DA;background:rgba(143,224,218,.08);
+    border:1px solid rgba(143,224,218,.30);border-radius:99px;padding:7px 16px;
+    cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s;
+    animation:riseIn 1s .60s both;
+  }
+  .cover-skin:hover{background:rgba(143,224,218,.17);border-color:rgba(143,224,218,.55);color:#E4FAF6;transform:translateY(-1px)}
+  .cover-skin:active{transform:translateY(0) scale(.99)}
+  .cover-skin i{font-style:normal;opacity:.9}
+  html[data-skin="snow"] .cover-skin{color:#2C7A8C;border-color:rgba(44,122,140,.30);background:rgba(255,255,255,.62)}
+  html[data-skin="snow"] .cover-skin:hover{background:rgba(255,255,255,.86);color:#1D5568}
+
+  /* ---------- 皮肤仓库 / 确认框 ---------- */
+  .skbox{
+    position:fixed;inset:0;z-index:520;display:grid;place-items:center;padding:22px;
+    grid-template-columns:minmax(0,1fr);
+    background:rgba(2,14,18,.74);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+  }
+  .skbox[hidden]{display:none}
+  .sk-in{
+    position:relative;width:100%;max-width:660px;min-width:0;max-height:88vh;overflow:auto;
+    padding:26px 26px 22px;border-radius:20px;
+    background:linear-gradient(180deg,#0D3540 0%,#082731 100%);
+    border:1px solid rgba(127,230,222,.22);
+    box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 50px 100px -50px #000;
+    animation:whyIn .4s cubic-bezier(.22,1.18,.36,1);
+  }
+  .sk-x{
+    position:absolute;top:12px;right:13px;width:28px;height:28px;border-radius:50%;
+    display:grid;place-items:center;font-size:17px;line-height:1;
+    background:transparent;border:1px solid transparent;color:#7E9C98;cursor:pointer;transition:.2s;
+  }
+  .sk-x:hover{background:rgba(127,230,222,.10);color:#DFF5F1;border-color:rgba(127,230,222,.4)}
+  .sk-tag{
+    display:inline-block;font-size:10px;letter-spacing:.20em;text-transform:uppercase;
+    color:#7DD8D0;background:rgba(63,196,188,.13);border:1px solid rgba(127,230,222,.22);
+    border-radius:99px;padding:3px 10px;
+  }
+  .sk-in h3{margin:12px 0 8px;font-family:var(--serif);font-size:22px;line-height:1.4;color:#F2FBF9;font-weight:600;letter-spacing:.02em}
+  .sk-lead{margin:0 0 18px;font-size:13.2px;line-height:1.78;color:#A4C6C1}
+  .sk-lead b{color:#DFF3EE}
+
+  .sk-lock{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+  .sk-lock[hidden]{display:none}
+  .sk-grid[hidden]{display:none}
+  .sk-input{
+    flex:1 1 200px;min-width:0;display:flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.05);border:1px solid rgba(150,210,205,.22);
+    border-radius:12px;padding:6px 8px 6px 14px;
+  }
+  .sk-input input{
+    flex:1;min-width:0;background:transparent;border:0;outline:0;
+    font:inherit;font-size:14px;letter-spacing:.24em;color:#EAF9F6;padding:8px 0;
+  }
+  .sk-input input::placeholder{letter-spacing:.1em;color:#5E7D79}
+  .sk-go{
+    flex:0 0 auto;font:inherit;font-size:12.5px;font-weight:700;letter-spacing:.06em;
+    color:#04262B;background:linear-gradient(135deg,#9DF0E8,#3FC4BC);
+    border:0;border-radius:9px;padding:9px 16px;cursor:pointer;transition:filter .2s,transform .15s;
+  }
+  .sk-go:hover{filter:brightness(1.07)}
+  .sk-go:active{transform:scale(.98)}
+  .sk-err{margin:11px 0 0;font-size:12.4px;color:#FFB3A8;min-height:18px}
+  .sk-err.ok{color:#9BEBBE}
+  .skbox.shake .sk-in{animation:skShake .42s ease}
+  @keyframes skShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+
+  .sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  .sk-card{
+    position:relative;text-align:left;font:inherit;cursor:pointer;
+    border-radius:14px;padding:0;overflow:hidden;
+    background:rgba(255,255,255,.035);border:1px solid rgba(150,210,205,.18);
+    transition:border-color .2s,transform .18s,box-shadow .2s;
+  }
+  .sk-card:hover{border-color:rgba(127,230,222,.46);transform:translateY(-2px)}
+  .sk-card.on{border-color:#4FD1C8;box-shadow:0 0 0 1px rgba(79,209,200,.5),0 16px 34px -22px rgba(63,196,188,.9)}
+  .sk-pv{position:relative;height:88px;overflow:hidden}
+  .sk-pv::after{content:"";position:absolute;inset:0;box-shadow:0 16px 30px -18px rgba(0,0,0,.7) inset}
+  .sk-pv[data-p="classic"]{background:linear-gradient(180deg,#0B3B49 0%,#04222B 60%,#02141B 100%)}
+  .sk-pv[data-p="bloom"]{background:linear-gradient(180deg,#8C3A5C 0%,#4A1229 55%,#22060F 100%)}
+  .sk-pv[data-p="snow"]{background:linear-gradient(180deg,#F6FBFE 0%,#D6E6F1 55%,#AEC6D6 100%)}
+  .sk-pv[data-p="rain"]{background:linear-gradient(180deg,#2A4451 0%,#16272F 55%,#0A1419 100%)}
+  .sk-pv i{position:absolute;display:block;border-radius:99px;opacity:.75}
+  .sk-pv[data-p="bloom"] i{background:#FFB7CE;width:7px;height:5px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%}
+  .sk-pv[data-p="snow"] i{background:#fff;box-shadow:0 0 6px rgba(255,255,255,.9)}
+  .sk-pv[data-p="rain"] i{background:rgba(206,230,244,.75);width:1px;height:15px;border-radius:0;transform:rotate(12deg)}
+  .sk-meta{padding:10px 12px 12px}
+  .sk-meta b{display:block;font-size:13.4px;color:#F0F9F7;font-weight:600;letter-spacing:.02em}
+  .sk-meta span{display:block;margin-top:3px;font-size:11.6px;line-height:1.6;color:#8FAEAA}
+  .sk-card.on .sk-meta b{color:#9BE6DF}
+  .sk-badge{
+    position:absolute;top:8px;right:9px;font-size:10px;letter-spacing:.1em;
+    color:#04262B;background:linear-gradient(135deg,#9DF0E8,#3FC4BC);
+    border-radius:99px;padding:2px 9px;font-weight:700;
+  }
+  .sk-note{margin:16px 0 0;font-size:11.6px;line-height:1.7;color:#6F8C88}
+  @media(max-width:560px){
+    .skbox{padding:14px}
+    .sk-in{padding:22px 17px 18px;border-radius:17px;max-height:90vh}
+    .sk-in h3{font-size:19px}
+    .sk-grid{grid-template-columns:1fr}
+    .sk-pv{height:70px}
+  }
+
+  /* 集齐彩蛋后的口令条 */
+  .finale-key{
+    margin:4px auto 20px;max-width:340px;display:flex;align-items:center;gap:10px;
+    padding:11px 14px;border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,209,102,.14),rgba(255,209,102,.06));
+    border:1px solid rgba(255,209,102,.32);
+  }
+  .finale-key[hidden]{display:none}
+  .finale-key b{flex:0 0 auto;font-size:10.5px;letter-spacing:.14em;color:#F0C674;font-weight:700}
+  .finale-key span{flex:1;text-align:center;font-family:var(--serif);font-size:19px;letter-spacing:.34em;color:#FFE9B8;padding-left:.34em}
+  .finale-key em{flex:0 0 auto;font-style:normal;font-size:10.5px;color:#C9A96A;letter-spacing:.06em}
 </style>
+<script>/* 皮肤：尽早挂到 <html> 上，避免首屏闪一下 */try{var _sk=localStorage.getItem("coralReefQuest.skin");if(_sk)document.documentElement.setAttribute("data-skin",_sk);}catch(e){}</script>
 </head>
 <body>
 
@@ -1095,6 +1323,7 @@
     <p class="cover-sub" data-i18n="t1">八道关卡，八条生存底线。<br>从水温到光照，从基底到钙化 —— 一条一条，<b>试给你看</b>。</p>
     <button class="cover-btn" id="startBtn" data-i18n="t2">进入挑战<span>→</span></button>
     <div class="cover-meta" data-i18n="t3">8 个关卡<i>·</i>约 15 分钟<i>·</i>支持键盘操作</div>
+    <button class="cover-skin" id="skinBtn" type="button"><i>✦</i><span id="skinBtnTxt">皮肤</span></button>
   </div>
 </div>
 
@@ -1977,7 +2206,11 @@
     </div>
     <h2 data-i18n="t291">五枚彩蛋，全被你找到了</h2>
     <p data-i18n="t292">你把这片礁从水面翻到礁底 —— <b>很牛，很棒。</b><br>珊瑚礁只占海洋不到 0.1%，值得被这样认真看过。</p>
-    <button class="btn" id="finaleBtn" data-i18n="t293">继续挑战</button>
+    <div class="finale-key" id="finaleKey" hidden><b id="finaleKeyL">皮肤仓库口令</b><span>lqq</span><em id="finaleKeyE">去封面输入</em></div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn" id="finaleSkin" type="button">去皮肤仓库</button>
+      <button class="btn" id="finaleBtn" data-i18n="t293">继续挑战</button>
+    </div>
   </div>
 </div>
 
@@ -2015,7 +2248,41 @@
   </div>
 </div>
 
-<script id="dyn-en" type="application/json">{"中":"中","在":"Hidden in "," 关":"","临界":"Marginal","位置":"Location","光照":"Light","危险":"Danger","基底":"Substrate","外海":"Open sea","安全":"Safe","岩石":"Rock","彩蛋":"Egg","最适":"Optimum","水流":"Current","水温":"Water temp","河口":"River mouth","泥沙":"Mud / sand","热带":"Tropical","盐度":"Salinity","砾石":"Gravel","硬底":"Hard bottom","第 ":"Level ","红海":"Red Sea","近岸":"Near shore","骨骼":"Skeleton","高纬":"High lat."," 在 ":" at ","净溶解":"Net dissolution","大堡礁":"Great Barrier Reef","太暗了":"Too dark","它死了":"It's dead","已死亡":"Dead","我落到":"I landed on ","水偏酸":"Water too acidic","水很瘦":"Lean water","水深 ":"Depth ","水温 ":"Water temp ","白化中":"Bleaching","纬度 ":"Latitude ","营养盐":"Nutrients","长江口":"Yangtze mouth","：失败":": failed","：成功":": success","上了……":"…","中国海南":"Hainan, China","全部死亡":"Total death","再试一次":"Try again","加勒比海":"Caribbean","勉强活着":"Barely alive","定居成功":"Settled!","尚未找到":"Not found yet","已点亮 ":"Lit ","开始紧张":"Getting tense","悉尼外海":"Off Sydney","施肥陷阱":"The Fertilizer Trap","正常钙化":"Normal calcification","死亡边缘":"At death's edge","水流太强":"Current too strong","水流太静":"Current too still","水流适中":"Current just right","淡水注入":"Freshwater inflow","温度危机":"Heat Crisis","珊瑚灰岩":"Coral limestone","的画面里":"","盐度逃生":"Salinity Escape","看看结局":"See the ending","继续寻找":"Keep looking","继续挑战":"Keep playing","西沙群岛":"Xisha Islands","试种结果":"Result","进入挑战":"Enter the quest","进入第 ":"Go to Level ","造骨顺利":"Skeleton building well","重新开始":"Restart","阳光充足":"Plenty of light","阳光变弱":"Light fading","附不住！":"Can't attach!","附着成功":"Attached!","靠近海岸":"Close to shore","马尔代夫":"Maldives","← 上一关":"← Previous","、溶解氧 ":", O₂ ","下一关 →":"Next →","亚马逊河口":"Amazon mouth","健康珊瑚礁":"Healthy reef","光合作用中":"Photosynthesising","再挑战一次":"Try again","切换回中文":"Switch to Chinese","大面积死亡":"Mass mortality","安家大作战":"Home Hunt","找到彩蛋 ":"Found: ","最佳生长期":"Optimum growth","最后的星星":"The last star","珊瑚大三角":"Coral Triangle","盐度 约 ":"Salinity ≈ ","礁体崩溃了":"The reef collapsed","迷路的小蟹":"The lost crab","阳光猜猜看":"Guess the Light","：勉强存活":": barely survives"," 关完成 ✓":" complete ✓"," 秒，得分 ":" s, score ","32 致死线":"32 lethal","严重富营养化":"Severe eutrophication","地球仪大冒险":"Globe Adventure","完成挑战 ↺":"Finish ↺","接近生存下限":"Near the survival floor","活着，长得慢":"Alive, growing slowly","海藻开始冒头":"Algae appearing","海面 0 m":"Surface 0 m","深水里的章鱼":"The deep-water octopus","礁面被抢占了":"Reef surface overrun","细胞受不了了":"Cells failing","终极生存挑战":"Final Challenge","缺氧，没力气":"Hypoxic, no strength","贝壳里的留言":"A message in a shell","躲进海藻的鱼":"The fish hiding in the algae","造骨头实验室":"Build a Skeleton","你守住了这片礁":"You held the reef","偏凉 · 缓慢":"Cool · slow","投放草食性鱼类":"Add herbivorous fish","条件合适：Ω ":"Conditions good: Ω ","淡水与海水交汇":"Fresh meets salt","珊瑚主导的礁体":"Coral-dominated reef","白化 · 可逆":"Bleached · reversible"," / 5 已找到":" / 5 found"," / 6 片礁区":" / 6 zones","Ω 降到 <b>":"Ω has fallen to <b>","也会被泥沙埋住。":" and gets buried in silt.","冷水 · 冷白化":"Cold water · bleaching","冷白化 · 死亡":"Cold bleaching · death","硬底 · 能附着":"Hard · can attach","礁体重新开始生长":"The reef starts growing again","°，已在温带海域。":"°, in temperate seas.","全球变暖！水温上升":"Global warming! Water warms","切换为「浑浊海水」":"Switch to \"murky water\"","切换为「清澈海水」":"Switch to \"clear water\"","台风过境！水流过强":"Typhoon! Current too strong","太软 · 会陷进去":"Too soft · sinks in","我需要稳定的硬底！":"I need stable hard bottom!","暴雨来袭！盐度下降":"Storm! Salinity drops","溶解氧只有 <b>":"Dissolved O₂ is only <b>","礁石里的五句悄悄话":"Five whispers in the reef","<b>失败。<\/b>":"<b>Failed.<\/b>","<b>成功！<\/b>":"<b>Success!<\/b>","松散 · 会被水翻动":"Loose · washed around","污水排放！营养盐飙升":"Sewage! Nutrients spike","海洋酸化！pH 下降":"Acidification! pH drops","清理中 · 点此撤走":"Cleaning · click to remove","点击编号，试着种珊瑚":"Click a number to plant coral","第一关 · 温度危机":"Level 01 · Heat Crisis","第二关 · 盐度逃生":"Level 02 · Salinity Escape","第四关 · 施肥陷阱":"Level 04 · The Fertilizer Trap","这个调节项暂时不可用":"This control isn't available yet","这里不稳，我抓不牢。":"This isn't stable — I can't hold on."," m，光照仅约 <b>":" m, light is only about <b>"," ℃，超出生理上限约 ":" ℃, roughly ","开阔海域 · 远离河口":"Open water · away from rivers","看看这五枚彩蛋都是什么":"See what the five eggs are","第三关 · 阳光猜猜看":"Level 03 · Guess the Light","35 m 以下 · 太暗":"Below 35 m · too dark","<b>勉强存活。<\/b>":"<b>Barely survives.<\/b>","海岸工程！硬底被泥沙覆盖":"Coastal works! Hard bottom buried","第八关 · 终极生存挑战":"Level 08 · Final Challenge","隐藏收藏 · 共 5 枚":"Hidden collection · 5 in all","0–22 m · 光照充足":"0–22 m · plenty of light","只能长出矮小、稀疏的礁体。":"only low, sparse reef can grow.","回到封面，可从头再挑战一次":"Back to the cover — start over from Level 1","已点亮 0 / 6 片礁区":"0 / 6 reef zones lit","营养盐太高，海藻又长回来了":"Nutrients too high — the algae are back","靠近中国珊瑚礁分布的北缘，":"close to the northern edge of China's reefs, "," mg/L，Ω 达到 <b>":" mg/L and Ω reaches <b>"," m，光照只剩表层的 <b>":" m, light is down to <b>"," m，光照约为表层的 <b>":" m, light is about <b>","22–35 m · 明显减弱":"22–35 m · much dimmer","健康珊瑚礁 · 25.0 ℃":"Healthy reef · 25.0 ℃","珊瑚熬不过冬天，堆不出礁体。":"coral can't survive the winter, so no reef builds up.","45 秒里，八项条件同时达标。":"All eight conditions held for 45 seconds.","冬季水温跌到 18 ℃ 以下，":"winter water drops below 18 ℃, ","浑浊海水：20 米以下几乎全黑":"Murky: almost black below 20 m","珊瑚主导 → 海藻主导（相变）":"Coral → algae (phase shift)","珊瑚定居，礁体开始一层层堆积。":"coral settles and the reef builds up, layer by layer.","草食鱼被撤走了，海藻又开始蔓延":"Herbivores removed — algae spread again","冬季寒潮会让水温跌破 20 ℃，":"winter cold snaps push water below 20 ℃, ","拖网捕捞！草食鱼被捞光，海藻暴发":"Trawling! Herbivores gone, algae bloom","水清、有硬底、远离大河河口 ——":"clear water, hard bottom, far from big rivers —","清澈海水：30 米处仍有微弱阳光":"Clear: faint light even at 30 m","清空全部进度，从第一关重新开始？":"Erase all progress and restart from Level 1?","，造骨变得更费劲，骨骼也更疏松。":", so building skeleton gets harder and the skeleton turns porous.","先把幼虫放到一块海底上，再来调水流":"Put the larva on a seabed first, then adjust the current","<b>礁体崩溃了。<\/b>你坚持了 ":"<b>The reef collapsed.<\/b> You lasted ","珊瑚礁的缝隙，是甲壳类最爱的托儿所。":"Reef crevices are a crustacean nursery.","而现实中的珊瑚礁，需要的是永远达标。":"Real reefs need it to hold forever."," mg/L，珊瑚稳稳地把海水变成骨头。":" mg/L — the coral is steadily turning seawater into bone.","<b>你守住了这片礁！<\/b>坚持了 ":"<b>You held the reef!<\/b> You lasted ","白色圆点是候选地点，编号对应下方按钮。":"White dots = sites; numbers match the buttons.","泥沙又不断沉积 —— 珊瑚既受不了低盐，":"and silt keeps settling — coral can't take the low salt, ","泥沙是软的、还会被水冲走，我根本抓不住。":"Mud is soft and gets washed away; I can't hold on at all.","，低于正常的 8.0–8.2。Ω 降到 ":", below the normal 8.0–8.2. Ω has dropped to ","pH 越高、Ω 越大，这个反应越容易往右走":"Higher pH and higher Ω push this reaction to the right","拖动地球，看看南北纬 30° 之外是什么。":"Drag the globe to see what lies beyond 30° N/S.","水温常年 23–29 ℃，盐度约 35‰，":"water stays 23–29 ℃, salinity about 35‰, ","藻长起来，鱼先变多 —— 但那是另一批鱼。":"Algae grow, fish increase — but they're a different crowd.","八项条件里只要长期有几项不合格，礁就撑不住。":"If a few of the eight conditions stay off, the reef gives way.","大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！":"Big rivers bring silt as well as fresh water — it buries coral!","这里是大河口：淡水把盐度压到 30‰ 以下，":"A big river mouth — fresh water pushes salinity below 30‰, ","。八项条件里只要长期有几项不合格，礁就撑不住。":". If a few of the eight conditions stay off, the reef gives way.","判断一片海能不能长礁？看水够不够清澈就知道了！":"Can a sea grow reef? Just check how clear the water is!","点一下外海、近岸或河口，看看这次它能不能安家。":"Tap open sea, near shore or river mouth and see if it can settle.","这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。":"Pick a harder seabed this time — rock or coral limestone.","30 米以下光只剩几个百分点，珊瑚就住不下去了。":"Below 30 m only a few percent of light is left — coral can't live there.","Ca²⁺ + CO₃²⁻ → CaCO₃（文石）":"Ca²⁺ + CO₃²⁻ → CaCO₃ (aragonite)","我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。":"I'm fine now: my zooxanthellae feed me and I'm slowly building skeleton.","浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。":"The swell is too strong — branches get torn and washed away.","八个条件同时满足的地方，不到海洋面积的 0.1%。":"Places where all eight conditions meet are under 0.1% of the ocean.","珊瑚虫其实是一只只小海葵，它们合伙盖了这座石头城。":"A coral polyp is a tiny sea anemone; together they built this stone city.","绿色 = 能成礁，橙色 = 勉强，红色 = 失败。":"Green = reef, orange = marginal, red = fail.","减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥":"Cut carbon · clean water · protect fish · spare the coast · less fertiliser","我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。":"I'm just a tiny planula — I need the right salinity before I can settle.","<\/b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。":"<\/b> — plenty of calcium and carbonate; the coral is laying down aragonite fast.","如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……":"If it cools soon I can still be saved! But if it stays this hot, I really die…","%<\/b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。":"%<\/b>. Colours fade and growth slows; it's hanging on, but it's not enough.","泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。":"Silt is settling and burying the young coral. It needs current to carry this away.","水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。":"Current does three jobs: bring oxygen and food, carry waste away, flush out burying silt."," ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。":" ℃, on the cool side. Still alive, but calcification runs at about half speed and the reef thickens slowly.","。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。":". What you just did is the whole secret of reef protection: keep all eight in the green.","氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。":"Oxygen and food come in, waste and silt go out — the young coral can finally grow.","营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。":"Nutrients are up, algae outgrow coral, spreading between colonies and stealing light and space.","<b>灾难开始。<\/b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。":"<b>Disasters begin.<\/b> Watch all eight: fix them once orange — red drains health.","我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。":"I'm dead… coral death can't be undone; only new larvae settling can rebuild the reef.","%<\/b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。":"%<\/b>. The zooxanthellae are photosynthesising hard, turning sunlight into food — see the glowing dots.","过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！":"Overfish the herbivores and nothing controls the algae — the reef flips to algae, and it rarely flips back!"," 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。":" sits within 30° of the equator — temperature, salinity, light and substrate all check out, so a real reef can grow.","海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘<\/b>，慢慢饿死。":"Algae blanket the reef and shade the coral. It isn't poisoned — it's <b>shaded and squeezed out<\/b>, slowly starved.","回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？":"Back to the start: nutrients near 0, lean water, a few algae tufts, coral back in charge. Push nutrients up again?"," mg/L<\/b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。":" mg/L<\/b>. Respiration is a struggle, let alone hauling calcium to build skeleton — it has to live first.","珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。":"The larva is back in the water — it needs a seabed it can grip: rock, mud, gravel or coral limestone. Try again.","砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。":"Gravel is hard, but these grains are loose and small — one swell and they roll, carrying me off with them.","这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……":"This is a river mouth: salinity only about 18‰ — half of normal seawater. Fresh water floods in, cells swell and distort…"," 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。":" is a river mouth: too fresh, too silty. Fresh water wrecks its osmosis and sediment buries it — that's why there are almost no fringing reefs off big rivers."," ℃，正好落在 <b>23–29 ℃<\/b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。":" ℃ — right in the <b>23–29 ℃<\/b> sweet spot. Peak photosynthesis, fast calcification, the reef is thickening.","%<\/b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死<\/b>。":"%<\/b>. Symbionts can barely photosynthesise; the energy supply is cut — the coral isn't \"getting ugly\", it's <b>starving<\/b>.","这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。":"Calm water, hard bottom — I'm glued down tight. Next I metamorphose into a polyp. Now adjust the current and see if it grows."," <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。<\/span>":" <span class='hint'>The water is murky; particles block light, so the depth where reef can grow shrinks sharply.<\/span>","八个滑块都推对的那一刻，才有这颗星。它不算奖励 —— 它就是「刚好」这件事本身，出现得少，才值得抬头看一眼。":"This star only appears when all eight sliders are right. It isn't a reward — it is \"just right\" itself; rare enough to look up for.","富营养化不是「海变丑了」，是「住在里面的换了一批」。这条小鱼躲得很自在，可它属于后来的那一批，不是原来那群。":"Eutrophication isn't \"the sea got ugly\" — it's \"the residents changed\". This little fish hides happily, but it belongs to the new crowd, not the old one.","营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。":"Nutrients near 0 make the water almost a desert — and that's exactly why coral wins: its symbionts recycle nutrients far more efficiently than algae.","<b>已重新开始。<\/b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。":"<b>Restarted.<\/b> Timer, score and all eight indicators are reset; random disasters keep coming — this time try to hold them all in the green.","盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。":"Too fresh — my cells can't take it! Reef corals hold out to about 30‰; below that they fail. That's why big river mouths have almost no fringing reef.","这一关问的是「能不能住下来」。珊瑚先住下，缝隙才长出来；缝隙长出来，小蟹才有地方躲。它说迷路，是因为家本来就在礁里。":"This level asks \"can you move in?\". Coral settles first, crevices grow later; the crevices come, and only then does the crab have somewhere to hide. It says it's lost because home was always in the reef.","这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。":"This is near shore, about 30‰ — fresher than the open sea. It survives, but spends energy balancing osmosis: slow growth, thin skeleton. Barely.","这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。":"This line is the reef's life-and-death border — roughly the 18 ℃ isotherm of the coldest winter month (mean annual ~20 ℃). Cross it and coral can't survive the winter.","这不是成就，也不解锁任何关卡。<b>它只是五个我舍不得删掉的小事实<\/b>，藏在画面里 —— 愿意多看一眼的人才碰得到。":"Not an achievement, and it unlocks nothing. <b>Just five small facts I couldn't bring myself to cut<\/b>, hidden in the scenes — only those who look twice will find them."," ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。":" ℃ — just past the 29 ℃ comfort limit. Coral starts expelling a few symbionts; see the brown specks drifting away. Cool it now and almost no damage is done.","光够不够，人眼是看不出来的。滑到那个深度，画面暗下去，珊瑚悄悄退场，章鱼还留在原地 —— 它是「光不够了」这件事唯一的证人。":"You can't judge light by eye. Slide to that depth and the scene darkens, the coral quietly leaves, the octopus stays — the only witness that the light ran out.","这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。":"This is the open sea, about 35‰ — normal seawater (34–36‰). It settles firmly on rock, starts building its own skeleton and grows into a coral."," <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。<\/span>":" <span class='hint'>Herbivorous fish are grazing the algae and bare reef shows again. But nutrients are still high — the algae will be back soon.<\/span>"," ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚<\/b>，不只是变暖。":" ℃ — below the survival floor. Most species cold-bleach and necrose around 16 ℃ — <b>cold snaps kill coral too<\/b>, not just warming.","海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）<\/b>，而且往往很难逆转。":"Algae cover the whole reef, coral is almost gone and only white skeleton remains — the <b>phase shift<\/b> of ecology, usually very hard to reverse."," ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死<\/b>；但停在这一段，死就是迟早的事。":" ℃. Symbionts are gone, tissue necroses, skeleton shows and mortality climbs fast. <b>Bleaching is only colour loss, not death<\/b> — but stay here and death is only a matter of time."," ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的<\/b>：水温若及时回落，它能把这些共生藻重新请回来。":" ℃. Coral expels over 90% of its symbionts, losing colour and most of its food. <b>Bleaching is reversible<\/b>: if the water cools in time, it takes them back.","温度计被拖到 35 ℃ 的时候，画面里是「珊瑚死了」—— 但那不是一块石头变了颜色，是几万只小海葵同时停止呼吸。所以我把这枚贝壳放在温度计的脚下。":"Drag the thermometer to 35 ℃ and the scene shows \"coral dead\" — not a stone changing colour, but tens of thousands of tiny anemones stopping at once. That's why this shell sits at the foot of the thermometer.","°S，属于温带：<b>冬季<\/b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。":"°S — temperate: <b>winter<\/b> water drops below 18 ℃ and coral can't ride it out. What really limits reefs is \"how cold the coldest gets\" — which is why they stop near 30° N/S."," ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁<\/b>」。":" ℃. Below 18 ℃ calcification almost stops; this is near the survival floor (~16–18 ℃) — not dead yet, but it can't build reef. <b>Alive ≠ a reef.<\/b>","这片礁已经全部死亡，<b>降温也救不回来<\/b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。":"This reef is completely dead — <b>cooling it won't help<\/b>. Bleaching is only colour loss and can recover; after death the skeleton is bare and only new larvae can rebuild it, which takes years. Hit \"Reset reef\" to grow it again."," 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。":" at about 19°N is near the northern edge of China's reefs (further north, Weizhou Island at 21°N is about the end). Winter cold snaps push water below 20 ℃, so growth is slow and reef thin; add coastal pollution and overfishing and these reefs are clearly degraded.","<\/b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度<\/b>，骨骼正在变薄、变脆。这就是<b>海洋酸化<\/b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。":"<\/b> — below the threshold for net calcification (~2.4). <b>Dissolution now outruns deposition<\/b>: skeleton thins and weakens. This is <b>ocean acidification<\/b> — every 0.1 drop in pH costs about 0.36 of Ω, and calcification gets harder."," ℃。造礁珊瑚的生存上限就在 <b>34 ℃<\/b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡<\/b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。":" ℃. Reef corals top out around <b>34 ℃<\/b>; a few days above 34.5 ℃ (hours in shallow water) and the whole reef <b>dies<\/b> — not \"80% bleached\", dead. Bare skeleton, then algae, and no more growth.","<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。<\/span>":"<br><span class='hint'>What we can do: cut carbon (cooling and acidification), control fertiliser and sewage (nutrients), protect herbivorous fish (the algae crew), stop dredging and filling the shoreline (hard bottom and clear water), and use less single-use plastic.<\/span>","<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。<\/span>":"<br><span class='hint'>In reality human activity pulls several of these at once: carbon warms and acidifies the sea, fertiliser and sewage raise nutrients, coastal works bury hard bottom, overfishing removes herbivores, river diversion brings fresh water and silt. What we can do is concrete: cut carbon, clean the water, protect fish, leave the coastline alone.<\/span>"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature"," <kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":" <kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current"," <kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":" <kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂"," <kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":" <kbd>←<\/kbd><kbd>→<\/kbd> spin the globe"," / 8 关":" / 8","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature","<kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":"<kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current","<kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":"<kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂","<kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":"<kbd>←<\/kbd><kbd>→<\/kbd> spin the globe","温度 · 致命":"Temp · lethal","温度 · 濒死":"Temp · dying","温度 · 过冷":"Temp · too cold","盐度 · 太淡":"Salinity · too fresh","盐度 · 太咸":"Salinity · too salty","光照 · 太暗":"Light · too dark","营养盐 · 过高":"Nutrients · too high","水流 · 太静":"Current · too still","水流 · 太急":"Current · too fast","酸碱度 · 酸化":"pH · acidification","位置 · 河口":"Site · river mouth","位置 · 高纬":"Site · high latitude","综合 · 崩礁":"Overall · collapse","下次这样做":"Next time","知道了，再试一次":"Got it — try again","不是「白化八成」，是整片死掉":"Not “80% bleached” — the whole reef is dead","你把水温推到了 <b>34.5 ℃<\/b> 以上。":"You pushed the water above <b>34.5 °C<\/b>.","造礁珊瑚的硬上限在 <b>34 ℃<\/b> 上下。再往上，蛋白质变性、代谢崩掉 —— 浅水里几小时就够了。":"Reef-building corals top out around <b>34 °C<\/b>. Beyond that, proteins denature and metabolism collapses — hours are enough in shallow water.","白化只是掉色，及时降温还能恢复；死亡是组织脱落、只剩骨骼，回不来了。":"Bleaching is only lost colour and reverses if the water cools in time; death is tissue peeling away, leaving bare skeleton — that does not come back.","死后骨骼被藻类盖住，礁体不再生长，要等新的幼虫定居，得好几年。":"After death algae cover the skeleton and the reef stops growing; recovery waits for new larvae to settle — years, not weeks.","23–29 ℃ 是最适区间；一过 29 ℃ 就该往回拉，别等它变白。":"23–29 °C is the optimum; pull back the moment you pass 29 °C, before it turns white.","已经越过「可逆」那条线":"You are past the reversible line","水温 32–34.5 ℃。":"Water at 32–34.5 °C.","虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速上升。":"The symbionts are gone, tissue is necrosing and skeleton showing; mortality climbs fast.","关键区别：<b>白化是掉色，坏死是掉肉<\/b>。前者能回头，后者不能。":"The key difference: <b>bleaching is lost colour, necrosis is lost flesh<\/b>. The first can turn back, the second cannot.","停在这一段，死只是时间问题 —— 不是「也许」。":"Stay in this band and death is a matter of time — not a maybe.","看到组织发白、边缘发毛，立刻降温；别指望它自己好。":"When tissue pales and edges fray, cool the water at once — do not wait for it to heal itself.","冷也能杀死珊瑚":"Cold kills corals too","水温跌破了 16.5 ℃。":"Water dropped below 16.5 °C.","18 ℃ 以下钙化基本停摆；16 ℃ 上下，多数种类会冷白化、组织坏死。":"Below 18 °C calcification all but stops; around 16 °C most species cold-bleach and necrose.","决定珊瑚礁分布的其实是「最冷的时候有多冷」，所以它止步于南北纬 30°。":"What limits reef distribution is how cold the coldest water gets — which is why reefs stop near 30° latitude.","寒潮、深层冷水上涌都能造成大面积死亡 —— 不只是变暖才危险。":"Cold snaps and upwelling of deep cold water can kill reefs en masse — warming is not the only danger.","18–23 ℃ 只是「活着但长不快」，别停在这儿。":"18–23 °C is just “alive but slow” — do not settle there.","淡水从细胞外面把珊瑚撑破":"Fresh water bursts the cells from outside","盐度掉到 30‰ 以下。":"Salinity fell below 30‰.","珊瑚体液和海水盐度接近；外面一淡，水就往细胞里钻，细胞膨胀、变形。":"Coral body fluid matches seawater; make the outside fresher and water floods into the cells, swelling and deforming them.","它还得花大量能量把多余的水排出去，生长直接停摆。":"It then burns energy pumping that water back out, and growth stops dead.","所以大河口附近几乎没有岸礁 —— 不是没有硬底，是盐度撑不住。":"That is why almost no fringing reef survives off big river mouths — not for lack of hard bottom, but because salinity fails.","32–36‰ 最稳；近岸 30‰ 只能算勉强活着。":"32–36‰ is the stable band; 30‰ near shore is barely alive.","太咸是「被抽干」，不是「更咸更健康」":"Too salty means drained, not healthier","盐度超过 38‰。":"Salinity above 38‰.","外面比体内咸，水从细胞里往外跑，组织收缩、脱水。":"Saltier outside than in, so water leaves the cells: tissue shrinks and dehydrates.","36–38‰ 已经开始额外耗能；再高，多数种类撑不住。":"Even 36–38‰ costs extra energy; higher than that and most species give out.","红海有 40‰ 的珊瑚，但那是长期适应的地方物种，不能随便搬过去。":"The Red Sea has corals at 40‰, but those are locally adapted species — you cannot simply move others there.","32–36‰ 是安全区。":"32–36‰ is the safe band.","太暗不是「不好看」，是断粮":"Too dark is not ugly — it is starvation","光照只剩表层的 8% 以下。":"Less than 8% of surface light is left.","珊瑚的口粮大部分来自体内虫黄藻的光合作用，不是靠捕食。":"Most of a coral's food comes from photosynthesis by its symbionts, not from catching prey.","光一弱，光合产出抵不过呼吸消耗 —— 它是在<b>慢慢饿死<\/b>。":"When light fades, photosynthesis no longer covers respiration — it is <b>slowly starving<\/b>.","光在水里按指数衰减；水一浑，能长礁的深度被压得更浅。":"Light decays exponentially with depth, and turbid water squeezes the reef zone even shallower.","让珊瑚待在光照 ≥20% 的深度（清水约 20 米以内）。":"Keep corals where light is ≥20% — within about 20 m in clear water.","营养盐不是肥料，是「换比赛项目」":"Nutrients are not fertiliser — they change the sport","你把营养盐推到了 72 以上。":"You pushed nutrients past 72.","珊瑚不靠水里养分：它体内养着共生藻，能循环利用自己的废物，还能捕食补氮。":"Corals do not live off dissolved nutrients: their symbionts recycle their own waste, and they catch plankton for extra nitrogen.","海藻靠水里养分，长得比珊瑚快一个量级。":"Algae do live off dissolved nutrients — and grow an order of magnitude faster.","水瘦时比「谁省」，珊瑚赢；水肥时比「谁抢」，海藻赢 —— 赢家换人了。":"In lean water the contest is efficiency and the coral wins; in rich water it is speed and the algae win. The winner changes.","然后就是遮光正反馈：藻遮光 → 珊瑚饿弱 → 让出硬底 → 藻再扩张。":"Then comes the shading feedback: algae shade → coral weakens → hard bottom freed → algae spread further.","营养盐越低越好；真要救，只能同时压污染、保住草食鱼。":"Lower is always better; to rescue a reef you must cut pollution and protect herbivorous fish together.","水太静，泥沙把小珊瑚活埋":"Still water buries the young coral","水流低于 26。":"Current below 26.","没有水流，悬浮的泥沙会沉下来，直接盖住幼体。":"With no flow, suspended silt settles and covers the juvenile outright.","代谢废物堆在原地，氧气和食物也送不进来。":"Waste piles up where it stands, and oxygen and food stop arriving.","珊瑚礁要的是「流动的清水」，不是一潭静水。":"A reef needs moving clear water, not a stagnant pond.","30–70 之间：既能带走泥沙，又不至于扯断枝干。":"Aim for 30–70: enough to clear silt, not enough to snap branches.","水太急，它把力气全用来「抓牢」":"In fast water all its energy goes into holding on","水流超过 70。":"Current above 70.","强流会直接把枝状珊瑚折断、整株冲走。":"Strong flow snaps branching corals and washes whole colonies away.","就算没断，能量也全花在抗流上，长不动。":"Even if it holds, the energy budget goes into resisting flow and growth stalls.","台风过后的礁，常常就是「断枝遍地」的样子。":"A reef just after a typhoon is often littered with broken branches.","30–70 之间最合适。":"30–70 is the sweet spot.","酸化不是「溶掉」，是「造不出来」":"Acidification is not melting — it is failing to build","Ω 跌破 2.4，净钙化变成净溶解。":"Ω fell below 2.4, so net calcification became net dissolution.","造骨是把海水里的钙离子和碳酸根拼成文石，Ω 就是「拼不拼得起来」的难易。":"Building skeleton means joining calcium and carbonate into aragonite; Ω measures how easily that join happens.","Ω 低于 2.4，溶解速度超过堆积速度，骨骼变薄、变脆。":"Below Ω 2.4, dissolution outruns deposition: the skeleton thins and turns brittle.","pH 每降 0.1，Ω 大约掉 0.36 —— pH 掉一点点，造骨就难一大截。":"Each 0.1 drop in pH costs about 0.36 of Ω — a small pH change makes building much harder.","pH 8.0–8.2、溶解氧 4.5 以上，Ω 才够用。":"pH 8.0–8.2 with oxygen above 4.5 mg/L keeps Ω usable.","河口：两重打击一起来":"River mouth: two blows at once","盐度低于 30‰，外加泥沙沉积。":"Salinity under 30‰, plus sediment settling out.","淡水让珊瑚渗透压失衡，细胞撑不住。":"Fresh water wrecks the coral's osmotic balance and the cells give out.","河流带来的泥沙会把它埋掉，硬底也被覆盖。":"River silt buries it, and the hard bottom is covered too.","两件事同时发生 —— 所以大河口外面几乎看不到岸礁。":"Both happen at once — which is why fringing reefs are almost absent off big river mouths.","选水清、盐度约 35‰、有硬底的地方。":"Pick clear water, salinity near 35‰, and hard bottom.","卡住珊瑚的不是夏天，是冬天":"It is winter, not summer, that stops corals","这个地点已经在温带。":"This site is already in the temperate zone.","冬季水温会跌到 18 ℃ 以下，珊瑚熬不过去。":"Winter water drops below 18 °C and the coral does not survive it.","夏天够暖没用 —— 决定分布的是「最冷的时候有多冷」。":"A warm summer does not help: distribution is set by how cold the coldest water gets.","所以珊瑚礁大致止步于南北纬 30°。":"That is why reefs stop near 30° north and south.","往低纬度找，南北纬 30° 以内。":"Look within 30° of the equator.","礁体崩溃：哪几项拖垮了它":"Reef collapsed: what dragged it down","减碳（降温、降酸）、控污（压营养盐）、护鱼（留住清藻工）、少动海岸线（保住硬底）。":"Cut carbon (heat and acid), control pollution (nutrients), protect fish (the algae crew), leave the shoreline alone (hard bottom).","八项指标里，长期有 ":"Of the eight conditions, "," 项不合格，礁体撑不住了。":" stayed out of range for too long — the reef could not hold.","水温离 23–29 ℃ 太远 —— 过热排藻，过冷停摆。":"Water far off 23–29 °C — heat expels symbionts, cold stops everything.","盐度离开 32–36‰ —— 太淡细胞进水，太咸细胞脱水。":"Salinity off 32–36‰ — too fresh floods the cells, too salty drains them.","光照不足 8% —— 虫黄藻没法光合，珊瑚断粮。":"Light under 8% — symbionts cannot photosynthesise and the coral starves.","营养盐过高 —— 海藻抢位、遮光，珊瑚被挤出去。":"Nutrients too high — algae take the space and shade the coral out.","水流过弱或过强 —— 静水埋沙，急流折断。":"Current too weak or too strong — silt buries it, or flow snaps it.","pH 偏低 —— Ω 跌破 2.4，骨骼净溶解。":"pH too low — Ω below 2.4 and the skeleton dissolves faster than it forms.","硬底被泥沙盖住 —— 幼虫无处附着。":"Hard bottom buried in mud — larvae have nowhere to attach.","高纬 —— 冬季水温跌破 18 ℃。":"High latitude — winter water falls below 18 °C.","另外 ":"Another "," 项也一直不在绿区 —— 八项是一起生效的，任何一项长期不合格，礁都会慢慢垮。":" conditions also stayed out of the green — all eight act together, and any one of them failing long enough will slowly bring the reef down."}</script>
+<!-- 皮肤粒子层 -->
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<!-- ---------- 皮肤仓库 ---------- -->
+<div class="skbox" id="skinBox" hidden>
+  <div class="sk-in" role="dialog" aria-modal="true" aria-labelledby="skinTitle">
+    <button class="sk-x" type="button" aria-label="关闭" data-sk-close>&times;</button>
+    <span class="sk-tag">Skin Vault</span>
+    <h3 id="skinTitle"></h3>
+    <p class="sk-lead" id="skinLead"></p>
+    <div class="sk-lock" id="skinLock">
+      <div class="sk-input">
+        <input id="skinPwd" type="password" maxlength="12" autocomplete="off" spellcheck="false" aria-label="口令">
+        <button class="sk-go" id="skinGo" type="button"></button>
+      </div>
+    </div>
+    <p class="sk-err" id="skinErr"></p>
+    <div class="sk-grid" id="skinGrid" hidden></div>
+    <p class="sk-note" id="skinNote"></p>
+  </div>
+</div>
+
+<!-- ---------- 通用确认框（替代 window.confirm） ---------- -->
+<div class="skbox" id="askBox" hidden>
+  <div class="sk-in" style="max-width:430px" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+    <h3 id="askTitle" style="margin-top:2px"></h3>
+    <p class="sk-lead" id="askMsg" style="margin-bottom:20px"></p>
+    <div class="why-btns" style="margin-top:0">
+      <button class="btn ghost" id="askNo" type="button"></button>
+      <button class="btn go" id="askYes" type="button"></button>
+    </div>
+  </div>
+</div>
+
+<script id="dyn-en" type="application/json">{"中":"中","在":"Hidden in "," 关":"","临界":"Marginal","位置":"Location","光照":"Light","危险":"Danger","基底":"Substrate","外海":"Open sea","安全":"Safe","岩石":"Rock","彩蛋":"Egg","最适":"Optimum","水流":"Current","水温":"Water temp","河口":"River mouth","泥沙":"Mud / sand","热带":"Tropical","盐度":"Salinity","砾石":"Gravel","硬底":"Hard bottom","第 ":"Level ","红海":"Red Sea","近岸":"Near shore","骨骼":"Skeleton","高纬":"High lat."," 在 ":" at ","净溶解":"Net dissolution","大堡礁":"Great Barrier Reef","太暗了":"Too dark","它死了":"It's dead","已死亡":"Dead","我落到":"I landed on ","水偏酸":"Water too acidic","水很瘦":"Lean water","水深 ":"Depth ","水温 ":"Water temp ","白化中":"Bleaching","纬度 ":"Latitude ","营养盐":"Nutrients","长江口":"Yangtze mouth","：失败":": failed","：成功":": success","上了……":"…","中国海南":"Hainan, China","全部死亡":"Total death","再试一次":"Try again","加勒比海":"Caribbean","勉强活着":"Barely alive","定居成功":"Settled!","尚未找到":"Not found yet","已点亮 ":"Lit ","开始紧张":"Getting tense","悉尼外海":"Off Sydney","施肥陷阱":"The Fertilizer Trap","正常钙化":"Normal calcification","死亡边缘":"At death's edge","水流太强":"Current too strong","水流太静":"Current too still","水流适中":"Current just right","淡水注入":"Freshwater inflow","温度危机":"Heat Crisis","珊瑚灰岩":"Coral limestone","的画面里":"","盐度逃生":"Salinity Escape","看看结局":"See the ending","继续寻找":"Keep looking","继续挑战":"Keep playing","西沙群岛":"Xisha Islands","试种结果":"Result","进入挑战":"Enter the quest","进入第 ":"Go to Level ","造骨顺利":"Skeleton building well","重新开始":"Restart","阳光充足":"Plenty of light","阳光变弱":"Light fading","附不住！":"Can't attach!","附着成功":"Attached!","靠近海岸":"Close to shore","马尔代夫":"Maldives","← 上一关":"← Previous","、溶解氧 ":", O₂ ","下一关 →":"Next →","亚马逊河口":"Amazon mouth","健康珊瑚礁":"Healthy reef","光合作用中":"Photosynthesising","再挑战一次":"Try again","切换回中文":"Switch to Chinese","大面积死亡":"Mass mortality","安家大作战":"Home Hunt","找到彩蛋 ":"Found: ","最佳生长期":"Optimum growth","最后的星星":"The last star","珊瑚大三角":"Coral Triangle","盐度 约 ":"Salinity ≈ ","礁体崩溃了":"The reef collapsed","迷路的小蟹":"The lost crab","阳光猜猜看":"Guess the Light","：勉强存活":": barely survives"," 关完成 ✓":" complete ✓"," 秒，得分 ":" s, score ","32 致死线":"32 lethal","严重富营养化":"Severe eutrophication","地球仪大冒险":"Globe Adventure","完成挑战 ↺":"Finish ↺","接近生存下限":"Near the survival floor","活着，长得慢":"Alive, growing slowly","海藻开始冒头":"Algae appearing","海面 0 m":"Surface 0 m","深水里的章鱼":"The deep-water octopus","礁面被抢占了":"Reef surface overrun","细胞受不了了":"Cells failing","终极生存挑战":"Final Challenge","缺氧，没力气":"Hypoxic, no strength","贝壳里的留言":"A message in a shell","躲进海藻的鱼":"The fish hiding in the algae","造骨头实验室":"Build a Skeleton","你守住了这片礁":"You held the reef","偏凉 · 缓慢":"Cool · slow","投放草食性鱼类":"Add herbivorous fish","条件合适：Ω ":"Conditions good: Ω ","淡水与海水交汇":"Fresh meets salt","珊瑚主导的礁体":"Coral-dominated reef","白化 · 可逆":"Bleached · reversible"," / 5 已找到":" / 5 found"," / 6 片礁区":" / 6 zones","Ω 降到 <b>":"Ω has fallen to <b>","也会被泥沙埋住。":" and gets buried in silt.","冷水 · 冷白化":"Cold water · bleaching","冷白化 · 死亡":"Cold bleaching · death","硬底 · 能附着":"Hard · can attach","礁体重新开始生长":"The reef starts growing again","°，已在温带海域。":"°, in temperate seas.","全球变暖！水温上升":"Global warming! Water warms","切换为「浑浊海水」":"Switch to \"murky water\"","切换为「清澈海水」":"Switch to \"clear water\"","台风过境！水流过强":"Typhoon! Current too strong","太软 · 会陷进去":"Too soft · sinks in","我需要稳定的硬底！":"I need stable hard bottom!","暴雨来袭！盐度下降":"Storm! Salinity drops","溶解氧只有 <b>":"Dissolved O₂ is only <b>","礁石里的五句悄悄话":"Five whispers in the reef","<b>失败。<\/b>":"<b>Failed.<\/b>","<b>成功！<\/b>":"<b>Success!<\/b>","松散 · 会被水翻动":"Loose · washed around","污水排放！营养盐飙升":"Sewage! Nutrients spike","海洋酸化！pH 下降":"Acidification! pH drops","清理中 · 点此撤走":"Cleaning · click to remove","点击编号，试着种珊瑚":"Click a number to plant coral","第一关 · 温度危机":"Level 01 · Heat Crisis","第二关 · 盐度逃生":"Level 02 · Salinity Escape","第四关 · 施肥陷阱":"Level 04 · The Fertilizer Trap","这个调节项暂时不可用":"This control isn't available yet","这里不稳，我抓不牢。":"This isn't stable — I can't hold on."," m，光照仅约 <b>":" m, light is only about <b>"," ℃，超出生理上限约 ":" ℃, roughly ","开阔海域 · 远离河口":"Open water · away from rivers","看看这五枚彩蛋都是什么":"See what the five eggs are","第三关 · 阳光猜猜看":"Level 03 · Guess the Light","35 m 以下 · 太暗":"Below 35 m · too dark","<b>勉强存活。<\/b>":"<b>Barely survives.<\/b>","海岸工程！硬底被泥沙覆盖":"Coastal works! Hard bottom buried","第八关 · 终极生存挑战":"Level 08 · Final Challenge","隐藏收藏 · 共 5 枚":"Hidden collection · 5 in all","0–22 m · 光照充足":"0–22 m · plenty of light","只能长出矮小、稀疏的礁体。":"only low, sparse reef can grow.","回到封面，可从头再挑战一次":"Back to the cover — start over from Level 1","已点亮 0 / 6 片礁区":"0 / 6 reef zones lit","营养盐太高，海藻又长回来了":"Nutrients too high — the algae are back","靠近中国珊瑚礁分布的北缘，":"close to the northern edge of China's reefs, "," mg/L，Ω 达到 <b>":" mg/L and Ω reaches <b>"," m，光照只剩表层的 <b>":" m, light is down to <b>"," m，光照约为表层的 <b>":" m, light is about <b>","22–35 m · 明显减弱":"22–35 m · much dimmer","健康珊瑚礁 · 25.0 ℃":"Healthy reef · 25.0 ℃","珊瑚熬不过冬天，堆不出礁体。":"coral can't survive the winter, so no reef builds up.","45 秒里，八项条件同时达标。":"All eight conditions held for 45 seconds.","冬季水温跌到 18 ℃ 以下，":"winter water drops below 18 ℃, ","浑浊海水：20 米以下几乎全黑":"Murky: almost black below 20 m","珊瑚主导 → 海藻主导（相变）":"Coral → algae (phase shift)","珊瑚定居，礁体开始一层层堆积。":"coral settles and the reef builds up, layer by layer.","草食鱼被撤走了，海藻又开始蔓延":"Herbivores removed — algae spread again","冬季寒潮会让水温跌破 20 ℃，":"winter cold snaps push water below 20 ℃, ","拖网捕捞！草食鱼被捞光，海藻暴发":"Trawling! Herbivores gone, algae bloom","水清、有硬底、远离大河河口 ——":"clear water, hard bottom, far from big rivers —","清澈海水：30 米处仍有微弱阳光":"Clear: faint light even at 30 m","清空全部进度，从第一关重新开始？":"Erase all progress and restart from Level 1?","，造骨变得更费劲，骨骼也更疏松。":", so building skeleton gets harder and the skeleton turns porous.","先把幼虫放到一块海底上，再来调水流":"Put the larva on a seabed first, then adjust the current","<b>礁体崩溃了。<\/b>你坚持了 ":"<b>The reef collapsed.<\/b> You lasted ","珊瑚礁的缝隙，是甲壳类最爱的托儿所。":"Reef crevices are a crustacean nursery.","而现实中的珊瑚礁，需要的是永远达标。":"Real reefs need it to hold forever."," mg/L，珊瑚稳稳地把海水变成骨头。":" mg/L — the coral is steadily turning seawater into bone.","<b>你守住了这片礁！<\/b>坚持了 ":"<b>You held the reef!<\/b> You lasted ","白色圆点是候选地点，编号对应下方按钮。":"White dots = sites; numbers match the buttons.","泥沙又不断沉积 —— 珊瑚既受不了低盐，":"and silt keeps settling — coral can't take the low salt, ","泥沙是软的、还会被水冲走，我根本抓不住。":"Mud is soft and gets washed away; I can't hold on at all.","，低于正常的 8.0–8.2。Ω 降到 ":", below the normal 8.0–8.2. Ω has dropped to ","pH 越高、Ω 越大，这个反应越容易往右走":"Higher pH and higher Ω push this reaction to the right","拖动地球，看看南北纬 30° 之外是什么。":"Drag the globe to see what lies beyond 30° N/S.","水温常年 23–29 ℃，盐度约 35‰，":"water stays 23–29 ℃, salinity about 35‰, ","藻长起来，鱼先变多 —— 但那是另一批鱼。":"Algae grow, fish increase — but they're a different crowd.","八项条件里只要长期有几项不合格，礁就撑不住。":"If a few of the eight conditions stay off, the reef gives way.","大河带来的不只是淡水，还有泥沙，会掩埋珊瑚！":"Big rivers bring silt as well as fresh water — it buries coral!","这里是大河口：淡水把盐度压到 30‰ 以下，":"A big river mouth — fresh water pushes salinity below 30‰, ","。八项条件里只要长期有几项不合格，礁就撑不住。":". If a few of the eight conditions stay off, the reef gives way.","判断一片海能不能长礁？看水够不够清澈就知道了！":"Can a sea grow reef? Just check how clear the water is!","点一下外海、近岸或河口，看看这次它能不能安家。":"Tap open sea, near shore or river mouth and see if it can settle.","这次选一块硬一点的基底 —— 岩石或珊瑚灰岩。":"Pick a harder seabed this time — rock or coral limestone.","30 米以下光只剩几个百分点，珊瑚就住不下去了。":"Below 30 m only a few percent of light is left — coral can't live there.","Ca²⁺ + CO₃²⁻ → CaCO₃（文石）":"Ca²⁺ + CO₃²⁻ → CaCO₃ (aragonite)","我现在很好：虫黄藻在给我做饭，我也在慢慢造骨头。":"I'm fine now: my zooxanthellae feed me and I'm slowly building skeleton.","浪太猛了，珊瑚被扯得东倒西歪，枝干会被折断冲走。":"The swell is too strong — branches get torn and washed away.","八个条件同时满足的地方，不到海洋面积的 0.1%。":"Places where all eight conditions meet are under 0.1% of the ocean.","珊瑚虫其实是一只只小海葵，它们合伙盖了这座石头城。":"A coral polyp is a tiny sea anemone; together they built this stone city.","绿色 = 能成礁，橙色 = 勉强，红色 = 失败。":"Green = reef, orange = marginal, red = fail.","减碳 · 控污 · 护鱼 · 少动海岸线 · 少用化肥":"Cut carbon · clean water · protect fish · spare the coast · less fertiliser","我还只是一只小小的浮浪幼虫，得先找到合适的盐度才能安家。":"I'm just a tiny planula — I need the right salinity before I can settle.","<\/b> —— 钙离子和碳酸根充足，珊瑚正在快速堆积文石骨骼。":"<\/b> — plenty of calcium and carbonate; the coral is laying down aragonite fast.","如果温度快降回来，我还有救！但如果一直这么烫，我就真的死了……":"If it cools soon I can still be saved! But if it stays this hot, I really die…","%<\/b>。珊瑚颜色变淡、生长变慢，它还在撑，但已经不太够用了。":"%<\/b>. Colours fade and growth slows; it's hanging on, but it's not enough.","泥沙正一点点沉下来，把小珊瑚埋住。它需要水流帮忙把这些脏东西带走。":"Silt is settling and burying the young coral. It needs current to carry this away.","水流做三件事：送来氧气和食物、带走珊瑚的代谢废物、冲走会掩埋它的泥沙。":"Current does three jobs: bring oxygen and food, carry waste away, flush out burying silt."," ℃，偏低。珊瑚还活着，但钙化速度只剩最适温度的一半左右，礁体增厚很慢。":" ℃, on the cool side. Still alive, but calcification runs at about half speed and the reef thickens slowly.","。你刚才做的事，其实就是保护珊瑚礁的全部秘诀：让八个条件同时待在绿色区。":". What you just did is the whole secret of reef protection: keep all eight in the green.","氧气和食物被送过来，代谢废物和泥沙被冲走 —— 小珊瑚终于可以安心长大。":"Oxygen and food come in, waste and silt go out — the young coral can finally grow.","营养盐上来了，海藻长得比珊瑚快，开始在珊瑚之间蔓延，抢走一点阳光和空间。":"Nutrients are up, algae outgrow coral, spreading between colonies and stealing light and space.","<b>灾难开始。<\/b>看住八项指标：只要变橙就赶紧调，变红就会掉健康值。":"<b>Disasters begin.<\/b> Watch all eight: fix them once orange — red drains health.","我已经死了……珊瑚死亡是不可逆的，只能等新的幼虫重新定居，礁才可能长回来。":"I'm dead… coral death can't be undone; only new larvae settling can rebuild the reef.","%<\/b>。虫黄藻在卖力地光合作用，把阳光变成珊瑚的口粮 —— 看那些发光的小点。":"%<\/b>. The zooxanthellae are photosynthesising hard, turning sunlight into food — see the glowing dots.","过度捕捞草食性鱼类，就没人控制海藻了 —— 珊瑚礁会翻转成海藻主导，而且很难逆转！":"Overfish the herbivores and nothing controls the algae — the reef flips to algae, and it rarely flips back!"," 落在南北纬 30° 以内，水温、盐度、光照、基底都合格 —— 这里能长出真正的珊瑚礁。":" sits within 30° of the equator — temperature, salinity, light and substrate all check out, so a real reef can grow.","海藻成片覆盖，遮住珊瑚。珊瑚不是被毒死的，是被<b>挡住光、挤掉地盘<\/b>，慢慢饿死。":"Algae blanket the reef and shade the coral. It isn't poisoned — it's <b>shaded and squeezed out<\/b>, slowly starved.","回到起点：营养盐接近 0，水很瘦，海藻只有零星几簇，珊瑚又长回来了。再把营养盐往上推试试？":"Back to the start: nutrients near 0, lean water, a few algae tufts, coral back in charge. Push nutrients up again?"," mg/L<\/b>。珊瑚呼吸都费劲，更没力气把钙离子搬去造骨 —— 它先要活着，才能长骨头。":" mg/L<\/b>. Respiration is a struggle, let alone hauling calcium to build skeleton — it has to live first.","珊瑚幼虫又回到水里了 —— 它得先找到一块能抓住的海底：岩石、泥沙、砾石、珊瑚灰岩，再试一次。":"The larva is back in the water — it needs a seabed it can grip: rock, mud, gravel or coral limestone. Try again.","砾石本身是硬的，可这里的颗粒又松又小，浪一来就翻滚 —— 刚粘上去的我，连同石粒一起被冲走了。":"Gravel is hard, but these grains are loose and small — one swell and they roll, carrying me off with them.","这里是河口，盐度只有约 18‰ —— 不到正常海水的一半。淡水一个劲往它身体里钻，细胞膨胀、变形……":"This is a river mouth: salinity only about 18‰ — half of normal seawater. Fresh water floods in, cells swell and distort…"," 是河口：盐度太低、泥沙太多。淡水让它渗透压失衡，沉积物又把它埋掉 —— 所以大河口附近几乎没有岸礁。":" is a river mouth: too fresh, too silty. Fresh water wrecks its osmosis and sediment buries it — that's why there are almost no fringing reefs off big rivers."," ℃，正好落在 <b>23–29 ℃<\/b> 的最适区间。虫黄藻光合效率最高，珊瑚快速钙化，礁体在变厚。":" ℃ — right in the <b>23–29 ℃<\/b> sweet spot. Peak photosynthesis, fast calcification, the reef is thickening.","%<\/b>。共生藻几乎无法光合作用，能量断了来源 —— 珊瑚不是在「变丑」，是在<b>慢慢饿死<\/b>。":"%<\/b>. Symbionts can barely photosynthesise; the energy supply is cut — the coral isn't \"getting ugly\", it's <b>starving<\/b>.","这里水不冲、底又硬，我把自己牢牢粘住了 —— 接下来开始变态、长成珊瑚虫。现在调一下水流，看它能不能长大。":"Calm water, hard bottom — I'm glued down tight. Next I metamorphose into a polyp. Now adjust the current and see if it grows."," <span class='hint'>水体浑浊，光被悬浮颗粒挡住了，能长礁的深度被大幅压缩。<\/span>":" <span class='hint'>The water is murky; particles block light, so the depth where reef can grow shrinks sharply.<\/span>","八个滑块都推对的那一刻，才有这颗星。它不算奖励 —— 它就是「刚好」这件事本身，出现得少，才值得抬头看一眼。":"This star only appears when all eight sliders are right. It isn't a reward — it is \"just right\" itself; rare enough to look up for.","富营养化不是「海变丑了」，是「住在里面的换了一批」。这条小鱼躲得很自在，可它属于后来的那一批，不是原来那群。":"Eutrophication isn't \"the sea got ugly\" — it's \"the residents changed\". This little fish hides happily, but it belongs to the new crowd, not the old one.","营养盐接近 0，海水几乎是「荒漠」。可正因为这样，珊瑚才赢 —— 它靠体内共生藻循环养分，效率比海藻高得多。":"Nutrients near 0 make the water almost a desert — and that's exactly why coral wins: its symbionts recycle nutrients far more efficiently than algae.","<b>已重新开始。<\/b>计时、得分、八项指标全部归零，随机灾难继续来袭 —— 这次试着一直把它们压在绿色区。":"<b>Restarted.<\/b> Timer, score and all eight indicators are reset; random disasters keep coming — this time try to hold them all in the green.","盐度太低，我的细胞受不了！造礁珊瑚能忍到 30‰ 左右，再低就撑不住 —— 这就是为什么大河口附近几乎没有岸礁。":"Too fresh — my cells can't take it! Reef corals hold out to about 30‰; below that they fail. That's why big river mouths have almost no fringing reef.","这一关问的是「能不能住下来」。珊瑚先住下，缝隙才长出来；缝隙长出来，小蟹才有地方躲。它说迷路，是因为家本来就在礁里。":"This level asks \"can you move in?\". Coral settles first, crevices grow later; the crevices come, and only then does the crab have somewhere to hide. It says it's lost because home was always in the reef.","这里是近岸，盐度约 30‰，比外海淡了一截。它还能活，但要多花能量去平衡渗透压，长得慢、骨骼也薄 —— 只能算勉强。":"This is near shore, about 30‰ — fresher than the open sea. It survives, but spends energy balancing osmosis: slow growth, thin skeleton. Barely.","这条线就是珊瑚礁的生死边界！大致对应冬季最冷月 18 ℃ 等温线（年均温约 20 ℃）—— 越过它，珊瑚就熬不过冬天。":"This line is the reef's life-and-death border — roughly the 18 ℃ isotherm of the coldest winter month (mean annual ~20 ℃). Cross it and coral can't survive the winter.","这不是成就，也不解锁任何关卡。<b>它只是五个我舍不得删掉的小事实<\/b>，藏在画面里 —— 愿意多看一眼的人才碰得到。":"Not an achievement, and it unlocks nothing. <b>Just five small facts I couldn't bring myself to cut<\/b>, hidden in the scenes — only those who look twice will find them."," ℃，刚越过 29 ℃ 的舒适上限。珊瑚开始少量排出虫黄藻 —— 看，褐色小点正在飘走。这一阶段及时降温，几乎不会留下伤害。":" ℃ — just past the 29 ℃ comfort limit. Coral starts expelling a few symbionts; see the brown specks drifting away. Cool it now and almost no damage is done.","光够不够，人眼是看不出来的。滑到那个深度，画面暗下去，珊瑚悄悄退场，章鱼还留在原地 —— 它是「光不够了」这件事唯一的证人。":"You can't judge light by eye. Slide to that depth and the scene darkens, the coral quietly leaves, the octopus stays — the only witness that the light ran out.","这里是外海，盐度约 35‰ —— 正是正常海水的浓度（34–36‰）。它稳稳附着在礁石上，开始造自己的骨头，慢慢长成一株珊瑚。":"This is the open sea, about 35‰ — normal seawater (34–36‰). It settles firmly on rock, starts building its own skeleton and grows into a coral."," <span class='hint'>草食性鱼类正在啃食海藻，礁面暂时露了出来。但营养盐还高，海藻很快就会回来。<\/span>":" <span class='hint'>Herbivorous fish are grazing the algae and bare reef shows again. But nutrients are still high — the algae will be back soon.<\/span>"," ℃，低于造礁珊瑚的生存下限。多数种类在 16 ℃ 上下就会冷白化、组织坏死 —— <b>寒潮一样能杀死珊瑚<\/b>，不只是变暖。":" ℃ — below the survival floor. Most species cold-bleach and necrose around 16 ℃ — <b>cold snaps kill coral too<\/b>, not just warming.","海藻铺满整个礁面，珊瑚几乎消失，只剩白色骨架 —— 这就是生态学说的<b>相变（phase shift）<\/b>，而且往往很难逆转。":"Algae cover the whole reef, coral is almost gone and only white skeleton remains — the <b>phase shift<\/b> of ecology, usually very hard to reverse."," ℃。虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速升高。<b>白化只是掉色，还没到死<\/b>；但停在这一段，死就是迟早的事。":" ℃. Symbionts are gone, tissue necroses, skeleton shows and mortality climbs fast. <b>Bleaching is only colour loss, not death<\/b> — but stay here and death is only a matter of time."," ℃。珊瑚排掉体内九成以上的虫黄藻，失去颜色，也失去绝大部分口粮。<b>但白化是可逆的<\/b>：水温若及时回落，它能把这些共生藻重新请回来。":" ℃. Coral expels over 90% of its symbionts, losing colour and most of its food. <b>Bleaching is reversible<\/b>: if the water cools in time, it takes them back.","温度计被拖到 35 ℃ 的时候，画面里是「珊瑚死了」—— 但那不是一块石头变了颜色，是几万只小海葵同时停止呼吸。所以我把这枚贝壳放在温度计的脚下。":"Drag the thermometer to 35 ℃ and the scene shows \"coral dead\" — not a stone changing colour, but tens of thousands of tiny anemones stopping at once. That's why this shell sits at the foot of the thermometer.","°S，属于温带：<b>冬季<\/b>水温会跌到 18 ℃ 以下，珊瑚熬不过去。真正卡住珊瑚礁分布的，是「最冷的时候有多冷」—— 所以它大致止步于南北纬 30°。":"°S — temperate: <b>winter<\/b> water drops below 18 ℃ and coral can't ride it out. What really limits reefs is \"how cold the coldest gets\" — which is why they stop near 30° N/S."," ℃。18 ℃ 以下钙化基本停摆，这里已经逼近造礁珊瑚的生存下限（约 16–18 ℃）—— 它只是「还没死」，撑不出礁体。这就是「<b>能活 ≠ 能成礁<\/b>」。":" ℃. Below 18 ℃ calcification almost stops; this is near the survival floor (~16–18 ℃) — not dead yet, but it can't build reef. <b>Alive ≠ a reef.<\/b>","这片礁已经全部死亡，<b>降温也救不回来<\/b>。白化只是掉色，还能恢复；死亡之后骨骼裸露，只能等新的幼虫重新定居 —— 那要好几年。点「重置礁体」让它重新长一次。":"This reef is completely dead — <b>cooling it won't help<\/b>. Bleaching is only colour loss and can recover; after death the skeleton is bare and only new larvae can rebuild it, which takes years. Hit \"Reset reef\" to grow it again."," 约 19°N，已经靠近中国珊瑚礁分布的北缘（再往北，到广西涠洲岛 21°N 就基本到头了）。冬季寒潮会把水温压到 20 ℃ 以下，珊瑚长得吃力、礁体很薄；再加上近岸污染和过度捕捞，这里的礁已经明显退化。":" at about 19°N is near the northern edge of China's reefs (further north, Weizhou Island at 21°N is about the end). Winter cold snaps push water below 20 ℃, so growth is slow and reef thin; add coastal pollution and overfishing and these reefs are clearly degraded.","<\/b>，已经低于珊瑚净钙化的临界值（约 2.4）—— <b>溶解的速度超过了堆积的速度<\/b>，骨骼正在变薄、变脆。这就是<b>海洋酸化<\/b>：pH 每降低 0.1，Ω 大约掉 0.36，钙化就更难一分。":"<\/b> — below the threshold for net calcification (~2.4). <b>Dissolution now outruns deposition<\/b>: skeleton thins and weakens. This is <b>ocean acidification<\/b> — every 0.1 drop in pH costs about 0.36 of Ω, and calcification gets harder."," ℃。造礁珊瑚的生存上限就在 <b>34 ℃<\/b> 上下，超过 34.5 ℃ 持续几天（浅水甚至几小时），整片礁会<b>全部死亡<\/b> —— 不是「白化八成」，是死掉。之后骨骼裸露、被藻类盖住，礁体不再生长。":" ℃. Reef corals top out around <b>34 ℃<\/b>; a few days above 34.5 ℃ (hours in shallow water) and the whole reef <b>dies<\/b> — not \"80% bleached\", dead. Bare skeleton, then algae, and no more growth.","<br><span class='hint'>现实里可以做的：减少碳排放（降温和酸化）、控制化肥与污水（压住营养盐）、保护草食性鱼类（留住清藻工）、不在海岸线上乱挖乱填（保住硬底与清水）、少用一次性塑料。<\/span>":"<br><span class='hint'>What we can do: cut carbon (cooling and acidification), control fertiliser and sewage (nutrients), protect herbivorous fish (the algae crew), stop dredging and filling the shoreline (hard bottom and clear water), and use less single-use plastic.<\/span>","<br><span class='hint'>现实里的人类活动，正在同时拉动其中好几项：排碳让海水变暖变酸、化肥与污水抬高营养盐、海岸工程覆盖硬底、过度捕捞清掉草食鱼、河流改道带来淡水与泥沙。我们能做的也很具体 —— 减碳、控污、护鱼、少动海岸线。<\/span>":"<br><span class='hint'>In reality human activity pulls several of these at once: carbon warms and acidifies the sea, fertiliser and sewage raise nutrients, coastal works bury hard bottom, overfishing removes herbivores, river diversion brings fresh water and silt. What we can do is concrete: cut carbon, clean the water, protect fish, leave the coastline alone.<\/span>"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature"," <kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":" <kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients"," <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":" <kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current"," <kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":" <kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂"," <kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":" <kbd>←<\/kbd><kbd>→<\/kbd> spin the globe"," / 8 关":" / 8","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水温":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set temperature","<kbd>↑<\/kbd><kbd>↓<\/kbd> 让珊瑚上浮 / 下沉":"<kbd>↑<\/kbd><kbd>↓<\/kbd> move the coral up / down","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调营养盐":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set nutrients","<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> 也能调水流":"<kbd>←<\/kbd><kbd>→<\/kbd><kbd>↑<\/kbd><kbd>↓<\/kbd> also set the current","<kbd>←<\/kbd><kbd>→<\/kbd> 调 pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> 调溶解氧":"<kbd>←<\/kbd><kbd>→<\/kbd> pH · <kbd>↑<\/kbd><kbd>↓<\/kbd> dissolved O₂","<kbd>←<\/kbd><kbd>→<\/kbd> 转动地球":"<kbd>←<\/kbd><kbd>→<\/kbd> spin the globe","温度 · 致命":"Temp · lethal","温度 · 濒死":"Temp · dying","温度 · 过冷":"Temp · too cold","盐度 · 太淡":"Salinity · too fresh","盐度 · 太咸":"Salinity · too salty","光照 · 太暗":"Light · too dark","营养盐 · 过高":"Nutrients · too high","水流 · 太静":"Current · too still","水流 · 太急":"Current · too fast","酸碱度 · 酸化":"pH · acidification","位置 · 河口":"Site · river mouth","位置 · 高纬":"Site · high latitude","综合 · 崩礁":"Overall · collapse","下次这样做":"Next time","知道了，再试一次":"Got it — try again","不是「白化八成」，是整片死掉":"Not “80% bleached” — the whole reef is dead","你把水温推到了 <b>34.5 ℃<\/b> 以上。":"You pushed the water above <b>34.5 °C<\/b>.","造礁珊瑚的硬上限在 <b>34 ℃<\/b> 上下。再往上，蛋白质变性、代谢崩掉 —— 浅水里几小时就够了。":"Reef-building corals top out around <b>34 °C<\/b>. Beyond that, proteins denature and metabolism collapses — hours are enough in shallow water.","白化只是掉色，及时降温还能恢复；死亡是组织脱落、只剩骨骼，回不来了。":"Bleaching is only lost colour and reverses if the water cools in time; death is tissue peeling away, leaving bare skeleton — that does not come back.","死后骨骼被藻类盖住，礁体不再生长，要等新的幼虫定居，得好几年。":"After death algae cover the skeleton and the reef stops growing; recovery waits for new larvae to settle — years, not weeks.","23–29 ℃ 是最适区间；一过 29 ℃ 就该往回拉，别等它变白。":"23–29 °C is the optimum; pull back the moment you pass 29 °C, before it turns white.","已经越过「可逆」那条线":"You are past the reversible line","水温 32–34.5 ℃。":"Water at 32–34.5 °C.","虫黄藻已经排光，珊瑚组织开始坏死、骨骼外露，死亡率迅速上升。":"The symbionts are gone, tissue is necrosing and skeleton showing; mortality climbs fast.","关键区别：<b>白化是掉色，坏死是掉肉<\/b>。前者能回头，后者不能。":"The key difference: <b>bleaching is lost colour, necrosis is lost flesh<\/b>. The first can turn back, the second cannot.","停在这一段，死只是时间问题 —— 不是「也许」。":"Stay in this band and death is a matter of time — not a maybe.","看到组织发白、边缘发毛，立刻降温；别指望它自己好。":"When tissue pales and edges fray, cool the water at once — do not wait for it to heal itself.","冷也能杀死珊瑚":"Cold kills corals too","水温跌破了 16.5 ℃。":"Water dropped below 16.5 °C.","18 ℃ 以下钙化基本停摆；16 ℃ 上下，多数种类会冷白化、组织坏死。":"Below 18 °C calcification all but stops; around 16 °C most species cold-bleach and necrose.","决定珊瑚礁分布的其实是「最冷的时候有多冷」，所以它止步于南北纬 30°。":"What limits reef distribution is how cold the coldest water gets — which is why reefs stop near 30° latitude.","寒潮、深层冷水上涌都能造成大面积死亡 —— 不只是变暖才危险。":"Cold snaps and upwelling of deep cold water can kill reefs en masse — warming is not the only danger.","18–23 ℃ 只是「活着但长不快」，别停在这儿。":"18–23 °C is just “alive but slow” — do not settle there.","淡水从细胞外面把珊瑚撑破":"Fresh water bursts the cells from outside","盐度掉到 30‰ 以下。":"Salinity fell below 30‰.","珊瑚体液和海水盐度接近；外面一淡，水就往细胞里钻，细胞膨胀、变形。":"Coral body fluid matches seawater; make the outside fresher and water floods into the cells, swelling and deforming them.","它还得花大量能量把多余的水排出去，生长直接停摆。":"It then burns energy pumping that water back out, and growth stops dead.","所以大河口附近几乎没有岸礁 —— 不是没有硬底，是盐度撑不住。":"That is why almost no fringing reef survives off big river mouths — not for lack of hard bottom, but because salinity fails.","32–36‰ 最稳；近岸 30‰ 只能算勉强活着。":"32–36‰ is the stable band; 30‰ near shore is barely alive.","太咸是「被抽干」，不是「更咸更健康」":"Too salty means drained, not healthier","盐度超过 38‰。":"Salinity above 38‰.","外面比体内咸，水从细胞里往外跑，组织收缩、脱水。":"Saltier outside than in, so water leaves the cells: tissue shrinks and dehydrates.","36–38‰ 已经开始额外耗能；再高，多数种类撑不住。":"Even 36–38‰ costs extra energy; higher than that and most species give out.","红海有 40‰ 的珊瑚，但那是长期适应的地方物种，不能随便搬过去。":"The Red Sea has corals at 40‰, but those are locally adapted species — you cannot simply move others there.","32–36‰ 是安全区。":"32–36‰ is the safe band.","太暗不是「不好看」，是断粮":"Too dark is not ugly — it is starvation","光照只剩表层的 8% 以下。":"Less than 8% of surface light is left.","珊瑚的口粮大部分来自体内虫黄藻的光合作用，不是靠捕食。":"Most of a coral's food comes from photosynthesis by its symbionts, not from catching prey.","光一弱，光合产出抵不过呼吸消耗 —— 它是在<b>慢慢饿死<\/b>。":"When light fades, photosynthesis no longer covers respiration — it is <b>slowly starving<\/b>.","光在水里按指数衰减；水一浑，能长礁的深度被压得更浅。":"Light decays exponentially with depth, and turbid water squeezes the reef zone even shallower.","让珊瑚待在光照 ≥20% 的深度（清水约 20 米以内）。":"Keep corals where light is ≥20% — within about 20 m in clear water.","营养盐不是肥料，是「换比赛项目」":"Nutrients are not fertiliser — they change the sport","你把营养盐推到了 72 以上。":"You pushed nutrients past 72.","珊瑚不靠水里养分：它体内养着共生藻，能循环利用自己的废物，还能捕食补氮。":"Corals do not live off dissolved nutrients: their symbionts recycle their own waste, and they catch plankton for extra nitrogen.","海藻靠水里养分，长得比珊瑚快一个量级。":"Algae do live off dissolved nutrients — and grow an order of magnitude faster.","水瘦时比「谁省」，珊瑚赢；水肥时比「谁抢」，海藻赢 —— 赢家换人了。":"In lean water the contest is efficiency and the coral wins; in rich water it is speed and the algae win. The winner changes.","然后就是遮光正反馈：藻遮光 → 珊瑚饿弱 → 让出硬底 → 藻再扩张。":"Then comes the shading feedback: algae shade → coral weakens → hard bottom freed → algae spread further.","营养盐越低越好；真要救，只能同时压污染、保住草食鱼。":"Lower is always better; to rescue a reef you must cut pollution and protect herbivorous fish together.","水太静，泥沙把小珊瑚活埋":"Still water buries the young coral","水流低于 26。":"Current below 26.","没有水流，悬浮的泥沙会沉下来，直接盖住幼体。":"With no flow, suspended silt settles and covers the juvenile outright.","代谢废物堆在原地，氧气和食物也送不进来。":"Waste piles up where it stands, and oxygen and food stop arriving.","珊瑚礁要的是「流动的清水」，不是一潭静水。":"A reef needs moving clear water, not a stagnant pond.","30–70 之间：既能带走泥沙，又不至于扯断枝干。":"Aim for 30–70: enough to clear silt, not enough to snap branches.","水太急，它把力气全用来「抓牢」":"In fast water all its energy goes into holding on","水流超过 70。":"Current above 70.","强流会直接把枝状珊瑚折断、整株冲走。":"Strong flow snaps branching corals and washes whole colonies away.","就算没断，能量也全花在抗流上，长不动。":"Even if it holds, the energy budget goes into resisting flow and growth stalls.","台风过后的礁，常常就是「断枝遍地」的样子。":"A reef just after a typhoon is often littered with broken branches.","30–70 之间最合适。":"30–70 is the sweet spot.","酸化不是「溶掉」，是「造不出来」":"Acidification is not melting — it is failing to build","Ω 跌破 2.4，净钙化变成净溶解。":"Ω fell below 2.4, so net calcification became net dissolution.","造骨是把海水里的钙离子和碳酸根拼成文石，Ω 就是「拼不拼得起来」的难易。":"Building skeleton means joining calcium and carbonate into aragonite; Ω measures how easily that join happens.","Ω 低于 2.4，溶解速度超过堆积速度，骨骼变薄、变脆。":"Below Ω 2.4, dissolution outruns deposition: the skeleton thins and turns brittle.","pH 每降 0.1，Ω 大约掉 0.36 —— pH 掉一点点，造骨就难一大截。":"Each 0.1 drop in pH costs about 0.36 of Ω — a small pH change makes building much harder.","pH 8.0–8.2、溶解氧 4.5 以上，Ω 才够用。":"pH 8.0–8.2 with oxygen above 4.5 mg/L keeps Ω usable.","河口：两重打击一起来":"River mouth: two blows at once","盐度低于 30‰，外加泥沙沉积。":"Salinity under 30‰, plus sediment settling out.","淡水让珊瑚渗透压失衡，细胞撑不住。":"Fresh water wrecks the coral's osmotic balance and the cells give out.","河流带来的泥沙会把它埋掉，硬底也被覆盖。":"River silt buries it, and the hard bottom is covered too.","两件事同时发生 —— 所以大河口外面几乎看不到岸礁。":"Both happen at once — which is why fringing reefs are almost absent off big river mouths.","选水清、盐度约 35‰、有硬底的地方。":"Pick clear water, salinity near 35‰, and hard bottom.","卡住珊瑚的不是夏天，是冬天":"It is winter, not summer, that stops corals","这个地点已经在温带。":"This site is already in the temperate zone.","冬季水温会跌到 18 ℃ 以下，珊瑚熬不过去。":"Winter water drops below 18 °C and the coral does not survive it.","夏天够暖没用 —— 决定分布的是「最冷的时候有多冷」。":"A warm summer does not help: distribution is set by how cold the coldest water gets.","所以珊瑚礁大致止步于南北纬 30°。":"That is why reefs stop near 30° north and south.","往低纬度找，南北纬 30° 以内。":"Look within 30° of the equator.","礁体崩溃：哪几项拖垮了它":"Reef collapsed: what dragged it down","减碳（降温、降酸）、控污（压营养盐）、护鱼（留住清藻工）、少动海岸线（保住硬底）。":"Cut carbon (heat and acid), control pollution (nutrients), protect fish (the algae crew), leave the shoreline alone (hard bottom).","八项指标里，长期有 ":"Of the eight conditions, "," 项不合格，礁体撑不住了。":" stayed out of range for too long — the reef could not hold.","水温离 23–29 ℃ 太远 —— 过热排藻，过冷停摆。":"Water far off 23–29 °C — heat expels symbionts, cold stops everything.","盐度离开 32–36‰ —— 太淡细胞进水，太咸细胞脱水。":"Salinity off 32–36‰ — too fresh floods the cells, too salty drains them.","光照不足 8% —— 虫黄藻没法光合，珊瑚断粮。":"Light under 8% — symbionts cannot photosynthesise and the coral starves.","营养盐过高 —— 海藻抢位、遮光，珊瑚被挤出去。":"Nutrients too high — algae take the space and shade the coral out.","水流过弱或过强 —— 静水埋沙，急流折断。":"Current too weak or too strong — silt buries it, or flow snaps it.","pH 偏低 —— Ω 跌破 2.4，骨骼净溶解。":"pH too low — Ω below 2.4 and the skeleton dissolves faster than it forms.","硬底被泥沙盖住 —— 幼虫无处附着。":"Hard bottom buried in mud — larvae have nowhere to attach.","高纬 —— 冬季水温跌破 18 ℃。":"High latitude — winter water falls below 18 °C.","另外 ":"Another "," 项也一直不在绿区 —— 八项是一起生效的，任何一项长期不合格，礁都会慢慢垮。":" conditions also stayed out of the green — all eight act together, and any one of them failing long enough will slowly bring the reef down.","皮肤":"Skins","皮肤仓库":"Skin vault","输入<b>口令<\/b>，打开皮肤仓库。<br>集齐五枚彩蛋，会有人把口令告诉你。":"Enter the <b>passphrase<\/b> to open the skin vault.<br>Find all five easter eggs and someone will tell you the passphrase.","口令只需要输一次，之后可以随时更换。":"You only enter it once — after that you can switch any time.","挑一件，随时换。":"Pick one. Swap whenever you like.","皮肤只改外观，不影响任何关卡数据。":"Skins only change the look — no level data is touched.","口令":"Passphrase","解锁":"Unlock","口令正确 —— 挑一件喜欢的吧。":"Correct — pick the one you like.","口令不对，再想想。":"Wrong passphrase. Think again.","先输入口令。":"Type the passphrase first.","经典 · 深海":"Classic · Deep sea","原来那件，什么都不加。":"The original look, nothing added.","飞花满城":"Petals Over the City","海面变成粉的，花瓣一直往下落。":"The sea turns pink and petals keep falling.","飞雪似花":"Snow Like Blossom","海变浅了，雪片慢慢飘。":"The sea turns pale and snow drifts down.","阴雨纷纷":"Endless Rain","灰蓝的海，雨丝斜着落下来。":"A grey-blue sea, rain slanting down.","使用中":"In use","已换上「":"Switched to “","」。":"”.","皮肤仓库口令":"Skin vault passphrase","去封面输入":"enter it on the cover","去皮肤仓库":"Open skin vault","重置进度":"Reset progress","清空并重来":"Erase and restart","取消":"Cancel","确定":"OK","再试一次，这一关重来":"Try again","海在深处，光自己会走。":"Deep water — the light finds its own way.","人间洛阳花满城。":"All of Luoyang is full of blossom.","千树万树梨花开。":"A thousand trees, ten thousand trees, all pear blossom.","清明时节雨纷纷。":"Drizzle falls on Qingming day.","皮肤和已解锁的口令也会一起清掉。":"Your skin and the unlocked passphrase will be cleared too."}</script>
 <script>
 /* ---------- 英文动态文案：T() 在脚本里包裹中文字面量 ---------- */
 (function(){
@@ -4120,12 +4387,22 @@
   }
   if(homeBtn){homeBtn.addEventListener("click",showCover);}
   if(resetBtn){
-    resetBtn.addEventListener("click",function(){
-      var ok=window.confirm(T("清空全部进度，从第一关重新开始？"));
-      if(!ok)return;
-      try{localStorage.removeItem(KEY);}catch(e){}
-      var u=location.href.split("?")[0].split("#")[0];
-      location.replace(u);
+    resetBtn.addEventListener("click",function(e){
+      e.preventDefault();
+      var doReset=function(){
+        try{localStorage.removeItem(KEY);}catch(err){}
+        /* 皮肤与口令一并清掉：重置就是彻底从头开始 */
+        if(window.coralSkin&&window.coralSkin.purge){ window.coralSkin.purge(); }
+        else{ try{localStorage.removeItem("coralReefQuest.skin");localStorage.removeItem("coralReefQuest.skinKey");}catch(err){} }
+        var u=location.href.split("?")[0].split("#")[0];
+        try{ location.replace(u); }catch(err){ location.href=u; }
+      };
+      /* 不用 window.confirm：预览窗里会被沙箱静音，点了没反应 */
+      if(window.coralAsk){
+        window.coralAsk(T("重置进度"),T("清空全部进度，从第一关重新开始？")+"<br>"+T("皮肤和已解锁的口令也会一起清掉。"),T("清空并重来"),T("取消"),doReset);
+      }else if(window.confirm(T("清空全部进度，从第一关重新开始？"))){
+        doReset();
+      }
     });
   }
 
@@ -4302,6 +4579,8 @@
     var f=document.getElementById("finale");
     if(!f||!f.hidden)return;
     f.hidden=false;
+    var fk=document.getElementById("finaleKey");
+    if(fk){ fk.hidden=false; }
     burst(window.innerWidth/2,window.innerHeight*0.36,72);
     setTimeout(function(){burst(window.innerWidth*0.28,window.innerHeight*0.30,42);},240);
     setTimeout(function(){burst(window.innerWidth*0.72,window.innerHeight*0.30,42);},460);
@@ -4537,6 +4816,350 @@
   window.addEventListener("load",all);
   window.addEventListener("langchange",function(){ setTimeout(all,40); });
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",all); else all();
+})();
+</script>
+
+<script>
+/* =========================================================
+   皮肤系统 · 飞花满城 / 飞雪似花 / 阴雨纷纷
+   + 通用确认框（不用 window.confirm，预览框里也能用）
+   ========================================================= */
+(function(){
+  "use strict";
+  var SKEY="coralReefQuest.skin", UKEY="coralReefQuest.skinKey", PWD="lqq";
+  function T(s){ return (window.T?window.T(s):s); }
+
+  /* ---------------- 1. 粒子层 ---------------- */
+  var cv=document.getElementById("fx");
+  var ctx=cv?cv.getContext("2d"):null;
+  var W=0,H=0,DPR=1,cur="",ps=[],raf=0,lastT=0;
+  function rnd(a,b){ return a+Math.random()*(b-a); }
+  function pick(a){ return a[(Math.random()*a.length)|0]; }
+
+  function resize(){
+    if(!cv||!ctx) return;
+    DPR=Math.min(2,window.devicePixelRatio||1);
+    W=cv.clientWidth||window.innerWidth;
+    H=cv.clientHeight||window.innerHeight;
+    if(!W||!H) return;
+    cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+  }
+
+  var PETAL=["#FFC9DC","#FFB2CB","#FF9FBE","#FFDCED","#F7A9C6","#FFE6F0"];
+
+  function newPetal(init){
+    return {k:"p",x:rnd(-50,W+50),y:init?rnd(-H,H):rnd(-90,-20),
+      r:rnd(3.2,7.4),vy:rnd(.35,1.0),vx:rnd(.3,1.1),
+      rot:rnd(0,6.28),vr:rnd(-.022,.022),sw:rnd(.5,1.3),ph:rnd(0,6.28),
+      c:pick(PETAL),a:rnd(.55,.95)};
+  }
+  function newFlake(init){
+    var big=Math.random()<.18;
+    return {k:"f",x:rnd(-30,W+30),y:init?rnd(-H,H):rnd(-70,-10),
+      r:big?rnd(2.6,3.6):rnd(.9,2.2),vy:big?rnd(.5,.9):rnd(.35,1.2),vx:rnd(-.25,.5),
+      sw:rnd(.6,1.6),ph:rnd(0,6.28),a:rnd(.45,.92),big:big,rot:rnd(0,6.28),vr:rnd(-.01,.01)};
+  }
+  function newDrop(init){
+    return {k:"r",x:rnd(-40,W+60),y:init?rnd(-H,H):rnd(-120,-10),
+      len:rnd(13,34),v:rnd(9,17),a:rnd(.14,.42)};
+  }
+
+  function seed(){
+    ps=[];
+    var n=0,i;
+    if(cur==="bloom") n=(W<640?32:58);
+    else if(cur==="snow") n=(W<640?44:78);
+    else if(cur==="rain") n=(W<640?70:128);
+    for(i=0;i<n;i++){
+      ps.push(cur==="bloom"?newPetal(true):cur==="snow"?newFlake(true):newDrop(true));
+    }
+  }
+
+  function drawPetal(p){
+    ctx.save();
+    ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+    ctx.globalAlpha=p.a; ctx.fillStyle=p.c;
+    ctx.beginPath();
+    ctx.moveTo(0,-p.r);
+    ctx.bezierCurveTo(p.r*.95,-p.r*.55,p.r*.82,p.r*.62,0,p.r);
+    ctx.bezierCurveTo(-p.r*.82,p.r*.62,-p.r*.95,-p.r*.55,0,-p.r);
+    ctx.fill();
+    ctx.globalAlpha=p.a*.45; ctx.strokeStyle="#FFF3F8"; ctx.lineWidth=.7;
+    ctx.beginPath(); ctx.moveTo(0,-p.r*.8); ctx.lineTo(0,p.r*.8); ctx.stroke();
+    ctx.restore();
+  }
+  function drawFlake(p){
+    ctx.save();
+    ctx.globalAlpha=p.a; ctx.strokeStyle="#FFFFFF"; ctx.fillStyle="#FFFFFF";
+    if(p.big){
+      ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.lineWidth=1.05;
+      for(var i=0;i<6;i++){
+        var a=i*Math.PI/3;
+        ctx.beginPath();
+        ctx.moveTo(0,0); ctx.lineTo(Math.cos(a)*p.r*1.7,Math.sin(a)*p.r*1.7);
+        ctx.stroke();
+      }
+      ctx.globalAlpha=p.a*.5;
+      ctx.beginPath(); ctx.arc(0,0,p.r*.55,0,6.28); ctx.fill();
+    }else{
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,6.28); ctx.fill();
+    }
+    ctx.restore();
+  }
+  function drawDrop(p){
+    ctx.save();
+    ctx.globalAlpha=p.a; ctx.strokeStyle="#CDE4F3"; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(p.x-3.2,p.y+p.len); ctx.stroke();
+    ctx.restore();
+  }
+
+  function tick(ts){
+    raf=requestAnimationFrame(tick);
+    if(!ctx||!W||!H) return;
+    var dt=Math.min(48,ts-(lastT||ts))/16.6; lastT=ts;
+    var t=ts/1000;
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<ps.length;i++){
+      var p=ps[i];
+      if(p.k==="p"){
+        p.y+=p.vy*dt; p.x+=(p.vx+Math.sin(t*p.sw+p.ph)*.75)*dt; p.rot+=p.vr*dt;
+        if(p.y>H+30||p.x>W+60){ ps[i]=newPetal(false); continue; }
+        drawPetal(p);
+      }else if(p.k==="f"){
+        p.y+=p.vy*dt; p.x+=(p.vx+Math.sin(t*p.sw+p.ph)*.42)*dt; p.rot+=p.vr*dt;
+        if(p.y>H+20||p.x>W+40){ ps[i]=newFlake(false); continue; }
+        drawFlake(p);
+      }else{
+        p.y+=p.v*dt; p.x-=2.6*dt;
+        if(p.y>H+40){ ps[i]=newDrop(false); continue; }
+        drawDrop(p);
+      }
+    }
+  }
+  function startFx(){
+    if(!ctx) return;
+    resize(); seed();
+    if(!raf){ lastT=0; raf=requestAnimationFrame(tick); }
+  }
+  function stopFx(){
+    if(raf){ cancelAnimationFrame(raf); raf=0; }
+    if(ctx&&W&&H) ctx.clearRect(0,0,W,H);
+    ps=[];
+  }
+  var rz;
+  window.addEventListener("resize",function(){
+    if(!cur) return;
+    clearTimeout(rz);
+    rz=setTimeout(function(){ resize(); seed(); },180);
+  });
+
+  /* ---------------- 2. 皮肤读写 ---------------- */
+  var LIST=[
+    {id:"",n:"经典 · 深海",d:"海在深处，光自己会走。"},
+    {id:"bloom",n:"飞花满城",d:"人间洛阳花满城。"},
+    {id:"snow",n:"飞雪似花",d:"千树万树梨花开。"},
+    {id:"rain",n:"阴雨纷纷",d:"清明时节雨纷纷。"}
+  ];
+
+  function isUnlocked(){ try{ return localStorage.getItem(UKEY)==="1"; }catch(e){ return false; } }
+  function savedSkin(){
+    try{
+      var s=localStorage.getItem(SKEY)||"";
+      return (s==="bloom"||s==="snow"||s==="rain")?s:"";
+    }catch(e){ return ""; }
+  }
+  function apply(id,persist){
+    if(id!=="bloom"&&id!=="snow"&&id!=="rain") id="";
+    if(id) document.documentElement.setAttribute("data-skin",id);
+    else document.documentElement.removeAttribute("data-skin");
+    cur=id;
+    if(id){ startFx(); } else { stopFx(); }
+    if(persist){ try{ localStorage.setItem(SKEY,id); }catch(e){} }
+    paintGrid();
+  }
+
+  /* ---------------- 3. 皮肤仓库界面 ---------------- */
+  var box=document.getElementById("skinBox");
+  var grid=document.getElementById("skinGrid");
+  var lockRow=document.getElementById("skinLock");
+  var errEl=document.getElementById("skinErr");
+  var pwdEl=document.getElementById("skinPwd");
+
+  function dots(id){
+    var s="",i;
+    if(id==="bloom"){
+      for(i=0;i<7;i++) s+='<i style="left:'+(6+i*13+Math.random()*4)+'%;top:'+(14+((i*29)%58))+'%;width:'+(5+(i%3))+'px;height:'+(4+(i%2))+'px"></i>';
+    }else if(id==="snow"){
+      for(i=0;i<10;i++) s+='<i style="left:'+(5+i*9.4+Math.random()*3)+'%;top:'+(12+((i*37)%66))+'%;width:'+(2+(i%3))+'px;height:'+(2+(i%3))+'px"></i>';
+    }else if(id==="rain"){
+      for(i=0;i<14;i++) s+='<i style="left:'+(4+i*6.8+Math.random()*3)+'%;top:'+(8+((i*23)%72))+'%;height:'+(11+(i%4)*4)+'px"></i>';
+    }else{
+      for(i=0;i<5;i++) s+='<i style="left:'+(12+i*18)+'%;top:'+(30+((i*21)%40))+'%;width:2px;height:2px;background:rgba(150,238,232,.5)"></i>';
+    }
+    return s;
+  }
+
+  function paintGrid(){
+    if(!grid) return;
+    var now=cur, unlocked=isUnlocked();
+    grid.innerHTML="";
+    if(!unlocked) return;
+    LIST.forEach(function(s){
+      var b=document.createElement("button");
+      b.type="button";
+      b.className="sk-card"+(s.id===now?" on":"");
+      b.innerHTML='<div class="sk-pv" data-p="'+(s.id||"classic")+'">'+dots(s.id)+'</div>'+
+        '<div class="sk-meta"><b>'+T(s.n)+'</b><span>'+T(s.d)+'</span></div>'+
+        (s.id===now?'<i class="sk-badge">'+T("使用中")+'</i>':'');
+      b.addEventListener("click",function(){
+        apply(s.id,true);
+        if(errEl){ errEl.className="sk-err ok"; errEl.textContent=T("已换上「")+(s.id?T(s.n):T("经典 · 深海"))+T("」。"); }
+      });
+      grid.appendChild(b);
+    });
+  }
+
+  function fillTexts(){
+    var t=document.getElementById("skinTitle");
+    var l=document.getElementById("skinLead");
+    var go=document.getElementById("skinGo");
+    var note=document.getElementById("skinNote");
+    var bt=document.getElementById("skinBtnTxt");
+    if(t) t.textContent=T("皮肤仓库");
+    if(go) go.textContent=T("解锁");
+    if(bt) bt.textContent=T("皮肤");
+    if(pwdEl) pwdEl.setAttribute("placeholder",T("口令"));
+    if(!isUnlocked()){
+      if(l) l.innerHTML=T("输入<b>口令</b>，打开皮肤仓库。<br>集齐五枚彩蛋，会有人把口令告诉你。");
+      if(note) note.textContent=T("口令只需要输一次，之后可以随时更换。");
+    }else{
+      if(l) l.innerHTML=T("挑一件，随时换。");
+      if(note) note.textContent=T("皮肤只改外观，不影响任何关卡数据。");
+    }
+    var fk=document.getElementById("finaleKeyL");
+    var fe=document.getElementById("finaleKeyE");
+    var fb=document.getElementById("finaleSkin");
+    if(fk) fk.textContent=T("皮肤仓库口令");
+    if(fe) fe.textContent=T("去封面输入");
+    if(fb) fb.textContent=T("去皮肤仓库");
+  }
+
+  function refresh(){
+    var unlocked=isUnlocked();
+    if(lockRow) lockRow.hidden=unlocked;
+    if(grid) grid.hidden=!unlocked;
+    if(errEl){ errEl.className="sk-err"; errEl.textContent=""; }
+    paintGrid();
+  }
+
+  function openBox(){
+    if(!box) return;
+    fillTexts(); refresh();
+    box.hidden=false;
+    document.documentElement.classList.add("why-open");
+    setTimeout(function(){
+      if(!isUnlocked()&&pwdEl){ try{ pwdEl.focus({preventScroll:true}); }catch(e){ pwdEl.focus(); } }
+    },90);
+  }
+  function closeBox(){
+    if(!box||box.hidden) return;
+    box.hidden=true;
+    document.documentElement.classList.remove("why-open");
+  }
+
+  function submitPwd(){
+    if(!pwdEl||!errEl) return;
+    var v=(pwdEl.value||"").trim().toLowerCase();
+    if(v===PWD){
+      try{ localStorage.setItem(UKEY,"1"); }catch(e){}
+      fillTexts(); refresh();
+      errEl.className="sk-err ok";
+      errEl.textContent=T("口令正确 —— 挑一件喜欢的吧。");
+    }else{
+      errEl.className="sk-err";
+      errEl.textContent=v?T("口令不对，再想想。"):T("先输入口令。");
+      box.classList.remove("shake");
+      void box.offsetWidth;
+      box.classList.add("shake");
+      setTimeout(function(){ box.classList.remove("shake"); },480);
+      pwdEl.select();
+    }
+  }
+
+  var sb=document.getElementById("skinBtn");
+  if(sb) sb.addEventListener("click",openBox);
+  var sg=document.getElementById("skinGo");
+  if(sg) sg.addEventListener("click",submitPwd);
+  if(pwdEl) pwdEl.addEventListener("keydown",function(e){
+    if(e.key==="Enter"){ e.preventDefault(); submitPwd(); }
+    e.stopPropagation();
+  });
+  if(box) box.addEventListener("click",function(e){
+    if(e.target===box||(e.target.closest&&e.target.closest("[data-sk-close]"))) closeBox();
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&box&&!box.hidden){ closeBox(); }
+  },true);
+
+  /* ---------------- 4. 通用确认框 ---------------- */
+  var askBox=document.getElementById("askBox");
+  var askTitle=document.getElementById("askTitle");
+  var askMsg=document.getElementById("askMsg");
+  var askYes=document.getElementById("askYes");
+  var askNo=document.getElementById("askNo");
+  var askCb=null;
+
+  function closeAsk(){ if(askBox) askBox.hidden=true; askCb=null; document.documentElement.classList.remove("why-open"); }
+  window.coralAsk=function(title,msg,okText,cancelText,onOk){
+    if(!askBox) return;
+    askTitle.textContent=title;
+    askMsg.innerHTML=msg;
+    askYes.textContent=okText||T("确定");
+    askNo.textContent=cancelText||T("取消");
+    askCb=onOk||null;
+    askBox.hidden=false;
+    document.documentElement.classList.add("why-open");
+    setTimeout(function(){ try{askYes.focus({preventScroll:true});}catch(e){} },80);
+  };
+  if(askYes) askYes.addEventListener("click",function(){
+    var f=askCb; closeAsk(); if(f) f();
+  });
+  if(askNo) askNo.addEventListener("click",closeAsk);
+  if(askBox) askBox.addEventListener("click",function(e){ if(e.target===askBox) closeAsk(); });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&askBox&&!askBox.hidden) closeAsk();
+  },true);
+
+  /* ---------------- 5. 对外接口 ---------------- */
+  window.coralSkin={
+    apply:function(id){ apply(id,true); },
+    open:openBox,
+    isUnlocked:isUnlocked,
+    current:savedSkin,
+    /* 全局重置时调用：皮肤退回经典，仓库重新上锁 */
+    purge:function(){
+      try{ localStorage.removeItem(SKEY); }catch(e){}
+      try{ localStorage.removeItem(UKEY); }catch(e){}
+      closeBox();
+      apply("",false);
+    }
+  };
+
+  /* ---------------- 6. 启动 ---------------- */
+  fillTexts();
+  var s0=savedSkin();
+  if(s0){ cur=""; apply(s0,false); }
+
+  /* 集齐彩蛋后弹出的口令条 & 去皮肤仓库 */
+  var fs=document.getElementById("finaleSkin");
+  if(fs) fs.addEventListener("click",function(){
+    var f=document.getElementById("finale");
+    if(f) f.hidden=true;
+    var hb=document.getElementById("homeBtn");
+    if(hb) hb.click();
+    setTimeout(openBox,700);
+  });
 })();
 </script>
 </body>
