@@ -627,6 +627,230 @@
   @media(prefers-reduced-motion:reduce){
     *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
   }
+
+  /* ============================================================
+     精致化 · Polish pass
+     只作用于「外壳」与封面：底色、顶栏、面板、场景窗、控件、
+     观察室、底部导航。关卡里的场景内部（珊瑚、滑块绘制）不动。
+     ============================================================ */
+  :root{
+    --p-hair:rgba(150,214,208,.16);
+    --p-hair-2:rgba(127,230,222,.34);
+    --p-glow:rgba(127,230,222,.55);
+    --p-shell-hi:rgba(255,255,255,.06);
+  }
+
+  /* 原来那层 101° 斜条纹在深底上会显出直边，换成三团很淡的辉光 */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(860px 540px at 16% 2%,  rgba(127,230,222,.075), transparent 64%),
+      radial-gradient(760px 500px at 88% 20%, rgba(96,176,255,.045), transparent 66%),
+      radial-gradient(1100px 660px at 50% 106%, rgba(18,96,110,.22), transparent 68%);
+    -webkit-mask-image:none;mask-image:none;
+  }
+  /* 底纹细一点，避免 5px 点阵在深色上闪 */
+  body::before{background-size:7px 7px;background-image:radial-gradient(rgba(180,238,232,.04) .7px, transparent .7px)}
+  ::selection{background:rgba(127,230,222,.26);color:#F4FFFD}
+
+  /* ---------- 版心：两侧留白收一点 ---------- */
+  .wrap{max-width:1160px;padding:30px 26px 96px}
+  .topbar-in{max-width:1160px;height:64px;padding:0 26px;gap:15px}
+
+  /* ---------- 顶栏 ---------- */
+  .topbar{
+    background:linear-gradient(180deg,rgba(5,29,37,.94),rgba(3,21,28,.86));
+    -webkit-backdrop-filter:blur(16px) saturate(120%);
+    backdrop-filter:blur(16px) saturate(120%);
+    border-bottom:1px solid rgba(126,205,200,.13);
+    box-shadow:0 1px 0 var(--p-shell-hi) inset, 0 22px 46px -42px #000;
+  }
+  .tb-home{
+    height:32px;padding:0 12px;border-radius:10px;font-size:12px;letter-spacing:.03em;
+    background:rgba(255,255,255,.035);border:1px solid var(--p-hair);color:#A7C2BE;
+    transition:background .2s,border-color .2s,color .2s,transform .2s;
+  }
+  .tb-home:hover{background:rgba(127,230,222,.10);border-color:var(--p-hair-2);color:#CFF3EE;transform:translateX(-1px)}
+  .tb-sep{border:0;width:1px;height:22px;
+    background:linear-gradient(180deg,transparent,rgba(150,214,208,.30),transparent)}
+  .tb-name{font-size:15px;font-weight:600;letter-spacing:.055em;color:#EFFAF8}
+  .tb-pos{font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:#6E8C88;font-weight:600}
+  .tb-dots{gap:7px;margin:0 10px}
+  .tb-dots i{width:6px;height:6px;border-radius:99px;background:rgba(160,210,205,.22);
+    transition:width .28s cubic-bezier(.4,0,.2,1),background .28s,box-shadow .28s}
+  .tb-dots i.done{background:rgba(127,230,222,.44)}
+  .tb-dots i.on{width:22px;background:linear-gradient(90deg,#8FE8DE,#3FC4BC);
+    box-shadow:0 0 12px -1px var(--p-glow)}
+  .tb-reset,.tb-egg{
+    height:31px;border-radius:10px;font-size:11.5px;font-weight:600;letter-spacing:.03em;
+    transition:background .2s,border-color .2s,color .2s,transform .15s;
+  }
+  .tb-reset:hover,.tb-egg:hover{background:rgba(127,230,222,.10);border-color:var(--p-hair-2);color:#CFF3EE}
+  .tb-reset:active,.tb-egg:active,.tb-lang:active{transform:translateY(1px) scale(.99)}
+  .tb-lang{height:31px;border-radius:10px}
+
+  /* ---------- 关卡面板 ---------- */
+  .panel{
+    padding:26px 26px 24px;border-radius:26px;
+    background:
+      radial-gradient(640px 240px at 10% -70px, rgba(127,230,222,.085), transparent 72%),
+      linear-gradient(180deg,rgba(11,48,58,.94),rgba(6,30,38,.975));
+    border:1px solid rgba(126,205,200,.15);
+    box-shadow:0 1px 0 var(--p-shell-hi) inset, 0 60px 110px -90px #000, 0 3px 12px -10px rgba(0,0,0,.6);
+  }
+  .panel::before{opacity:.7}
+
+  .lvno{font-size:9.5px;letter-spacing:.22em;padding:6px 12px;border-radius:9px;font-weight:700}
+  .lvhead h2{font-size:27px;line-height:1.24;letter-spacing:.03em;
+    text-shadow:0 2px 30px rgba(127,230,222,.16)}
+  .point{
+    max-width:352px;font-size:12.2px;line-height:1.74;padding:11px 14px;border-radius:12px;
+    border-left:2px solid rgba(228,166,80,.58);
+    background:linear-gradient(180deg,rgba(216,150,60,.13),rgba(216,150,60,.06));
+  }
+  .point b{color:#F6D9A6}
+
+  /* ---------- 场景窗：做成一块发光的观察窗 ---------- */
+  .stage{
+    border-radius:20px;border:1px solid rgba(143,224,218,.26);
+    overflow:hidden;isolation:isolate;
+    box-shadow:
+      0 0 0 7px rgba(127,230,222,.042),
+      0 22px 52px -26px rgba(84,205,201,.42),
+      0 40px 74px -58px #000;
+    transition:box-shadow .4s ease;
+  }
+  .stage:hover{box-shadow:
+      0 0 0 7px rgba(127,230,222,.06),
+      0 26px 58px -24px rgba(84,205,201,.5),
+      0 44px 78px -58px #000}
+
+  /* ---------- 控件与反馈 ---------- */
+  .controls{padding:11px 13px;border-radius:14px;border:1px solid rgba(140,205,200,.14);
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.018))}
+  .ctrl{font-size:12.6px}
+  .kbhint kbd{border-radius:5px}
+  .fb{padding:12px 16px;border-radius:12px;border-left-width:3px;font-size:13.2px;line-height:1.72}
+
+  /* ---------- 观察室 ---------- */
+  .obs-open{padding:14px 16px;border-radius:16px;border:1px solid rgba(150,210,205,.19);
+    transition:border-color .25s,background .25s,transform .25s,box-shadow .25s}
+  .obs-open:hover{border-color:var(--p-hair-2);transform:translateY(-1px);
+    box-shadow:0 20px 38px -34px rgba(0,0,0,.9)}
+  .obs-open .ico{box-shadow:0 0 0 4px rgba(127,230,222,.075), 0 0 18px -6px var(--p-glow)}
+  .obs-open.on{border-color:rgba(127,230,222,.30)}
+  .obs-sum{border-radius:12px}
+  .face{border-radius:18px;border:1px solid rgba(150,210,205,.17)}
+  .front{background:linear-gradient(180deg,#10404C,#0A2C36)}
+  .back{background:linear-gradient(180deg,#0C3641,#08252E)}
+  .flipgrid{gap:13px}
+
+  /* ---------- 底部导航 ---------- */
+  .lvfoot{padding-top:18px;border-top:1px solid rgba(150,210,205,.13)}
+  .lvfoot .btn{min-height:40px;padding:0 18px;border-radius:11px;font-size:12.8px}
+  .lvfoot .btn.go{background:linear-gradient(135deg,#1CB4B2,#0E6E72);
+    box-shadow:0 14px 30px -18px rgba(28,180,178,.9), 0 1px 0 rgba(255,255,255,.16) inset}
+  .lvfoot .btn.go:hover{box-shadow:0 18px 38px -18px rgba(28,180,178,1), 0 1px 0 rgba(255,255,255,.22) inset}
+  .lvfoot .pos{font-size:10.5px;letter-spacing:.14em;gap:11px}
+  .lvfoot .pos i{width:64px;height:4px;background:rgba(255,255,255,.11);
+    box-shadow:0 0 0 1px rgba(255,255,255,.04) inset}
+  .lvfoot .pos i em{background:linear-gradient(90deg,#3FB3AE,#8FE8DE);
+    box-shadow:0 0 10px -2px rgba(127,230,222,.8)}
+  .lvfoot .pos b{font-family:var(--serif);font-size:15px;color:#CFEDE8}
+
+  /* ---------- 封面 ---------- */
+  .cover::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:radial-gradient(118% 88% at 50% 40%, transparent 42%, rgba(1,12,17,.55) 100%)}
+  .cover-veil{background:
+    radial-gradient(118% 78% at 50% 5%, rgba(120,235,230,.19) 0%, rgba(120,235,230,.13) 26%,
+      rgba(64,186,196,.055) 46%, rgba(3,32,42,0) 68%),
+    linear-gradient(180deg, rgba(2,20,27,.06) 0%, rgba(2,20,27,.24) 56%, rgba(1,14,19,.84) 100%)}
+  .cover-inner{padding:40px 26px}
+  .cover-title{letter-spacing:.075em;
+    text-shadow:0 3px 44px rgba(0,0,0,.5), 0 0 96px rgba(143,224,218,.26)}
+  .cover-rule{opacity:.55}
+  .cover-btn{
+    padding:16px 32px;font-size:14.5px;border-radius:99px;
+    box-shadow:0 20px 46px -20px rgba(245,140,111,.8), 0 1px 0 rgba(255,255,255,.32) inset;
+    transition:transform .28s cubic-bezier(.34,1.3,.5,1), box-shadow .32s, filter .32s;
+  }
+  .cover-btn:hover{transform:translateY(-2px);filter:brightness(1.04);
+    box-shadow:0 26px 56px -20px rgba(245,140,111,.92), 0 1px 0 rgba(255,255,255,.4) inset}
+  .cover-meta{font-size:10.8px;letter-spacing:.14em;color:#93B2AE;opacity:1}
+  .cover-sub{color:#C3D6D2}
+  .cover-lang{height:34px;border-radius:10px;transition:background .2s,border-color .2s,color .2s,transform .15s}
+
+  /* ---------- 小屏：把上面这些收回去，避免压坏手机版 ---------- */
+  @media(max-width:760px){
+    .wrap{padding:16px 14px 64px}
+    .topbar-in{height:56px;padding:0 14px;gap:10px}
+    .panel{padding:17px 14px 15px;border-radius:20px}
+    .lvhead h2{font-size:20px}
+    .point{display:none}
+    .tb-dots{display:none}
+    .stage{border-radius:16px;box-shadow:0 0 0 4px rgba(127,230,222,.05),0 16px 40px -26px rgba(84,205,201,.4)}
+    .controls{padding:9px 10px;border-radius:12px}
+    .fb{padding:10px 12px;font-size:12.6px}
+    .obs-open{padding:11px 12px;border-radius:14px}
+    .obs-open .tx em{display:none}
+    .flipgrid{grid-template-columns:1fr}
+    .lvfoot .btn{min-height:36px;padding:0 13px;font-size:12px}
+    .cover-inner{padding:30px 22px}
+    .cover-sub{font-size:12.8px;line-height:1.9;max-width:19em;margin-left:auto;margin-right:auto}
+    .cover-btn{padding:14px 26px;font-size:14px;margin-top:26px}
+    .cover-meta{font-size:10px;letter-spacing:.1em}
+    .lvfoot .pos i{width:44px}
+  }
+
+  /* ---------- 滑块：已走过的一段上色 ---------- */
+  input[type=range]{
+    background:linear-gradient(90deg,#3FC4BC 0 var(--p,50%),
+      rgba(255,255,255,.13) var(--p,50%) 100%) !important;
+    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
+    transition:box-shadow .2s;
+  }
+  input[type=range]:hover{box-shadow:0 0 0 1px rgba(255,255,255,.09) inset, 0 0 14px -6px rgba(127,230,222,.9)}
+  input[type=range]::-webkit-slider-thumb{
+    border-color:#7FE6DE;
+    box-shadow:0 2px 8px rgba(0,0,0,.5), 0 0 0 3px rgba(127,230,222,.10), 0 0 16px -2px rgba(127,230,222,.55);
+    transition:box-shadow .2s,transform .2s;
+  }
+  input[type=range]:active::-webkit-slider-thumb{transform:scale(1.08)}
+  input[type=range]::-moz-range-thumb{border-color:#7FE6DE}
+
+  /* ---------- 按钮的手感 ---------- */
+  .btn{transition:transform .18s,box-shadow .22s,background .22s,border-color .22s,color .22s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:translateY(0) scale(.99)}
+  .btn:focus-visible,.obs-open:focus-visible,.tb-home:focus-visible,.flip:focus-visible{
+    outline:2px solid rgba(127,230,222,.62);outline-offset:2px}
+
+  /* 翻转卡：顶部一道极细的高光，卡片立刻有厚度 */
+  .face{box-shadow:inset 0 1px 0 rgba(255,255,255,.07), 0 20px 38px -30px #000}
+  .front h4{letter-spacing:.01em}
+  .obs-tip{border-radius:11px}
+
+  /* 页脚说明别太暗 */
+  footer{color:#6F8C88}
+  footer b{color:#9EC5C0}
+
+  /* 屏幕不高时把版心收窄一点，让「场景 + 控件 + 反馈」能同屏 */
+  @media(min-width:900px) and (max-height:850px){
+    .wrap{max-width:1090px}
+    .topbar-in{max-width:1090px}
+    .panel{padding:22px 22px 20px;border-radius:24px}
+    .lvhead h2{font-size:25px}
+    .stage{border-radius:18px}
+  }
+
+  /* 场景窗加一道玻璃内边，白底和深色面板之间不再「硬切」 */
+  .stage{position:relative}
+  .stage::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.38),
+               inset 0 14px 30px -22px rgba(12,54,60,.35),
+               inset 0 -10px 26px -22px rgba(12,54,60,.22);
+  }
 </style>
 </head>
 <body>
@@ -665,16 +889,32 @@
         <stop offset="0%" stop-color="#8FE8E0" stop-opacity=".26"/>
         <stop offset="100%" stop-color="#8FE8E0" stop-opacity="0"/>
       </radialGradient>
+      <radialGradient id="cvCaustic" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#B6F4EC" stop-opacity=".42"/>
+        <stop offset="55%" stop-color="#7FE0DA" stop-opacity=".14"/>
+        <stop offset="100%" stop-color="#7FE0DA" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="cvSoft" x="-45%" y="-45%" width="190%" height="190%">
+        <feGaussianBlur stdDeviation="13"/>
+      </filter>
+      <filter id="cvSofter" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="30"/>
+      </filter>
     </defs>
 
     <rect width="1200" height="800" fill="url(#cvSea)"/>
     <rect width="1200" height="800" fill="url(#cvGlow)"/>
 
-    <!-- 光柱 -->
-    <g opacity=".85">
-      <polygon points="250,-40 330,-40 470,760 330,760" fill="url(#cvRay)"/>
-      <polygon points="560,-40 618,-40 700,760 600,760" fill="url(#cvRay)" opacity=".72"/>
-      <polygon points="820,-40 900,-40 1030,760 900,760" fill="url(#cvRay)" opacity=".55"/>
+    <!-- 光柱：先铺一层大范围漫射，再叠柔化过的细柱，避免出现硬边 -->
+    <g filter="url(#cvSofter)" opacity=".55">
+      <polygon points="180,-60 520,-60 700,780 320,780" fill="url(#cvRay)"/>
+      <polygon points="660,-60 980,-60 1120,780 760,780" fill="url(#cvRay)" opacity=".7"/>
+    </g>
+    <g filter="url(#cvSoft)" opacity=".9">
+      <polygon points="248,-40 322,-40 392,780 300,780" fill="url(#cvRay)"/>
+      <polygon points="556,-40 610,-40 664,780 588,780" fill="url(#cvRay)" opacity=".78"/>
+      <polygon points="812,-40 876,-40 940,780 856,780" fill="url(#cvRay)" opacity=".6"/>
+      <polygon points="1010,-40 1046,-40 1088,780 1032,780" fill="url(#cvRay)" opacity=".34"/>
     </g>
 
     <!-- 远景礁脊 -->
@@ -737,6 +977,13 @@
 
     <!-- 近景地面 -->
     <path d="M0,724 C120,704 210,736 330,724 C452,712 540,742 660,728 C786,714 880,744 1000,728 C1096,715 1150,730 1200,720 L1200,800 L0,800 Z" fill="url(#cvNear)"/>
+
+    <!-- 海床上的焦散光斑（压在近景地面之上才看得见） -->
+    <g filter="url(#cvSoft)">
+      <ellipse cx="300" cy="742" rx="230" ry="26" fill="url(#cvCaustic)" opacity=".9"/>
+      <ellipse cx="700" cy="752" rx="200" ry="22" fill="url(#cvCaustic)" opacity=".6"/>
+      <ellipse cx="1030" cy="738" rx="165" ry="18" fill="url(#cvCaustic)" opacity=".45"/>
+    </g>
 
     <!-- 气泡 -->
     <g fill="#CFF7F2" opacity=".55">
@@ -4081,6 +4328,24 @@
   bind("langBtn"); bind("langBtn2");
 
   apply(lang);
+})();
+</script>
+
+<script>
+/* 滑块：把「已走过的一段」上成青色（纯样式增强，不影响取值） */
+(function(){
+  function paint(r){
+    var mn=parseFloat(r.min)||0, mx=parseFloat(r.max)||100, v=parseFloat(r.value);
+    var p=(mx===mn)?0:(v-mn)/(mx-mn)*100;
+    r.style.setProperty("--p", Math.max(0,Math.min(100,p)).toFixed(2)+"%");
+  }
+  function all(){ var l=document.querySelectorAll('input[type=range]'); for(var i=0;i<l.length;i++) paint(l[i]); }
+  document.addEventListener("input",function(e){ if(e.target&&e.target.type==="range") paint(e.target); },true);
+  document.addEventListener("change",function(e){ if(e.target&&e.target.type==="range") paint(e.target); },true);
+  document.addEventListener("click",function(){ setTimeout(all,40); },true);
+  window.addEventListener("load",all);
+  window.addEventListener("langchange",function(){ setTimeout(all,40); });
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",all); else all();
 })();
 </script>
 </body>
